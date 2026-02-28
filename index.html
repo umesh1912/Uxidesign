@@ -363,8 +363,9 @@
       align-items: center;
       justify-content: center;
       margin-bottom: 18px;
-      font-size: 22px;
+      color: var(--accent);
     }
+    .skill-icon svg { display: block; }
 
     .skill-card h3 {
       font-family: 'DM Sans', sans-serif;
@@ -472,10 +473,16 @@
     }
 
     .tool-emoji {
-      font-size: 36px;
-      margin-bottom: 12px;
-      display: block;
+      width: 44px; height: 44px;
+      background: var(--tag-bg);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      color: var(--accent);
     }
+    .tool-emoji svg { display: block; }
 
     .tool-name {
       font-family: 'DM Sans', sans-serif;
@@ -643,6 +650,9 @@
       cursor: pointer;
       transition: all 0.2s;
       font-family: 'DM Sans', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
     }
     .ptab:hover { border-color: rgba(232,98,26,0.4); color: var(--text); }
     .ptab.active {
@@ -766,19 +776,19 @@
       position: absolute;
       bottom: 0; left: 0; right: 0;
       height: 2px;
-      background: linear-gradient(90deg, #1abcfe, #0acf83);
+      background: linear-gradient(90deg, #e8621a, #f59b4b);
       opacity: 0;
       transition: opacity 0.25s;
     }
-    .figma-card:hover { border-color: rgba(26,188,254,0.3); transform: translateY(-4px); }
+    .figma-card:hover { border-color: rgba(232,98,26,0.3); transform: translateY(-4px); }
     .figma-card:hover::after { opacity: 1; }
     .figma-card-number {
       width: 40px; height: 40px;
-      background: rgba(26,188,254,0.1);
-      border: 1px solid rgba(26,188,254,0.2);
+      background: rgba(232,98,26,0.1);
+      border: 1px solid rgba(232,98,26,0.2);
       border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 16px; font-weight: 800; color: #1abcfe;
+      font-size: 16px; font-weight: 800; color: var(--accent);
       margin-bottom: 14px;
     }
     .figma-card-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
@@ -787,8 +797,8 @@
       display: flex; align-items: center; gap: 6px;
     }
     .figma-chip {
-      background: rgba(26,188,254,0.1);
-      color: #1abcfe;
+      background: rgba(232,98,26,0.1);
+      color: var(--accent);
       padding: 2px 8px;
       border-radius: 50px;
       font-size: 11px;
@@ -801,7 +811,7 @@
       font-size: 16px;
       transition: color 0.2s, transform 0.2s;
     }
-    .figma-card:hover .figma-card-arrow { color: #1abcfe; transform: translate(2px, -2px); }
+    .figma-card:hover .figma-card-arrow { color: var(--accent); transform: translate(2px, -2px); }
 
     .case-studies-wrap {
       display: grid;
@@ -818,7 +828,7 @@
       transition: border-color 0.25s, transform 0.25s;
     }
     .case-card:hover { border-color: rgba(232,98,26,0.35); transform: translateY(-4px); }
-    .case-card-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+    .case-card-icon { margin-bottom: 16px; display: flex; color: var(--accent); }
     .case-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
     .case-card p { color: var(--muted); font-size: 14px; line-height: 1.6; }
     .case-card-link {
@@ -941,7 +951,7 @@
       justify-content: center;
     }
     .figma-card:hover .figma-overlay {
-      background: rgba(26,188,254,0.1);
+      background: rgba(232,98,26,0.1);
     }
 
 
@@ -1142,7 +1152,7 @@
 
   <div class="skills-grid">
     <div class="skill-card fade-in">
-      <div class="skill-icon">🎨</div>
+      <div class="skill-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></div>
       <h3>Design &amp; Prototyping</h3>
       <p>Advanced prototyping, design systems, auto layout, dev mode, and annotation — from wireframe to pixel-perfect.</p>
       <div class="skill-tags">
@@ -1154,7 +1164,7 @@
     </div>
 
     <div class="skill-card fade-in">
-      <div class="skill-icon">🔍</div>
+      <div class="skill-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></div>
       <h3>UX &amp; Product Strategy</h3>
       <p>Research-driven design: user interviews, persona development, usability testing, heuristic evaluation and VOC analysis.</p>
       <div class="skill-tags">
@@ -1166,7 +1176,7 @@
     </div>
 
     <div class="skill-card fade-in">
-      <div class="skill-icon">🏛️</div>
+      <div class="skill-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
       <h3>Design Systems</h3>
       <p>Architecting scalable component libraries, information architecture, user flows, journey mapping and sitemaps.</p>
       <div class="skill-tags">
@@ -1178,7 +1188,7 @@
     </div>
 
     <div class="skill-card fade-in">
-      <div class="skill-icon">⚡</div>
+      <div class="skill-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
       <h3>Front-End Development</h3>
       <p>Production-ready code with HTML5, CSS3, SCSS and React-based UI frameworks, including responsive web design.</p>
       <div class="skill-tags">
@@ -1190,7 +1200,7 @@
     </div>
 
     <div class="skill-card fade-in">
-      <div class="skill-icon">📱</div>
+      <div class="skill-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg></div>
       <h3>Mobile &amp; Platform Design</h3>
       <p>Native design guidelines for iOS and Android; creating seamless experiences across devices and screen sizes.</p>
       <div class="skill-tags">
@@ -1202,7 +1212,7 @@
     </div>
 
     <div class="skill-card fade-in">
-      <div class="skill-icon">🤖</div>
+      <div class="skill-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="18" height="10" x="3" y="11" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" x2="8" y1="16" y2="16"/><line x1="16" x2="16" y1="16" y2="16"/></svg></div>
       <h3>AI-Powered Design</h3>
       <p>Leveraging AI tools for UX research synthesis, content modeling, workflow optimization and rapid prototyping.</p>
       <div class="skill-tags">
@@ -1271,42 +1281,42 @@
 
   <div class="tools-grid">
     <div class="tool-card fade-in">
-      <span class="tool-emoji">🎯</span>
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
       <div class="tool-name">Figma</div>
       <div class="tool-desc">Advanced prototyping, design systems & dev handoff</div>
     </div>
     <div class="tool-card fade-in">
-      <span class="tool-emoji">🖌️</span>
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M18.37 2.63 14 7l-1.59-1.59a2 2 0 0 0-2.82 0L8 7l9 9 1.59-1.59a2 2 0 0 0 0-2.82L17 10l4.37-4.37a2.12 2.12 0 1 0-3-3z"/><path d="M9 8c-2 3-4 3.5-7 4l8 10c2-1 6-5 6-7"/><path d="M14.5 17.5 4.5 15"/></svg></span>
       <div class="tool-name">Adobe Photoshop</div>
       <div class="tool-desc">Photo editing, asset creation & visual design</div>
     </div>
     <div class="tool-card fade-in">
-      <span class="tool-emoji">✏️</span>
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg></span>
       <div class="tool-name">Adobe Illustrator</div>
       <div class="tool-desc">Vector graphics, icons & brand assets</div>
     </div>
     <div class="tool-card fade-in">
-      <span class="tool-emoji">🗺️</span>
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/></svg></span>
       <div class="tool-name">Miro</div>
       <div class="tool-desc">Collaborative whiteboarding & flow diagrams</div>
     </div>
     <div class="tool-card fade-in">
-      <span class="tool-emoji">📊</span>
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg></span>
       <div class="tool-name">Google Analytics</div>
       <div class="tool-desc">Performance insights & user behavior tracking</div>
     </div>
     <div class="tool-card fade-in">
-      <span class="tool-emoji">🌐</span>
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
       <div class="tool-name">Webflow / HubSpot</div>
       <div class="tool-desc">No-code development & content management</div>
     </div>
     <div class="tool-card fade-in">
-      <span class="tool-emoji">⚙️</span>
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"/><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/><path d="M12 2v2"/><path d="M12 22v-2"/><path d="m17 20.66-1-1.73"/><path d="M11 10.27 7 3.34"/><path d="m20.66 17-1.73-1"/><path d="m3.34 7 1.73 1"/><path d="M14 12h8"/><path d="M2 12h2"/><path d="m20.66 7-1.73 1"/><path d="m3.34 17 1.73-1"/><path d="m17 3.34-1 1.73"/><path d="m11 13.73-4 6.93"/></svg></span>
       <div class="tool-name">Git / Azure</div>
       <div class="tool-desc">Version control & cloud DevOps workflows</div>
     </div>
     <div class="tool-card fade-in">
-      <span class="tool-emoji">🔗</span>
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
       <div class="tool-name">Zeplin / InVision</div>
       <div class="tool-desc">Design handoff & interactive prototyping</div>
     </div>
@@ -1323,10 +1333,10 @@
 
   <!-- TABS -->
   <div class="portfolio-tabs fade-in">
-    <button class="ptab active" onclick="switchTab('overview', this)">🗂 Overview</button>
-    <button class="ptab" onclick="switchTab('live', this)">🌐 Live Websites</button>
-    <button class="ptab" onclick="switchTab('figma', this)">🎨 Figma Designs</button>
-    <button class="ptab" onclick="switchTab('cases', this)">📖 Case Studies</button>
+    <button class="ptab active" onclick="switchTab('overview', this)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg> Overview</button>
+    <button class="ptab" onclick="switchTab('live', this)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Live Websites</button>
+    <button class="ptab" onclick="switchTab('figma', this)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"/><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"/><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"/><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"/><path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"/></svg> Figma Designs</button>
+    <button class="ptab" onclick="switchTab('cases', this)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> Case Studies</button>
   </div>
 
   <!-- TAB: OVERVIEW -->
@@ -1445,7 +1455,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">📱</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#e8621a;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1460,7 +1470,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">💻</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#059669;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1475,7 +1485,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">💬</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#9333ea;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1490,7 +1500,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🔒</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#0284c7;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1505,7 +1515,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🏢</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#d97706;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1520,7 +1530,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">📈</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#dc2626;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1535,7 +1545,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🏘️</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#16a34a;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1550,7 +1560,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🐝</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 2a5 5 0 0 1 5 5c0 6-5 13-5 13S7 13 7 7a5 5 0 0 1 5-5z"/><circle cx="12" cy="7" r="2"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#ca8a04;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1565,7 +1575,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">⚽</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="M12 2v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="M2 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="M12 22v-4"/><path d="m19.07 19.07-2.83-2.83"/><path d="M22 12h-4"/><path d="m19.07 4.93-2.83 2.83"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#c2440f;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1580,7 +1590,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🌊</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#e11d48;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1595,7 +1605,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">✦</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 2v20M2 12h20"/><path d="m4.93 4.93 14.14 14.14M19.07 4.93 4.93 19.07"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#6366f1;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1610,7 +1620,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🛡️</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#15803d;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1625,7 +1635,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">⚖️</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21H17"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#b91c1c;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1640,7 +1650,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🏛️</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#0369a1;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1655,7 +1665,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🏥</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><line x1="12" x2="12" y1="10" y2="16"/><line x1="9" x2="15" y1="13" y2="13"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#0891b2;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1670,7 +1680,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🏙️</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="6" height="18" x="2" y="4"/><rect width="6" height="12" x="10" y="10"/><rect width="6" height="8" x="18" y="14"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#a16207;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1685,7 +1695,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">📚</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#047857;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1700,7 +1710,7 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">📋</div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg></div>
           <div class="figma-overlay"></div>
           <div style="position:absolute;bottom:10px;left:12px;background:#9a3412;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
         </div>
@@ -1716,14 +1726,14 @@
     <div class="case-studies-wrap">
 
       <a href="https://medium.com/@anghanumeshd8" target="_blank" class="case-card fade-in">
-        <span class="case-card-icon">✍️</span>
+        <span class="case-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>
         <h3>Case Studies on Medium</h3>
         <p>In-depth UX process breakdowns, research synthesis and design thinking articles covering real-world projects across healthcare, fintech, government and enterprise.</p>
         <div class="case-card-link">Read Articles on Medium ↗</div>
       </a>
 
       <a href="https://uxid.vercel.app/images/news/Case%20Study_%20Home%20Loan%20Transfer%20App.pdf" target="_blank" class="case-card fade-in">
-        <span class="case-card-icon">📄</span>
+        <span class="case-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></span>
         <h3>Case Study: Home Loan Transfer App</h3>
         <p>A detailed UX design process sample — from discovery and research to wireframes, prototypes and final UI delivery. Demonstrates end-to-end design thinking.</p>
         <div class="case-card-link">Download PDF ↗</div>
@@ -1742,13 +1752,13 @@
     <p class="contact-sub">I'm open to senior product design roles and exciting collaboration opportunities. Let's create something remarkable together.</p>
     <div class="contact-links">
       <a href="/cdn-cgi/l/email-protection#f899969f9099968d959d8b909cc0b89f95999194d69b9795" class="contact-link primary">
-        ✉ Send an Email
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:6px"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> Send an Email
       </a>
       <a href="https://www.linkedin.com/in/umesh-anghan-99660167/" target="_blank" class="contact-link ghost">
         in LinkedIn
       </a>
       <a href="https://uxid.vercel.app/" target="_blank" class="contact-link ghost">
-        🎨 Portfolio
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:6px"><rect width="18" height="14" x="3" y="5" rx="2"/><polyline points="3 7 12 13 21 7"/></svg> Portfolio
       </a>
     </div>
   </div>
@@ -1759,9 +1769,9 @@
   <a class="footer-logo" href="#"><span>UXI</span>Design</a>
   <p class="footer-copy">© 2025 Umesh D. Anghan. All rights reserved.</p>
   <div class="footer-socials">
-    <a class="footer-social" href="https://www.linkedin.com/in/umesh-anghan-99660167/" target="_blank" title="LinkedIn">in</a>
-    <a class="footer-social" href="https://uxid.vercel.app/" target="_blank" title="Portfolio">🔗</a>
-    <a class="footer-social" href="/cdn-cgi/l/email-protection#d9b8b7beb1b8b7acb4bcaab1bde199beb4b8b0b5f7bab6b4" title="Email">✉</a>
+    <a class="footer-social" href="https://www.linkedin.com/in/umesh-anghan-99660167/" target="_blank" title="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
+    <a class="footer-social" href="https://uxid.vercel.app/" target="_blank" title="Portfolio"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg></a>
+    <a class="footer-social" href="/cdn-cgi/l/email-protection#d9b8b7beb1b8b7acb4bcaab1bde199beb4b8b0b5f7bab6b4" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
   </div>
 </footer>
 
