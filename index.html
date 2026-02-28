@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Umesh D. Anghan — Senior Product Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --surface2: #16161f;
+      --border: rgba(255,255,255,0.07);
+      --accent: #e8621a;
+      --accent2: #f59b4b;
+      --text: #f0efff;
+      --muted: #7b7a9a;
+      --tag-bg: rgba(232,98,26,0.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 60px;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #fff !important;
+      padding: 10px 22px;
+      border-radius: 50px;
+      transition: opacity 0.2s !important;
+    }
+
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 60px; max-width: 1200px; margin: 0 auto; }
+
+    /* ── HERO ── */
+    #hero {
+      padding-top: 160px;
+      padding-bottom: 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 60px;
+      padding-right: 60px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--tag-bg);
+      border: 1px solid rgba(232,98,26,0.25);
+      color: var(--accent2);
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 50px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 1.8s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(44px, 6vw, 80px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      margin-bottom: 28px;
+      animation: fadeUp 0.9s 0.1s ease both;
+    }
+
+    .hero-title .highlight {
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 44px;
+      font-weight: 300;
+      animation: fadeUp 1s 0.2s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      animation: fadeUp 1.1s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(232,98,26,0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(232,98,26,0.45);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      text-decoration: none;
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-weight: 500;
+      font-size: 15px;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.2);
+      background: var(--surface);
+    }
+
+    /* Marquee */
+    .marquee-wrap {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 0;
+      background: var(--surface);
+      margin-top: 80px;
+    }
+
+    .marquee {
+      display: flex;
+      gap: 48px;
+      width: max-content;
+      animation: marquee 22s linear infinite;
+    }
+
+    .marquee-item {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .marquee-item::after {
+      content: '◆';
+      color: var(--accent);
+      font-size: 8px;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* ── STATS ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      padding: 40px 32px;
+      text-align: center;
+      transition: background 0.2s;
+    }
+
+    .stat-card:hover { background: var(--surface2); }
+
+    .stat-number {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 52px;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    .stat-number span { color: var(--accent); }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 8px;
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header {
+      margin-bottom: 64px;
+    }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent2);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-tag::before {
+      content: '';
+      width: 20px; height: 1px;
+      background: var(--accent2);
+    }
+
+    .section-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 500px;
+      margin-top: 14px;
+      line-height: 1.7;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: border-color 0.25s, transform 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .skill-card:hover {
+      border-color: rgba(232,98,26,0.3);
+      transform: translateY(-4px);
+    }
+
+    .skill-card:hover::before { opacity: 1; }
+
+    .skill-icon {
+      width: 44px; height: 44px;
+      background: var(--tag-bg);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      font-size: 22px;
+    }
+
+    .skill-card h3 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .skill-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .skill-tag {
+      background: var(--tag-bg);
+      color: var(--accent2);
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 50px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-list { display: flex; flex-direction: column; gap: 2px; }
+
+    .exp-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 36px 40px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      transition: border-color 0.25s;
+      cursor: default;
+    }
+
+    .exp-item:hover { border-color: rgba(232,98,26,0.3); }
+
+    .exp-company {
+      font-size: 12px;
+      color: var(--accent2);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .exp-role {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .exp-desc {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+      max-width: 620px;
+    }
+
+    .exp-period {
+      font-size: 13px;
+      color: var(--muted);
+      text-align: right;
+      white-space: nowrap;
+      background: var(--tag-bg);
+      border: 1px solid rgba(232,98,26,0.2);
+      color: var(--accent2);
+      padding: 6px 14px;
+      border-radius: 50px;
+      height: fit-content;
+      font-weight: 500;
+    }
+
+    /* ── TOOLS ── */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .tool-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 24px;
+      transition: border-color 0.25s, transform 0.25s;
+      text-align: center;
+    }
+
+    .tool-card:hover {
+      border-color: rgba(232,98,26,0.3);
+      transform: translateY(-4px);
+    }
+
+    .tool-emoji {
+      font-size: 36px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .tool-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .tool-desc {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    /* ── CONTACT ── */
+    #contact-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 80px 72px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #contact-section::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%;
+      transform: translateX(-50%);
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(232,98,26,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 800;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+    }
+
+    .contact-sub {
+      color: var(--muted);
+      font-size: 17px;
+      max-width: 480px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: transform 0.2s;
+    }
+
+    .contact-link:hover { transform: translateY(-2px); }
+
+    .contact-link.primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 24px rgba(232,98,26,0.3);
+    }
+
+    .contact-link.ghost {
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .contact-link.ghost:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.04); }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-logo {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    .footer-copy {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-social {
+      width: 38px; height: 38px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .footer-social:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── PORTFOLIO / WORK SAMPLES ── */
+    .portfolio-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 44px;
+      flex-wrap: wrap;
+    }
+    .ptab {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .ptab:hover { border-color: rgba(232,98,26,0.4); color: var(--text); }
+    .ptab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(232,98,26,0.3);
+    }
+    .ptab-content { display: none; }
+    .ptab-content.active { display: block; }
+
+    .portfolio-banner {
+      background: linear-gradient(135deg, rgba(232,98,26,0.15) 0%, rgba(167,139,250,0.08) 100%);
+      border: 1px solid rgba(232,98,26,0.25);
+      border-radius: 20px;
+      padding: 44px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      text-decoration: none;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .portfolio-banner:hover { border-color: rgba(232,98,26,0.5); transform: translateY(-3px); }
+    .portfolio-banner-text h3 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+    .portfolio-banner-text p { color: var(--muted); font-size: 15px; }
+    .portfolio-banner-arrow {
+      width: 52px; height: 52px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .portfolio-banner:hover .portfolio-banner-arrow { transform: translateX(4px); }
+
+    .live-sites-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .live-site-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      text-decoration: none;
+      transition: border-color 0.25s, transform 0.25s;
+      display: block;
+    }
+    .live-site-card:hover { border-color: rgba(232,98,26,0.35); transform: translateY(-4px); }
+    .live-site-preview {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, var(--surface2) 0%, #1a1a2e 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+    }
+    .live-site-preview-domain {
+      position: absolute;
+      bottom: 12px; left: 16px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      font-weight: 500;
+    }
+    .preview-icon { opacity: 0.15; font-size: 80px; }
+    .live-site-info {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .live-site-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .live-site-url { font-size: 12px; color: var(--muted); }
+    .live-site-badge {
+      background: rgba(34,197,94,0.12);
+      color: #4ade80;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 50px;
+      border: 1px solid rgba(34,197,94,0.2);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+    .live-site-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: #4ade80;
+      border-radius: 50%;
+      animation: pulse 1.8s ease infinite;
+    }
+
+    .figma-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .figma-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 22px;
+      text-decoration: none;
+      display: block;
+      transition: border-color 0.25s, transform 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .figma-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #1abcfe, #0acf83);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .figma-card:hover { border-color: rgba(26,188,254,0.3); transform: translateY(-4px); }
+    .figma-card:hover::after { opacity: 1; }
+    .figma-card-number {
+      width: 40px; height: 40px;
+      background: rgba(26,188,254,0.1);
+      border: 1px solid rgba(26,188,254,0.2);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 800; color: #1abcfe;
+      margin-bottom: 14px;
+    }
+    .figma-card-name { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .figma-card-type {
+      font-size: 12px; color: var(--muted);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .figma-chip {
+      background: rgba(26,188,254,0.1);
+      color: #1abcfe;
+      padding: 2px 8px;
+      border-radius: 50px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .figma-card-arrow {
+      position: absolute;
+      top: 20px; right: 20px;
+      color: var(--muted);
+      font-size: 16px;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .figma-card:hover .figma-card-arrow { color: #1abcfe; transform: translate(2px, -2px); }
+
+    .case-studies-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .case-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px 28px;
+      text-decoration: none;
+      display: block;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+    .case-card:hover { border-color: rgba(232,98,26,0.35); transform: translateY(-4px); }
+    .case-card-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+    .case-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
+    .case-card p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .case-card-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--accent2); font-size: 13px; font-weight: 600; margin-top: 16px;
+    }
+
+    /* Accent colors for live-site preview gradients */
+    .lsp-1 { background: linear-gradient(135deg, #0f1923 0%, #1a2a3a 100%); }
+    .lsp-2 { background: linear-gradient(135deg, #0d1f1a 0%, #143020 100%); }
+    .lsp-3 { background: linear-gradient(135deg, #1a0f1f 0%, #2d1040 100%); }
+    .lsp-4 { background: linear-gradient(135deg, #1a1000 0%, #2d2200 100%); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 18px 28px; }
+      section, #hero, footer { padding-left: 28px; padding-right: 28px; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .figma-grid { grid-template-columns: repeat(2, 1fr); }
+      .live-sites-grid { grid-template-columns: 1fr; }
+      .case-studies-wrap { grid-template-columns: 1fr; }
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+      .exp-item { grid-template-columns: 1fr; }
+      .exp-period { text-align: left; width: fit-content; }
+      #contact-section { padding: 50px 28px; }
+    }
+
+    @media (max-width: 600px) {
+      .figma-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+      .nav-links { display: none; }
+    }
+
+
+    /* ── ENHANCED WORK SAMPLE CARDS ── */
+    .live-site-preview {
+      position: relative;
+      overflow: hidden;
+    }
+    .live-site-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .live-site-card:hover .live-site-preview img {
+      transform: scale(1.04);
+    }
+    .live-site-preview .site-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 40%, rgba(10,10,15,0.7) 100%);
+      z-index: 1;
+    }
+    .live-site-preview .visit-btn {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: var(--accent);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 50px;
+      opacity: 0;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 2;
+      white-space: nowrap;
+    }
+    .live-site-card:hover .visit-btn {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .live-sites-grid {
+      gap: 20px;
+    }
+    .live-site-preview {
+      height: 220px;
+    }
+    /* Figma cards enhanced */
+    .figma-grid {
+      gap: 14px;
+    }
+    .figma-card-thumb {
+      width: 100%;
+      height: 130px;
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f0f20 100%);
+      border-radius: 10px;
+      margin-bottom: 14px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .figma-card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .figma-card:hover .figma-card-thumb img {
+      transform: scale(1.05);
+    }
+    .figma-thumb-fallback {
+      font-size: 36px;
+      opacity: 0.3;
+    }
+    .figma-card-thumb .figma-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .figma-card:hover .figma-overlay {
+      background: rgba(26,188,254,0.1);
+    }
+
+
+    .preview-fallback-1 { background: linear-gradient(135deg, #0f1923 0%, #1a2a3a 100%) !important; }
+    .preview-fallback-2 { background: linear-gradient(135deg, #0d1f1a 0%, #143020 100%) !important; }
+    .preview-fallback-3 { background: linear-gradient(135deg, #1a0f1f 0%, #2d1040 100%) !important; }
+    .preview-fallback-4 { background: linear-gradient(135deg, #1a1000 0%, #2d2200 100%) !important; }
+    .live-site-preview {
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+      background: var(--surface2);
+    }
+
+    /* ── HERO PHOTO ── */
+    .hero-photo-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeUp 1s 0.4s ease both;
+    }
+    .hero-photo-ring {
+      width: 360px;
+      height: 420px;
+      border-radius: 220px 220px 180px 180px;
+      overflow: hidden;
+      border: 2px solid rgba(232,98,26,0.3);
+      box-shadow: 0 0 80px rgba(232,98,26,0.18), 0 32px 64px rgba(0,0,0,0.5);
+      position: relative;
+      background: var(--surface2);
+    }
+    .hero-photo-ring::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      padding: 2px;
+      background: linear-gradient(160deg, var(--accent), transparent 60%, var(--accent2));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      z-index: 2;
+    }
+    .hero-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: grayscale(8%) contrast(1.05);
+    }
+    .hero-photo-badge {
+      position: absolute;
+      bottom: 24px;
+      left: -28px;
+      background: var(--surface);
+      border: 1px solid rgba(232,98,26,0.3);
+      border-radius: 16px;
+      padding: 14px 18px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+      backdrop-filter: blur(12px);
+    }
+    .hero-photo-badge span {
+      display: block;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--accent2);
+      line-height: 1;
+    }
+    .hero-photo-badge small {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.4;
+      display: block;
+      margin-top: 4px;
+    }
+    .hero-photo-tag {
+      position: absolute;
+      top: 28px;
+      right: -24px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: 50px;
+      box-shadow: 0 4px 20px rgba(232,98,26,0.4);
+      white-space: nowrap;
+    }
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr !important; }
+      .hero-photo-wrap { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#"><span>UXI</span>Design</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#works">Works</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;padding-top:160px;padding-bottom:80px;max-width:1200px;margin:0 auto;padding-left:60px;padding-right:60px;">
+  <div>
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Available for Senior Product Design roles
+    </div>
+    <h1 class="hero-title">
+      Crafting Digital<br/>
+      Experiences with<br/>
+      <span class="highlight">Precision &amp; Vision</span>
+    </h1>
+    <p class="hero-sub">
+      Senior Product Designer with 12.5+ years of experience leading UX strategy, solving complex design challenges, and delivering high-impact digital products across web and mobile.
+    </p>
+    <div class="hero-actions">
+      <a href="#works" class="btn-primary">View My Work</a>
+      <a href="https://www.linkedin.com/in/umesh-anghan-99660167/" target="_blank" class="btn-secondary">LinkedIn ↗</a>
+      <a href="https://uxid.vercel.app/" target="_blank" class="btn-secondary">Portfolio ↗</a>
+    </div>
+  </div>
+  <div class="hero-photo-wrap">
+    <div class="hero-photo-ring">
+      <img src="data:image/jpeg;base64,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" alt="Umesh D. Anghan" class="hero-photo" />
+    </div>
+    <div class="hero-photo-badge">
+      <span>12.5+</span>
+      <small>Years of<br/>Experience</small>
+    </div>
+    <div class="hero-photo-tag">Senior Product Designer</div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span class="marquee-item">UI/UX Design</span>
+    <span class="marquee-item">Product Strategy</span>
+    <span class="marquee-item">Design Systems</span>
+    <span class="marquee-item">Figma Expert</span>
+    <span class="marquee-item">User Research</span>
+    <span class="marquee-item">Prototyping</span>
+    <span class="marquee-item">Front-End Dev</span>
+    <span class="marquee-item">Agile Sprints</span>
+    <span class="marquee-item">AI-Powered Design</span>
+    <span class="marquee-item">WCAG Accessibility</span>
+    <!-- duplicate for seamless loop -->
+    <span class="marquee-item">UI/UX Design</span>
+    <span class="marquee-item">Product Strategy</span>
+    <span class="marquee-item">Design Systems</span>
+    <span class="marquee-item">Figma Expert</span>
+    <span class="marquee-item">User Research</span>
+    <span class="marquee-item">Prototyping</span>
+    <span class="marquee-item">Front-End Dev</span>
+    <span class="marquee-item">Agile Sprints</span>
+    <span class="marquee-item">AI-Powered Design</span>
+    <span class="marquee-item">WCAG Accessibility</span>
+  </div>
+</div>
+
+<!-- STATS -->
+<section id="about">
+  <div class="fade-in stats-grid">
+    <div class="stat-card">
+      <div class="stat-number">12<span>.5+</span></div>
+      <div class="stat-label">Years of Experience</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">4<span>+</span></div>
+      <div class="stat-label">Companies Served</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">100<span>+</span></div>
+      <div class="stat-label">Products Delivered</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-number">3<span>×</span></div>
+      <div class="stat-label">Platforms: Web, iOS, Android</div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header fade-in">
+    <div class="section-tag">Expertise</div>
+    <h2 class="section-title">My Skills &amp;<br/>Expertise</h2>
+    <p class="section-desc">A versatile toolkit built over 12+ years of hands-on product design and front-end development.</p>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🎨</div>
+      <h3>Design &amp; Prototyping</h3>
+      <p>Advanced prototyping, design systems, auto layout, dev mode, and annotation — from wireframe to pixel-perfect.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">Figma Make</span>
+        <span class="skill-tag">Lovable</span>
+        <span class="skill-tag">Micro-interactions</span>
+      </div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🔍</div>
+      <h3>UX &amp; Product Strategy</h3>
+      <p>Research-driven design: user interviews, persona development, usability testing, heuristic evaluation and VOC analysis.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">User Research</span>
+        <span class="skill-tag">Usability Testing</span>
+        <span class="skill-tag">WCAG</span>
+        <span class="skill-tag">Agile</span>
+      </div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🏛️</div>
+      <h3>Design Systems</h3>
+      <p>Architecting scalable component libraries, information architecture, user flows, journey mapping and sitemaps.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Components</span>
+        <span class="skill-tag">Variants</span>
+        <span class="skill-tag">Tokens</span>
+        <span class="skill-tag">IA</span>
+      </div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-icon">⚡</div>
+      <h3>Front-End Development</h3>
+      <p>Production-ready code with HTML5, CSS3, SCSS and React-based UI frameworks, including responsive web design.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">HTML5</span>
+        <span class="skill-tag">CSS3 / SCSS</span>
+        <span class="skill-tag">React Bootstrap</span>
+        <span class="skill-tag">Material UI</span>
+      </div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-icon">📱</div>
+      <h3>Mobile &amp; Platform Design</h3>
+      <p>Native design guidelines for iOS and Android; creating seamless experiences across devices and screen sizes.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">iOS</span>
+        <span class="skill-tag">Android</span>
+        <span class="skill-tag">iPad</span>
+        <span class="skill-tag">Responsive</span>
+      </div>
+    </div>
+
+    <div class="skill-card fade-in">
+      <div class="skill-icon">🤖</div>
+      <h3>AI-Powered Design</h3>
+      <p>Leveraging AI tools for UX research synthesis, content modeling, workflow optimization and rapid prototyping.</p>
+      <div class="skill-tags">
+        <span class="skill-tag">Claude AI</span>
+        <span class="skill-tag">Figma Make</span>
+        <span class="skill-tag">Rapid Proto</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header fade-in">
+    <div class="section-tag">Career</div>
+    <h2 class="section-title">Work<br/>Experience</h2>
+    <p class="section-desc">12.5 years across healthcare, security, fintech, and enterprise product ecosystems.</p>
+  </div>
+
+  <div class="exp-list">
+    <div class="exp-item fade-in">
+      <div>
+        <div class="exp-company">Cayzen Technologies</div>
+        <div class="exp-role">Sr. UI/UX Designer / Product Designer</div>
+        <p class="exp-desc">Lead product discovery sessions, stakeholder workshops, and UX strategy planning. Define design requirements based on business objectives and user research insights. Develop scalable design systems, create user stories, process flows, wireframes, prototypes, and high-fidelity mockups. Contribute to front-end development using HTML5, CSS3, SCSS, and React-based UI frameworks.</p>
+      </div>
+      <span class="exp-period">Aug 2019 – Present</span>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div>
+        <div class="exp-company">Meditab</div>
+        <div class="exp-role">Sr. UI/UX Designer &amp; Web Designer</div>
+        <p class="exp-desc">Designed and developed responsive web applications and healthcare product interfaces. Led UX strategy from requirement analysis to wireframing, prototyping, and final delivery. Created mobile and web app UI assets for iOS, iPad, and Android platforms. Ensured standards-compliant code with focus on accessibility, SEO, and W3C validation.</p>
+      </div>
+      <span class="exp-period">Sep 2017 – Jul 2019</span>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div>
+        <div class="exp-company">Matrix Comsec</div>
+        <div class="exp-role">Sr. UI/UX Designer</div>
+        <p class="exp-desc">Designed and developed responsive web applications and enterprise dashboards. Created UI/UX for desktop and mobile applications. Developed wireframes, prototypes, and interactive UI solutions. Collaborated with backend teams to ensure seamless front-end integration.</p>
+      </div>
+      <span class="exp-period">Mar 2015 – Aug 2017</span>
+    </div>
+
+    <div class="exp-item fade-in">
+      <div>
+        <div class="exp-company">Concept Securities Pvt Ltd</div>
+        <div class="exp-role">Web &amp; Graphics Designer</div>
+        <p class="exp-desc">Designed web applications, landing pages, and branding materials. Optimized graphics and layouts for corporate clients. Collaborated with marketing and development teams for implementation and testing.</p>
+      </div>
+      <span class="exp-period">Jun 2013 – Feb 2015</span>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS -->
+<section id="tools">
+  <div class="section-header fade-in">
+    <div class="section-tag">Toolkit</div>
+    <h2 class="section-title">Tools I Use<br/>with Ease</h2>
+    <p class="section-desc">Proficiency in a diverse array of design and development tools.</p>
+  </div>
+
+  <div class="tools-grid">
+    <div class="tool-card fade-in">
+      <span class="tool-emoji">🎯</span>
+      <div class="tool-name">Figma</div>
+      <div class="tool-desc">Advanced prototyping, design systems & dev handoff</div>
+    </div>
+    <div class="tool-card fade-in">
+      <span class="tool-emoji">🖌️</span>
+      <div class="tool-name">Adobe Photoshop</div>
+      <div class="tool-desc">Photo editing, asset creation & visual design</div>
+    </div>
+    <div class="tool-card fade-in">
+      <span class="tool-emoji">✏️</span>
+      <div class="tool-name">Adobe Illustrator</div>
+      <div class="tool-desc">Vector graphics, icons & brand assets</div>
+    </div>
+    <div class="tool-card fade-in">
+      <span class="tool-emoji">🗺️</span>
+      <div class="tool-name">Miro</div>
+      <div class="tool-desc">Collaborative whiteboarding & flow diagrams</div>
+    </div>
+    <div class="tool-card fade-in">
+      <span class="tool-emoji">📊</span>
+      <div class="tool-name">Google Analytics</div>
+      <div class="tool-desc">Performance insights & user behavior tracking</div>
+    </div>
+    <div class="tool-card fade-in">
+      <span class="tool-emoji">🌐</span>
+      <div class="tool-name">Webflow / HubSpot</div>
+      <div class="tool-desc">No-code development & content management</div>
+    </div>
+    <div class="tool-card fade-in">
+      <span class="tool-emoji">⚙️</span>
+      <div class="tool-name">Git / Azure</div>
+      <div class="tool-desc">Version control & cloud DevOps workflows</div>
+    </div>
+    <div class="tool-card fade-in">
+      <span class="tool-emoji">🔗</span>
+      <div class="tool-name">Zeplin / InVision</div>
+      <div class="tool-desc">Design handoff & interactive prototyping</div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO / WORK SAMPLES -->
+<section id="works">
+  <div class="section-header fade-in">
+    <div class="section-tag">Portfolio</div>
+    <h2 class="section-title">Work Samples<br/>&amp; Projects</h2>
+    <p class="section-desc">Live products, Figma design files, case studies and design process samples — a curated view of 12.5+ years of craft.</p>
+  </div>
+
+  <!-- TABS -->
+  <div class="portfolio-tabs fade-in">
+    <button class="ptab active" onclick="switchTab('overview')">🗂 Overview</button>
+    <button class="ptab" onclick="switchTab('live')">🌐 Live Websites</button>
+    <button class="ptab" onclick="switchTab('figma')">🎨 Figma Designs</button>
+    <button class="ptab" onclick="switchTab('cases')">📖 Case Studies</button>
+  </div>
+
+  <!-- TAB: OVERVIEW -->
+  <div id="tab-overview" class="ptab-content active">
+    <a href="https://uxid.vercel.app/#section-portfolio" target="_blank" class="portfolio-banner fade-in">
+      <div class="portfolio-banner-text">
+        <h3>Complete Design Portfolio</h3>
+        <p>Explore all design thumbnails — Web Apps, Mobile Apps, and Website projects in one curated gallery.</p>
+        <div style="display:flex;gap:16px;margin-top:20px;flex-wrap:wrap;">
+          <span style="background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--muted);font-size:12px;font-weight:600;padding:5px 14px;border-radius:50px;">Web App</span>
+          <span style="background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--muted);font-size:12px;font-weight:600;padding:5px 14px;border-radius:50px;">Mobile App</span>
+          <span style="background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--muted);font-size:12px;font-weight:600;padding:5px 14px;border-radius:50px;">Website Design</span>
+          <span style="background:rgba(255,255,255,0.06);border:1px solid var(--border);color:var(--muted);font-size:12px;font-weight:600;padding:5px 14px;border-radius:50px;">18+ Projects</span>
+        </div>
+      </div>
+      <div class="portfolio-banner-arrow">→</div>
+    </a>
+  </div>
+
+  <!-- TAB: LIVE WEBSITES -->
+  <div id="tab-live" class="ptab-content">
+    <div class="live-sites-grid">
+
+      <a href="https://www.nivanophysicians.com/" target="_blank" class="live-site-card fade-in">
+        <div class="live-site-preview">
+          <img 
+            src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.nivanophysicians.com%2F?w=1200&h=660"
+            alt="Nivano Physicians"
+            loading="lazy"
+            onerror="this.style.display='none'; this.parentElement.classList.add('preview-fallback-1')"
+          />
+          <div class="site-overlay"></div>
+          <span class="visit-btn">Visit Site ↗</span>
+        </div>
+        <div class="live-site-info">
+          <div>
+            <div class="live-site-name">Nivano Physicians</div>
+            <div class="live-site-url">Healthcare · Web Design &amp; Dev</div>
+          </div>
+          <span class="live-site-badge">Live</span>
+        </div>
+      </a>
+
+      <a href="https://www.cosmetisuite.com/" target="_blank" class="live-site-card fade-in">
+        <div class="live-site-preview">
+          <img
+            src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.cosmetisuite.com%2F?w=1200&h=660"
+            alt="CosmetiSuite"
+            loading="lazy"
+            onerror="this.style.display='none'; this.parentElement.classList.add('preview-fallback-2')"
+          />
+          <div class="site-overlay"></div>
+          <span class="visit-btn">Visit Site ↗</span>
+        </div>
+        <div class="live-site-info">
+          <div>
+            <div class="live-site-name">CosmetiSuite</div>
+            <div class="live-site-url">Beauty &amp; Wellness · Web Design</div>
+          </div>
+          <span class="live-site-badge">Live</span>
+        </div>
+      </a>
+
+      <a href="https://www.drcatalyst.com/" target="_blank" class="live-site-card fade-in">
+        <div class="live-site-preview">
+          <img
+            src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.drcatalyst.com%2F?w=1200&h=660"
+            alt="Dr. Catalyst"
+            loading="lazy"
+            onerror="this.style.display='none'; this.parentElement.classList.add('preview-fallback-3')"
+          />
+          <div class="site-overlay"></div>
+          <span class="visit-btn">Visit Site ↗</span>
+        </div>
+        <div class="live-site-info">
+          <div>
+            <div class="live-site-name">Dr. Catalyst</div>
+            <div class="live-site-url">Healthcare Tech · UI/UX &amp; Dev</div>
+          </div>
+          <span class="live-site-badge">Live</span>
+        </div>
+      </a>
+
+      <a href="https://www.apollomanagedcare.com/" target="_blank" class="live-site-card fade-in">
+        <div class="live-site-preview">
+          <img
+            src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.apollomanagedcare.com%2F?w=1200&h=660"
+            alt="Apollo Managed Care"
+            loading="lazy"
+            onerror="this.style.display='none'; this.parentElement.classList.add('preview-fallback-4')"
+          />
+          <div class="site-overlay"></div>
+          <span class="visit-btn">Visit Site ↗</span>
+        </div>
+        <div class="live-site-info">
+          <div>
+            <div class="live-site-name">Apollo Managed Care</div>
+            <div class="live-site-url">Managed Care · Web Design</div>
+          </div>
+          <span class="live-site-badge">Live</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- TAB: FIGMA DESIGNS -->
+  <div id="tab-figma" class="ptab-content">
+    <div class="figma-grid">
+
+      <a href="https://www.figma.com/design/B5x9cng6Mfigd1OOJh1INP/ntouch---shared" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #1a1a2e 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Fdesign%2FB5x9cng6Mfigd1OOJh1INP%2Fntouch---shared?w=800&h=450" 
+               alt="nTouch"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">📱</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#e8621a;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">nTouch</div>
+        <div class="figma-card-type"><span class="figma-chip">Mobile App</span></div>
+      </a>
+      <a href="https://www.figma.com/design/JF18KMhry2u29ZaHOsZnLc/Techies4Tech-Application" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #0d1f1a 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Fdesign%2FJF18KMhry2u29ZaHOsZnLc%2FTechies4Tech-Application?w=800&h=450" 
+               alt="Techies4Tech"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">💻</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#059669;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">Techies4Tech</div>
+        <div class="figma-card-type"><span class="figma-chip">Web App</span></div>
+      </a>
+      <a href="https://www.figma.com/design/5naNrr6PEJ0rBP1L9KZl13/Social-Comment---SOCO" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #1a0d1f 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Fdesign%2F5naNrr6PEJ0rBP1L9KZl13%2FSocial-Comment---SOCO?w=800&h=450" 
+               alt="Soco"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">💬</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#9333ea;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">Soco</div>
+        <div class="figma-card-type"><span class="figma-chip">Social App</span></div>
+      </a>
+      <a href="https://www.figma.com/design/t2WutB6qVsaAvFlEyHUt31/Breez-Design---Shared" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #0d1a1f 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Fdesign%2Ft2WutB6qVsaAvFlEyHUt31%2FBreez-Design---Shared?w=800&h=450" 
+               alt="Breez Security"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🔒</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#0284c7;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">Breez Security</div>
+        <div class="figma-card-type"><span class="figma-chip">Security App</span></div>
+      </a>
+      <a href="https://www.figma.com/file/jp2gdBmI86PdcbOpanwFUZ/ACE-iHUB-and-PUMAA" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #1f1a0d 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Ffile%2Fjp2gdBmI86PdcbOpanwFUZ%2FACE-iHUB-and-PUMAA?w=800&h=450" 
+               alt="PUMA"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🏢</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#d97706;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">PUMA</div>
+        <div class="figma-card-type"><span class="figma-chip">Enterprise</span></div>
+      </a>
+      <a href="https://www.figma.com/file/wtQ29HB6l4MufpBNbFqfya/Bond-Login-page-design" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #1f0d0d 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Ffile%2FwtQ29HB6l4MufpBNbFqfya%2FBond-Login-page-design?w=800&h=450" 
+               alt="Bonds India"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">📈</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#dc2626;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">Bonds India</div>
+        <div class="figma-card-type"><span class="figma-chip">Fintech</span></div>
+      </a>
+      <a href="https://www.figma.com/design/Nhp1LL1kxWkV4o8GsUvEPR/Society-Rax" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #0d1a0d 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Fdesign%2FNhp1LL1kxWkV4o8GsUvEPR%2FSociety-Rax?w=800&h=450" 
+               alt="SocietyRax"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🏘️</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#16a34a;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">SocietyRax</div>
+        <div class="figma-card-type"><span class="figma-chip">Community App</span></div>
+      </a>
+      <a href="https://www.figma.com/file/02PjRNbWwWFTxAqbNjjjNT/Mybzz" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #1a1a0d 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Ffile%2F02PjRNbWwWFTxAqbNjjjNT%2FMybzz?w=800&h=450" 
+               alt="MyBzz"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🐝</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#ca8a04;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">MyBzz</div>
+        <div class="figma-card-type"><span class="figma-chip">Mobile App</span></div>
+      </a>
+      <a href="https://www.figma.com/file/OUWrmoSFC1X4WmBXYhhKCo/Sports-stock-exchange" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #0d0d1f 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Ffile%2FOUWrmoSFC1X4WmBXYhhKCo%2FSports-stock-exchange?w=800&h=450" 
+               alt="SSE — Sports Stock Exchange"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">⚽</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#c2440f;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">SSE — Sports Stock Exchange</div>
+        <div class="figma-card-type"><span class="figma-chip">Fintech / Sports</span></div>
+      </a>
+      <a href="https://www.figma.com/design/rWSXpECH4qlpp6cNwsBTx7/Appswave-Website" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #1f1a1a 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Fdesign%2FrWSXpECH4qlpp6cNwsBTx7%2FAppswave-Website?w=800&h=450" 
+               alt="Appswave"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🌊</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#e11d48;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">Appswave</div>
+        <div class="figma-card-type"><span class="figma-chip">Website</span></div>
+      </a>
+      <a href="https://www.figma.com/design/D0mA5GeHcECuZBxObychwE/Dixels-(Copy)" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #1a1a1a 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Fdesign%2FD0mA5GeHcECuZBxObychwE%2FDixels-(Copy)?w=800&h=450" 
+               alt="Dixels"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">✦</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#6366f1;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">Dixels</div>
+        <div class="figma-card-type"><span class="figma-chip">Agency Website</span></div>
+      </a>
+      <a href="https://www.figma.com/file/MtEuMZjvoAXLDoTo4pGson/Royal-Oman-Police-(ROP)" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #0a1a0a 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Ffile%2FMtEuMZjvoAXLDoTo4pGson%2FRoyal-Oman-Police-(ROP)?w=800&h=450" 
+               alt="Royal Oman Police (ROP)"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🛡️</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#15803d;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">Royal Oman Police (ROP)</div>
+        <div class="figma-card-type"><span class="figma-chip">Government</span></div>
+      </a>
+      <a href="https://www.figma.com/file/0F7p33SQMpY4cpzwVubFVu/ADAA" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #1a0a0a 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Ffile%2F0F7p33SQMpY4cpzwVubFVu%2FADAA?w=800&h=450" 
+               alt="ADAA"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">⚖️</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#b91c1c;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">ADAA</div>
+        <div class="figma-card-type"><span class="figma-chip">Government</span></div>
+      </a>
+      <a href="https://www.figma.com/file/vxd6GlFPh2S9NxhpOU6JEG/QICDRC" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #0a1520 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Ffile%2Fvxd6GlFPh2S9NxhpOU6JEG%2FQICDRC?w=800&h=450" 
+               alt="QICDRC"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🏛️</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#0369a1;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">QICDRC</div>
+        <div class="figma-card-type"><span class="figma-chip">Legal / Arbitration</span></div>
+      </a>
+      <a href="https://www.figma.com/file/yBLrIc3pxsiEuSoFKMZKmx/AAH" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #0f1520 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Ffile%2FyBLrIc3pxsiEuSoFKMZKmx%2FAAH?w=800&h=450" 
+               alt="AAH"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🏥</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#0891b2;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">AAH</div>
+        <div class="figma-card-type"><span class="figma-chip">Healthcare</span></div>
+      </a>
+      <a href="https://www.figma.com/file/6jT4gEUwoc1tWnsWTsNJ8Z/Madinaty" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #1a1505 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Ffile%2F6jT4gEUwoc1tWnsWTsNJ8Z%2FMadinaty?w=800&h=450" 
+               alt="Madinaty"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">🏙️</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#a16207;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">Madinaty</div>
+        <div class="figma-card-type"><span class="figma-chip">Real Estate</span></div>
+      </a>
+      <a href="https://www.figma.com/file/1Ac0WMuiopY7yQiHgLwtgg/National-Archive" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #0d1a15 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Ffile%2F1Ac0WMuiopY7yQiHgLwtgg%2FNational-Archive?w=800&h=450" 
+               alt="National Archive"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">📚</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#047857;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">National Archive</div>
+        <div class="figma-card-type"><span class="figma-chip">Government</span></div>
+      </a>
+      <a href="https://www.figma.com/file/1jvtqejXfWiGiWl2evVRTq/FRC-UI" target="_blank" class="figma-card fade-in">
+        <div class="figma-card-arrow">↗</div>
+        <div class="figma-card-thumb" style="background:linear-gradient(135deg, #15100d 0%, #0a0a0f 100%);">
+          <img src="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fwww.figma.com%2Ffile%2F1jvtqejXfWiGiWl2evVRTq%2FFRC-UI?w=800&h=450" 
+               alt="FRC"
+               loading="lazy"
+               style="opacity:0.9;"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;">📋</div>
+          <div class="figma-overlay"></div>
+          <div style="position:absolute;bottom:10px;left:12px;background:#9a3412;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+        </div>
+        <div class="figma-card-name">FRC</div>
+        <div class="figma-card-type"><span class="figma-chip">Regulatory</span></div>
+      </a>
+
+    </div>
+  </div>
+
+    <!-- TAB: CASE STUDIES -->
+  <div id="tab-cases" class="ptab-content">
+    <div class="case-studies-wrap">
+
+      <a href="https://medium.com/@anghanumeshd8" target="_blank" class="case-card fade-in">
+        <span class="case-card-icon">✍️</span>
+        <h3>Case Studies on Medium</h3>
+        <p>In-depth UX process breakdowns, research synthesis and design thinking articles covering real-world projects across healthcare, fintech, government and enterprise.</p>
+        <div class="case-card-link">Read Articles on Medium ↗</div>
+      </a>
+
+      <a href="https://uxid.vercel.app/images/news/Case%20Study_%20Home%20Loan%20Transfer%20App.pdf" target="_blank" class="case-card fade-in">
+        <span class="case-card-icon">📄</span>
+        <h3>Case Study: Home Loan Transfer App</h3>
+        <p>A detailed UX design process sample — from discovery and research to wireframes, prototypes and final UI delivery. Demonstrates end-to-end design thinking.</p>
+        <div class="case-card-link">Download PDF ↗</div>
+      </a>
+
+    </div>
+  </div>
+
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div id="contact-section" class="fade-in">
+    <div class="section-tag" style="justify-content:center;margin-bottom:20px;">Let's Connect</div>
+    <h2 class="contact-title">Have a Project<br/>in Mind?</h2>
+    <p class="contact-sub">I'm open to senior product design roles and exciting collaboration opportunities. Let's create something remarkable together.</p>
+    <div class="contact-links">
+      <a href="/cdn-cgi/l/email-protection#f899969f9099968d959d8b909cc0b89f95999194d69b9795" class="contact-link primary">
+        ✉ Send an Email
+      </a>
+      <a href="https://www.linkedin.com/in/umesh-anghan-99660167/" target="_blank" class="contact-link ghost">
+        in LinkedIn
+      </a>
+      <a href="https://uxid.vercel.app/" target="_blank" class="contact-link ghost">
+        🎨 Portfolio
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a class="footer-logo" href="#"><span>UXI</span>Design</a>
+  <p class="footer-copy">© 2025 Umesh D. Anghan. All rights reserved.</p>
+  <div class="footer-socials">
+    <a class="footer-social" href="https://www.linkedin.com/in/umesh-anghan-99660167/" target="_blank" title="LinkedIn">in</a>
+    <a class="footer-social" href="https://uxid.vercel.app/" target="_blank" title="Portfolio">🔗</a>
+    <a class="footer-social" href="/cdn-cgi/l/email-protection#d9b8b7beb1b8b7acb4bcaab1bde199beb4b8b0b5f7bab6b4" title="Email">✉</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Intersection Observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Counter animation
+  function animateCounter(el, target) {
+    let start = 0;
+    const duration = 1800;
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(eased * target);
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  const statsObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.stat-number').forEach(numEl => {
+          const text = numEl.textContent;
+          const num = parseFloat(text);
+          if (!isNaN(num)) {
+            const suffix = numEl.querySelector('span');
+            const suffixText = suffix ? suffix.outerHTML : '';
+            numEl.innerHTML = '';
+            const span = document.createElement('span');
+            span.style.fontFamily = 'inherit';
+            span.style.fontSize = 'inherit';
+            span.style.fontWeight = 'inherit';
+            span.style.letterSpacing = 'inherit';
+            span.style.color = 'var(--text)';
+            numEl.appendChild(span);
+            numEl.insertAdjacentHTML('beforeend', suffixText);
+            animateCounter(span, num);
+          }
+        });
+        statsObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  // Tab switching for portfolio
+  function switchTab(id) {
+    document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.ptab-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+    // re-trigger fade-ins
+    document.quer
