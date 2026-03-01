@@ -13,11 +13,11 @@
       --surface: #111118;
       --surface2: #16161f;
       --border: rgba(255,255,255,0.07);
-      --accent: #e8621a;
-      --accent2: #f59b4b;
+      --accent: #E8734A;
+      --accent2: #F0A07A;
       --text: #f0efff;
       --muted: #7b7a9a;
-      --tag-bg: rgba(232,98,26,0.12);
+      --tag-bg: rgba(232,115,74,0.12);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -115,7 +115,7 @@
       align-items: center;
       gap: 8px;
       background: var(--tag-bg);
-      border: 1px solid rgba(232,98,26,0.25);
+      border: 1px solid rgba(232,115,74,0.25);
       color: var(--accent2);
       font-size: 13px;
       font-weight: 500;
@@ -181,12 +181,12 @@
       font-weight: 600;
       font-size: 15px;
       transition: transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 24px rgba(232,98,26,0.3);
+      box-shadow: 0 4px 24px rgba(232,115,74,0.3);
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(232,98,26,0.45);
+      box-shadow: 0 8px 32px rgba(232,115,74,0.45);
     }
 
     .btn-secondary {
@@ -349,7 +349,7 @@
     }
 
     .skill-card:hover {
-      border-color: rgba(232,98,26,0.3);
+      border-color: rgba(232,115,74,0.3);
       transform: translateY(-4px);
     }
 
@@ -412,7 +412,7 @@
       cursor: default;
     }
 
-    .exp-item:hover { border-color: rgba(232,98,26,0.3); }
+    .exp-item:hover { border-color: rgba(232,115,74,0.3); }
 
     .exp-company {
       font-size: 12px;
@@ -443,7 +443,7 @@
       text-align: right;
       white-space: nowrap;
       background: var(--tag-bg);
-      border: 1px solid rgba(232,98,26,0.2);
+      border: 1px solid rgba(232,115,74,0.2);
       color: var(--accent2);
       padding: 6px 14px;
       border-radius: 50px;
@@ -468,7 +468,7 @@
     }
 
     .tool-card:hover {
-      border-color: rgba(232,98,26,0.3);
+      border-color: rgba(232,115,74,0.3);
       transform: translateY(-4px);
     }
 
@@ -514,7 +514,7 @@
       top: -80px; left: 50%;
       transform: translateX(-50%);
       width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(232,98,26,0.15) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(232,115,74,0.15) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -558,7 +558,7 @@
     .contact-link.primary {
       background: var(--accent);
       color: #fff;
-      box-shadow: 0 4px 24px rgba(232,98,26,0.3);
+      box-shadow: 0 4px 24px rgba(232,115,74,0.3);
     }
 
     .contact-link.ghost {
@@ -654,19 +654,19 @@
       align-items: center;
       gap: 7px;
     }
-    .ptab:hover { border-color: rgba(232,98,26,0.4); color: var(--text); }
+    .ptab:hover { border-color: rgba(232,115,74,0.4); color: var(--text); }
     .ptab.active {
       background: var(--accent);
       border-color: var(--accent);
       color: #fff;
-      box-shadow: 0 4px 20px rgba(232,98,26,0.3);
+      box-shadow: 0 4px 20px rgba(232,115,74,0.3);
     }
     .ptab-content { display: none; }
     .ptab-content.active { display: block; }
 
     .portfolio-banner {
-      background: linear-gradient(135deg, rgba(232,98,26,0.15) 0%, rgba(167,139,250,0.08) 100%);
-      border: 1px solid rgba(232,98,26,0.25);
+      background: linear-gradient(135deg, rgba(232,115,74,0.15) 0%, rgba(167,139,250,0.08) 100%);
+      border: 1px solid rgba(232,115,74,0.25);
       border-radius: 20px;
       padding: 44px 48px;
       display: flex;
@@ -676,7 +676,7 @@
       text-decoration: none;
       transition: border-color 0.25s, transform 0.25s;
     }
-    .portfolio-banner:hover { border-color: rgba(232,98,26,0.5); transform: translateY(-3px); }
+    .portfolio-banner:hover { border-color: rgba(232,115,74,0.5); transform: translateY(-3px); }
     .portfolio-banner-text h3 { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
     .portfolio-banner-text p { color: var(--muted); font-size: 15px; }
     .portfolio-banner-arrow {
@@ -706,7 +706,7 @@
       transition: border-color 0.25s, transform 0.25s;
       display: block;
     }
-    .live-site-card:hover { border-color: rgba(232,98,26,0.35); transform: translateY(-4px); }
+    .live-site-card:hover { border-color: rgba(232,115,74,0.35); transform: translateY(-4px); }
     .live-site-preview {
       width: 100%;
       height: 180px;
@@ -776,16 +776,16 @@
       position: absolute;
       bottom: 0; left: 0; right: 0;
       height: 2px;
-      background: linear-gradient(90deg, #e8621a, #f59b4b);
+      background: linear-gradient(90deg, #E8734A, #F0A07A);
       opacity: 0;
       transition: opacity 0.25s;
     }
-    .figma-card:hover { border-color: rgba(232,98,26,0.3); transform: translateY(-4px); }
+    .figma-card:hover { border-color: rgba(232,115,74,0.3); transform: translateY(-4px); }
     .figma-card:hover::after { opacity: 1; }
     .figma-card-number {
       width: 40px; height: 40px;
-      background: rgba(232,98,26,0.1);
-      border: 1px solid rgba(232,98,26,0.2);
+      background: rgba(232,115,74,0.1);
+      border: 1px solid rgba(232,115,74,0.2);
       border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
       font-size: 16px; font-weight: 800; color: var(--accent);
@@ -797,7 +797,7 @@
       display: flex; align-items: center; gap: 6px;
     }
     .figma-chip {
-      background: rgba(232,98,26,0.1);
+      background: rgba(232,115,74,0.1);
       color: var(--accent);
       padding: 2px 8px;
       border-radius: 50px;
@@ -827,7 +827,7 @@
       display: block;
       transition: border-color 0.25s, transform 0.25s;
     }
-    .case-card:hover { border-color: rgba(232,98,26,0.35); transform: translateY(-4px); }
+    .case-card:hover { border-color: rgba(232,115,74,0.35); transform: translateY(-4px); }
     .case-card-icon { margin-bottom: 16px; display: flex; color: var(--accent); }
     .case-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: var(--text); }
     .case-card p { color: var(--muted); font-size: 14px; line-height: 1.6; }
@@ -951,7 +951,7 @@
       justify-content: center;
     }
     .figma-card:hover .figma-overlay {
-      background: rgba(232,98,26,0.1);
+      background: rgba(232,115,74,0.1);
     }
 
 
@@ -964,6 +964,168 @@
       position: relative;
       overflow: hidden;
       background: var(--surface2);
+    }
+
+
+    /* ── EXPERIENCE ENHANCEMENTS ── */
+    .exp-company-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.2s;
+    }
+    .exp-company-link:hover { color: var(--accent); }
+    .exp-company-link svg { opacity: 0.5; transition: opacity 0.2s; flex-shrink: 0; }
+    .exp-company-link:hover svg { opacity: 1; }
+    .exp-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .exp-project-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--tag-bg);
+      border: 1px solid rgba(232,115,74,0.25);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .exp-project-btn:hover {
+      background: rgba(232,115,74,0.15);
+      border-color: var(--accent);
+    }
+
+    /* ── PROJECT POPUP / MODAL ── */
+    .project-modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .project-modal-overlay.open { display: flex; }
+    .project-modal {
+      background: #13131a;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      max-width: 680px;
+      width: 100%;
+      max-height: 88vh;
+      overflow-y: auto;
+      position: relative;
+      animation: fadeUp 0.3s ease;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+    }
+    .project-modal-header {
+      padding: 32px 36px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .project-modal-tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--tag-bg);
+      padding: 4px 12px;
+      border-radius: 50px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    .project-modal-title {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+    .project-modal-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+    }
+    .project-modal-close {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      flex-shrink: 0;
+      transition: all 0.2s;
+      line-height: 1;
+    }
+    .project-modal-close:hover { color: var(--text); border-color: var(--accent); }
+    .project-modal-body {
+      padding: 24px 36px 36px;
+    }
+    .project-modal-section {
+      margin-bottom: 24px;
+    }
+    .project-modal-section h4 {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .project-modal-section p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .project-modal-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .project-modal-chip {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 50px;
+    }
+    .project-modal-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 20px 0;
+    }
+    .project-modal-role-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(232,115,74,0.1);
+      border: 1px solid rgba(232,115,74,0.25);
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 10px;
+      margin-bottom: 16px;
     }
 
     /* ── HERO PHOTO ── */
@@ -979,8 +1141,8 @@
       height: 420px;
       border-radius: 220px 220px 180px 180px;
       overflow: hidden;
-      border: 2px solid rgba(232,98,26,0.3);
-      box-shadow: 0 0 80px rgba(232,98,26,0.18), 0 32px 64px rgba(0,0,0,0.5);
+      border: 2px solid rgba(232,115,74,0.3);
+      box-shadow: 0 0 80px rgba(232,115,74,0.18), 0 32px 64px rgba(0,0,0,0.5);
       position: relative;
       background: var(--surface2);
     }
@@ -1009,7 +1171,7 @@
       bottom: 24px;
       left: -28px;
       background: var(--surface);
-      border: 1px solid rgba(232,98,26,0.3);
+      border: 1px solid rgba(232,115,74,0.3);
       border-radius: 16px;
       padding: 14px 18px;
       text-align: center;
@@ -1040,7 +1202,7 @@
       font-weight: 700;
       padding: 8px 16px;
       border-radius: 50px;
-      box-shadow: 0 4px 20px rgba(232,98,26,0.4);
+      box-shadow: 0 4px 20px rgba(232,115,74,0.4);
       white-space: nowrap;
     }
     @media (max-width: 900px) {
@@ -1235,27 +1397,48 @@
   <div class="exp-list">
     <div class="exp-item fade-in">
       <div>
-        <div class="exp-company">Cayzen Technologies</div>
+        <div class="exp-company">
+          <a href="https://cayzentech.com" target="_blank" class="exp-company-link">
+            Cayzen Technologies <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+          </a>
+        </div>
         <div class="exp-role">Sr. UI/UX Designer / Product Designer</div>
         <p class="exp-desc">Lead product discovery sessions, stakeholder workshops, and UX strategy planning. Define design requirements based on business objectives and user research insights. Develop scalable design systems, create user stories, process flows, wireframes, prototypes, and high-fidelity mockups. Contribute to front-end development using HTML5, CSS3, SCSS, and React-based UI frameworks.</p>
+        <div class="exp-meta">
+          <button class="exp-project-btn" onclick="openProject('gardiant')"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="8" x="2" y="2" rx="1"/><path d="M14 2h8v8h-8z"/><path d="M2 14h8v8H2z"/><path d="M14 18h2"/><path d="M20 14v2"/><path d="M14 14h2v2"/><path d="M20 18v2h-2"/></svg> View Project: GARDIANT</button>
+        </div>
       </div>
       <span class="exp-period">Aug 2019 – Present</span>
     </div>
 
     <div class="exp-item fade-in">
       <div>
-        <div class="exp-company">Meditab</div>
+        <div class="exp-company">
+          <a href="https://www.meditab.com" target="_blank" class="exp-company-link">
+            Meditab <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+          </a>
+        </div>
         <div class="exp-role">Sr. UI/UX Designer &amp; Web Designer</div>
         <p class="exp-desc">Designed and developed responsive web applications and healthcare product interfaces. Led UX strategy from requirement analysis to wireframing, prototyping, and final delivery. Created mobile and web app UI assets for iOS, iPad, and Android platforms. Ensured standards-compliant code with focus on accessibility, SEO, and W3C validation.</p>
+        <div class="exp-meta">
+          <button class="exp-project-btn" onclick="openProject('meditab')"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="8" x="2" y="2" rx="1"/><path d="M14 2h8v8h-8z"/><path d="M2 14h8v8H2z"/><path d="M14 18h2"/><path d="M20 14v2"/><path d="M14 14h2v2"/><path d="M20 18v2h-2"/></svg> View Project: IMS / EHR</button>
+        </div>
       </div>
       <span class="exp-period">Sep 2017 – Jul 2019</span>
     </div>
 
     <div class="exp-item fade-in">
       <div>
-        <div class="exp-company">Matrix Comsec</div>
+        <div class="exp-company">
+          <a href="https://www.matrixcomsec.com" target="_blank" class="exp-company-link">
+            Matrix Comsec <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+          </a>
+        </div>
         <div class="exp-role">Sr. UI/UX Designer</div>
         <p class="exp-desc">Designed and developed responsive web applications and enterprise dashboards. Created UI/UX for desktop and mobile applications. Developed wireframes, prototypes, and interactive UI solutions. Collaborated with backend teams to ensure seamless front-end integration.</p>
+        <div class="exp-meta">
+          <button class="exp-project-btn" onclick="openProject('cosec')"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="8" x="2" y="2" rx="1"/><path d="M14 2h8v8h-8z"/><path d="M2 14h8v8H2z"/><path d="M14 18h2"/><path d="M20 14v2"/><path d="M14 14h2v2"/><path d="M20 18v2h-2"/></svg> View Project: COSEC Cloud</button>
+        </div>
       </div>
       <span class="exp-period">Mar 2015 – Aug 2017</span>
     </div>
@@ -1281,44 +1464,49 @@
 
   <div class="tools-grid">
     <div class="tool-card fade-in">
-      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"/><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"/><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"/><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"/><path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"/></svg></span>
       <div class="tool-name">Figma</div>
       <div class="tool-desc">Advanced prototyping, design systems & dev handoff</div>
     </div>
     <div class="tool-card fade-in">
-      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M18.37 2.63 14 7l-1.59-1.59a2 2 0 0 0-2.82 0L8 7l9 9 1.59-1.59a2 2 0 0 0 0-2.82L17 10l4.37-4.37a2.12 2.12 0 1 0-3-3z"/><path d="M9 8c-2 3-4 3.5-7 4l8 10c2-1 6-5 6-7"/><path d="M14.5 17.5 4.5 15"/></svg></span>
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/><circle cx="8" cy="15" r="1"/></svg></span>
+      <div class="tool-name">FigJam</div>
+      <div class="tool-desc">Collaborative brainstorming, flows & workshops</div>
+    </div>
+    <div class="tool-card fade-in">
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18.37 2.63 14 7l-1.59-1.59a2 2 0 0 0-2.82 0L8 7l9 9 1.59-1.59a2 2 0 0 0 0-2.82L17 10l4.37-4.37a2.12 2.12 0 1 0-3-3z"/><path d="M9 8c-2 3-4 3.5-7 4l8 10c2-1 6-5 6-7"/><path d="M14.5 17.5 4.5 15"/></svg></span>
       <div class="tool-name">Adobe Photoshop</div>
       <div class="tool-desc">Photo editing, asset creation & visual design</div>
     </div>
     <div class="tool-card fade-in">
-      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg></span>
-      <div class="tool-name">Adobe Illustrator</div>
-      <div class="tool-desc">Vector graphics, icons & brand assets</div>
-    </div>
-    <div class="tool-card fade-in">
-      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/></svg></span>
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/></svg></span>
       <div class="tool-name">Miro</div>
       <div class="tool-desc">Collaborative whiteboarding & flow diagrams</div>
     </div>
     <div class="tool-card fade-in">
-      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><line x1="18" x2="18" y1="20" y2="10"/><line x1="12" x2="12" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="14"/></svg></span>
-      <div class="tool-name">Google Analytics</div>
-      <div class="tool-desc">Performance insights & user behavior tracking</div>
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h8"/><path d="M8 14h5"/></svg></span>
+      <div class="tool-name">Claude.ai</div>
+      <div class="tool-desc">AI-powered UX research, content modeling & workflow optimization</div>
     </div>
     <div class="tool-card fade-in">
-      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
-      <div class="tool-name">Webflow / HubSpot</div>
-      <div class="tool-desc">No-code development & content management</div>
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></span>
+      <div class="tool-name">Whimsical</div>
+      <div class="tool-desc">Wireframes, mind maps & flowcharts for rapid ideation</div>
     </div>
     <div class="tool-card fade-in">
-      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"/><path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/><path d="M12 2v2"/><path d="M12 22v-2"/><path d="m17 20.66-1-1.73"/><path d="M11 10.27 7 3.34"/><path d="m20.66 17-1.73-1"/><path d="m3.34 7 1.73 1"/><path d="M14 12h8"/><path d="M2 12h2"/><path d="m20.66 7-1.73 1"/><path d="m3.34 17 1.73-1"/><path d="m17 3.34-1 1.73"/><path d="m11 13.73-4 6.93"/></svg></span>
-      <div class="tool-name">Git / Azure</div>
-      <div class="tool-desc">Version control & cloud DevOps workflows</div>
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+      <div class="tool-name">Webflow</div>
+      <div class="tool-desc">No-code visual web development & CMS</div>
     </div>
     <div class="tool-card fade-in">
-      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></span>
-      <div class="tool-name">Zeplin / InVision</div>
-      <div class="tool-desc">Design handoff & interactive prototyping</div>
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" x2="6" y1="9" y2="21"/></svg></span>
+      <div class="tool-name">Git</div>
+      <div class="tool-desc">Version control & collaborative code workflows</div>
+    </div>
+    <div class="tool-card fade-in">
+      <span class="tool-emoji"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m8 3 4 8 5-5 5 15H2L8 3z"/></svg></span>
+      <div class="tool-name">Jira</div>
+      <div class="tool-desc">Agile sprint planning, issue tracking & project management</div>
     </div>
   </div>
 </section>
@@ -1333,14 +1521,14 @@
 
   <!-- TABS -->
   <div class="portfolio-tabs fade-in">
-    <button class="ptab active" onclick="switchTab('overview', this)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg> Overview</button>
-    <button class="ptab" onclick="switchTab('live', this)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Live Websites</button>
+    
+    <button class="ptab active" onclick="switchTab('live', this)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" x2="22" y1="12" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg> Live Websites</button>
     <button class="ptab" onclick="switchTab('figma', this)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"/><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"/><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"/><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"/><path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z"/></svg> Figma Designs</button>
     <button class="ptab" onclick="switchTab('cases', this)"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg> Case Studies</button>
   </div>
 
-  <!-- TAB: OVERVIEW -->
-  <div id="tab-overview" class="ptab-content active">
+  <!-- TAB: OVERVIEW REMOVED -->
+  <div id="tab-overview" class="ptab-content" style="display:none">
     <a href="https://uxid.vercel.app/#section-portfolio" target="_blank" class="portfolio-banner fade-in">
       <div class="portfolio-banner-text">
         <h3>Complete Design Portfolio</h3>
@@ -1357,7 +1545,7 @@
   </div>
 
   <!-- TAB: LIVE WEBSITES -->
-  <div id="tab-live" class="ptab-content">
+  <div id="tab-live" class="ptab-content active">
     <div class="live-sites-grid">
 
       <a href="https://www.nivanophysicians.com/" target="_blank" class="live-site-card fade-in">
@@ -1455,9 +1643,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#e8621a;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">nTouch</div>
         <div class="figma-card-type"><span class="figma-chip">Mobile App</span></div>
@@ -1470,9 +1658,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#059669;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">Techies4Tech</div>
         <div class="figma-card-type"><span class="figma-chip">Web App</span></div>
@@ -1485,9 +1673,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#9333ea;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">Soco</div>
         <div class="figma-card-type"><span class="figma-chip">Social App</span></div>
@@ -1500,9 +1688,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#0284c7;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">Breez Security</div>
         <div class="figma-card-type"><span class="figma-chip">Security App</span></div>
@@ -1515,9 +1703,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#d97706;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">PUMA</div>
         <div class="figma-card-type"><span class="figma-chip">Enterprise</span></div>
@@ -1530,9 +1718,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#dc2626;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">Bonds India</div>
         <div class="figma-card-type"><span class="figma-chip">Fintech</span></div>
@@ -1545,9 +1733,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#16a34a;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">SocietyRax</div>
         <div class="figma-card-type"><span class="figma-chip">Community App</span></div>
@@ -1560,9 +1748,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 2a5 5 0 0 1 5 5c0 6-5 13-5 13S7 13 7 7a5 5 0 0 1 5-5z"/><circle cx="12" cy="7" r="2"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 2a5 5 0 0 1 5 5c0 6-5 13-5 13S7 13 7 7a5 5 0 0 1 5-5z"/><circle cx="12" cy="7" r="2"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#ca8a04;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">MyBzz</div>
         <div class="figma-card-type"><span class="figma-chip">Mobile App</span></div>
@@ -1575,9 +1763,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="M12 2v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="M2 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="M12 22v-4"/><path d="m19.07 19.07-2.83-2.83"/><path d="M22 12h-4"/><path d="m19.07 4.93-2.83 2.83"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="10"/><path d="M12 2v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="M2 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="M12 22v-4"/><path d="m19.07 19.07-2.83-2.83"/><path d="M22 12h-4"/><path d="m19.07 4.93-2.83 2.83"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#c2440f;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">SSE — Sports Stock Exchange</div>
         <div class="figma-card-type"><span class="figma-chip">Fintech / Sports</span></div>
@@ -1590,9 +1778,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#e11d48;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">Appswave</div>
         <div class="figma-card-type"><span class="figma-chip">Website</span></div>
@@ -1605,9 +1793,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 2v20M2 12h20"/><path d="m4.93 4.93 14.14 14.14M19.07 4.93 4.93 19.07"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 2v20M2 12h20"/><path d="m4.93 4.93 14.14 14.14M19.07 4.93 4.93 19.07"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#6366f1;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">Dixels</div>
         <div class="figma-card-type"><span class="figma-chip">Agency Website</span></div>
@@ -1620,9 +1808,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#15803d;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">Royal Oman Police (ROP)</div>
         <div class="figma-card-type"><span class="figma-chip">Government</span></div>
@@ -1635,9 +1823,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21H17"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21H17"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#b91c1c;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">ADAA</div>
         <div class="figma-card-type"><span class="figma-chip">Government</span></div>
@@ -1650,9 +1838,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#0369a1;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">QICDRC</div>
         <div class="figma-card-type"><span class="figma-chip">Legal / Arbitration</span></div>
@@ -1665,9 +1853,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><line x1="12" x2="12" y1="10" y2="16"/><line x1="9" x2="15" y1="13" y2="13"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><line x1="12" x2="12" y1="10" y2="16"/><line x1="9" x2="15" y1="13" y2="13"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#0891b2;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">AAH</div>
         <div class="figma-card-type"><span class="figma-chip">Healthcare</span></div>
@@ -1680,9 +1868,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="6" height="18" x="2" y="4"/><rect width="6" height="12" x="10" y="10"/><rect width="6" height="8" x="18" y="14"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="6" height="18" x="2" y="4"/><rect width="6" height="12" x="10" y="10"/><rect width="6" height="8" x="18" y="14"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#a16207;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">Madinaty</div>
         <div class="figma-card-type"><span class="figma-chip">Real Estate</span></div>
@@ -1695,9 +1883,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#047857;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">National Archive</div>
         <div class="figma-card-type"><span class="figma-chip">Government</span></div>
@@ -1710,9 +1898,9 @@
                loading="lazy"
                style="opacity:0.9;"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg></div>
+          <div class="figma-thumb-fallback" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:42px;color:#E8734A;"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" ><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg></div>
           <div class="figma-overlay"></div>
-          <div style="position:absolute;bottom:10px;left:12px;background:#9a3412;color:#fff;font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;letter-spacing:0.04em;z-index:2;">FIGMA</div>
+          
         </div>
         <div class="figma-card-name">FRC</div>
         <div class="figma-card-type"><span class="figma-chip">Regulatory</span></div>
@@ -1744,6 +1932,157 @@
 
 </section>
 
+
+<!-- PROJECT MODALS -->
+
+<!-- GARDIANT Modal -->
+<div class="project-modal-overlay" id="modal-gardiant" onclick="closeProjectIfOverlay(event)">
+  <div class="project-modal">
+    <div class="project-modal-header">
+      <div>
+        <div class="project-modal-tag">Cayzen Technologies · 2019–Present</div>
+        <div class="project-modal-title">GARDIANT</div>
+        <div class="project-modal-subtitle">Modern Case Management Platform</div>
+      </div>
+      <button class="project-modal-close" onclick="closeProject('gardiant')">✕</button>
+    </div>
+    <div class="project-modal-body">
+      
+      <div class="project-modal-role-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Individual Contributor — End-to-End Ownership
+      </div>
+      <div class="project-modal-section">
+        <h4>About the Product</h4>
+        <p>GARDIANT is a modern Case Management Platform built for professionals in worker compensation. It streamlines complex case workflows, documentation, and stakeholder collaboration for legal and insurance professionals.</p>
+      </div>
+      <hr class="project-modal-divider"/>
+      <div class="project-modal-section">
+        <h4>My Role & Responsibilities</h4>
+        <p>As the sole designer, I owned the entire product design lifecycle — from discovery through delivery. This included conducting user research (VOC, RETRO), building user personas, mapping user journeys, ideating wireframes, creating a comprehensive design system, and producing high-fidelity mockups. I also supported developers with HTML/CSS implementation using Material UI with React.</p>
+      </div>
+      <hr class="project-modal-divider"/>
+      <div class="project-modal-section">
+        <h4>Key Contributions</h4>
+        <div class="project-modal-chips">
+          <span class="project-modal-chip">User Research (VOC)</span>
+          <span class="project-modal-chip">Persona Development</span>
+          <span class="project-modal-chip">User Journey Mapping</span>
+          <span class="project-modal-chip">Wireframing & Ideation</span>
+          <span class="project-modal-chip">Design System</span>
+          <span class="project-modal-chip">High-Fidelity Mockups</span>
+          <span class="project-modal-chip">Material UI / React</span>
+          <span class="project-modal-chip">HTML5 / CSS3 / SCSS</span>
+        </div>
+      </div>
+      <hr class="project-modal-divider"/>
+      <div class="project-modal-section">
+        <h4>Industry</h4>
+        <p>LegalTech · Worker Compensation · Case Management</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MEDITAB IMS Modal -->
+<div class="project-modal-overlay" id="modal-meditab" onclick="closeProjectIfOverlay(event)">
+  <div class="project-modal">
+    <div class="project-modal-header">
+      <div>
+        <div class="project-modal-tag">Meditab · 2017–2019</div>
+        <div class="project-modal-title">IMS — Intelligent Medical Software</div>
+        <div class="project-modal-subtitle">All-in-One EHR, Practice Management & Billing</div>
+      </div>
+      <button class="project-modal-close" onclick="closeProject('meditab')">✕</button>
+    </div>
+    <div class="project-modal-body">
+      
+      <div class="project-modal-role-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Team Contributor — UI/UX Designer with Front-End Dev
+      </div>
+      <div class="project-modal-section">
+        <h4>About the Product</h4>
+        <p>IMS (Intelligent Medical Software) is Meditab's flagship all-in-one healthcare platform combining Electronic Health Records (EHR), Practice Management, and Billing Software. It serves medical practices of all sizes with a complete digital workflow from patient intake to billing reconciliation.</p>
+      </div>
+      <hr class="project-modal-divider"/>
+      <div class="project-modal-section">
+        <h4>My Role & Responsibilities</h4>
+        <p>Worked within a cross-functional team as UI/UX Designer with front-end responsibilities. After receiving client requirements, I conducted analysis, developed UX strategy, created wireframes and concepts, then managed end-to-end delivery including design mockups, HTML/CSS development, validation, testing, and client collaboration.</p>
+      </div>
+      <hr class="project-modal-divider"/>
+      <div class="project-modal-section">
+        <h4>Key Contributions</h4>
+        <div class="project-modal-chips">
+          <span class="project-modal-chip">Requirements Analysis</span>
+          <span class="project-modal-chip">UX Strategy</span>
+          <span class="project-modal-chip">Wireframing & Concepts</span>
+          <span class="project-modal-chip">Design Mockups</span>
+          <span class="project-modal-chip">HTML5 / CSS3 / Bootstrap</span>
+          <span class="project-modal-chip">W3C Validation</span>
+          <span class="project-modal-chip">Accessibility & SEO</span>
+          <span class="project-modal-chip">Client Coordination</span>
+          <span class="project-modal-chip">iOS / iPad / Android Assets</span>
+        </div>
+      </div>
+      <hr class="project-modal-divider"/>
+      <div class="project-modal-section">
+        <h4>Industry</h4>
+        <p>HealthTech · Electronic Health Records · Practice Management</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COSEC CLOUD Modal -->
+<div class="project-modal-overlay" id="modal-cosec" onclick="closeProjectIfOverlay(event)">
+  <div class="project-modal">
+    <div class="project-modal-header">
+      <div>
+        <div class="project-modal-tag">Matrix Comsec · 2015–2017</div>
+        <div class="project-modal-title">COSEC Cloud</div>
+        <div class="project-modal-subtitle">Adaptive Access Control & Security Platform</div>
+      </div>
+      <button class="project-modal-close" onclick="closeProject('cosec')">✕</button>
+    </div>
+    <div class="project-modal-body">
+      
+      <div class="project-modal-role-badge">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Team Contributor — Research to Front-End
+      </div>
+      <div class="project-modal-section">
+        <h4>About the Product</h4>
+        <p>COSEC Cloud is an adaptive, modular, and scalable access control solution designed for enterprises of all sizes — from small businesses to large corporations with up to 1 million users, 65,000 entry points, and 1,000 locations. The platform provides comprehensive physical security and attendance management.</p>
+      </div>
+      <hr class="project-modal-divider"/>
+      <div class="project-modal-section">
+        <h4>My Role & Responsibilities</h4>
+        <p>Collaborated with the UX design team to manage the entire product design pipeline. Conducted user research and interviews, created sitemaps, wireframes, and prototypes for the backend developer team. Also built the front-end COSEC Cloud interface using HTML, CSS, and Bootstrap, followed by validation with the development team.</p>
+      </div>
+      <hr class="project-modal-divider"/>
+      <div class="project-modal-section">
+        <h4>Key Contributions</h4>
+        <div class="project-modal-chips">
+          <span class="project-modal-chip">User Research & Interviews</span>
+          <span class="project-modal-chip">Sitemap Creation</span>
+          <span class="project-modal-chip">Wireframing</span>
+          <span class="project-modal-chip">Prototyping</span>
+          <span class="project-modal-chip">Desktop App UI/UX</span>
+          <span class="project-modal-chip">HTML5 / CSS3 / Bootstrap</span>
+          <span class="project-modal-chip">Front-End Development</span>
+          <span class="project-modal-chip">Dev Validation</span>
+        </div>
+      </div>
+      <hr class="project-modal-divider"/>
+      <div class="project-modal-section">
+        <h4>Industry</h4>
+        <p>Enterprise Security · Access Control · Attendance Management</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- CONTACT -->
 <section id="contact">
   <div id="contact-section" class="fade-in">
@@ -1751,11 +2090,8 @@
     <h2 class="contact-title">Have a Project<br/>in Mind?</h2>
     <p class="contact-sub">I'm open to senior product design roles and exciting collaboration opportunities. Let's create something remarkable together.</p>
     <div class="contact-links">
-      <a href="/cdn-cgi/l/email-protection#f899969f9099968d959d8b909cc0b89f95999194d69b9795" class="contact-link primary">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:6px"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> Send an Email
-      </a>
-      <a href="https://www.linkedin.com/in/umesh-anghan-99660167/" target="_blank" class="contact-link ghost">
-        in LinkedIn
+      <a href="https://www.linkedin.com/in/umesh-anghan-99660167/" target="_blank" class="contact-link primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:6px"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg> LinkedIn
       </a>
       <a href="https://uxid.vercel.app/" target="_blank" class="contact-link ghost">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:6px"><rect width="18" height="14" x="3" y="5" rx="2"/><polyline points="3 7 12 13 21 7"/></svg> Portfolio
@@ -1842,6 +2178,32 @@
   }
 
   document.querySelectorAll('.stats-grid').forEach(el => statsObs.observe(el));
+
+
+  // Project modal functions
+  function openProject(id) {
+    document.getElementById('modal-' + id).classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeProject(id) {
+    document.getElementById('modal-' + id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function closeProjectIfOverlay(e) {
+    if (e.target === e.currentTarget) {
+      e.currentTarget.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+  // Close modal on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.project-modal-overlay.open').forEach(m => {
+        m.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    }
+  });
 
   // Active nav link on scroll
   const sections = document.querySelectorAll('section[id]');
