@@ -622,14 +622,19 @@
     }
 
     .fade-in {
-      opacity: 0;
-      transform: translateY(30px);
+      opacity: 1;
+      transform: translateY(0);
       transition: opacity 0.7s ease, transform 0.7s ease;
     }
 
+    body.js-ready .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+
     .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
+      opacity: 1 !important;
+      transform: translateY(0) !important;
     }
 
     /* ── PORTFOLIO / WORK SAMPLES ── */
@@ -1006,6 +1011,45 @@
       border-color: var(--accent);
     }
 
+
+
+    .project-modal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 40px;
+    }
+    .project-modal-grid .project-modal-section:last-child {
+      grid-column: 1 / -1;
+    }
+    @media (max-width: 700px) {
+      .project-modal-grid { grid-template-columns: 1fr; }
+      .project-modal { max-width: 95vw !important; }
+    }
+    /* ── CUSTOM SCROLLBAR ── */
+    .project-modal::-webkit-scrollbar {
+      width: 5px;
+    }
+    .project-modal::-webkit-scrollbar-track {
+      background: var(--surface2);
+      border-radius: 0 24px 24px 0;
+    }
+    .project-modal::-webkit-scrollbar-thumb {
+      background: rgba(232,115,74,0.4);
+      border-radius: 10px;
+    }
+    .project-modal::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+
+    /* Global scrollbar to match design */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(232,115,74,0.3);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(232,115,74,0.6); }
+
     /* ── PROJECT POPUP / MODAL ── */
     .project-modal-overlay {
       display: none;
@@ -1023,7 +1067,7 @@
       background: #13131a;
       border: 1px solid var(--border);
       border-radius: 24px;
-      max-width: 680px;
+      max-width: 1024px;
       width: 100%;
       max-height: 88vh;
       overflow-y: auto;
@@ -1032,7 +1076,7 @@
       box-shadow: 0 32px 80px rgba(0,0,0,0.6);
     }
     .project-modal-header {
-      padding: 32px 36px 0;
+      padding: 36px 48px 0;
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -1077,7 +1121,7 @@
     }
     .project-modal-close:hover { color: var(--text); border-color: var(--accent); }
     .project-modal-body {
-      padding: 24px 36px 36px;
+      padding: 24px 48px 48px;
     }
     .project-modal-section {
       margin-bottom: 24px;
@@ -1239,7 +1283,7 @@
       <span class="highlight">Precision &amp; Vision</span>
     </h1>
     <p class="hero-sub">
-      Senior Product Designer with 12.5+ years of experience leading UX strategy, solving complex design challenges, and delivering high-impact digital products across web and mobile.
+      Senior Product Designer with 12+ years of experience leading UX strategy, solving complex design challenges, and delivering high-impact digital products across web and mobile.
     </p>
 
   </div>
@@ -1248,7 +1292,7 @@
       <img src="data:image/jpeg;base64,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" alt="Umesh D. Anghan" class="hero-photo" />
     </div>
     <div class="hero-photo-badge">
-      <span>12.5+</span>
+      <span>12+</span>
       <small>Years of<br/>Experience</small>
     </div>
     <div class="hero-photo-tag">Senior Product Designer</div>
@@ -1286,7 +1330,7 @@
 <section id="about">
   <div class="fade-in stats-grid">
     <div class="stat-card">
-      <div class="stat-number">12<span>.5+</span></div>
+      <div class="stat-number">12<span>+</span></div>
       <div class="stat-label">Years of Experience</div>
     </div>
     <div class="stat-card">
@@ -1391,17 +1435,13 @@
   <div class="section-header fade-in">
     <div class="section-tag">Career</div>
     <h2 class="section-title">Work<br/>Experience</h2>
-    <p class="section-desc">12.5 years across healthcare, security, fintech, and enterprise product ecosystems.</p>
+    <p class="section-desc">12+ years across healthcare, security, fintech, and enterprise product ecosystems.</p>
   </div>
 
   <div class="exp-list">
     <div class="exp-item fade-in">
       <div>
-        <div class="exp-company">
-          <a href="https://cayzentech.com" target="_blank" class="exp-company-link">
-            Cayzen Technologies <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
-          </a>
-        </div>
+        <div class="exp-company">Cayzen Technologies</div>
         <div class="exp-role">Sr. UI/UX Designer / Product Designer</div>
         <p class="exp-desc">Lead product discovery sessions, stakeholder workshops, and UX strategy planning. Define design requirements based on business objectives and user research insights. Develop scalable design systems, create user stories, process flows, wireframes, prototypes, and high-fidelity mockups. Contribute to front-end development using HTML5, CSS3, SCSS, and React-based UI frameworks.</p>
         <div class="exp-meta">
@@ -1413,11 +1453,7 @@
 
     <div class="exp-item fade-in">
       <div>
-        <div class="exp-company">
-          <a href="https://www.meditab.com" target="_blank" class="exp-company-link">
-            Meditab <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
-          </a>
-        </div>
+        <div class="exp-company">Meditab</div>
         <div class="exp-role">Sr. UI/UX Designer &amp; Web Designer</div>
         <p class="exp-desc">Designed and developed responsive web applications and healthcare product interfaces. Led UX strategy from requirement analysis to wireframing, prototyping, and final delivery. Created mobile and web app UI assets for iOS, iPad, and Android platforms. Ensured standards-compliant code with focus on accessibility, SEO, and W3C validation.</p>
         <div class="exp-meta">
@@ -1429,11 +1465,7 @@
 
     <div class="exp-item fade-in">
       <div>
-        <div class="exp-company">
-          <a href="https://www.matrixcomsec.com" target="_blank" class="exp-company-link">
-            Matrix Comsec <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
-          </a>
-        </div>
+        <div class="exp-company">Matrix Comsec</div>
         <div class="exp-role">Sr. UI/UX Designer</div>
         <p class="exp-desc">Designed and developed responsive web applications and enterprise dashboards. Created UI/UX for desktop and mobile applications. Developed wireframes, prototypes, and interactive UI solutions. Collaborated with backend teams to ensure seamless front-end integration.</p>
         <div class="exp-meta">
@@ -1516,7 +1548,7 @@
   <div class="section-header fade-in">
     <div class="section-tag">Portfolio</div>
     <h2 class="section-title">Work Samples<br/>&amp; Projects</h2>
-    <p class="section-desc">Live products, Figma design files, case studies and design process samples — a curated view of 12.5+ years of craft.</p>
+    <p class="section-desc">Live products, Figma design files, case studies and design process samples — a curated view of 12+ years of craft.</p>
   </div>
 
   <!-- TABS -->
@@ -1970,33 +2002,33 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         Individual Contributor — End-to-End Ownership
       </div>
-      <div class="project-modal-section">
-        <h4>About the Product</h4>
-        <p>GARDIANT is a modern Case Management Platform built for professionals in worker compensation. It streamlines complex case workflows, documentation, and stakeholder collaboration for legal and insurance professionals.</p>
-      </div>
-      <hr class="project-modal-divider"/>
-      <div class="project-modal-section">
-        <h4>My Role & Responsibilities</h4>
-        <p>As the sole designer, I owned the entire product design lifecycle — from discovery through delivery. This included conducting user research (VOC, RETRO), building user personas, mapping user journeys, ideating wireframes, creating a comprehensive design system, and producing high-fidelity mockups. I also supported developers with HTML/CSS implementation using Material UI with React.</p>
-      </div>
-      <hr class="project-modal-divider"/>
-      <div class="project-modal-section">
-        <h4>Key Contributions</h4>
-        <div class="project-modal-chips">
-          <span class="project-modal-chip">User Research (VOC)</span>
-          <span class="project-modal-chip">Persona Development</span>
-          <span class="project-modal-chip">User Journey Mapping</span>
-          <span class="project-modal-chip">Wireframing & Ideation</span>
-          <span class="project-modal-chip">Design System</span>
-          <span class="project-modal-chip">High-Fidelity Mockups</span>
-          <span class="project-modal-chip">Material UI / React</span>
-          <span class="project-modal-chip">HTML5 / CSS3 / SCSS</span>
+      <div class="project-modal-grid">
+        <div class="project-modal-section">
+          <h4>About the Product</h4>
+          <p>GARDIANT is a modern Case Management Platform built for professionals in worker compensation. It streamlines complex case workflows, documentation, and stakeholder collaboration for legal and insurance professionals.</p>
         </div>
-      </div>
-      <hr class="project-modal-divider"/>
-      <div class="project-modal-section">
-        <h4>Industry</h4>
-        <p>LegalTech · Worker Compensation · Case Management</p>
+        <div class="project-modal-section">
+          <h4>My Role & Responsibilities</h4>
+          <p>As the sole designer, I owned the entire product design lifecycle — from discovery through delivery. Conducted user research (VOC, RETRO), built user personas, mapped user journeys, ideated wireframes, created a design system, produced high-fidelity mockups, and supported HTML/CSS development with Material UI + React.</p>
+        </div>
+        <div class="project-modal-section" style="grid-column:1/-1">
+          <hr class="project-modal-divider" style="margin-bottom:20px"/>
+          <h4>Key Contributions</h4>
+          <div class="project-modal-chips">
+            <span class="project-modal-chip">User Research (VOC)</span>
+            <span class="project-modal-chip">Persona Development</span>
+            <span class="project-modal-chip">User Journey Mapping</span>
+            <span class="project-modal-chip">Wireframing & Ideation</span>
+            <span class="project-modal-chip">Design System</span>
+            <span class="project-modal-chip">High-Fidelity Mockups</span>
+            <span class="project-modal-chip">Material UI / React</span>
+            <span class="project-modal-chip">HTML5 / CSS3 / SCSS</span>
+          </div>
+        </div>
+        <div class="project-modal-section">
+          <h4>Industry</h4>
+          <p>LegalTech · Worker Compensation · Case Management</p>
+        </div>
       </div>
     </div>
   </div>
@@ -2019,34 +2051,34 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         Team Contributor — UI/UX Designer with Front-End Dev
       </div>
-      <div class="project-modal-section">
-        <h4>About the Product</h4>
-        <p>IMS (Intelligent Medical Software) is Meditab's flagship all-in-one healthcare platform combining Electronic Health Records (EHR), Practice Management, and Billing Software. It serves medical practices of all sizes with a complete digital workflow from patient intake to billing reconciliation.</p>
-      </div>
-      <hr class="project-modal-divider"/>
-      <div class="project-modal-section">
-        <h4>My Role & Responsibilities</h4>
-        <p>Worked within a cross-functional team as UI/UX Designer with front-end responsibilities. After receiving client requirements, I conducted analysis, developed UX strategy, created wireframes and concepts, then managed end-to-end delivery including design mockups, HTML/CSS development, validation, testing, and client collaboration.</p>
-      </div>
-      <hr class="project-modal-divider"/>
-      <div class="project-modal-section">
-        <h4>Key Contributions</h4>
-        <div class="project-modal-chips">
-          <span class="project-modal-chip">Requirements Analysis</span>
-          <span class="project-modal-chip">UX Strategy</span>
-          <span class="project-modal-chip">Wireframing & Concepts</span>
-          <span class="project-modal-chip">Design Mockups</span>
-          <span class="project-modal-chip">HTML5 / CSS3 / Bootstrap</span>
-          <span class="project-modal-chip">W3C Validation</span>
-          <span class="project-modal-chip">Accessibility & SEO</span>
-          <span class="project-modal-chip">Client Coordination</span>
-          <span class="project-modal-chip">iOS / iPad / Android Assets</span>
+      <div class="project-modal-grid">
+        <div class="project-modal-section">
+          <h4>About the Product</h4>
+          <p>IMS (Intelligent Medical Software) is Meditab's flagship all-in-one healthcare platform combining Electronic Health Records (EHR), Practice Management, and Billing Software — serving medical practices with a complete workflow from patient intake to billing.</p>
         </div>
-      </div>
-      <hr class="project-modal-divider"/>
-      <div class="project-modal-section">
-        <h4>Industry</h4>
-        <p>HealthTech · Electronic Health Records · Practice Management</p>
+        <div class="project-modal-section">
+          <h4>My Role & Responsibilities</h4>
+          <p>Worked in a cross-functional team as UI/UX Designer with front-end responsibilities. Conducted requirements analysis, developed UX strategy, created wireframes and mockups, then managed end-to-end delivery including HTML/CSS development, W3C validation, testing, and client collaboration.</p>
+        </div>
+        <div class="project-modal-section" style="grid-column:1/-1">
+          <hr class="project-modal-divider" style="margin-bottom:20px"/>
+          <h4>Key Contributions</h4>
+          <div class="project-modal-chips">
+            <span class="project-modal-chip">Requirements Analysis</span>
+            <span class="project-modal-chip">UX Strategy</span>
+            <span class="project-modal-chip">Wireframing & Concepts</span>
+            <span class="project-modal-chip">Design Mockups</span>
+            <span class="project-modal-chip">HTML5 / CSS3 / Bootstrap</span>
+            <span class="project-modal-chip">W3C Validation</span>
+            <span class="project-modal-chip">Accessibility & SEO</span>
+            <span class="project-modal-chip">Client Coordination</span>
+            <span class="project-modal-chip">iOS / iPad / Android Assets</span>
+          </div>
+        </div>
+        <div class="project-modal-section">
+          <h4>Industry</h4>
+          <p>HealthTech · Electronic Health Records · Practice Management</p>
+        </div>
       </div>
     </div>
   </div>
@@ -2069,33 +2101,33 @@
         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         Team Contributor — Research to Front-End
       </div>
-      <div class="project-modal-section">
-        <h4>About the Product</h4>
-        <p>COSEC Cloud is an adaptive, modular, and scalable access control solution designed for enterprises of all sizes — from small businesses to large corporations with up to 1 million users, 65,000 entry points, and 1,000 locations. The platform provides comprehensive physical security and attendance management.</p>
-      </div>
-      <hr class="project-modal-divider"/>
-      <div class="project-modal-section">
-        <h4>My Role & Responsibilities</h4>
-        <p>Collaborated with the UX design team to manage the entire product design pipeline. Conducted user research and interviews, created sitemaps, wireframes, and prototypes for the backend developer team. Also built the front-end COSEC Cloud interface using HTML, CSS, and Bootstrap, followed by validation with the development team.</p>
-      </div>
-      <hr class="project-modal-divider"/>
-      <div class="project-modal-section">
-        <h4>Key Contributions</h4>
-        <div class="project-modal-chips">
-          <span class="project-modal-chip">User Research & Interviews</span>
-          <span class="project-modal-chip">Sitemap Creation</span>
-          <span class="project-modal-chip">Wireframing</span>
-          <span class="project-modal-chip">Prototyping</span>
-          <span class="project-modal-chip">Desktop App UI/UX</span>
-          <span class="project-modal-chip">HTML5 / CSS3 / Bootstrap</span>
-          <span class="project-modal-chip">Front-End Development</span>
-          <span class="project-modal-chip">Dev Validation</span>
+      <div class="project-modal-grid">
+        <div class="project-modal-section">
+          <h4>About the Product</h4>
+          <p>COSEC Cloud is an adaptive, modular, scalable access control solution for enterprises of all sizes — supporting up to 1 million users, 65,000 entry points, and 1,000 locations. Provides comprehensive physical security and attendance management.</p>
         </div>
-      </div>
-      <hr class="project-modal-divider"/>
-      <div class="project-modal-section">
-        <h4>Industry</h4>
-        <p>Enterprise Security · Access Control · Attendance Management</p>
+        <div class="project-modal-section">
+          <h4>My Role & Responsibilities</h4>
+          <p>Collaborated with the UX team on the full product design pipeline. Conducted user research and interviews, created sitemaps, wireframes, and prototypes. Also built the front-end COSEC Cloud interface using HTML, CSS, and Bootstrap, followed by dev validation.</p>
+        </div>
+        <div class="project-modal-section" style="grid-column:1/-1">
+          <hr class="project-modal-divider" style="margin-bottom:20px"/>
+          <h4>Key Contributions</h4>
+          <div class="project-modal-chips">
+            <span class="project-modal-chip">User Research & Interviews</span>
+            <span class="project-modal-chip">Sitemap Creation</span>
+            <span class="project-modal-chip">Wireframing</span>
+            <span class="project-modal-chip">Prototyping</span>
+            <span class="project-modal-chip">Desktop App UI/UX</span>
+            <span class="project-modal-chip">HTML5 / CSS3 / Bootstrap</span>
+            <span class="project-modal-chip">Front-End Development</span>
+            <span class="project-modal-chip">Dev Validation</span>
+          </div>
+        </div>
+        <div class="project-modal-section">
+          <h4>Industry</h4>
+          <p>Enterprise Security · Access Control · Attendance Management</p>
+        </div>
       </div>
     </div>
   </div>
@@ -2129,7 +2161,10 @@
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+  // Mark body as JS-ready so fade-in animation activates
+  document.body.classList.add('js-ready');
+
   // Intersection Observer for fade-in animations
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -2141,6 +2176,16 @@
   }, { threshold: 0.1 });
 
   document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Immediately reveal any elements already in viewport
+  setTimeout(() => {
+    document.querySelectorAll('.fade-in:not(.visible)').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight) {
+        el.classList.add('visible');
+      }
+    });
+  }, 100);
 
   // Counter animation
   function animateCounter(el, target) {
@@ -2186,12 +2231,13 @@
   function switchTab(id, btn) {
     document.querySelectorAll('.ptab').forEach(t => t.classList.remove('active'));
     document.querySelectorAll('.ptab-content').forEach(c => c.classList.remove('active'));
-    document.getElementById('tab-' + id).classList.add('active');
+    var tabEl = document.getElementById('tab-' + id);
+    if (tabEl) tabEl.classList.add('active');
     btn.classList.add('active');
-    // re-trigger fade-ins
-    document.querySelector('#tab-' + id + ' .fade-in').forEach((el, i) => {
+    // re-trigger fade-ins (use querySelectorAll, not querySelector)
+    document.querySelectorAll('#tab-' + id + ' .fade-in').forEach(function(el, i) {
       el.classList.remove('visible');
-      setTimeout(() => el.classList.add('visible'), i * 60);
+      setTimeout(function() { el.classList.add('visible'); }, i * 60);
     });
   }
 
@@ -2247,23 +2293,24 @@
   setActiveNav();
 
   // Smooth scroll with nav offset for all anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     anchor.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href');
+      var targetId = this.getAttribute('href');
       if (targetId === '#' || targetId === '') {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
       }
-      const target = document.querySelector(targetId);
+      var target = document.querySelector(targetId);
       if (target) {
         e.preventDefault();
-        const navHeight = document.querySelector('nav').offsetHeight;
-        const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 16;
-        window.scrollTo({ top, behavior: 'smooth' });
+        var navHeight = document.querySelector('nav').offsetHeight || 80;
+        var top = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+        window.scrollTo({ top: top, behavior: 'smooth' });
       }
     });
   });
+
 </script>
 </body>
 </html>
