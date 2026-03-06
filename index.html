@@ -33,6 +33,82 @@
       overflow-x: hidden;
     }
 
+
+    /* ── LIGHT THEME ── */
+    [data-theme="light"] {
+      --bg: #f5f4f0;
+      --surface: #ffffff;
+      --surface2: #ede9e3;
+      --border: rgba(0,0,0,0.09);
+      --accent: #E8734A;
+      --accent2: #d45e32;
+      --text: #1a1814;
+      --muted: #706b63;
+      --tag-bg: rgba(232,115,74,0.10);
+    }
+    [data-theme="light"] body::before { opacity: 0.15; }
+    [data-theme="light"] nav {
+      background: rgba(245,244,240,0.92);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    [data-theme="light"] .exp-item,
+    [data-theme="light"] .skill-card,
+    [data-theme="light"] .tool-card,
+    [data-theme="light"] .stat-card,
+    [data-theme="light"] .figma-card,
+    [data-theme="light"] .live-card,
+    [data-theme="light"] .case-card,
+    [data-theme="light"] .project-modal {
+      background: #ffffff;
+      border-color: rgba(0,0,0,0.09);
+    }
+    [data-theme="light"] .figma-card-thumb { background: #ede9e3 !important; }
+    [data-theme="light"] .marquee-wrap { background: #ede9e3; border-color: rgba(0,0,0,0.08); }
+    [data-theme="light"] .marquee-item { color: #706b63; }
+    [data-theme="light"] .portfolio-tabs { background: #ede9e3; border-color: rgba(0,0,0,0.08); }
+    [data-theme="light"] .ptab { background: #ffffff; border-color: rgba(0,0,0,0.09); color: #706b63; }
+    [data-theme="light"] .ptab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    [data-theme="light"] #contact-section { background: #ffffff; }
+    [data-theme="light"] .project-modal-overlay { background: rgba(0,0,0,0.45); }
+    [data-theme="light"] ::-webkit-scrollbar-track { background: #ede9e3; }
+    [data-theme="light"] footer { border-top-color: rgba(0,0,0,0.08); }
+    [data-theme="light"] .footer-social { background: #ffffff; border-color: rgba(0,0,0,0.09); color: #706b63; }
+    [data-theme="light"] .exp-project-btn { background: rgba(232,115,74,0.08); }
+    [data-theme="light"] .project-modal-chip { background: #ede9e3; }
+    [data-theme="light"] .hero-photo-badge { background: #ffffff; }
+    [data-theme="light"] .stats-grid { background: rgba(0,0,0,0.06); border-color: rgba(0,0,0,0.08); }
+    [data-theme="light"] .skill-icon,
+    [data-theme="light"] .tool-emoji { background: rgba(232,115,74,0.1); }
+
+    /* ── THEME TOGGLE BUTTON ── */
+    .theme-toggle {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--tag-bg);
+    }
+    .theme-toggle svg { display: block; transition: transform 0.4s ease; }
+    .theme-toggle:hover svg { transform: rotate(20deg); }
+    .theme-toggle .icon-sun { display: none; }
+    .theme-toggle .icon-moon { display: block; }
+    [data-theme="light"] .theme-toggle .icon-sun { display: block; }
+    [data-theme="light"] .theme-toggle .icon-moon { display: none; }
+
+
     /* ── NOISE OVERLAY ── */
     body::before {
       content: '';
@@ -1268,6 +1344,10 @@
     <li><a href="#works">Works</a></li>
     <li><a href="#contact" class="nav-cta">Contact Me</a></li>
   </ul>
+  <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle light/dark theme">
+    <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" x2="12" y1="1" y2="3"/><line x1="12" x2="12" y1="21" y2="23"/><line x1="4.22" x2="5.64" y1="4.22" y2="5.64"/><line x1="18.36" x2="19.78" y1="18.36" y2="19.78"/><line x1="1" x2="3" y1="12" y2="12"/><line x1="21" x2="23" y1="12" y2="12"/><line x1="4.22" x2="5.64" y1="19.78" y2="18.36"/><line x1="18.36" x2="19.78" y1="5.64" y2="4.22"/></svg>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -2140,8 +2220,8 @@
     <h2 class="contact-title">Have a Project<br/>in Mind?</h2>
     <p class="contact-sub">I'm open to senior product design roles and exciting collaboration opportunities. Let's create something remarkable together.</p>
     <div class="contact-links">
-      <a href="mailto:anghanumeshd8@gmail.com" class="contact-link primary">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:6px"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> anghanumeshd8@gmail.com
+      <a href="/cdn-cgi/l/email-protection#8beae5ece3eae5fee6eef8e3efb3cbece6eae2e7a5e8e4e6" class="contact-link primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:6px"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg> <span class="__cf_email__" data-cfemail="f5949b929d949b809890869d91cdb59298949c99db969a98">[email&#160;protected]</span>
       </a>
       <a href="tel:+919427201756" class="contact-link ghost">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline;vertical-align:middle;margin-right:6px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.36 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +91 94272 01756
@@ -2156,12 +2236,27 @@
   <p class="footer-copy">© 2025 Umesh D. Anghan. All rights reserved.</p>
   <div class="footer-socials">
     <a class="footer-social" href="https://www.linkedin.com/in/umesh-anghan-99660167/" target="_blank" title="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
-    <a class="footer-social" href="mailto:anghanumeshd8@gmail.com" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+    <a class="footer-social" href="/cdn-cgi/l/email-protection#74151a131c151a011911071c104c341319151d185a171b19" title="Email"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
     <a class="footer-social" href="tel:+919427201756" title="Phone"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.36 2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.8a16 16 0 0 0 6.29 6.29l.95-.95a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+
+  // Theme toggle
+  function toggleTheme() {
+    var current = document.documentElement.getAttribute('data-theme');
+    var next = current === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('uxid-theme', next);
+  }
+
+  // Apply saved theme on load
+  (function() {
+    var saved = localStorage.getItem('uxid-theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', saved);
+  })();
+
   // Mark body as JS-ready so fade-in animation activates
   document.body.classList.add('js-ready');
 
@@ -2304,13 +2399,12 @@
       var target = document.querySelector(targetId);
       if (target) {
         e.preventDefault();
-        var navHeight = document.querySelector('nav').offsetHeight || 80;
-        var top = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 20;
+        var navH = document.querySelector('nav').offsetHeight || 80;
+        var top = target.getBoundingClientRect().top + window.pageYOffset - navH - 20;
         window.scrollTo({ top: top, behavior: 'smooth' });
       }
     });
   });
-
 </script>
 </body>
 </html>
