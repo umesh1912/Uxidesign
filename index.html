@@ -232,6 +232,31 @@ footer a{color:var(--accent2);text-decoration:none}
 
 .nav-links a.nav-active{color:var(--text);}
 .nav-links a.nav-active::after{content:'';display:block;height:1px;background:var(--accent);margin-top:1px;border-radius:1px;}
+
+/* ── AI Workflow block inside experience ── */
+.exp-ai-block{margin-top:1.2rem;background:rgba(232,115,74,0.04);border:1px solid rgba(232,115,74,0.15);border-radius:10px;padding:1rem 1.1rem 1rem}
+.exp-ai-title{display:flex;align-items:center;gap:6px;font-size:0.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem}
+.exp-ai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.6rem}
+.exp-ai-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.7rem .9rem}
+.exp-ai-card-tool{font-size:0.8rem;font-weight:600;color:var(--text);margin-bottom:3px}
+.exp-ai-card-desc{font-size:0.76rem;color:var(--text3);line-height:1.55}
+
+/* ── Clients / Companies section ── */
+.clients-section{margin-top:5rem}
+.clients-marquee-wrap{overflow:hidden;position:relative;margin-top:2rem}
+.clients-marquee-wrap::before,.clients-marquee-wrap::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none}
+.clients-marquee-wrap::before{left:0;background:linear-gradient(to right,var(--bg),transparent)}
+.clients-marquee-wrap::after{right:0;background:linear-gradient(to left,var(--bg),transparent)}
+.clients-track{display:flex;gap:1rem;width:max-content;animation:marquee 35s linear infinite}
+.clients-track:hover{animation-play-state:paused}
+.clients-track2{animation-direction:reverse;animation-duration:40s}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.client-chip{display:inline-flex;align-items:center;gap:.6rem;padding:.55rem 1.1rem;background:var(--bg2);border:1px solid var(--border);border-radius:99px;white-space:nowrap;transition:border-color .2s,transform .2s;cursor:default}
+.client-chip:hover{border-color:rgba(232,115,74,0.35);transform:translateY(-2px)}
+.client-chip img{width:18px;height:18px;object-fit:contain;filter:brightness(0) invert(1);opacity:.7}
+.client-chip-name{font-size:0.82rem;font-weight:500;color:var(--text2)}
+.client-chip:hover .client-chip-name{color:var(--text)}
+
 </style>
 </head>
 <body>
@@ -327,14 +352,7 @@ footer a{color:var(--accent2);text-decoration:none}
           <div class="about-block-title">Interests</div>
           <p class="about-block-text">Designing, E-painting, Teaching, Training, Management, Social Activities</p>
         </div>
-        <div class="about-block">
-          <div class="about-block-title">Client Testimonials</div>
-          <div class="testimonials">
-            <blockquote class="testi"><p>"I'm always impressed with the Design Service. Umesh as a designer knows about user and industry standard. Always delivered the high quality UI with standard experience process."</p><footer>— Rishabh Engineer</footer></blockquote>
-            <blockquote class="testi"><p>"Design is awesome and exactly matches our client's requirement. He comes with multiple alternatives with different and unique ideas. I would like to work with him in the future."</p><footer>— Chirag Choksi</footer></blockquote>
-            <blockquote class="testi"><p>"The Design result provided by Umesh is awesome. Very punctual and the work attitude towards the work is commendable. I really want to work with him in the future."</p><footer>— Katarzyna</footer></blockquote>
-          </div>
-        </div>
+        
       </div>
       <div>
         <table class="info-table">
@@ -353,7 +371,20 @@ footer a{color:var(--accent2);text-decoration:none}
         </table>
       </div>
     </div>
-  </div>
+  
+      <!-- ── CLIENTS / COMPANIES ── -->
+      <div class="clients-section">
+        <p class="label">Trusted By</p>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:.4rem">Companies I've <span style="color:var(--accent)">Worked With</span></h3>
+        <p style="font-size:0.88rem;color:var(--text2);margin-bottom:0">Delivering design excellence across healthcare, fintech, legal tech, enterprise, and consumer products.</p>
+        <div class="clients-marquee-wrap" style="margin-top:1.5rem">
+          <div class="clients-track "><div class="client-chip"><img src="https://logo.clearbit.com/matrixcomsec.com" alt="Matrix Comsec" onerror="this.style.display='none'"><span class="client-chip-name">Matrix Comsec</span></div><div class="client-chip"><img src="https://logo.clearbit.com/meditab.com" alt="Meditab" onerror="this.style.display='none'"><span class="client-chip-name">Meditab</span></div><div class="client-chip"><img src="https://logo.clearbit.com/cayzen.com" alt="Cayzen Technologies" onerror="this.style.display='none'"><span class="client-chip-name">Cayzen Technologies</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">H</span><span class="client-chip-name">HCI Active</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">I</span><span class="client-chip-name">i-Engineering</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">A</span><span class="client-chip-name">Appswave</span></div><div class="client-chip"><img src="https://logo.clearbit.com/gspann.com" alt="GSPANN" onerror="this.style.display='none'"><span class="client-chip-name">GSPANN</span></div><div class="client-chip"><img src="https://logo.clearbit.com/danaher.com" alt="Danaher" onerror="this.style.display='none'"><span class="client-chip-name">Danaher</span></div><div class="client-chip"><img src="https://logo.clearbit.com/leica-microsystems.com" alt="Leica Microsystems" onerror="this.style.display='none'"><span class="client-chip-name">Leica Microsystems</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">C</span><span class="client-chip-name">ContentHubGPT</span></div><div class="client-chip"><img src="https://logo.clearbit.com/meshiq.com" alt="MeshIQ" onerror="this.style.display='none'"><span class="client-chip-name">MeshIQ</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">D</span><span class="client-chip-name">Decision Point</span></div><div class="client-chip"><img src="https://logo.clearbit.com/matrixcomsec.com" alt="Matrix Comsec" onerror="this.style.display='none'"><span class="client-chip-name">Matrix Comsec</span></div><div class="client-chip"><img src="https://logo.clearbit.com/meditab.com" alt="Meditab" onerror="this.style.display='none'"><span class="client-chip-name">Meditab</span></div><div class="client-chip"><img src="https://logo.clearbit.com/cayzen.com" alt="Cayzen Technologies" onerror="this.style.display='none'"><span class="client-chip-name">Cayzen Technologies</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">H</span><span class="client-chip-name">HCI Active</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">I</span><span class="client-chip-name">i-Engineering</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">A</span><span class="client-chip-name">Appswave</span></div><div class="client-chip"><img src="https://logo.clearbit.com/gspann.com" alt="GSPANN" onerror="this.style.display='none'"><span class="client-chip-name">GSPANN</span></div><div class="client-chip"><img src="https://logo.clearbit.com/danaher.com" alt="Danaher" onerror="this.style.display='none'"><span class="client-chip-name">Danaher</span></div><div class="client-chip"><img src="https://logo.clearbit.com/leica-microsystems.com" alt="Leica Microsystems" onerror="this.style.display='none'"><span class="client-chip-name">Leica Microsystems</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">C</span><span class="client-chip-name">ContentHubGPT</span></div><div class="client-chip"><img src="https://logo.clearbit.com/meshiq.com" alt="MeshIQ" onerror="this.style.display='none'"><span class="client-chip-name">MeshIQ</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">D</span><span class="client-chip-name">Decision Point</span></div></div>
+        </div>
+        <div class="clients-marquee-wrap" style="margin-top:.7rem">
+          <div class="clients-track clients-track2"><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">P</span><span class="client-chip-name">PayoBank</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">I</span><span class="client-chip-name">i8Labs</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">S</span><span class="client-chip-name">Sports Exchange</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">M</span><span class="client-chip-name">MyBzz</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">B</span><span class="client-chip-name">Breez Security</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">S</span><span class="client-chip-name">SocietyRx</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">T</span><span class="client-chip-name">Techies4Tech</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">D</span><span class="client-chip-name">Defx</span></div><div class="client-chip"><img src="https://logo.clearbit.com/ipatientcare.com" alt="iPatientCare" onerror="this.style.display='none'"><span class="client-chip-name">iPatientCare</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">T</span><span class="client-chip-name">The Social Comment</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">B</span><span class="client-chip-name">Bonds India</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">&</span><span class="client-chip-name">& More</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">P</span><span class="client-chip-name">PayoBank</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">I</span><span class="client-chip-name">i8Labs</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">S</span><span class="client-chip-name">Sports Exchange</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">M</span><span class="client-chip-name">MyBzz</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">B</span><span class="client-chip-name">Breez Security</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">S</span><span class="client-chip-name">SocietyRx</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">T</span><span class="client-chip-name">Techies4Tech</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">D</span><span class="client-chip-name">Defx</span></div><div class="client-chip"><img src="https://logo.clearbit.com/ipatientcare.com" alt="iPatientCare" onerror="this.style.display='none'"><span class="client-chip-name">iPatientCare</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">T</span><span class="client-chip-name">The Social Comment</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">B</span><span class="client-chip-name">Bonds India</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">&</span><span class="client-chip-name">& More</span></div></div>
+        </div>
+      </div>
+    </div>
 </section>
 
 <!-- SKILLS -->
@@ -401,18 +432,52 @@ footer a{color:var(--accent2);text-decoration:none}
         <div>
           <div class="exp-meta-period">Aug 2019 – Present</div>
           <div class="exp-meta-company">Cayzen Technologies</div>
-          <div class="exp-meta-type">Sr. Product Designer</div>
+          <div class="exp-meta-type">Sr. Product Designer · Scrum Master</div>
         </div>
         <div>
-          <div class="exp-role">Sr. UI/UX Designer / Product Designer</div>
+          <div class="exp-role">Sr. UI/UX Designer / Product Designer / Scrum Master</div>
           <ul class="exp-bullets">
             <li>Lead product discovery sessions, stakeholder workshops and UX strategy planning.</li>
-            <li>Define requirements from business objectives and user research insights.</li>
+            <li>Define design requirements based on business objectives and user research insights.</li>
             <li>Create scalable design systems, user stories, process flows, wireframes, prototypes, and high-fidelity mockups.</li>
-            <li>Collaborate with product managers and engineers to optimize usability and performance.</li>
+            <li>Collaborate closely with product managers and engineers to optimize usability and performance.</li>
             <li>Contribute to front-end development using HTML5, CSS3, SCSS and React-based UI frameworks.</li>
-            <li>Actively participate in Agile sprint planning, reviews, and iterative improvements.</li>
+            <li>Act as <strong>Scrum Master</strong> — facilitate sprint planning, daily standups, retrospectives and backlog grooming with cross-functional teams.</li>
           </ul>
+
+          <!-- AI Workflow subsection -->
+          <div class="exp-ai-block">
+            <div class="exp-ai-title">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              AI-Augmented Design Workflows
+            </div>
+            <div class="exp-ai-grid">
+              <div class="exp-ai-card">
+                <div class="exp-ai-card-tool">Claude.ai</div>
+                <div class="exp-ai-card-desc">UX research synthesis, persona creation, content modeling, prompt-engineered UI generation and stakeholder documentation.</div>
+              </div>
+              <div class="exp-ai-card">
+                <div class="exp-ai-card-tool">Claude.design</div>
+                <div class="exp-ai-card-desc">Rapid visual prototyping, AI-generated layout explorations, and design system component generation for faster MVP delivery.</div>
+              </div>
+              <div class="exp-ai-card">
+                <div class="exp-ai-card-tool">Figma Make</div>
+                <div class="exp-ai-card-desc">AI-powered design iteration and auto-layout generation — reduced design cycle time and accelerated concept validation.</div>
+              </div>
+              <div class="exp-ai-card">
+                <div class="exp-ai-card-tool">Lovable</div>
+                <div class="exp-ai-card-desc">AI-driven rapid prototyping platform for interactive mockups, reducing handoff friction between design and engineering.</div>
+              </div>
+              <div class="exp-ai-card">
+                <div class="exp-ai-card-tool">Storybook</div>
+                <div class="exp-ai-card-desc">Built and maintained component documentation in Storybook — isolated UI components with live previews for dev-design alignment.</div>
+              </div>
+              <div class="exp-ai-card">
+                <div class="exp-ai-card-tool">Prompt Engineering</div>
+                <div class="exp-ai-card-desc">Applied advanced prompt techniques for rapid UI generation, workflow optimization, and AI-assisted design decision-making.</div>
+              </div>
+            </div>
+          </div>
           <a class="exp-link" href="https://www.figma.com/file/jp2gdBmI86PdcbOpanwFUZ/ACE-iHUB-and-PUMAA" target="_blank" rel="noopener">View Project: GARDIANT ↗</a>
         </div>
       </div>
