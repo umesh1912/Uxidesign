@@ -257,9 +257,188 @@ footer a{color:var(--accent2);text-decoration:none}
 .client-chip-name{font-size:0.82rem;font-weight:500;color:var(--text2)}
 .client-chip:hover .client-chip-name{color:var(--text)}
 
+
+/* ── CASE STUDIES ── */
+.cs-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:1.2rem;transition:border-color .2s}
+.cs-card:hover{border-color:var(--border2)}
+.cs-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;padding:1.6rem;cursor:pointer;user-select:none}
+.cs-header:hover .cs-toggle-icon svg{stroke:var(--accent)}
+.cs-header-left{display:flex;align-items:flex-start;gap:1.2rem;flex:1}
+.cs-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--border2);line-height:1;flex-shrink:0;padding-top:.1rem}
+.cs-tag{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(232,115,74,0.1);border:1px solid rgba(232,115,74,0.2);padding:2px 9px;border-radius:99px;display:inline-block;margin-bottom:.5rem}
+.cs-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:.4rem;line-height:1.25}
+.cs-subtitle{font-size:0.85rem;color:var(--text2);line-height:1.65;max-width:680px}
+.cs-toggle-icon{flex-shrink:0;width:32px;height:32px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text2);transition:all .2s;margin-top:.3rem}
+.cs-card.cs-open .cs-toggle-icon{background:var(--accent-glow);border-color:rgba(232,115,74,0.3);color:var(--accent);transform:rotate(180deg)}
+
+/* Overview strip */
+.cs-body{border-top:1px solid var(--border);padding:1.6rem}
+.cs-overview{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8rem;background:var(--bg3);border-radius:10px;padding:1rem 1.2rem;margin-bottom:1.8rem}
+.cs-ov-item{display:flex;flex-direction:column;gap:2px}
+.cs-ov-label{font-size:0.68rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3)}
+.cs-ov-val{font-size:0.85rem;font-weight:500;color:var(--text)}
+
+/* Process steps */
+.cs-process{display:flex;flex-direction:column;gap:0;position:relative}
+.cs-process::before{content:'';position:absolute;left:15px;top:24px;bottom:24px;width:1px;background:linear-gradient(to bottom,var(--accent),rgba(232,115,74,0.1));opacity:.4}
+.cs-step{padding:1.2rem 1.2rem 1.4rem 3rem;position:relative;border-bottom:1px solid var(--border)}
+.cs-step:last-child{border-bottom:none}
+.cs-step-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem}
+.cs-step-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:absolute;left:0}
+.cs-step--research .cs-step-icon{background:rgba(99,179,237,0.12);color:#63b3ed;border:1px solid rgba(99,179,237,0.25)}
+.cs-step--define .cs-step-icon{background:rgba(154,117,242,0.12);color:#9a75f2;border:1px solid rgba(154,117,242,0.25)}
+.cs-step--design .cs-step-icon{background:rgba(232,115,74,0.12);color:var(--accent);border:1px solid rgba(232,115,74,0.25)}
+.cs-step--prototype .cs-step-icon{background:rgba(72,199,142,0.12);color:#48c78e;border:1px solid rgba(72,199,142,0.25)}
+.cs-step--testing .cs-step-icon{background:rgba(255,214,0,0.1);color:#f0c040;border:1px solid rgba(255,214,0,0.2)}
+.cs-step-label{font-size:0.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
+.cs-step-title{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
+.cs-step-text{font-size:0.88rem;color:var(--text2);line-height:1.75;margin-bottom:.8rem}
+.cs-step-text strong{color:var(--accent);font-weight:600}
+.cs-step-text em{color:var(--text);font-weight:500}
+
+/* Insights row */
+.cs-insight-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.8rem}
+.cs-insight{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:.6rem 1rem;min-width:90px;text-align:center}
+.cs-insight--positive{border-color:rgba(72,199,142,0.25);background:rgba(72,199,142,0.05)}
+.cs-insight--positive .cs-insight-num{color:#48c78e}
+.cs-insight-num{display:block;font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--accent);line-height:1.1}
+.cs-insight-label{display:block;font-size:0.68rem;color:var(--text3);margin-top:2px;line-height:1.3}
+
+/* Process tags */
+.cs-tags-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem}
+.cs-process-tag{font-size:0.74rem;font-weight:500;padding:3px 10px;background:rgba(232,115,74,0.07);border:1px solid rgba(232,115,74,0.15);color:var(--text2);border-radius:99px}
+
+@media(max-width:600px){
+  .cs-header{padding:1.1rem}
+  .cs-body{padding:1.1rem}
+  .cs-process::before{display:none}
+  .cs-step{padding:1rem .8rem 1.2rem 2.8rem}
+  .cs-num{font-size:1.6rem}
+}
+
+
+/* ── LIGHT THEME ── */
+[data-theme="light"] {
+  --bg:#f5f4f0;
+  --bg2:#ffffff;
+  --bg3:#f0ede8;
+  --bg4:#e8e4dd;
+  --border:rgba(0,0,0,0.08);
+  --border2:rgba(0,0,0,0.14);
+  --text:#1a1816;
+  --text2:#5a5248;
+  --text3:#9c9088;
+  --accent:#E8734A;
+  --accent2:#E8734A;
+  --accent-glow:rgba(232,115,74,0.12);
+  --green:#1a9e5c;
+}
+
+/* ── THEME TOGGLE BUTTON ── */
+#theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border2);
+  background: var(--bg3);
+  color: var(--text2);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s;
+  flex-shrink: 0;
+}
+#theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-glow);
+}
+#theme-toggle svg { width: 16px; height: 16px; }
+
+/* ── LIGHT MODE OVERRIDES for elements using hardcoded rgba darks ── */
+[data-theme="light"] nav {
+  background: rgba(245,244,240,0.92);
+}
+[data-theme="light"] .hero-photo-card {
+  border-color: var(--border2);
+}
+[data-theme="light"] .clients-marquee-wrap::before {
+  background: linear-gradient(to right, var(--bg), transparent);
+}
+[data-theme="light"] .clients-marquee-wrap::after {
+  background: linear-gradient(to left, var(--bg), transparent);
+}
+[data-theme="light"] .client-chip img {
+  filter: none;
+  opacity: 0.85;
+}
+[data-theme="light"] #lb-overlay {
+  background: rgba(245,244,240,0.97);
+}
+[data-theme="light"] .cs-process::before {
+  background: linear-gradient(to bottom, var(--accent), rgba(232,115,74,0.1));
+}
+[data-theme="light"] blockquote.testi {
+  background: var(--bg3);
+}
+[data-theme="light"] .hero-photo-overlay {
+  background: linear-gradient(to top, rgba(245,244,240,0.95) 0%, transparent 100%);
+}
+[data-theme="light"] .hero-photo-name { color: var(--text); }
+[data-theme="light"] .hero-photo-role { color: var(--text2); }
+[data-theme="light"] .exp-ai-block {
+  background: rgba(232,115,74,0.04);
+}
+[data-theme="light"] .figma-card-footer {
+  background: var(--bg3);
+}
+[data-theme="light"] #lb-close,
+[data-theme="light"] #lb-prev,
+[data-theme="light"] #lb-next {
+  background: rgba(245,244,240,0.85);
+  color: var(--text);
+}
+[data-theme="light"] #lb-counter {
+  background: rgba(245,244,240,0.85);
+}
+[data-theme="light"] .portfolio-thumb-label {
+  background: linear-gradient(to top,rgba(245,244,240,0.95) 0%,rgba(245,244,240,0.6) 60%,transparent 100%);
+}
+[data-theme="light"] .pt-title { color: var(--text); }
+
 </style>
 </head>
 <body>
+
+<script>
+(function(){
+  // Restore saved theme
+  var saved = localStorage.getItem('uxid-theme') || 'dark';
+  applyTheme(saved);
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    var iconDark = document.getElementById('theme-icon-dark');
+    var iconLight = document.getElementById('theme-icon-light');
+    if (!iconDark || !iconLight) return;
+    if (theme === 'light') {
+      iconDark.style.display = 'none';
+      iconLight.style.display = 'block';
+    } else {
+      iconDark.style.display = 'block';
+      iconLight.style.display = 'none';
+    }
+  }
+
+  window.toggleTheme = function() {
+    var current = document.documentElement.getAttribute('data-theme') || 'dark';
+    var next = current === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('uxid-theme', next);
+    applyTheme(next);
+  };
+})();
+</script>
 
 <!-- NAV -->
 <nav>
@@ -272,7 +451,13 @@ footer a{color:var(--accent2);text-decoration:none}
       <li><a href="#works">Works</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a class="nav-cta" href="#contact">Contact Me</a>
+    <div style="display:flex;align-items:center;gap:.7rem">
+      <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" title="Toggle light/dark">
+        <svg id="theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:block"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <a class="nav-cta" href="#contact">Contact Me</a>
+    </div>
   </div>
 </nav>
 
@@ -560,6 +745,7 @@ footer a{color:var(--accent2);text-decoration:none}
       <button class="tab-btn active" onclick="showTab('figma',this)">Figma Designs</button>
       <button class="tab-btn" onclick="showTab('live',this)">Live Websites</button>
       <button class="tab-btn" onclick="showTab('visual',this)">Visual Portfolio</button>
+      <button class="tab-btn" onclick="showTab('casestudy',this)">Case Studies</button>
     </div>
 
     <!-- FIGMA tab -->
@@ -650,6 +836,345 @@ footer a{color:var(--accent2);text-decoration:none}
         <div class="portfolio-thumb" onclick="openLightbox(47)" data-src="https://uxid.vercel.app/images/portfolio/other/5.jpg" data-title="Visual Design — Marketing" data-cat="Visual Design" data-desc="Marketing design collateral — social media graphics, email templates, banner ads, and presentation decks."><img src="https://uxid.vercel.app/images/portfolio/other/5.jpg" alt="Visual Design — Marketing" loading="lazy"><div class="portfolio-thumb-label"><span class="pt-cat">Visual Design</span><span class="pt-title">Visual Design — Marketing</span></div></div>
       </div>
     </div>
+
+    <!-- CASE STUDIES TAB -->
+    <div id="tab-casestudy" class="tab-pane">
+
+      <!-- CS 1: Claim Management Software -->
+      <div class="cs-card" id="cs1">
+        <div class="cs-header" onclick="toggleCS('cs1')">
+          <div class="cs-header-left">
+            <span class="cs-num">01</span>
+            <div>
+              <div class="cs-tag">Enterprise SaaS · Healthcare</div>
+              <h3 class="cs-title">Claim Management Software</h3>
+              <p class="cs-subtitle">End-to-end UX redesign of a complex insurance claim processing platform for healthcare providers — reducing claim rejection rates and accelerating reimbursement cycles.</p>
+            </div>
+          </div>
+          <div class="cs-toggle-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+
+        <div class="cs-body">
+          <!-- Overview strip -->
+          <div class="cs-overview">
+            <div class="cs-ov-item"><span class="cs-ov-label">My Role</span><span class="cs-ov-val">Lead Product Designer + Scrum Master</span></div>
+            <div class="cs-ov-item"><span class="cs-ov-label">Duration</span><span class="cs-ov-val">6 Months</span></div>
+            <div class="cs-ov-item"><span class="cs-ov-label">Platform</span><span class="cs-ov-val">Web App (Desktop-first)</span></div>
+            <div class="cs-ov-item"><span class="cs-ov-label">Tools</span><span class="cs-ov-val">Figma · FigJam · Claude.ai · Storybook</span></div>
+          </div>
+
+          <!-- Process Steps -->
+          <div class="cs-process">
+
+            <div class="cs-step cs-step--research">
+              <div class="cs-step-head">
+                <div class="cs-step-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </div>
+                <div class="cs-step-label">01 · Research</div>
+              </div>
+              <h4 class="cs-step-title">Understanding the Claims Chaos</h4>
+              <p class="cs-step-text">Conducted 12 stakeholder interviews with billing specialists, practice managers, and insurance coordinators. Used <strong>Claude.ai</strong> to synthesise 40+ hours of interview transcripts into structured insight clusters. Ran VOC analysis to identify the top pain points: a 34% claim rejection rate due to coding errors, a fragmented multi-screen workflow requiring 11 clicks per claim submission, and zero real-time validation feedback.</p>
+              <div class="cs-insight-row">
+                <div class="cs-insight"><span class="cs-insight-num">34%</span><span class="cs-insight-label">Avg. claim rejection rate</span></div>
+                <div class="cs-insight"><span class="cs-insight-num">11</span><span class="cs-insight-label">Clicks per submission</span></div>
+                <div class="cs-insight"><span class="cs-insight-num">3</span><span class="cs-insight-label">Disconnected legacy screens</span></div>
+                <div class="cs-insight"><span class="cs-insight-num">0</span><span class="cs-insight-label">Real-time validation</span></div>
+              </div>
+            </div>
+
+            <div class="cs-step cs-step--define">
+              <div class="cs-step-head">
+                <div class="cs-step-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <div class="cs-step-label">02 · Define</div>
+              </div>
+              <h4 class="cs-step-title">Framing the Problem</h4>
+              <p class="cs-step-text">Created 3 user personas — the Billing Specialist, the Practice Manager, and the Compliance Officer — each with distinct goals and frustrations. Mapped a current-state journey exposing 6 critical failure points where claims fell through. Defined the design challenge: <em>"How might we give billing teams real-time confidence at every step of a claim's lifecycle — from entry to adjudication — without requiring retraining?"</em> Prioritised features on an impact-effort matrix in collaboration with product and engineering leads.</p>
+              <div class="cs-tags-row">
+                <span class="cs-process-tag">3 User Personas</span>
+                <span class="cs-process-tag">Journey Mapping</span>
+                <span class="cs-process-tag">HMW Statements</span>
+                <span class="cs-process-tag">Impact–Effort Matrix</span>
+                <span class="cs-process-tag">Information Architecture</span>
+              </div>
+            </div>
+
+            <div class="cs-step cs-step--design">
+              <div class="cs-step-head">
+                <div class="cs-step-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                </div>
+                <div class="cs-step-label">03 · Design</div>
+              </div>
+              <h4 class="cs-step-title">Redesigning the Claim Lifecycle</h4>
+              <p class="cs-step-text">Consolidated 3 legacy screens into a single unified claim workspace with a contextual sidebar. Designed an inline ICD/CPT code validator with real-time error flagging before submission. Built a claim timeline component showing adjudication status at a glance. Used <strong>Claude.design</strong> and <strong>Figma Make</strong> to rapidly generate layout alternatives and validate information hierarchy. Delivered a full design system in Figma with 80+ reusable components documented in <strong>Storybook</strong> for seamless developer handoff.</p>
+              <div class="cs-tags-row">
+                <span class="cs-process-tag">Unified Workspace</span>
+                <span class="cs-process-tag">Real-time Validation</span>
+                <span class="cs-process-tag">Design System · 80+ Components</span>
+                <span class="cs-process-tag">Storybook Docs</span>
+                <span class="cs-process-tag">WCAG 2.1 AA</span>
+              </div>
+            </div>
+
+            <div class="cs-step cs-step--prototype">
+              <div class="cs-step-head">
+                <div class="cs-step-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </div>
+                <div class="cs-step-label">04 · Prototype</div>
+              </div>
+              <h4 class="cs-step-title">Interactive Prototyping & Stakeholder Validation</h4>
+              <p class="cs-step-text">Built a high-fidelity clickthrough prototype in Figma covering 5 core flows: new claim entry, claim edit & resubmission, batch processing, ERA reconciliation, and dashboard reporting. Used <strong>Lovable</strong> to create a live coded prototype for executive demos — enabling non-technical stakeholders to interact with the real UI in a browser. Ran 3 rounds of internal review with product, engineering, and compliance, iterating on the status workflow and notification system each cycle.</p>
+              <div class="cs-tags-row">
+                <span class="cs-process-tag">5 Core Flows</span>
+                <span class="cs-process-tag">Figma Prototype</span>
+                <span class="cs-process-tag">Lovable Live Demo</span>
+                <span class="cs-process-tag">3 Iteration Rounds</span>
+              </div>
+            </div>
+
+            <div class="cs-step cs-step--testing">
+              <div class="cs-step-head">
+                <div class="cs-step-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                </div>
+                <div class="cs-step-label">05 · Testing</div>
+              </div>
+              <h4 class="cs-step-title">Usability Testing & Outcomes</h4>
+              <p class="cs-step-text">Conducted moderated usability testing with 8 billing specialists across 2 sessions. Measured task completion rate, time-on-task, and error rate for the claim submission flow. Post-launch metrics showed a dramatic improvement — claim submission time dropped from an average of 4.2 minutes to 1.8 minutes, the rejection rate fell by 22 percentage points in the first quarter, and user satisfaction score (CSAT) rose from 54 to 81.</p>
+              <div class="cs-insight-row">
+                <div class="cs-insight cs-insight--positive"><span class="cs-insight-num">↓22%</span><span class="cs-insight-label">Claim rejection rate</span></div>
+                <div class="cs-insight cs-insight--positive"><span class="cs-insight-num">57%</span><span class="cs-insight-label">Faster submission time</span></div>
+                <div class="cs-insight cs-insight--positive"><span class="cs-insight-num">81</span><span class="cs-insight-label">CSAT score (was 54)</span></div>
+                <div class="cs-insight cs-insight--positive"><span class="cs-insight-num">96%</span><span class="cs-insight-label">Task completion rate</span></div>
+              </div>
+            </div>
+
+          </div><!-- /cs-process -->
+        </div><!-- /cs-body -->
+      </div><!-- /cs-card 1 -->
+
+      <!-- CS 2: Ecommerce Platform for Life Science Products -->
+      <div class="cs-card" id="cs2">
+        <div class="cs-header" onclick="toggleCS('cs2')">
+          <div class="cs-header-left">
+            <span class="cs-num">02</span>
+            <div>
+              <div class="cs-tag">E-commerce · Life Sciences</div>
+              <h3 class="cs-title">E-commerce Platform for Life Science Products</h3>
+              <p class="cs-subtitle">Designing a dual-tier B2B purchasing experience for high-value laboratory instruments and low-value consumables — serving researchers, procurement managers, and lab technicians.</p>
+            </div>
+          </div>
+          <div class="cs-toggle-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+
+        <div class="cs-body" style="display:none">
+          <div class="cs-overview">
+            <div class="cs-ov-item"><span class="cs-ov-label">My Role</span><span class="cs-ov-val">Lead UX / Product Designer</span></div>
+            <div class="cs-ov-item"><span class="cs-ov-label">Duration</span><span class="cs-ov-val">8 Months</span></div>
+            <div class="cs-ov-item"><span class="cs-ov-label">Platform</span><span class="cs-ov-val">Web (Responsive) · B2B E-commerce</span></div>
+            <div class="cs-ov-item"><span class="cs-ov-label">Tools</span><span class="cs-ov-val">Figma · Claude.ai · Figma Make · Miro</span></div>
+          </div>
+
+          <div class="cs-process">
+
+            <div class="cs-step cs-step--research">
+              <div class="cs-step-head">
+                <div class="cs-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+                <div class="cs-step-label">01 · Research</div>
+              </div>
+              <h4 class="cs-step-title">Two Buyer Modes, One Platform</h4>
+              <p class="cs-step-text">Conducted contextual inquiry sessions with 15 users spanning research scientists, lab procurement officers, and department heads at life science organisations. Leveraged <strong>Claude.ai</strong> to synthesise purchase behaviour patterns and segment insights by product tier. Key finding: high-value purchases (microscopes, sequencers, centrifuges — $5K–$500K) involve a 3-to-6 person approval chain and 2–8 week decision cycles, while low-value consumables (reagents, pipette tips, gloves) are replenished weekly by a single technician. These two modes required fundamentally different UX journeys within the same platform.</p>
+              <div class="cs-insight-row">
+                <div class="cs-insight"><span class="cs-insight-num">2</span><span class="cs-insight-label">Distinct buyer modes</span></div>
+                <div class="cs-insight"><span class="cs-insight-num">6 wks</span><span class="cs-insight-label">High-value decision cycle</span></div>
+                <div class="cs-insight"><span class="cs-insight-num">15</span><span class="cs-insight-label">User interviews</span></div>
+                <div class="cs-insight"><span class="cs-insight-num">3–6</span><span class="cs-insight-label">Stakeholders per high-value purchase</span></div>
+              </div>
+            </div>
+
+            <div class="cs-step cs-step--define">
+              <div class="cs-step-head">
+                <div class="cs-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                <div class="cs-step-label">02 · Define</div>
+              </div>
+              <h4 class="cs-step-title">Separating the Two Purchase Journeys</h4>
+              <p class="cs-step-text">Defined four personas: the Researcher (explores, compares specs), the Lab Tech (quick reorder, volume buying), the Procurement Officer (approval workflows, budget tracking), and the Department Head (analytics, vendor management). Mapped two separate purchase journeys — a <em>Considered Purchase Flow</em> for high-value items with quote requests, comparison tools, and multi-approver sign-off, and a <em>Quick Reorder Flow</em> for consumables with saved lists, bulk add-to-cart, and subscription ordering. Documented 9 design principles guiding the dual-mode architecture.</p>
+              <div class="cs-tags-row">
+                <span class="cs-process-tag">4 Personas</span>
+                <span class="cs-process-tag">Dual Journey Architecture</span>
+                <span class="cs-process-tag">Quote Request Flow</span>
+                <span class="cs-process-tag">Quick Reorder Flow</span>
+                <span class="cs-process-tag">9 Design Principles</span>
+              </div>
+            </div>
+
+            <div class="cs-step cs-step--design">
+              <div class="cs-step-head">
+                <div class="cs-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+                <div class="cs-step-label">03 · Design</div>
+              </div>
+              <h4 class="cs-step-title">A Platform That Knows What You're Buying</h4>
+              <p class="cs-step-text">Designed an adaptive product detail page that intelligently switches between a <em>High-Value Mode</em> (deep spec tables, document downloads, comparison drawer, quote CTA, demo scheduling) and a <em>Consumable Mode</em> (quantity selector, pack-size variants, reorder history, subscribe-and-save). Built a multi-approver checkout with role-based permission states — requesters, approvers, and budget holders each see a tailored view. Used <strong>Figma Make</strong> to generate and evaluate 12 layout variants for the product catalogue grid. Delivered 120+ Figma components covering both product tiers, account management, and the approval dashboard.</p>
+              <div class="cs-tags-row">
+                <span class="cs-process-tag">Adaptive PDP</span>
+                <span class="cs-process-tag">Multi-approver Checkout</span>
+                <span class="cs-process-tag">Subscribe & Save</span>
+                <span class="cs-process-tag">120+ Components</span>
+                <span class="cs-process-tag">Role-based UI</span>
+              </div>
+            </div>
+
+            <div class="cs-step cs-step--prototype">
+              <div class="cs-step-head">
+                <div class="cs-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+                <div class="cs-step-label">04 · Prototype</div>
+              </div>
+              <h4 class="cs-step-title">Simulating Both Purchase Journeys</h4>
+              <p class="cs-step-text">Built two parallel Figma prototypes — one for the High-Value considered purchase journey (browse → compare → request quote → multi-approver review → PO generation) and one for the Quick Reorder journey (saved list → bulk add → express checkout → subscription confirm). Ran scenario-based walkthroughs with a procurement manager and a lab technician simultaneously to expose conflicts in shared components (navigation, cart, account) that needed to serve both modes without confusion.</p>
+              <div class="cs-tags-row">
+                <span class="cs-process-tag">2 Parallel Prototypes</span>
+                <span class="cs-process-tag">Scenario Walkthroughs</span>
+                <span class="cs-process-tag">Quote → PO Flow</span>
+                <span class="cs-process-tag">Express Checkout</span>
+              </div>
+            </div>
+
+            <div class="cs-step cs-step--testing">
+              <div class="cs-step-head">
+                <div class="cs-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+                <div class="cs-step-label">05 · Testing</div>
+              </div>
+              <h4 class="cs-step-title">Validating Across Both Buyer Types</h4>
+              <p class="cs-step-text">Ran two separate rounds of moderated usability testing — one with 6 procurement/researcher profiles for the high-value flow, one with 5 lab technicians for the reorder flow. Key improvements from testing: the comparison drawer needed a sticky anchor, the approval notification email needed an in-context preview, and the quick-reorder list needed stronger visual differentiation from the standard cart. Post-launch: high-value quote conversion increased by 31%, repeat consumable orders grew by 44%, and average procurement approval time dropped from 9 days to 3.5 days.</p>
+              <div class="cs-insight-row">
+                <div class="cs-insight cs-insight--positive"><span class="cs-insight-num">+31%</span><span class="cs-insight-label">Quote-to-order conversion</span></div>
+                <div class="cs-insight cs-insight--positive"><span class="cs-insight-num">+44%</span><span class="cs-insight-label">Repeat consumable orders</span></div>
+                <div class="cs-insight cs-insight--positive"><span class="cs-insight-num">61%</span><span class="cs-insight-label">Faster approval cycle</span></div>
+                <div class="cs-insight cs-insight--positive"><span class="cs-insight-num">4.6/5</span><span class="cs-insight-label">Usability score</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div><!-- /cs-card 2 -->
+
+      <!-- CS 3: AI-Based Agent for E-commerce Content Generation -->
+      <div class="cs-card" id="cs3">
+        <div class="cs-header" onclick="toggleCS('cs3')">
+          <div class="cs-header-left">
+            <span class="cs-num">03</span>
+            <div>
+              <div class="cs-tag">AI Product · E-commerce · Life Sciences</div>
+              <h3 class="cs-title">AI-Based Agent for E-commerce Content Generation</h3>
+              <p class="cs-subtitle">Designing the UX for an AI-powered content generation agent that automatically produces product titles, descriptions, spec tables, and SEO metadata for 50,000+ life science SKUs — cutting content production time by 80%.</p>
+            </div>
+          </div>
+          <div class="cs-toggle-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+
+        <div class="cs-body" style="display:none">
+          <div class="cs-overview">
+            <div class="cs-ov-item"><span class="cs-ov-label">My Role</span><span class="cs-ov-val">Lead Product Designer · AI Workflow Designer</span></div>
+            <div class="cs-ov-item"><span class="cs-ov-label">Duration</span><span class="cs-ov-val">5 Months</span></div>
+            <div class="cs-ov-item"><span class="cs-ov-label">Platform</span><span class="cs-ov-val">Internal Web Tool · AI SaaS</span></div>
+            <div class="cs-ov-item"><span class="cs-ov-label">Tools</span><span class="cs-ov-val">Claude.ai · Figma · Figma Make · Claude.design · Lovable</span></div>
+          </div>
+
+          <div class="cs-process">
+
+            <div class="cs-step cs-step--research">
+              <div class="cs-step-head">
+                <div class="cs-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+                <div class="cs-step-label">01 · Research</div>
+              </div>
+              <h4 class="cs-step-title">The Content Bottleneck Problem</h4>
+              <p class="cs-step-text">The life science e-commerce platform had a critical content gap — over 50,000 product SKUs with incomplete, inconsistent, or missing product descriptions, causing low discoverability and high bounce rates on product pages. Through stakeholder interviews with content managers, catalogue editors, and product owners, and supported by <strong>Claude.ai</strong>-powered transcript analysis, we identified that a single content editor could produce ~20 quality product descriptions per day — meaning full catalogue coverage would take 7 years. The research also revealed three key constraints: scientific accuracy was non-negotiable, brand voice consistency was critical, and editors needed to trust and control AI-generated content rather than simply accept it.</p>
+              <div class="cs-insight-row">
+                <div class="cs-insight"><span class="cs-insight-num">50K+</span><span class="cs-insight-label">SKUs needing content</span></div>
+                <div class="cs-insight"><span class="cs-insight-num">7 yrs</span><span class="cs-insight-label">Manual completion time</span></div>
+                <div class="cs-insight"><span class="cs-insight-num">20</span><span class="cs-insight-label">Descriptions/editor/day</span></div>
+                <div class="cs-insight"><span class="cs-insight-num">3</span><span class="cs-insight-label">Critical trust constraints</span></div>
+              </div>
+            </div>
+
+            <div class="cs-step cs-step--define">
+              <div class="cs-step-head">
+                <div class="cs-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+                <div class="cs-step-label">02 · Define</div>
+              </div>
+              <h4 class="cs-step-title">Designing for Human-AI Collaboration</h4>
+              <p class="cs-step-text">Defined three primary personas: the Content Editor (reviews and approves AI output), the Catalogue Manager (monitors batch progress and quality scores), and the Product Owner (sets brand voice, tone rules, and output templates). The core design challenge was framing: <em>"How might we make AI-generated content feel like a trusted first draft rather than an unreliable black box?"</em> We defined a principle-led framework — Transparency (show confidence scores), Control (editable inline), and Auditability (track every human edit vs AI output). Mapped 4 workflow modes: single-item generation, batch generation, bulk review & edit, and publish workflow with approval gates.</p>
+              <div class="cs-tags-row">
+                <span class="cs-process-tag">3 Personas</span>
+                <span class="cs-process-tag">Human-AI Collab Model</span>
+                <span class="cs-process-tag">Confidence Scoring</span>
+                <span class="cs-process-tag">4 Workflow Modes</span>
+                <span class="cs-process-tag">Approval Gates</span>
+              </div>
+            </div>
+
+            <div class="cs-step cs-step--design">
+              <div class="cs-step-head">
+                <div class="cs-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></div>
+                <div class="cs-step-label">03 · Design</div>
+              </div>
+              <h4 class="cs-step-title">The AI Content Workspace</h4>
+              <p class="cs-step-text">Designed a split-panel AI workspace: left panel shows raw product data (SKU, attributes, existing specs), right panel shows the live AI-generated content with field-level confidence indicators (green/amber/red). Each generated field is independently editable with change tracking. Built a <em>Tone & Template Studio</em> where brand managers configure voice guidelines and output structure — feeding directly into the AI prompt pipeline. Designed a <em>Batch Review Grid</em> for processing 100–500 SKUs simultaneously with a accept/edit/reject triage system. Used <strong>Claude.design</strong> for rapid UI exploration of the confidence scoring visualisations and <strong>Figma Make</strong> for component variant generation across the 14 content field types.</p>
+              <div class="cs-tags-row">
+                <span class="cs-process-tag">Split-panel Workspace</span>
+                <span class="cs-process-tag">Confidence Indicators</span>
+                <span class="cs-process-tag">Tone Studio</span>
+                <span class="cs-process-tag">Batch Review Grid</span>
+                <span class="cs-process-tag">Change Tracking</span>
+              </div>
+            </div>
+
+            <div class="cs-step cs-step--prototype">
+              <div class="cs-step-head">
+                <div class="cs-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+                <div class="cs-step-label">04 · Prototype</div>
+              </div>
+              <h4 class="cs-step-title">Making AI Feel Tangible</h4>
+              <p class="cs-step-text">Built a high-fidelity Figma prototype simulating the AI generation experience — including animated typing states, confidence score population, and inline edit interactions. Used <strong>Lovable</strong> to build a functional coded prototype that integrated with a real Claude.ai API endpoint, allowing content editors to interact with actual AI-generated product descriptions during testing sessions — not just static mockups. This was critical for measuring genuine trust and usability rather than reactions to a simulation. Ran the prototype through 3 sprint review cycles as Scrum Master, incorporating engineering feasibility feedback into each design iteration.</p>
+              <div class="cs-tags-row">
+                <span class="cs-process-tag">Animated AI States</span>
+                <span class="cs-process-tag">Live Claude.ai Integration</span>
+                <span class="cs-process-tag">Functional Lovable Prototype</span>
+                <span class="cs-process-tag">3 Sprint Cycles</span>
+              </div>
+            </div>
+
+            <div class="cs-step cs-step--testing">
+              <div class="cs-step-head">
+                <div class="cs-step-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+                <div class="cs-step-label">05 · Testing</div>
+              </div>
+              <h4 class="cs-step-title">Building Trust in AI-Generated Content</h4>
+              <p class="cs-step-text">Ran 2 rounds of usability testing with 10 content editors using the live Lovable prototype. Primary metric was <em>Trust Score</em> — measured by how often editors accepted AI output without editing (target: &gt;60% acceptance). Initial round revealed that editors distrusted amber-scored fields even when content was accurate — leading to a redesign of the confidence explanation tooltip with specific reasons for the score. Final round showed 71% average acceptance rate and a measured content production throughput of 320 SKUs per editor per day — a 16× improvement. Post-launch, the platform cleared 12,000 SKUs in the first month.</p>
+              <div class="cs-insight-row">
+                <div class="cs-insight cs-insight--positive"><span class="cs-insight-num">16×</span><span class="cs-insight-label">Content production speed</span></div>
+                <div class="cs-insight cs-insight--positive"><span class="cs-insight-num">71%</span><span class="cs-insight-label">AI acceptance rate</span></div>
+                <div class="cs-insight cs-insight--positive"><span class="cs-insight-num">12K</span><span class="cs-insight-label">SKUs cleared month 1</span></div>
+                <div class="cs-insight cs-insight--positive"><span class="cs-insight-num">320</span><span class="cs-insight-label">SKUs/editor/day</span></div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div><!-- /cs-card 3 -->
+
+    </div><!-- /tab-casestudy -->
+
 
   </div>
 </section>
@@ -966,5 +1491,32 @@ function showTab(name, btn) {
   onScroll();
 })();
 </script>
+
+<script>
+function toggleCS(id) {
+  var card = document.getElementById(id);
+  var body = card.querySelector('.cs-body');
+  var isOpen = card.classList.contains('cs-open');
+  // Close all
+  document.querySelectorAll('.cs-card').forEach(function(c) {
+    c.classList.remove('cs-open');
+    c.querySelector('.cs-body').style.display = 'none';
+  });
+  // Open clicked if it was closed
+  if (!isOpen) {
+    card.classList.add('cs-open');
+    body.style.display = 'block';
+  }
+}
+// Open first card by default
+document.addEventListener('DOMContentLoaded', function() {
+  var first = document.getElementById('cs1');
+  if (first) {
+    first.classList.add('cs-open');
+    first.querySelector('.cs-body').style.display = 'block';
+  }
+});
+</script>
+
 </body>
 </html>
