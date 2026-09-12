@@ -28,9 +28,9 @@
 --text:#e8e6f0;
 --text2:#9996aa;
 --text3:#5a5770;
---accent:#E8734A;
---accent2:#E8734A;
---accent-glow:rgba(232,115,74,0.13);
+--accent:#38BDF8;
+--accent2:#38BDF8;
+--accent-glow:rgba(56,189,248,0.12);
 --green:#4ade80;
 --max:1080px;
 --r:12px;
@@ -50,8 +50,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;height:60px;background:rgba(
 .nav-links{display:flex;gap:1.8rem;list-style:none}
 .nav-links a{font-size:0.82rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text3);text-decoration:none;transition:color .2s}
 .nav-links a:hover{color:var(--text)}
-.nav-cta{padding:.4rem 1rem;background:var(--accent-glow);border:1px solid rgba(232,115,74,0.25);border-radius:99px;font-size:0.8rem;font-weight:500;color:var(--accent2);text-decoration:none;transition:all .2s}
-.nav-cta:hover{background:rgba(232,115,74,0.2);border-color:var(--accent)}
+.nav-cta{padding:.4rem 1rem;background:var(--accent-glow);border:1px solid rgba(56,189,248,0.25);border-radius:99px;font-size:0.8rem;font-weight:500;color:var(--accent2);text-decoration:none;transition:all .2s}
+.nav-cta:hover{background:rgba(56,189,248,0.2);border-color:var(--accent)}
 
 /* LAYOUT */
 .wrap{max-width:var(--max);margin:0 auto;padding:0 2rem}
@@ -67,8 +67,8 @@ section+section{border-top:1px solid var(--border)}
 
 /* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:8px;padding:.6rem 1.4rem;border-radius:99px;font-size:0.85rem;font-weight:500;letter-spacing:.02em;text-decoration:none;transition:all .2s;cursor:pointer;border:none;font-family:inherit}
-.btn-primary{background:var(--accent);color:#fff;font-family:'DM Sans',sans-serif}
-.btn-primary:hover{background:#f08558}
+.btn-primary{background:var(--accent);color:#0c2340;font-weight:600;font-family:'DM Sans',sans-serif}
+.btn-primary:hover{background:#7dd3fc}
 .btn-outline{background:transparent;color:var(--text);border:1px solid var(--border2)}
 .btn-outline:hover{border-color:var(--accent);color:var(--accent2)}
 .btn-ghost{background:transparent;color:var(--text2);font-size:0.82rem;padding:.4rem .8rem}
@@ -106,18 +106,18 @@ section+section{border-top:1px solid var(--border)}
 .skills-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:3rem}
 .skill-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1.4rem;transition:border-color .2s,transform .2s}
 .skill-card:hover{border-color:var(--border2);transform:translateY(-2px)}
-.skill-card-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--accent-glow);border:1px solid rgba(232,115,74,0.2);border-radius:8px;margin-bottom:.8rem;color:var(--accent);flex-shrink:0}
+.skill-card-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--accent-glow);border:1px solid rgba(56,189,248,0.2);border-radius:8px;margin-bottom:.8rem;color:var(--accent);flex-shrink:0}
 .skill-card-title{font-family:'Playfair Display',serif;font-size:0.9rem;font-weight:700;color:var(--text);margin-bottom:.3rem}
 .skill-card-desc{font-size:0.82rem;color:var(--text2);line-height:1.6}
 .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.8rem}
-.tag{display:inline-block;padding:3px 10px;background:rgba(232,115,74,0.1);color:var(--accent2);border-radius:99px;font-size:0.75rem;font-weight:500}
+.tag{display:inline-block;padding:3px 10px;background:rgba(56,189,248,0.1);color:var(--accent2);border-radius:99px;font-size:0.75rem;font-weight:500}
 .tag.neutral{background:rgba(255,255,255,0.05);color:var(--text2)}
 
 /* Tools grid */
 .tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:.8rem;margin-top:1rem}
 .tool-card{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:.9rem;text-align:center;transition:border-color .2s;display:flex;flex-direction:column;align-items:center}
 .tool-card:hover{border-color:var(--border2)}
-.tool-icon{width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:var(--accent-glow);border:1px solid rgba(232,115,74,0.15);border-radius:8px;margin:0 auto .5rem;color:var(--accent)}
+.tool-icon{width:38px;height:38px;display:flex;align-items:center;justify-content:center;background:var(--accent-glow);border:1px solid rgba(56,189,248,0.15);border-radius:8px;margin:0 auto .5rem;color:var(--accent)}
 .tool-name{font-size:0.78rem;font-weight:500;color:var(--text);margin-bottom:1px}
 .tool-desc{font-size:0.68rem;color:var(--text3)}
 
@@ -133,18 +133,18 @@ section+section{border-top:1px solid var(--border)}
 .exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.3rem}
 .exp-bullets li{font-size:0.88rem;color:var(--text2);line-height:1.7;padding-left:1.2rem;position:relative}
 .exp-bullets li::before{content:'›';position:absolute;left:0;color:var(--accent);font-size:1rem}
-.exp-link{display:inline-flex;align-items:center;gap:5px;margin-top:.8rem;font-size:0.78rem;font-weight:500;color:var(--accent2);text-decoration:none;border:1px solid rgba(232,115,74,0.2);padding:4px 12px;border-radius:99px;background:rgba(232,115,74,0.06);transition:all .2s}
-.exp-link:hover{background:rgba(232,115,74,0.13);border-color:var(--accent)}
+.exp-link{display:inline-flex;align-items:center;gap:5px;margin-top:.8rem;font-size:0.78rem;font-weight:500;color:var(--accent2);text-decoration:none;border:1px solid rgba(56,189,248,0.2);padding:4px 12px;border-radius:99px;background:rgba(56,189,248,0.06);transition:all .2s}
+.exp-link:hover{background:rgba(56,189,248,0.12);border-color:var(--accent)}
 
 /* ─── WORKS / PORTFOLIO ─── */
 .works-tabs{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap}
 .tab-btn{padding:.45rem 1.1rem;border-radius:99px;font-size:0.82rem;font-weight:500;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--text2);font-family:inherit;transition:all .2s}
-.tab-btn.active,.tab-btn:hover{background:var(--accent-glow);border-color:rgba(232,115,74,0.3);color:var(--accent2)}
+.tab-btn.active,.tab-btn:hover{background:var(--accent-glow);border-color:rgba(56,189,248,0.3);color:var(--accent2)}
 
 /* Figma grid */
 .figma-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
 .figma-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:border-color .2s,transform .2s;display:block;text-decoration:none}
-.figma-card:hover{border-color:rgba(232,115,74,0.3);transform:translateY(-3px)}
+.figma-card:hover{border-color:rgba(56,189,248,0.3);transform:translateY(-3px)}
 .figma-card-body{padding:1.1rem 1.2rem}
 .figma-card-num{font-size:0.68rem;font-weight:600;letter-spacing:.1em;color:var(--text3);text-transform:uppercase;margin-bottom:4px}
 .figma-card-title{font-family:'Playfair Display',serif;font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:2px}
@@ -162,7 +162,7 @@ section+section{border-top:1px solid var(--border)}
 /* Portfolio images grid (from uxid.vercel.app) */
 .portfolio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.8rem}
 .portfolio-thumb{background:var(--bg3);border:1px solid var(--border);border-radius:8px;overflow:hidden;aspect-ratio:16/10;position:relative;cursor:pointer;transition:border-color .25s,transform .25s}
-.portfolio-thumb:hover{border-color:rgba(232,115,74,0.4);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
+.portfolio-thumb:hover{border-color:rgba(56,189,248,0.4);transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.3)}
 .portfolio-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
 .portfolio-thumb:hover img{transform:scale(1.04)}
 .portfolio-thumb-label{position:absolute;bottom:0;left:0;right:0;padding:.7rem .8rem .6rem;background:linear-gradient(to top,rgba(10,10,15,0.95) 0%,rgba(10,10,15,0.6) 60%,transparent 100%);display:flex;flex-direction:column;gap:2px;transform:translateY(4px);opacity:0;transition:opacity .25s,transform .25s}
@@ -201,7 +201,7 @@ blockquote.testi footer{font-size:0.75rem;color:var(--accent2);font-weight:500}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
 .contact-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1.3rem;display:flex;gap:.9rem;align-items:flex-start;text-decoration:none;transition:border-color .2s}
 .contact-card:hover{border-color:var(--border2)}
-.contact-icon-box{width:38px;height:38px;border-radius:8px;background:var(--accent-glow);border:1px solid rgba(232,115,74,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.contact-icon-box{width:38px;height:38px;border-radius:8px;background:var(--accent-glow);border:1px solid rgba(56,189,248,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .contact-icon-box svg{width:16px;height:16px;stroke:var(--accent2);fill:none;stroke-width:1.5}
 .contact-label{font-size:0.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:2px}
 .contact-val{font-size:0.9rem;color:var(--text)}
@@ -240,7 +240,7 @@ footer a{color:var(--accent2);text-decoration:none}
 .nav-links a.nav-active::after{content:'';display:block;height:1px;background:var(--accent);margin-top:1px;border-radius:1px;}
 
 /* ── AI Workflow block inside experience ── */
-.exp-ai-block{margin-top:1.2rem;background:rgba(232,115,74,0.04);border:1px solid rgba(232,115,74,0.15);border-radius:10px;padding:1rem 1.1rem 1rem}
+.exp-ai-block{margin-top:1.2rem;background:rgba(56,189,248,0.04);border:1px solid rgba(56,189,248,0.15);border-radius:10px;padding:1rem 1.1rem 1rem}
 .exp-ai-title{display:flex;align-items:center;gap:6px;font-size:0.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.8rem}
 .exp-ai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.6rem}
 .exp-ai-card{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.7rem .9rem}
@@ -258,7 +258,7 @@ footer a{color:var(--accent2);text-decoration:none}
 .clients-track2{animation-direction:reverse;animation-duration:40s}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .client-chip{display:inline-flex;align-items:center;gap:.6rem;padding:.55rem 1.1rem;background:var(--bg2);border:1px solid var(--border);border-radius:99px;white-space:nowrap;transition:border-color .2s,transform .2s;cursor:default}
-.client-chip:hover{border-color:rgba(232,115,74,0.35);transform:translateY(-2px)}
+.client-chip:hover{border-color:rgba(56,189,248,0.35);transform:translateY(-2px)}
 .client-chip img{width:18px;height:18px;object-fit:contain;filter:brightness(0) invert(1);opacity:.7}
 .client-chip-name{font-size:0.82rem;font-weight:500;color:var(--text2)}
 .client-chip:hover .client-chip-name{color:var(--text)}
@@ -271,11 +271,11 @@ footer a{color:var(--accent2);text-decoration:none}
 .cs-header:hover .cs-toggle-icon svg{stroke:var(--accent)}
 .cs-header-left{display:flex;align-items:flex-start;gap:1.2rem;flex:1}
 .cs-num{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--border2);line-height:1;flex-shrink:0;padding-top:.1rem}
-.cs-tag{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(232,115,74,0.1);border:1px solid rgba(232,115,74,0.2);padding:2px 9px;border-radius:99px;display:inline-block;margin-bottom:.5rem}
+.cs-tag{font-size:0.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(56,189,248,0.1);border:1px solid rgba(56,189,248,0.2);padding:2px 9px;border-radius:99px;display:inline-block;margin-bottom:.5rem}
 .cs-title{font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:700;color:var(--text);margin-bottom:.4rem;line-height:1.25}
 .cs-subtitle{font-size:0.85rem;color:var(--text2);line-height:1.65;max-width:680px}
 .cs-toggle-icon{flex-shrink:0;width:32px;height:32px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text2);transition:all .2s;margin-top:.3rem}
-.cs-card.cs-open .cs-toggle-icon{background:var(--accent-glow);border-color:rgba(232,115,74,0.3);color:var(--accent);transform:rotate(180deg)}
+.cs-card.cs-open .cs-toggle-icon{background:var(--accent-glow);border-color:rgba(56,189,248,0.3);color:var(--accent);transform:rotate(180deg)}
 
 /* Overview strip */
 .cs-body{border-top:1px solid var(--border);padding:1.6rem}
@@ -286,14 +286,14 @@ footer a{color:var(--accent2);text-decoration:none}
 
 /* Process steps */
 .cs-process{display:flex;flex-direction:column;gap:0;position:relative}
-.cs-process::before{content:'';position:absolute;left:15px;top:24px;bottom:24px;width:1px;background:linear-gradient(to bottom,var(--accent),rgba(232,115,74,0.1));opacity:.4}
+.cs-process::before{content:'';position:absolute;left:15px;top:24px;bottom:24px;width:1px;background:linear-gradient(to bottom,var(--accent),rgba(56,189,248,0.1));opacity:.4}
 .cs-step{padding:1.2rem 1.2rem 1.4rem 3rem;position:relative;border-bottom:1px solid var(--border)}
 .cs-step:last-child{border-bottom:none}
 .cs-step-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem}
 .cs-step-icon{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:absolute;left:0}
 .cs-step--research .cs-step-icon{background:rgba(99,179,237,0.12);color:#63b3ed;border:1px solid rgba(99,179,237,0.25)}
 .cs-step--define .cs-step-icon{background:rgba(154,117,242,0.12);color:#9a75f2;border:1px solid rgba(154,117,242,0.25)}
-.cs-step--design .cs-step-icon{background:rgba(232,115,74,0.12);color:var(--accent);border:1px solid rgba(232,115,74,0.25)}
+.cs-step--design .cs-step-icon{background:rgba(56,189,248,0.12);color:var(--accent);border:1px solid rgba(56,189,248,0.25)}
 .cs-step--prototype .cs-step-icon{background:rgba(72,199,142,0.12);color:#48c78e;border:1px solid rgba(72,199,142,0.25)}
 .cs-step--testing .cs-step-icon{background:rgba(255,214,0,0.1);color:#f0c040;border:1px solid rgba(255,214,0,0.2)}
 .cs-step-label{font-size:0.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
@@ -312,7 +312,7 @@ footer a{color:var(--accent2);text-decoration:none}
 
 /* Process tags */
 .cs-tags-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem}
-.cs-process-tag{font-size:0.74rem;font-weight:500;padding:3px 10px;background:rgba(232,115,74,0.07);border:1px solid rgba(232,115,74,0.15);color:var(--text2);border-radius:99px}
+.cs-process-tag{font-size:0.74rem;font-weight:500;padding:3px 10px;background:rgba(56,189,248,0.07);border:1px solid rgba(56,189,248,0.15);color:var(--text2);border-radius:99px}
 
 @media(max-width:600px){
   .cs-header{padding:1.1rem}
@@ -334,9 +334,9 @@ footer a{color:var(--accent2);text-decoration:none}
   --text:#1a1816;
   --text2:#5a5248;
   --text3:#9c9088;
-  --accent:#E8734A;
-  --accent2:#E8734A;
-  --accent-glow:rgba(232,115,74,0.12);
+  --accent:#38BDF8;
+  --accent2:#38BDF8;
+  --accent-glow:rgba(56,189,248,0.12);
   --green:#1a9e5c;
 }
 
@@ -383,7 +383,7 @@ footer a{color:var(--accent2);text-decoration:none}
   background: rgba(245,244,240,0.97);
 }
 [data-theme="light"] .cs-process::before {
-  background: linear-gradient(to bottom, var(--accent), rgba(232,115,74,0.1));
+  background: linear-gradient(to bottom, var(--accent), rgba(56,189,248,0.1));
 }
 [data-theme="light"] blockquote.testi {
   background: var(--bg3);
@@ -394,7 +394,7 @@ footer a{color:var(--accent2);text-decoration:none}
 [data-theme="light"] .hero-photo-name { color: var(--text); }
 [data-theme="light"] .hero-photo-role { color: var(--text2); }
 [data-theme="light"] .exp-ai-block {
-  background: rgba(232,115,74,0.04);
+  background: rgba(56,189,248,0.04);
 }
 [data-theme="light"] .figma-card-footer {
   background: var(--bg3);
@@ -472,7 +472,7 @@ footer a{color:var(--accent2);text-decoration:none}
   <div class="wrap">
     <div class="hero-wrap">
       <div>
-        <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.4rem"><div class="hero-badge"><span class="hero-dot"></span>Available for hire</div><div class="hero-badge" style="background:rgba(232,115,74,0.1);border-color:rgba(232,115,74,0.25);color:var(--accent)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>AI-Augmented Designer</div></div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.4rem"><div class="hero-badge"><span class="hero-dot"></span>Available for hire</div><div class="hero-badge" style="background:rgba(56,189,248,0.1);border-color:rgba(56,189,248,0.25);color:var(--accent)"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>AI-Augmented Designer</div></div>
         <p class="hero-eyebrow">AI-Driven Product Designer · UX Strategist · 13+ Years</p>
         <h1 class="hero-title">Designing with<br><em>AI.</em><br>Built for Humans.</h1>
         <p class="hero-sub">I design intelligent, human-centred products powered by AI — combining 13+ years of UX strategy with cutting-edge tools like Claude.ai, Figma Make, and Lovable to deliver faster, smarter, and more impactful digital experiences.</p>
@@ -569,10 +569,10 @@ footer a{color:var(--accent2);text-decoration:none}
         <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:700;color:var(--text);margin-bottom:.4rem">Companies I've <span style="color:var(--accent)">Worked With</span></h3>
         <p style="font-size:0.88rem;color:var(--text2);margin-bottom:0">Delivering design excellence across healthcare, fintech, legal tech, enterprise, and consumer products.</p>
         <div class="clients-marquee-wrap" style="margin-top:1.5rem">
-          <div class="clients-track "><div class="client-chip"><img src="https://logo.clearbit.com/matrixcomsec.com" alt="Matrix Comsec" onerror="this.style.display='none'"><span class="client-chip-name">Matrix Comsec</span></div><div class="client-chip"><img src="https://logo.clearbit.com/meditab.com" alt="Meditab" onerror="this.style.display='none'"><span class="client-chip-name">Meditab</span></div><div class="client-chip"><img src="https://logo.clearbit.com/cayzen.com" alt="Cayzen Technologies" onerror="this.style.display='none'"><span class="client-chip-name">Cayzen Technologies</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">H</span><span class="client-chip-name">HCI Active</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">I</span><span class="client-chip-name">i-Engineering</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">A</span><span class="client-chip-name">Appswave</span></div><div class="client-chip"><img src="https://logo.clearbit.com/gspann.com" alt="GSPANN" onerror="this.style.display='none'"><span class="client-chip-name">GSPANN</span></div><div class="client-chip"><img src="https://logo.clearbit.com/danaher.com" alt="Danaher" onerror="this.style.display='none'"><span class="client-chip-name">Danaher</span></div><div class="client-chip"><img src="https://logo.clearbit.com/leica-microsystems.com" alt="Leica Microsystems" onerror="this.style.display='none'"><span class="client-chip-name">Leica Microsystems</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">C</span><span class="client-chip-name">ContentHubGPT</span></div><div class="client-chip"><img src="https://logo.clearbit.com/meshiq.com" alt="MeshIQ" onerror="this.style.display='none'"><span class="client-chip-name">MeshIQ</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">D</span><span class="client-chip-name">Decision Point</span></div><div class="client-chip"><img src="https://logo.clearbit.com/matrixcomsec.com" alt="Matrix Comsec" onerror="this.style.display='none'"><span class="client-chip-name">Matrix Comsec</span></div><div class="client-chip"><img src="https://logo.clearbit.com/meditab.com" alt="Meditab" onerror="this.style.display='none'"><span class="client-chip-name">Meditab</span></div><div class="client-chip"><img src="https://logo.clearbit.com/cayzen.com" alt="Cayzen Technologies" onerror="this.style.display='none'"><span class="client-chip-name">Cayzen Technologies</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">H</span><span class="client-chip-name">HCI Active</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">I</span><span class="client-chip-name">i-Engineering</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">A</span><span class="client-chip-name">Appswave</span></div><div class="client-chip"><img src="https://logo.clearbit.com/gspann.com" alt="GSPANN" onerror="this.style.display='none'"><span class="client-chip-name">GSPANN</span></div><div class="client-chip"><img src="https://logo.clearbit.com/danaher.com" alt="Danaher" onerror="this.style.display='none'"><span class="client-chip-name">Danaher</span></div><div class="client-chip"><img src="https://logo.clearbit.com/leica-microsystems.com" alt="Leica Microsystems" onerror="this.style.display='none'"><span class="client-chip-name">Leica Microsystems</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">C</span><span class="client-chip-name">ContentHubGPT</span></div><div class="client-chip"><img src="https://logo.clearbit.com/meshiq.com" alt="MeshIQ" onerror="this.style.display='none'"><span class="client-chip-name">MeshIQ</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">D</span><span class="client-chip-name">Decision Point</span></div></div>
+          <div class="clients-track "><div class="client-chip"><img src="https://logo.clearbit.com/matrixcomsec.com" alt="Matrix Comsec" onerror="this.style.display='none'"><span class="client-chip-name">Matrix Comsec</span></div><div class="client-chip"><img src="https://logo.clearbit.com/meditab.com" alt="Meditab" onerror="this.style.display='none'"><span class="client-chip-name">Meditab</span></div><div class="client-chip"><img src="https://logo.clearbit.com/cayzen.com" alt="Cayzen Technologies" onerror="this.style.display='none'"><span class="client-chip-name">Cayzen Technologies</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">H</span><span class="client-chip-name">HCI Active</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">I</span><span class="client-chip-name">i-Engineering</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">A</span><span class="client-chip-name">Appswave</span></div><div class="client-chip"><img src="https://logo.clearbit.com/gspann.com" alt="GSPANN" onerror="this.style.display='none'"><span class="client-chip-name">GSPANN</span></div><div class="client-chip"><img src="https://logo.clearbit.com/danaher.com" alt="Danaher" onerror="this.style.display='none'"><span class="client-chip-name">Danaher</span></div><div class="client-chip"><img src="https://logo.clearbit.com/leica-microsystems.com" alt="Leica Microsystems" onerror="this.style.display='none'"><span class="client-chip-name">Leica Microsystems</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">C</span><span class="client-chip-name">ContentHubGPT</span></div><div class="client-chip"><img src="https://logo.clearbit.com/meshiq.com" alt="MeshIQ" onerror="this.style.display='none'"><span class="client-chip-name">MeshIQ</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">D</span><span class="client-chip-name">Decision Point</span></div><div class="client-chip"><img src="https://logo.clearbit.com/matrixcomsec.com" alt="Matrix Comsec" onerror="this.style.display='none'"><span class="client-chip-name">Matrix Comsec</span></div><div class="client-chip"><img src="https://logo.clearbit.com/meditab.com" alt="Meditab" onerror="this.style.display='none'"><span class="client-chip-name">Meditab</span></div><div class="client-chip"><img src="https://logo.clearbit.com/cayzen.com" alt="Cayzen Technologies" onerror="this.style.display='none'"><span class="client-chip-name">Cayzen Technologies</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">H</span><span class="client-chip-name">HCI Active</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">I</span><span class="client-chip-name">i-Engineering</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">A</span><span class="client-chip-name">Appswave</span></div><div class="client-chip"><img src="https://logo.clearbit.com/gspann.com" alt="GSPANN" onerror="this.style.display='none'"><span class="client-chip-name">GSPANN</span></div><div class="client-chip"><img src="https://logo.clearbit.com/danaher.com" alt="Danaher" onerror="this.style.display='none'"><span class="client-chip-name">Danaher</span></div><div class="client-chip"><img src="https://logo.clearbit.com/leica-microsystems.com" alt="Leica Microsystems" onerror="this.style.display='none'"><span class="client-chip-name">Leica Microsystems</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">C</span><span class="client-chip-name">ContentHubGPT</span></div><div class="client-chip"><img src="https://logo.clearbit.com/meshiq.com" alt="MeshIQ" onerror="this.style.display='none'"><span class="client-chip-name">MeshIQ</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">D</span><span class="client-chip-name">Decision Point</span></div></div>
         </div>
         <div class="clients-marquee-wrap" style="margin-top:.7rem">
-          <div class="clients-track clients-track2"><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">P</span><span class="client-chip-name">PayoBank</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">I</span><span class="client-chip-name">i8Labs</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">S</span><span class="client-chip-name">Sports Exchange</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">M</span><span class="client-chip-name">MyBzz</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">B</span><span class="client-chip-name">Breez Security</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">S</span><span class="client-chip-name">SocietyRx</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">T</span><span class="client-chip-name">Techies4Tech</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">D</span><span class="client-chip-name">Defx</span></div><div class="client-chip"><img src="https://logo.clearbit.com/ipatientcare.com" alt="iPatientCare" onerror="this.style.display='none'"><span class="client-chip-name">iPatientCare</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">T</span><span class="client-chip-name">The Social Comment</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">B</span><span class="client-chip-name">Bonds India</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">&</span><span class="client-chip-name">& More</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">P</span><span class="client-chip-name">PayoBank</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">I</span><span class="client-chip-name">i8Labs</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">S</span><span class="client-chip-name">Sports Exchange</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">M</span><span class="client-chip-name">MyBzz</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">B</span><span class="client-chip-name">Breez Security</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">S</span><span class="client-chip-name">SocietyRx</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">T</span><span class="client-chip-name">Techies4Tech</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">D</span><span class="client-chip-name">Defx</span></div><div class="client-chip"><img src="https://logo.clearbit.com/ipatientcare.com" alt="iPatientCare" onerror="this.style.display='none'"><span class="client-chip-name">iPatientCare</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">T</span><span class="client-chip-name">The Social Comment</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">B</span><span class="client-chip-name">Bonds India</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(232,115,74,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">&</span><span class="client-chip-name">& More</span></div></div>
+          <div class="clients-track clients-track2"><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">P</span><span class="client-chip-name">PayoBank</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">I</span><span class="client-chip-name">i8Labs</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">S</span><span class="client-chip-name">Sports Exchange</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">M</span><span class="client-chip-name">MyBzz</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">B</span><span class="client-chip-name">Breez Security</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">S</span><span class="client-chip-name">SocietyRx</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">T</span><span class="client-chip-name">Techies4Tech</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">D</span><span class="client-chip-name">Defx</span></div><div class="client-chip"><img src="https://logo.clearbit.com/ipatientcare.com" alt="iPatientCare" onerror="this.style.display='none'"><span class="client-chip-name">iPatientCare</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">T</span><span class="client-chip-name">The Social Comment</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">B</span><span class="client-chip-name">Bonds India</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">&</span><span class="client-chip-name">& More</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">P</span><span class="client-chip-name">PayoBank</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">I</span><span class="client-chip-name">i8Labs</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">S</span><span class="client-chip-name">Sports Exchange</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">M</span><span class="client-chip-name">MyBzz</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">B</span><span class="client-chip-name">Breez Security</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">S</span><span class="client-chip-name">SocietyRx</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">T</span><span class="client-chip-name">Techies4Tech</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">D</span><span class="client-chip-name">Defx</span></div><div class="client-chip"><img src="https://logo.clearbit.com/ipatientcare.com" alt="iPatientCare" onerror="this.style.display='none'"><span class="client-chip-name">iPatientCare</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">T</span><span class="client-chip-name">The Social Comment</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">B</span><span class="client-chip-name">Bonds India</span></div><div class="client-chip"><span style="width:18px;height:18px;background:rgba(56,189,248,0.2);border-radius:4px;display:inline-flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:700;color:var(--accent);flex-shrink:0">&</span><span class="client-chip-name">& More</span></div></div>
         </div>
       </div>
     </div>
@@ -1304,7 +1304,7 @@ function showTab(name, btn) {
   display:flex;align-items:center;justify-content:center;
   transition:background .2s,border-color .2s;
 }
-#lb-close:hover{background:rgba(232,115,74,0.2);border-color:var(--accent)}
+#lb-close:hover{background:rgba(56,189,248,0.2);border-color:var(--accent)}
 /* Counter */
 #lb-counter{
   position:absolute;top:16px;left:16px;z-index:10;
@@ -1357,8 +1357,8 @@ function showTab(name, btn) {
   display:inline-block;
   font-size:0.68rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
   color:var(--accent);
-  background:rgba(232,115,74,0.1);
-  border:1px solid rgba(232,115,74,0.2);
+  background:rgba(56,189,248,0.1);
+  border:1px solid rgba(56,189,248,0.2);
   padding:2px 9px;border-radius:99px;
   margin-bottom:.45rem;
 }
