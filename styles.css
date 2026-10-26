@@ -121,7 +121,6 @@ h1 em, h2 em { color: var(--accent); font-style: italic; font-weight: 600; }
   padding: 14px clamp(16px, 3vw, 40px); border-right: 1px solid var(--line);
   font: 700 14px/1.15 var(--sans); color: var(--fg);
 }
-.brand img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; object-position: 50% 25%; }
 .site-nav { display: flex; align-items: stretch; flex: 1 1 auto; min-width: 0; overflow-x: auto; scrollbar-width: none; }
 .site-nav::-webkit-scrollbar { display: none; }
 .nav-btn {
@@ -257,7 +256,6 @@ h1 em, h2 em { color: var(--accent); font-style: italic; font-weight: 600; }
 .vibe p { margin: 0; font-size: 14px; line-height: 1.55; color: var(--muted); text-wrap: pretty; }
 .vibe-link { margin-top: auto; padding-top: 6px; font: 700 14px var(--sans); color: var(--accent); }
 .vibe-link:hover { color: var(--accent-hover); }
-.vibe-note { margin-top: auto; padding-top: 6px; font-size: 13px; color: var(--subtle); }
 
 /* ---------- Home: services & process ---------- */
 .services { grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }

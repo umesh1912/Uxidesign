@@ -119,7 +119,7 @@
           <span class="label">${esc(v.type)}</span>
           <h3>${esc(v.title)}</h3>
           <p>${esc(v.desc)}</p>
-          ${v.href ? `<a class="vibe-link" href="${esc(v.href)}" target="_blank" rel="noopener">Open prototype ↗</a>` : '<span class="vibe-note">Flutter app · demo on request</span>'}
+          <a class="vibe-link" href="${esc(v.href)}" target="_blank" rel="noopener">Open prototype ↗</a>
         </article>`);
   }
   function refreshVibe() {
@@ -152,7 +152,7 @@
         </div>
       </div>
       <div class="cells cells--row stats">
-        ${map([['13+', 'Years of experience'], ['50+', 'Projects delivered'], ['25+', 'Companies served'], ['4+', 'Industries']],
+        ${map([['13.6', 'Years of experience'], ['60+', 'Projects delivered'], ['20+', 'Companies served'], ['25+', 'Industries']],
           ([v, l]) => `<div class="stat"><div class="stat-value">${v}</div><div class="stat-label">${l}</div></div>`)}
       </div>
     </section>
@@ -177,7 +177,7 @@
     <section id="vibe" class="section">
       ${sectionHead('02 · Vibe coding', 'Ideas I\'ve built into working apps with Claude',
         '<div class="filters" id="vibe-filters"></div>', 'section-head--split section-head--tight')}
-      <p class="vibe-intro">Mobile apps, healthcare platforms and a game, taken from a prompt to a clickable prototype with Claude. Each one is a real, working interface, not a static mockup.</p>
+      <p class="vibe-intro">Mobile apps, a healthcare platform and a game, taken from a prompt to a clickable prototype with Claude. Each one is a real, working interface, not a static mockup.</p>
       <div class="cells vibes" id="vibe-slot"></div>
     </section>
 
@@ -233,7 +233,7 @@
     return `
     <section id="cases" class="section">
       ${sectionHead('Case studies', 'Deep dives into problems worth solving',
-        '<p class="section-note">AI hiring, hospitality, enterprise data and workers&#39; comp. Each opens as the full case study PDF.</p>', 'section-head--split')}
+        '<p class="section-note">Workers&#39; comp claims, enterprise data, AI hiring and hospitality. Each opens as the full case study PDF.</p>', 'section-head--split')}
       ${map(CASES, c => `
         <a class="case-card" href="${c.pdf}" target="_blank" rel="noopener">
           <div class="case-card-body">
@@ -296,7 +296,7 @@
           <div><div class="edu-degree">${esc(ed.degree)}</div><div class="edu-school">${esc(ed.school)}</div></div>
           <div class="edu-meta"><div>${esc(ed.years)}</div><b>${esc(ed.score)}</b></div>
         </div>`)}
-        <div class="cv-wrap"><a class="pill-btn pill-btn--outline" href="Umesh-Anghan-CV.pdf" download="Umesh-Anghan-CV.pdf">Download full CV</a></div>
+        <div class="cv-wrap"><a class="pill-btn pill-btn--outline" href="Umesh-Anghan-CV.pdf" download="Umesh-Anghan-CV.pdf">Download CV</a></div>
       </div>
     </section>`;
   }

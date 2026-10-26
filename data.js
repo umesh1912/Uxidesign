@@ -2,6 +2,16 @@
 
 // Each case study opens as a full PDF.
 const CASES = [
+  { client:'Gardiant', category:"Workers' comp SaaS", role:'Sr. Product Designer · Scrum Master',
+    title:"Designing a single home for workers' comp claims",
+    summary:'End-to-end product design of a claims and case management platform for vocational counselors and Retro groups, from discovery and personas to a scalable design system, testing and developer delivery.',
+    metrics:[{v:'600+',l:'Firms and professionals on the platform'},{v:'1–2 hrs',l:'Saved per team member each day'}],
+    pdf:'case-studies/Gardiant-Case-Study.pdf' },
+  { client:'meshIQ', category:'Enterprise platform · Messaging & streaming', role:'UX/UI Designer',
+    title:'One platform for data in motion',
+    summary:'Unifying Manage, Observe, Track and Control Center into a single, consistent meshIQ experience, with one URL, single sign-on, role-based access and a shared design system.',
+    metrics:[{v:'4→1',l:'Products unified into one platform'},{v:'1',l:'URL and sign-in with SSO'}],
+    pdf:'case-studies/meshIQ-Platform-Redesign-Case-Study.pdf' },
   { client:'Techies4Tech.ai', category:'AI hiring platform', role:'Lead UX/UI Designer',
     title:'Hiring tech talent on proven skill, not résumés',
     summary:'An end-to-end hiring platform where AI interviews, evaluates and matches tech talent, so employers review evidence, not résumés. Redesigned from research to developer handoff for every role that touches a hire.',
@@ -11,24 +21,13 @@ const CASES = [
     title:'Running a hotel from one screen',
     summary:'A cloud property management system for hotels and hotel groups in the GCC. I led research, UX and UI for the web platform and the companion mobile app, from the first stakeholder workshop to developer handoff.',
     metrics:[{v:'−42%',l:'Time to complete a walk-in booking'},{v:'72%',l:'Of new hotels finish setup in one session'}],
-    pdf:'case-studies/nTouch-PMS-Case-Study.pdf' },
-  { client:'meshIQ', category:'Enterprise platform · Messaging & streaming', role:'UX/UI Designer',
-    title:'One platform for data in motion',
-    summary:'Unifying Manage, Observe, Track and Control Center into a single, consistent meshIQ experience, with one URL, single sign-on, role-based access and a shared design system.',
-    metrics:[{v:'4→1',l:'Products unified into one platform'},{v:'1',l:'URL and sign-in with SSO'}],
-    pdf:'case-studies/meshIQ-Platform-Redesign-Case-Study.pdf' },
-  { client:'Gardiant', category:"Workers' comp SaaS", role:'Sr. Product Designer · Scrum Master',
-    title:"Designing a single home for workers' comp claims",
-    summary:'End-to-end product design of a claims and case management platform for vocational counselors and Retro groups, from discovery and personas to a scalable design system, testing and developer delivery.',
-    metrics:[{v:'600+',l:'Firms and professionals on the platform'},{v:'1–2 hrs',l:'Saved per team member each day'}],
-    pdf:'case-studies/Gardiant-Case-Study.pdf' }
+    pdf:'case-studies/nTouch-PMS-Case-Study.pdf' }
 ];
 CASES.forEach((c, i) => c.num = '0' + (i + 1));
 
 // Vibe-coded prototypes built with Claude. href: the prototype's own copy under prototypes/.
 const V = (title, type, desc, href) => ({ title, type, desc, href });
 const VIBE = [
-  V('Latch Vault','Mobile app','Document management app that keeps important documents in one vault. Built in Flutter for Android.',null),
   V('Galli Neighbourhood Alerts','Mobile app','Alerts and lost-and-found posts from neighbours within a kilometre. Neighbours confirm alerts, and lost-pet sightings are pinned on a map.','prototypes/galli/'),
   V('Khayal Parent Care','Mobile app','Medicine reminders for elderly parents. Family is alerted when a dose is missed, with refill tracking and a big-button parent mode in Hindi.','prototypes/khayal/'),
   V('Rasid Warranty Vault','Mobile app','Keeps every bill and warranty in one place, warns before a warranty ends and prepares a repair claim in one tap.','prototypes/rasid/'),
@@ -41,11 +40,10 @@ const VIBE = [
   V('Lenden Skill Swap','Mobile app','Neighbours swap lessons instead of paying for them: every hour you teach earns a time credit, and every hour you learn spends one.','prototypes/lenden/'),
   V('Hisaab Flat','Mobile app','Rent, bills and chores for flatmates sharing a flat.','prototypes/hisaab/'),
   V('Ayura Health Platform','Healthcare platform','One consent-first health record connecting patients, doctors, hospitals, insurers, pharmacies and medical reps.','prototypes/ayura/'),
-  V('Healthcare Digital Platform','Healthcare platform','Interactive prototype with a patient app, doctor workspace, hospital admin, insurance claims desk, pharmacy console and medical-rep app.','prototypes/healthcare-digital-platform/Main.dc.html'),
   V('Raja Rani Chor Sipahi','Game','The classic Indian chit game of Raja, Rani, Sipahi and Chor, played against computer players over several rounds.','prototypes/raja-rani/')
 ];
 const VTYPES = ['All','Mobile app','Healthcare platform','Game'];
-const VLABEL = { 'All':'All', 'Mobile app':'Mobile apps', 'Healthcare platform':'Healthcare platforms', 'Game':'Games' };
+const VLABEL = { 'All':'All', 'Mobile app':'Mobile apps', 'Healthcare platform':'Healthcare', 'Game':'Games' };
 
 const W = (title, category, group, kind) => ({ title, category, group, kind });
 const WORK = [
