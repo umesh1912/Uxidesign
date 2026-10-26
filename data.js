@@ -28,6 +28,8 @@ CASES.forEach((c, i) => c.num = '0' + (i + 1));
 // Vibe-coded prototypes built with Claude. href: the prototype's own copy under prototypes/.
 const V = (title, type, desc, href) => ({ title, type, desc, href });
 const VIBE = [
+  V('Keel Business Banking','Fintech','Business banking for small companies: sign-in with one-time codes and Face ID, balances and cash flow, payments, cards, budgets and goals, and disputes.','prototypes/keel/'),
+  V('Ledgerline Risk Console','Risk management','Digital-asset risk console for corporate treasury: portfolio and risk dashboards, positions and limits, compliance alerts, transaction monitoring, custody and counterparty risk.','prototypes/ledgerline/'),
   V('Galli Neighbourhood Alerts','Mobile app','Alerts and lost-and-found posts from neighbours within a kilometre. Neighbours confirm alerts, and lost-pet sightings are pinned on a map.','prototypes/galli/'),
   V('Khayal Parent Care','Mobile app','Medicine reminders for elderly parents. Family is alerted when a dose is missed, with refill tracking and a big-button parent mode in Hindi.','prototypes/khayal/'),
   V('Rasid Warranty Vault','Mobile app','Keeps every bill and warranty in one place, warns before a warranty ends and prepares a repair claim in one tap.','prototypes/rasid/'),
@@ -42,8 +44,8 @@ const VIBE = [
   V('Ayura Health Platform','Healthcare platform','One consent-first health record connecting patients, doctors, hospitals, insurers, pharmacies and medical reps.','prototypes/ayura/'),
   V('Raja Rani Chor Sipahi','Game','The classic Indian chit game of Raja, Rani, Sipahi and Chor, played against computer players over several rounds.','prototypes/raja-rani/')
 ];
-const VTYPES = ['All','Mobile app','Healthcare platform','Game'];
-const VLABEL = { 'All':'All', 'Mobile app':'Mobile apps', 'Healthcare platform':'Healthcare', 'Game':'Games' };
+const VTYPES = ['All','Fintech','Risk management','Mobile app','Healthcare platform','Game'];
+const VLABEL = { 'All':'All', 'Fintech':'Fintech', 'Risk management':'Risk management', 'Mobile app':'Mobile apps', 'Healthcare platform':'Healthcare', 'Game':'Games' };
 
 const W = (title, category, group, kind) => ({ title, category, group, kind });
 const WORK = [

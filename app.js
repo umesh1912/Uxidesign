@@ -177,7 +177,7 @@
     <section id="vibe" class="section">
       ${sectionHead('02 · Vibe coding', 'Ideas I\'ve built into working apps with Claude',
         '<div class="filters" id="vibe-filters"></div>', 'section-head--split section-head--tight')}
-      <p class="vibe-intro">Mobile apps, a healthcare platform and a game, taken from a prompt to a clickable prototype with Claude. Each one is a real, working interface, not a static mockup.</p>
+      <p class="vibe-intro">Fintech and risk platforms, mobile apps, a healthcare platform and a game, taken from a prompt to a clickable prototype with Claude. Each one is a real, working interface, not a static mockup.</p>
       <div class="cells vibes" id="vibe-slot"></div>
     </section>
 
