@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ayura — Insurance claims desk</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:#0E5C52}a:hover{color:#0A463F}
+button{font:inherit}
+.shell{display:grid;grid-template-columns:248px minmax(0,1fr);height:100vh;background:#F3F4EF;color:#14201D;font-family:'Figtree',system-ui,sans-serif;font-size:14px;line-height:1.45}
+.side{background:#10231F;color:#E7EEEA;display:flex;flex-direction:column;gap:22px;padding:22px 14px;overflow:auto}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;font-size:20px;color:#fff;padding:0 8px}
+.role{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9FB8AF;padding:0 10px;font-weight:600}
+.navlist{display:flex;flex-direction:column;gap:2px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:44px;padding:0 12px;border:0;border-radius:8px;background:transparent;color:#C9D7D1;font-weight:500;text-align:left;cursor:pointer;white-space:nowrap}
+.nav:hover{background:#1A332D;color:#fff}
+.nav.on{background:#E2EFEA;color:#10231F;font-weight:700}
+.badge{min-width:22px;height:22px;padding:0 7px;border-radius:11px;background:#F2C48D;color:#3B2207;font-size:12px;font-weight:700;display:inline-grid;place-items:center}
+.sidefoot{margin-top:auto;display:flex;flex-direction:column;gap:6px;padding:14px 10px 0;border-top:1px solid #23413A}
+.me{display:flex;align-items:center;gap:10px;color:#fff;font-weight:600}
+.me .av{background:#5FC3A6;color:#10231F}
+.switch{color:#9FD6C6;font-weight:600;text-decoration:none;min-height:44px;display:flex;align-items:center}
+.switch:hover{color:#fff}
+.main{overflow:auto;min-width:0}
+.top{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:16px;padding:16px 32px;background:rgba(243,244,239,.94);backdrop-filter:blur(8px);border-bottom:1px solid #DFE3DC;flex-wrap:wrap}
+.top h1{margin:0;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:24px;font-weight:700;letter-spacing:-.01em}
+.grow{flex:1}
+.content{padding:28px 32px 56px;display:flex;flex-direction:column;gap:24px;max-width:1240px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:16px;align-items:start}
+.split{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr);gap:16px;align-items:start}
+.card{background:#fff;border:1px solid #DFE3DC;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.h2{margin:0;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:18px;font-weight:700;letter-spacing:-.01em}
+.h3{margin:0;font-size:15px;font-weight:700}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:8px;border:1px solid #C3CBC2;background:#fff;color:#14201D;font-weight:600;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{border-color:#0E5C52;color:#0E5C52}
+.btn.pri{background:#0E5C52;border-color:#0E5C52;color:#fff}
+.btn.pri:hover{background:#0A463F;color:#fff}
+.btn.dark{background:#10231F;border-color:#10231F;color:#fff}
+.btn.danger{color:#8A2121;border-color:#E3B9B5}
+.btn.danger:hover{background:#F8E0DE}
+.btn.ghost{border-color:transparent;background:transparent}
+.btn.sm{padding:0 14px;font-size:13px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid #C3CBC2;background:#fff;font-weight:500;cursor:pointer;color:#14201D;white-space:nowrap}
+.chip:hover{border-color:#10231F}
+.chip.on{background:#10231F;border-color:#10231F;color:#fff}
+.tabs{display:flex;gap:4px;border-bottom:1px solid #DFE3DC;overflow-x:auto}
+.tab{min-height:44px;padding:0 14px;border:0;background:transparent;color:#56625E;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.tab.on{color:#10231F;border-bottom-color:#0E5C52}
+.tag{display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:6px;font-size:12px;font-weight:700;background:#EEF1EC;color:#3A4642;white-space:nowrap}
+.tag.ok{background:#DDEFE7;color:#0B5040}
+.tag.wait{background:#FBEAD7;color:#7A3A0C}
+.tag.bad{background:#F8E0DE;color:#8A2121}
+.tag.info{background:#E1EAF7;color:#1F4479}
+.row{display:flex;align-items:center;gap:12px;min-width:0}
+.wrap{flex-wrap:wrap}
+.between{justify-content:space-between}
+.col{display:flex;flex-direction:column;gap:4px;min-width:0}
+.list{display:flex;flex-direction:column}
+.item{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid #ECEFE9;min-width:0}
+.list > .item:first-child{border-top:0;padding-top:4px}
+.av{width:40px;height:40px;border-radius:50%;background:#E2EFEA;color:#0E5C52;display:grid;place-items:center;font-weight:700;font-size:14px;flex:none}
+.av.lg{width:56px;height:56px;font-size:18px}
+.muted{color:#56625E}
+.small{font-size:13px}
+.strong{font-weight:700}
+.k{font-size:12px;color:#56625E;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.big{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.tw{overflow-x:auto}
+.thead,.trow{display:grid;gap:12px;align-items:center;min-width:760px;padding:0 4px}
+.thead{font-size:12px;color:#56625E;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding-bottom:10px;border-bottom:1px solid #DFE3DC}
+.trow{padding-top:12px;padding-bottom:12px;border-bottom:1px solid #ECEFE9;min-height:64px}
+.search{display:flex;align-items:center;gap:8px;flex:1;max-width:420px;min-width:220px;height:44px;padding:0 14px;border:1px solid #D3D9D1;border-radius:10px;background:#fff;color:#56625E}
+.search input{border:0;outline:0;font:inherit;flex:1;background:transparent;min-width:0;color:#14201D}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-size:13px;font-weight:700}
+.input{height:44px;border:1px solid #C3CBC2;border-radius:8px;padding:0 12px;font:inherit;background:#fff;color:#14201D;width:100%}
+.input:focus,.search:focus-within{outline:2px solid #0E5C52;outline-offset:1px}
+textarea.input{height:auto;min-height:96px;padding:10px 12px;resize:vertical}
+.toggle{width:52px;height:30px;border-radius:15px;border:0;background:#B9C2BA;position:relative;cursor:pointer;flex:none}
+.toggle::after{content:'';position:absolute;top:4px;left:4px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .15s}
+.toggle.on{background:#0E5C52}
+.toggle.on::after{left:26px}
+.scrim{position:fixed;inset:0;background:rgba(16,35,31,.5);display:grid;place-items:center;z-index:20;padding:16px}
+.modal{background:#fff;border-radius:16px;padding:24px;width:min(560px,100%);max-height:calc(100vh - 32px);overflow:auto;display:flex;flex-direction:column;gap:16px;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.banner{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:10px;background:#FBEAD7;color:#4A2306;flex-wrap:wrap}
+.banner.ok{background:#DDEFE7;color:#08392E}
+.banner.info{background:#E1EAF7;color:#152F55}
+.banner.bad{background:#F8E0DE;color:#5E1414}
+.hero{background:#10231F;color:#E7EEEA;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:16px}
+.bar{height:8px;border-radius:4px;background:#E6EAE4;overflow:hidden}
+.bar > span{display:block;height:100%;background:#0E5C52;border-radius:4px}
+.tl{display:flex;flex-direction:column}
+.tli{display:grid;grid-template-columns:96px 24px minmax(0,1fr);gap:12px}
+.tld{padding-top:16px;font-size:13px;color:#56625E;font-weight:600;text-align:right}
+.tlx{position:relative}
+.tlx::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:#DCE2DA}
+.tlx::after{content:'';position:absolute;left:5px;top:20px;width:14px;height:14px;border-radius:50%;background:#0E5C52;border:3px solid #F3F4EF}
+.tlc{margin:6px 0;padding:14px 16px;background:#fff;border:1px solid #DFE3DC;border-radius:12px;display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.slot{min-height:44px;border-radius:8px;border:1px solid #C3CBC2;background:#fff;font-weight:600;cursor:pointer;color:#14201D}
+.slot:hover{border-color:#0E5C52}
+.slot.on{background:#0E5C52;border-color:#0E5C52;color:#fff}
+.slot:disabled{background:#EEF1EC;color:#8C9692;border-color:#EEF1EC;text-decoration:line-through;cursor:not-allowed}
+.slot.sched-open{background:#DDEFE7;border-color:#7FB8A8;color:#0B5040;font-size:13px}
+.slot.sched-blk{background:#EEF1EC;border:1px dashed #8C9692;color:#56625E;font-size:13px}
+.slot.sched-booked:disabled{background:#10231F;color:#fff;border-color:#10231F;text-decoration:none;cursor:default;opacity:1;font-size:13px}
+.pick{display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:100%;min-height:44px;padding:12px;border:1px solid transparent;border-radius:10px;background:transparent;color:#14201D;cursor:pointer;text-align:left}
+.pick:hover{background:#F3F4EF}
+.pick.on{background:#E2EFEA;border-color:#9CCBBE}
+.steps{display:flex;gap:8px;flex-wrap:wrap}
+.step{display:flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:999px;background:#EEF1EC;color:#56625E;font-weight:600;font-size:13px}
+.step b{width:24px;height:24px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:12px}
+.step.on{background:#10231F;color:#fff}
+.step.on b{background:#5FC3A6;color:#10231F}
+.step.done{background:#DDEFE7;color:#0B5040}
+.lock{display:flex;align-items:center;gap:10px;padding:14px;border-radius:10px;border:1px dashed #B9C2BA;color:#56625E;background:#F7F8F5}
+.kan{display:grid;grid-template-columns:repeat(5,minmax(220px,1fr));gap:12px;overflow-x:auto;padding-bottom:8px}
+.kcol{background:#E9ECE6;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;min-height:320px}
+.kcard{background:#fff;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px;border:1px solid #DFE3DC}
+@media (max-width:900px){
+.shell{grid-template-columns:1fr;height:auto;min-height:100vh}
+.side{flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px;padding:12px}
+.role{display:none}
+.navlist{flex-direction:row;overflow-x:auto;width:100%}
+.nav{width:auto}
+.sidefoot{display:none}
+.main{overflow:visible}
+.top{padding:14px 16px}
+.content{padding:20px 16px 40px}
+.split{grid-template-columns:1fr}
+.tli{grid-template-columns:64px 24px minmax(0,1fr)}
+}
+
+</style>
+</helmet>
+<div class="shell">
+<aside class="side">
+<div class="brand"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="#5FC3A6"></rect><path d="M14 7v14M7 14h14" stroke="#10231F" stroke-width="3" stroke-linecap="round"></path></svg><span>Ayura</span></div>
+<div class="role">Insurance</div>
+<nav class="navlist" aria-label="Insurance navigation">
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="4"><button class="{{n.cls}}" onClick="{{n.go}}"><span>{{n.label}}</span><sc-if value="{{n.hasBadge}}" hint-placeholder-val="{{false}}"><span class="badge">{{n.badge}}</span></sc-if></button></sc-for>
+</nav>
+<div class="sidefoot">
+<div class="me"><span class="av">RI</span><div class="col"><span>Rahul Iyer</span><span class="small" style="color: #9FB8AF; font-weight: 500">Claims officer · Apex Health</span></div></div>
+<a class="switch" href="Main.dc.html">← Switch persona</a>
+</div>
+</aside>
+
+<main class="main">
+<header class="top">
+<h1>{{title}}</h1>
+<div class="grow"></div>
+<label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input placeholder="Claim ID, policy or patient" aria-label="Search claims"></label>
+</header>
+
+<div class="content">
+
+<sc-if value="{{isClaims}}" hint-placeholder-val="{{true}}">
+<div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr))">
+<div class="card" style="gap: 4px"><span class="k">Open claims</span><span class="big">128</span></div>
+<div class="card" style="gap: 4px"><span class="k">Awaiting documents</span><span class="big" style="color: #B4531A">23</span></div>
+<div class="card" style="gap: 4px"><span class="k">Decided today</span><span class="big">41</span></div>
+<div class="card" style="gap: 4px"><span class="k">Avg. turnaround</span><span class="big">2.4 days</span></div>
+</div>
+<div class="card">
+<div class="chips"><sc-for list="{{fChips}}" as="c" hint-placeholder-count="5"><button class="{{c.cls}}" onClick="{{c.pick}}">{{c.label}}</button></sc-for></div>
+<div class="tw">
+<div class="thead" style="grid-template-columns: 1.1fr 1.5fr 1.6fr 1.5fr 1fr 1.3fr 100px"><span>Claim</span><span>Patient</span><span>Hospital</span><span>Treatment</span><span>Amount</span><span>Status</span><span></span></div>
+<sc-for list="{{claims}}" as="c" hint-placeholder-count="6">
+<div class="trow" style="grid-template-columns: 1.1fr 1.5fr 1.6fr 1.5fr 1fr 1.3fr 100px">
+<div class="col"><span class="strong">{{c.id}}</span><span class="muted small">{{c.date}}</span></div>
+<span>{{c.patient}}</span><span>{{c.hospital}}</span><span>{{c.treat}}</span><span class="strong">{{c.amt}}</span>
+<span class="{{c.stCls}}" style="justify-self: start">{{c.status}}</span>
+<button class="btn sm" onClick="{{c.open}}">Review</button>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isDetail}}" hint-placeholder-val="{{false}}">
+<div class="row wrap"><button class="btn" onClick="{{goClaims}}">← All claims</button><span class="{{cl.stCls}}">{{cl.status}}</span></div>
+<div class="split">
+<div class="col" style="gap: 16px">
+<div class="card">
+<div class="row between wrap" style="align-items: flex-start">
+<div class="col" style="gap: 4px"><span class="k">{{cl.id}} · Cashless</span><span class="big" style="font-size: 26px">{{cl.treat}}</span><span class="muted">{{cl.patient}} · {{cl.hospital}}</span></div>
+<div class="col" style="text-align: right"><span class="k">Claimed</span><span class="big" style="font-size: 26px">{{cl.amt}}</span></div>
+</div>
+<div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
+<div class="col"><span class="k">Policy</span><span>APX-FF-2291-0473</span></div>
+<div class="col"><span class="k">Sum insured left</span><span>₹9,51,800</span></div>
+<div class="col"><span class="k">Admission</span><span>21 Sep 2026 · day-care</span></div>
+<div class="col"><span class="k">Diagnosis code</span><span>ICD-10 K80.2</span></div>
+</div>
+<div class="steps"><sc-for list="{{stages}}" as="s" hint-placeholder-count="4"><span class="{{s.cls}}"><b>{{s.n}}</b>{{s.label}}</span></sc-for></div>
+</div>
+
+<div class="card">
+<div class="row between wrap"><h2 class="h2">Shared by patient for this claim</h2><span class="tag ok">Consent valid until claim closes</span></div>
+<div class="list">
+<sc-for list="{{shared}}" as="d" hint-placeholder-count="4">
+<div class="item"><span class="av" style="border-radius: 10px">{{d.ic}}</span><div class="col" style="flex: 1"><span class="strong">{{d.title}}</span><span class="muted small">{{d.meta}}</span></div><button class="btn sm">View</button></div>
+</sc-for>
+</div>
+<div class="lock"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg><div class="col"><span class="strong small">Not shared with you</span><span class="small">Full medical history, unrelated consultations, other prescriptions and lab reports. Request a specific document if the claim needs it.</span></div></div>
+</div>
+</div>
+
+<div class="col" style="gap: 16px">
+<div class="card">
+<h2 class="h2">Decision</h2>
+<sc-if value="{{undecided}}" hint-placeholder-val="{{true}}">
+<div class="field"><label for="amt">Approved amount</label><input id="amt" class="input" value="₹35,200"></div>
+<div class="muted small">Deductions: ₹1,300 non-medical consumables (policy clause 4.2)</div>
+<button class="btn pri" onClick="{{approve}}">Approve claim</button>
+<button class="btn" onClick="{{openReq}}">Request a document</button>
+<button class="btn" onClick="{{goMsgs}}">Query hospital</button>
+<button class="btn danger" onClick="{{reject}}">Reject</button>
+</sc-if>
+<sc-if value="{{decided}}" hint-placeholder-val="{{false}}">
+<div class="{{decisionBanner}}"><span class="strong">{{decisionText}}</span></div>
+<button class="btn" onClick="{{undo}}">Undo</button>
+</sc-if>
+</div>
+<div class="card">
+<h2 class="h2">Activity</h2>
+<div class="list small">
+<sc-for list="{{activity}}" as="a" hint-placeholder-count="4"><div class="item"><div class="col"><span class="strong">{{a.t}}</span><span class="muted">{{a.w}}</span></div></div></sc-for>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isPending}}" hint-placeholder-val="{{false}}">
+<div class="card">
+<h2 class="h2">Documents requested, not yet received</h2>
+<div class="list">
+<sc-for list="{{pending}}" as="p" hint-placeholder-count="4">
+<div class="item wrap">
+<div class="col" style="flex: 1; min-width: 240px"><span class="strong">{{p.doc}}</span><span class="muted small">{{p.claim}} · {{p.patient}} · {{p.hospital}}</span></div>
+<span class="{{p.ageCls}}">{{p.age}}</span>
+<button class="btn sm" onClick="{{p.remind}}" disabled="{{p.reminded}}">{{p.btn}}</button>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isMsgs}}" hint-placeholder-val="{{false}}">
+<div class="split" style="grid-template-columns: minmax(260px, 0.8fr) minmax(0, 2fr)">
+<div class="card" style="gap: 0; padding: 8px">
+<button class="pick on"><span class="col" style="gap: 0"><span class="strong">Lotus Hospital · Billing desk</span><span class="small muted">CLM-21877</span></span></button>
+<button class="pick"><span class="col" style="gap: 0"><span class="strong">Sunrise Heart Centre</span><span class="small muted">CLM-21902</span></span></button>
+<button class="pick"><span class="col" style="gap: 0"><span class="strong">Shree Ortho Clinic</span><span class="small muted">CLM-21760</span></span></button>
+</div>
+<div class="card">
+<div class="row between"><div class="col"><span class="h3">Lotus Hospital · Billing desk</span><span class="muted small">Re: CLM-21877 · Priya Sharma</span></div><button class="btn sm" onClick="{{openDetail}}">Open claim</button></div>
+<div class="col" style="gap: 10px; min-height: 280px; justify-content: flex-end">
+<sc-for list="{{msgs}}" as="m" hint-placeholder-count="3">
+<div style="{{m.style}}"><span class="small strong">{{m.who}}</span><span>{{m.text}}</span><span class="small" style="opacity: .75">{{m.at}}</span></div>
+</sc-for>
+</div>
+<div class="row"><input class="input" placeholder="Write a message" aria-label="Message" value="{{draft}}" onChange="{{setDraft}}"><button class="btn pri" onClick="{{send}}">Send</button></div>
+</div>
+</div>
+</sc-if>
+
+</div>
+</main>
+</div>
+
+<sc-if value="{{showReq}}" hint-placeholder-val="{{false}}">
+<div class="scrim">
+<div class="modal" role="dialog" aria-modal="true" aria-label="Request a document">
+<h2 class="h2">Request a document</h2>
+<p class="muted" style="margin: 0">The patient is asked to authorise it. If they agree, it is added to this claim only.</p>
+<div class="col" style="gap: 8px"><span class="strong small">Document</span><div class="chips"><sc-for list="{{docChips}}" as="c" hint-placeholder-count="4"><button class="{{c.cls}}" onClick="{{c.pick}}">{{c.label}}</button></sc-for></div></div>
+<div class="field"><label for="rq">Reason shown to the patient</label><textarea id="rq" class="input">Needed to confirm the procedure matches the pre-authorisation.</textarea></div>
+<div class="row wrap" style="justify-content: flex-end"><button class="btn" onClick="{{closeReq}}">Cancel</button><button class="btn pri" onClick="{{sendReq}}">Send request</button></div>
+</div>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = {
+screen: 'claims', f: 'All', cid: 'CLM-21877', decision: null, showReq: false, reqDoc: 'Operation notes', requested: [],
+reminded: {}, draft: '',
+msgs: [
+{ me: false, who: 'Lotus Billing · Swati', text: 'Discharge summary has been uploaded by the patient. Please review.', at: '30 Sep, 4:12 PM' },
+{ me: true, who: 'You', text: 'Thanks. Final bill shows ₹1,300 under consumables — can you share the itemised list?', at: '30 Sep, 5:02 PM' },
+{ me: false, who: 'Lotus Billing · Swati', text: 'Attached to the claim now. Gloves, drapes and disposables.', at: 'Today, 9:40 AM' }
+]
+};
+}
+renderVals() {
+const s = this.state;
+const set = (o) => this.setState(o);
+const go = (id) => () => set({ screen: id });
+const titles = { claims: 'Claims queue', detail: 'Claim review', pending: 'Pending documents', msgs: 'Messages' };
+const nav = [['claims', 'Claims', ''], ['pending', 'Pending documents', '4'], ['msgs', 'Messages', '1']]
+.map(([id, label, b]) => ({ label, cls: (s.screen === id || (s.screen === 'detail' && id === 'claims')) ? 'nav on' : 'nav', go: go(id), hasBadge: !!b, badge: b }));
+const base = [
+{ id: 'CLM-21877', date: '22 Sep 2026', patient: 'Priya Sharma', hospital: 'Lotus Multispeciality', treat: 'Lap. cholecystectomy (day-care)', amt: '₹36,500', status: 'Under review' },
+{ id: 'CLM-21902', date: '27 Sep 2026', patient: 'Vinod Shetty', hospital: 'Sunrise Heart Centre', treat: 'Angioplasty, 1 stent', amt: '₹2,84,000', status: 'Docs requested' },
+{ id: 'CLM-21911', date: '28 Sep 2026', patient: 'Lakshmi Pillai', hospital: 'Lotus Multispeciality', treat: 'Pneumonia, 4-day IPD', amt: '₹1,12,800', status: 'Pre-auth approved' },
+{ id: 'CLM-21760', date: '19 Sep 2026', patient: 'Harsh Agarwal', hospital: 'Shree Ortho Clinic', treat: 'ACL reconstruction', amt: '₹1,65,000', status: 'Query raised' },
+{ id: 'CLM-21689', date: '14 Sep 2026', patient: 'Nisha Menon', hospital: 'CityCare Clinic', treat: 'Cataract, right eye', amt: '₹42,000', status: 'Approved' },
+{ id: 'CLM-21655', date: '11 Sep 2026', patient: 'Arvind Rao', hospital: 'Lotus Multispeciality', treat: 'Dengue, 3-day IPD', amt: '₹58,300', status: 'Under review' }
+];
+const decMap = { approved: 'Approved', rejected: 'Rejected' };
+const stOf = (c) => (c.id === s.cid && s.decision) ? decMap[s.decision] : ((c.id === s.cid && s.requested.length) ? 'Docs requested' : c.status);
+const stCls = { 'Under review': 'tag info', 'Docs requested': 'tag wait', 'Pre-auth approved': 'tag info', 'Query raised': 'tag wait', 'Approved': 'tag ok', 'Rejected': 'tag bad' };
+const all = base.map((c) => { const st = stOf(c); return { ...c, status: st, stCls: stCls[st], open: () => set({ cid: c.id, screen: 'detail' }) }; });
+const groups = { 'All': null, 'Under review': ['Under review'], 'Awaiting docs': ['Docs requested', 'Query raised'], 'Pre-auth': ['Pre-auth approved'], 'Decided': ['Approved', 'Rejected'] };
+const claims = all.filter((c) => !groups[s.f] || groups[s.f].indexOf(c.status) >= 0);
+const fChips = Object.keys(groups).map((x) => ({ label: x, cls: s.f === x ? 'chip on' : 'chip', pick: () => set({ f: x }) }));
+const cl = all.find((c) => c.id === s.cid) || all[0];
+const stageIdx = s.decision ? 4 : (s.requested.length ? 2 : 3);
+const stages = ['Submitted', 'Documents', 'Medical review', 'Decision'].map((label, i) => ({ n: String(i + 1), label, cls: i + 1 === stageIdx ? 'step on' : (i + 1 < stageIdx ? 'step done' : 'step') }));
+const shared = [
+{ ic: 'DS', title: 'Discharge summary', meta: 'Shared by patient · 30 Sep 2026' },
+{ ic: '₹', title: 'Final bill, itemised', meta: 'Lotus Multispeciality · 30 Sep 2026' },
+{ ic: 'US', title: 'USG abdomen report', meta: 'Lotus Radiology · 12 Sep 2026' },
+{ ic: 'PA', title: 'Pre-authorisation approval', meta: 'Apex Health · 18 Sep 2026' }
+].concat(s.requested.map((r) => ({ ic: '…', title: r + ' (requested)', meta: 'Waiting for patient authorisation' })));
+const activity = [
+s.decision ? { t: 'Claim ' + decMap[s.decision].toLowerCase() + ' by you', w: 'Just now' } : null,
+s.requested.length ? { t: 'Requested ' + s.requested[0] + ' from patient', w: 'Just now' } : null,
+{ t: 'Itemised consumables added by hospital', w: 'Today, 9:40 AM' },
+{ t: 'Patient shared discharge summary', w: '30 Sep, 3:55 PM' },
+{ t: 'Document requested: discharge summary', w: '28 Sep, 11:20 AM' },
+{ t: 'Claim submitted by Lotus Multispeciality', w: '22 Sep, 6:10 PM' }
+].filter(Boolean);
+const docChips = ['Operation notes', 'Histopathology report', 'Previous consultation', 'Investigation reports'].map((x) => ({ label: x, cls: s.reqDoc === x ? 'chip on' : 'chip', pick: () => set({ reqDoc: x }) }));
+const pendDef = [
+{ id: 'q1', doc: 'Angiography CD + report', claim: 'CLM-21902', patient: 'Vinod Shetty', hospital: 'Sunrise Heart Centre', age: '3 days', ageCls: 'tag wait' },
+{ id: 'q2', doc: 'MRI knee report', claim: 'CLM-21760', patient: 'Harsh Agarwal', hospital: 'Shree Ortho Clinic', age: '5 days', ageCls: 'tag bad' },
+{ id: 'q3', doc: 'Indoor case papers', claim: 'CLM-21655', patient: 'Arvind Rao', hospital: 'Lotus Multispeciality', age: '1 day', ageCls: 'tag' },
+{ id: 'q4', doc: 'Pharmacy bills', claim: 'CLM-21655', patient: 'Arvind Rao', hospital: 'Lotus Multispeciality', age: '1 day', ageCls: 'tag' }
+];
+const pending = pendDef.map((p) => ({ ...p, reminded: !!s.reminded[p.id], btn: s.reminded[p.id] ? 'Reminder sent' : 'Send reminder', remind: () => set({ reminded: { ...s.reminded, [p.id]: true } }) }));
+const msgs = s.msgs.map((m) => ({ ...m, style: 'display: flex; flex-direction: column; gap: 2px; max-width: 72%; padding: 10px 14px; border-radius: 12px; ' + (m.me ? 'align-self: flex-end; background: #10231F; color: #fff' : 'align-self: flex-start; background: #EEF1EC; color: #14201D') }));
+return {
+nav, title: titles[s.screen],
+isClaims: s.screen === 'claims', isDetail: s.screen === 'detail', isPending: s.screen === 'pending', isMsgs: s.screen === 'msgs',
+goClaims: go('claims'), goMsgs: go('msgs'), openDetail: () => set({ cid: 'CLM-21877', screen: 'detail' }),
+claims, fChips, cl, stages, shared, activity,
+undecided: !s.decision, decided: !!s.decision,
+decisionText: s.decision === 'approved' ? 'Approved · ₹35,200 payable to Lotus Multispeciality. Patient and hospital notified.' : 'Rejected. Patient and hospital notified with the reason.',
+decisionBanner: s.decision === 'approved' ? 'banner ok' : 'banner bad',
+approve: () => set({ decision: 'approved' }), reject: () => set({ decision: 'rejected' }), undo: () => set({ decision: null }),
+showReq: s.showReq, openReq: () => set({ showReq: true }), closeReq: () => set({ showReq: false }), docChips,
+sendReq: () => set({ showReq: false, requested: [s.reqDoc].concat(s.requested.filter((r) => r !== s.reqDoc)) }),
+pending, msgs, draft: s.draft, setDraft: (e) => set({ draft: e.target.value }),
+send: () => { if (!s.draft) return; set({ draft: '', msgs: s.msgs.concat([{ me: true, who: 'You', text: s.draft, at: 'Just now' }]) }); }
+};
+}
+}
+</script>
+</body>
+</html>

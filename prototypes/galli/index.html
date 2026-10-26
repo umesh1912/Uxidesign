@@ -1,0 +1,480 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Galli Neighbourhood Alerts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap">
+<style>
+:root{
+  --bg:#ECEDE8; --surface:#FFFFFF; --surface-2:#F5F5F1; --ink:#121417; --ink-2:#5B5F66; --line:#DCDDD6;
+  --primary:#121417; --primary-ink:#FFFFFF; --primary-soft:#E6E7E1;
+  --accent:#F2551D; --accent-ink:#FFFFFF; --accent-soft:#FDE4D9;
+  --good:#1E7F4F; --good-soft:#DCF0E3; --bad:#D0341F; --bad-soft:#FBE1DC; --warn:#E39B12; --warn-soft:#FCF0D3;
+  --t-alert:#E0431B; --t-lost:#7447D1; --t-found:#1E7F4F; --t-help:#2361D0; --t-notice:#6B6F76;
+  --map-bg:#E4E6DF; --map-road:#FFFFFF; --map-block:#D7DAD1; --map-green:#CFE3C5;
+  --track:#C4C6BE; --frame:#0B0C0E; --shadow:0 24px 60px -24px rgba(18,20,23,.45); --scrim:rgba(10,11,12,.5);
+  --display:"Archivo", "Arial Narrow", system-ui, sans-serif; --display-weight:800;
+  --body:"Archivo", system-ui, -apple-system, "Segoe UI", sans-serif; --radius:16px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --bg:#0C0D0F; --surface:#16181B; --surface-2:#1D2024; --ink:#EDEEEA; --ink-2:#A0A4AB; --line:#2B2E33;
+  --primary:#EDEEEA; --primary-ink:#0C0D0F; --primary-soft:#26292E; --accent:#FF7440; --accent-ink:#1A0A03; --accent-soft:#3A1E12;
+  --good:#5ED39A; --good-soft:#15301F; --bad:#F2806F; --bad-soft:#3A1E1A; --warn:#F2BE4C; --warn-soft:#3A2F14;
+  --t-alert:#FF7440; --t-lost:#A688F0; --t-found:#5ED39A; --t-help:#78A6F5; --t-notice:#A0A4AB;
+  --map-bg:#1A1C1F; --map-road:#2A2D32; --map-block:#202327; --map-green:#1D2A1E;
+  --track:#3A3E45; --frame:#000; --shadow:0 24px 60px -24px rgba(0,0,0,.8); --scrim:rgba(0,0,0,.6);}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#0C0D0F; --surface:#16181B; --surface-2:#1D2024; --ink:#EDEEEA; --ink-2:#A0A4AB; --line:#2B2E33;
+  --primary:#EDEEEA; --primary-ink:#0C0D0F; --primary-soft:#26292E; --accent:#FF7440; --accent-ink:#1A0A03; --accent-soft:#3A1E12;
+  --good:#5ED39A; --good-soft:#15301F; --bad:#F2806F; --bad-soft:#3A1E1A; --warn:#F2BE4C; --warn-soft:#3A2F14;
+  --t-alert:#FF7440; --t-lost:#A688F0; --t-found:#5ED39A; --t-help:#78A6F5; --t-notice:#A0A4AB;
+  --map-bg:#1A1C1F; --map-road:#2A2D32; --map-block:#202327; --map-green:#1D2A1E;
+  --track:#3A3E45; --frame:#000; --shadow:0 24px 60px -24px rgba(0,0,0,.8); --scrim:rgba(0,0,0,.6);}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;padding-inline:16px;padding-block:24px;margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.stage{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:44px;align-items:start;justify-content:center}
+@media (max-width:760px){.stage{grid-template-columns:minmax(0,1fr);gap:20px}}
+.phone{position:relative;width:100%;max-width:400px;margin:0 auto;height:min(800px,calc(100svh - 48px));min-height:620px;background:var(--surface-2);border-radius:34px;border:8px solid var(--frame);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+@media (max-width:440px){.phone{border-width:0;border-radius:18px;height:calc(100svh - 48px)}}
+.appbar{padding:16px 16px 10px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{font-family:var(--display);font-size:24px;line-height:1.05;font-weight:var(--display-weight,700);letter-spacing:-.01em}
+.brand-sub{font-size:12px;color:var(--ink-2);margin-top:2px}
+.bar-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{position:relative;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--ink)}
+.icon-btn svg{width:20px;height:20px}
+.badge{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--bad);color:#fff;font-size:10.5px;font-weight:700;display:grid;place-items:center;border:2px solid var(--surface-2)}
+.screen{flex:1;overflow-y:auto;padding:4px 16px 100px;display:flex;flex-direction:column;gap:14px}
+.screen > *{flex-shrink:0}
+.tabbar{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(var(--tabs,5),1fr);background:var(--surface);border-top:1px solid var(--line);padding:6px 4px calc(8px + env(safe-area-inset-bottom,0px));z-index:3}
+.tab{background:none;border:0;padding:5px 0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;font-weight:700;color:var(--ink-2);position:relative}
+.tab svg{width:21px;height:21px}
+.tab-ico{padding:3px 12px;border-radius:999px;display:flex}
+.tab[aria-current="page"]{color:var(--ink)}
+.tab[aria-current="page"] .tab-ico{background:var(--primary-soft);color:var(--primary)}
+.tab .dot{position:absolute;top:1px;right:calc(50% - 20px);min-width:16px;height:16px;border-radius:99px;background:var(--accent);color:var(--accent-ink);font-size:10px;font-weight:800;display:grid;place-items:center;padding:0 4px}
+.fab{position:absolute;right:16px;bottom:84px;height:54px;padding:0 20px 0 16px;border-radius:18px;border:0;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;gap:6px;font-weight:800;box-shadow:0 10px 24px -8px rgba(0,0,0,.35);z-index:2}
+.fab svg{width:22px;height:22px}
+.h-title{font-family:var(--display);font-weight:var(--display-weight,700);font-size:24px;line-height:1.15;margin:2px 0 0;text-wrap:balance}
+.section-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:4px}
+.section-h h2{font-family:var(--display);font-weight:var(--display-weight,700);font-size:18px;margin:0}
+.section-h span{font-size:12px;color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius,18px)}
+.pad{padding:14px}
+.list{display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line);background:none;border-left:0;border-right:0;border-bottom:0;width:100%;text-align:left}
+.row:first-child{border-top:0}
+button.row:hover{background:var(--surface-2)}
+.card > button.row:first-child{border-radius:var(--radius,18px) var(--radius,18px) 0 0}.card > button.row:last-child{border-radius:0 0 var(--radius,18px) var(--radius,18px)}.card > button.row:only-child{border-radius:var(--radius,18px)}
+.row-main{flex:1;min-width:0}
+.row-title{font-weight:700;overflow-wrap:anywhere}
+.row-sub{font-size:12.5px;color:var(--ink-2)}
+.row-end{text-align:right;font-size:12px;white-space:nowrap}
+.row-end b{display:block;font-size:14.5px}
+.muted{color:var(--ink-2)} .hint{font-size:13px;color:var(--ink-2);margin:0}
+.ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--surface-2);color:var(--ink-2);flex:none}
+.ico svg{width:20px;height:20px}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px;flex:none}
+.av.sm{width:26px;height:26px;font-size:11px}
+.btn{border:0;border-radius:12px;padding:8px 14px;font-weight:700;font-size:13.5px;background:var(--primary);color:var(--primary-ink);white-space:nowrap}
+.btn.accent{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:var(--bad);color:#fff}
+.btn.block{width:100%;padding:13px;font-size:15px;border-radius:14px}
+.btn.sm{padding:6px 11px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap;border:0}
+.chip svg{width:12px;height:12px}
+.chip.good{background:var(--good-soft);color:var(--good)}
+.chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--ink)}
+.chip.pri{background:var(--primary-soft);color:var(--primary)}
+.chip.acc{background:var(--accent-soft);color:var(--ink)}
+.lbl{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.search{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0 12px}
+.search svg{width:18px;height:18px;color:var(--ink-2);flex:none}
+.search input{border:0;background:none;padding:11px 0;width:100%;outline:none}
+.filters{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.filters button{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:700;color:var(--ink-2)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.seg{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:3px}
+.seg button{flex:1;border:0;background:none;padding:7px;border-radius:9px;font-size:13px;font-weight:700;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--primary-soft);color:var(--ink)}
+.bar-track{height:8px;background:var(--surface-2);border-radius:99px;position:relative;overflow:hidden}
+.bar{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:var(--primary)}
+.empty{padding:18px;text-align:center;color:var(--ink-2);font-size:13.5px}
+.hero{background:var(--primary);color:var(--primary-ink);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.hero .lbl{color:inherit;opacity:.8}
+.hero-big{font-family:var(--display);font-weight:var(--display-weight,700);font-size:40px;line-height:1}
+.pill{font-size:12px;font-weight:700;background:rgba(255,255,255,.18);padding:4px 10px;border-radius:999px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.sheet-wrap{position:absolute;inset:0;background:var(--scrim);display:flex;align-items:flex-end;z-index:6}
+.sheet{width:100%;max-height:92%;overflow-y:auto;background:var(--surface);border-radius:24px 24px 0 0;padding:10px 18px calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px;animation:up .22s ease-out}
+.sheet.full{height:92%}
+.sheet > *{flex-shrink:0}
+@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}}
+.grab{width:40px;height:4px;border-radius:9px;background:var(--line);margin:0 auto}
+.sheet-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sheet-h h3{font-family:var(--display);font-weight:var(--display-weight,700);font-size:21px;margin:0;line-height:1.15;display:flex;align-items:center;gap:8px}
+.x{background:var(--surface-2);border:0;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;flex:none;color:var(--ink)}
+.field{display:flex;flex-direction:column;gap:7px}
+.field input:not([type=checkbox]):not([type=radio]):not([type=file]),.field select,.field textarea{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:11px 12px;width:100%}
+.field textarea{resize:vertical;min-height:70px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pick{display:flex;flex-wrap:wrap;gap:8px}
+.pick button{border:1px solid var(--line);background:var(--surface-2);border-radius:12px;padding:8px 12px;font-size:13.5px;font-weight:700;text-align:left}
+.pick button[aria-pressed="true"]{border-color:var(--primary);background:var(--primary-soft)}
+.pick button small{display:block;font-weight:500;font-size:11.5px;color:var(--ink-2)}
+.err{color:var(--bad);font-size:13px;min-height:1em}
+.summary{background:var(--surface-2);border-radius:14px;padding:12px;font-size:13.5px;display:flex;flex-direction:column;gap:6px}
+.summary > div{display:flex;justify-content:space-between;gap:10px}
+.note{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;background:var(--primary-soft);color:var(--ink);border-radius:12px;padding:9px 11px}
+.note svg{width:16px;height:16px;color:var(--primary);flex:none;margin-top:1px}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;padding:12px 14px;border-top:1px solid var(--line)}
+.opt:first-child{border-top:0}
+.switch{appearance:none;width:42px;height:24px;border-radius:99px;background:var(--track);position:relative;flex:none;cursor:pointer;transition:background .15s;margin:0}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .15s}
+.switch:checked{background:var(--primary)}
+.switch:checked::after{left:21px}
+.file-lbl{display:flex;align-items:center;justify-content:center;gap:8px;border:1px dashed var(--line);border-radius:12px;padding:12px;font-size:13.5px;color:var(--ink-2);cursor:pointer;background:var(--surface-2);position:relative}
+.file-lbl svg{width:20px;height:20px;flex:none}
+.file-lbl input{position:absolute;width:1px;height:1px;opacity:0}
+.check{width:28px;height:28px;border-radius:9px;border:2px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none;color:var(--primary-ink);padding:0}
+.check[aria-checked="true"]{background:var(--primary);border-color:var(--primary)}
+.check svg{width:16px;height:16px}
+.toast{position:absolute;left:16px;right:16px;top:72px;background:var(--ink);color:var(--surface);padding:11px 14px;border-radius:12px;font-size:13.5px;z-index:9;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+.notes{padding-top:8px;max-width:62ch;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--primary)}
+.notes h1{font-family:var(--display);font-weight:var(--display-weight,700);font-size:clamp(30px,5vw,46px);line-height:1.03;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.notes p{color:var(--ink-2);margin:0}
+.try{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.try div{display:flex;gap:12px;padding:11px 14px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2)}
+.try div:first-child{border-top:0}
+.try b{color:var(--ink)}
+.try .n{font-family:var(--display);font-weight:var(--display-weight,700);color:var(--primary);min-width:16px}
+.stack{display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:var(--ink-2)}
+.stack b{color:var(--ink)}
+@media (max-width:760px){.notes{order:-1;padding-top:0}.try,.stack{display:none}}
+
+.brand{text-transform:uppercase;letter-spacing:.02em;font-size:26px}
+.brand i{font-style:normal;color:var(--accent)}
+.tab[aria-current="page"] .tab-ico{background:var(--accent-soft);color:var(--accent)}
+.post{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:9px;text-align:left;width:100%;position:relative;overflow:hidden}
+.post:before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--tc)}
+.post-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.type{font-size:11px;font-weight:800;letter-spacing:.09em;text-transform:uppercase;color:var(--tc);display:flex;align-items:center;gap:6px}
+.type i{width:8px;height:8px;border-radius:50%;background:var(--tc)}
+.post h3{font-family:var(--display);font-weight:800;font-size:18px;line-height:1.2;margin:0}
+.meta{font-size:12.5px;color:var(--ink-2);display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.conf{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px dashed var(--line);padding-top:9px}
+.conf .who{font-size:12.5px;color:var(--ink-2)}
+.conf .who b{color:var(--ink)}
+.conf .acts{display:flex;gap:6px}
+.unv{background:var(--warn-soft);color:var(--ink);font-size:11.5px;font-weight:700;border-radius:999px;padding:3px 9px}
+.ver{background:var(--good-soft);color:var(--good);font-size:11.5px;font-weight:700;border-radius:999px;padding:3px 9px;display:inline-flex;gap:4px;align-items:center}
+.ver svg{width:12px;height:12px}
+.photo{width:100%;height:140px;border-radius:12px;background:linear-gradient(135deg,#B98553,#7A4E2A);position:relative;overflow:hidden;display:grid;place-items:center;color:rgba(255,255,255,.9);font-weight:800;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.map{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--map-bg)}
+.map svg{display:block;width:100%;height:auto}
+.pin{cursor:pointer}
+.pin:focus{outline:none}
+.pin:focus circle.ring{stroke:var(--ink);stroke-width:3}
+.legend{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--ink-2)}
+.legend span{display:flex;align-items:center;gap:5px}
+.legend i{width:10px;height:10px;border-radius:50%}
+.match{background:var(--accent-soft);border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.lf{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lf .post{padding:10px}
+.lf .photo{height:90px;font-size:11px}
+.lf h3{font-size:15px}
+.tl{display:flex;flex-direction:column}
+.tl div{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:13.5px}
+.tl div:first-child{border-top:0}
+.tl time{font-weight:700;min-width:62px;color:var(--ink-2);font-size:12.5px}
+.bubble{max-width:82%;padding:9px 12px;border-radius:16px;font-size:14px}
+.bubble.them{background:var(--surface-2);align-self:flex-start;border-bottom-left-radius:5px}
+.bubble.me{background:var(--ink);color:var(--surface);align-self:flex-end;border-bottom-right-radius:5px}
+.radius{display:flex;align-items:center;gap:10px}
+.radius .seg{flex:1}
+</style>
+
+<div class="stage">
+  <div class="phone">
+    <header class="appbar">
+      <div><div class="brand">Galli<i>.</i></div><div class="brand-sub" id="area-lbl">Kothrud, Pune · within 1 km</div></div>
+      <div class="bar-actions"><button class="icon-btn" data-action="notifs" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="badge" id="badge" hidden></span></button><span class="av" style="background:#F2551D">R</span></div>
+    </header>
+    <main class="screen" id="screen"></main>
+    <button class="fab" id="fab" data-action="new"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Post</button>
+    <nav class="tabbar" aria-label="Sections">
+      <button class="tab" data-tab="feed"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span>Nearby</button>
+      <button class="tab" data-tab="map"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg></span>Map</button>
+      <button class="tab" data-tab="lost"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5M11 8v3M11 14h.01"/></svg></span>Lost &amp; found</button>
+      <button class="tab" data-tab="inbox"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span>Inbox<span class="dot" id="inbox-dot" hidden></span></button>
+      <button class="tab" data-tab="you"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>You</button>
+    </nav>
+    <div id="sheet-root"></div>
+    <div class="toast" id="toast" role="status" hidden></div>
+  </div>
+  <aside class="notes">
+    <div class="eyebrow" style="color:var(--accent)">Clickable prototype</div>
+    <h1>Galli: what's happening in your lane, right now</h1>
+    <p>A feed of alerts and lost-and-found posts from people within a kilometre of you. Neighbours confirm alerts so rumours don't spread, and lost pets get sightings pinned on a map. You are Rhea in Kothrud, Pune. Every post is sample data.</p>
+    <div class="try">
+      <div><span class="n">1</span><span><b>Confirm an alert.</b> Tap "Still on" on the power cut, and watch it move from unverified to confirmed.</span></div>
+      <div><span class="n">2</span><span><b>Help find Bruno.</b> Open the lost dog, add a sighting, and see the Lost &amp; found match.</span></div>
+      <div><span class="n">3</span><span><b>See the map.</b> Pins show every post within the radius. Change the radius to 2 km.</span></div>
+      <div><span class="n">4</span><span><b>Post something.</b> Report a found item. Your exact location is never shown.</span></div>
+      <div><span class="n">5</span><span><b>Check the safety post.</b> The chain-snatching report stays labelled "unverified" until others confirm.</span></div>
+    </div>
+    <div class="stack"><div><b>Planned build:</b> Flutter, Firebase with geohash queries, Cloud Functions for fan-out and moderation, and push notifications by area.</div>
+      <button class="btn ghost sm" id="reset" style="align-self:flex-start">Reset sample data</button></div>
+  </aside>
+</div>
+
+<script>
+/* ---- shared prototype kit ---- */
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+function dNum(s){const [y,m,d]=s.split("-").map(Number);return Date.UTC(y,m-1,d)/864e5;}
+function addDays(s,n){return new Date((dNum(s)+n)*864e5).toISOString().slice(0,10);}
+function addMonths(s,n){const [y,m,d]=s.split("-").map(Number);return new Date(Date.UTC(y,m-1+n,d)).toISOString().slice(0,10);}
+function dLabel(s){const [y,m,d]=s.split("-").map(Number);return d+" "+MON[m-1];}
+function dLabelY(s){const [y,m,d]=s.split("-").map(Number);return d+" "+MON[m-1]+" "+y;}
+function dow(s){return DOW[new Date(dNum(s)*864e5).getUTCDay()];}
+function t12(t){let [h,m]=t.split(":").map(Number);const ap=h>=12?"PM":"AM";h=h%12||12;return h+(m?":"+String(m).padStart(2,"0"):"")+" "+ap;}
+const inr = n => "₹" + Math.round(Math.abs(n)).toLocaleString("en-IN");
+function daysBetween(a,b){return dNum(b)-dNum(a);}
+const IC = {
+  x:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
+  bell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>',
+  info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>',
+  camera:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-3h6l2 3h3v13H4z"/><circle cx="12" cy="13" r="4"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>',
+  chev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>',
+  trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>'
+};
+const Kit = {
+  store:null, S:null, seed:null, views:{}, actions:{}, afterRender:[],
+  init(opts){
+    Object.assign(this, opts);
+    try { this.S = JSON.parse(localStorage.getItem(this.store)) || this.seed(); } catch(_) { this.S = this.seed(); }
+    document.addEventListener("click", e => this.onClick(e));
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+    const r = $("#reset"); if (r) r.addEventListener("click", () => { this.S = this.seed(); closeSheet(); this.render(); toast("Sample data restored."); });
+    this.render();
+  },
+  save(){ try { localStorage.setItem(this.store, JSON.stringify(this.S, (k,v) => k.startsWith("_") ? undefined : v)); } catch(_){} },
+  render(keep){
+    const S = this.S, sc = $("#screen"), top = sc.scrollTop;
+    sc.innerHTML = this.views[S.tab]();
+    if (keep) sc.scrollTop = top;
+    $$(".tab").forEach(t => t.removeAttribute("aria-current"));
+    const cur = $(`.tab[data-tab="${S.tab}"]`); if (cur) cur.setAttribute("aria-current","page");
+    this.afterRender.forEach(f => f(S));
+    this.save();
+  },
+  onClick(e){
+    const tab = e.target.closest(".tab");
+    if (tab){ this.S.tab = tab.dataset.tab; this.render(); $("#screen").scrollTop = 0; return; }
+    const a = e.target.closest("[data-action]"); if (!a) return;
+    const act = a.dataset.action;
+    if (act === "close-bg" && e.target !== a) return;
+    if (act === "close" || act === "close-bg") { closeSheet(); return; }
+    const fn = this.actions[act]; if (fn) fn(a, e);
+  }
+};
+function bindSearch(id, key){
+  const q = document.getElementById(id); if (!q) return;
+  q.addEventListener("input", () => { Kit.S[key] = q.value; const pos = q.selectionStart; Kit.render(true); const n = document.getElementById(id); n.focus(); n.setSelectionRange(pos,pos); });
+}
+let _tt;
+function toast(m){ const t = $("#toast"); t.textContent = m; t.hidden = false; clearTimeout(_tt); _tt = setTimeout(() => t.hidden = true, 3000); }
+function openSheet(title, body, full){
+  $("#sheet-root").innerHTML = `<div class="sheet-wrap" data-action="close-bg"><div class="sheet ${full?"full":""}" role="dialog" aria-modal="true" aria-label="${esc(title.replace(/<[^>]+>/g,""))}"><div class="grab"></div><div class="sheet-h"><h3>${title}</h3><button class="x" data-action="close" aria-label="Close">${IC.x}</button></div>${body}</div></div>`;
+}
+function closeSheet(){ const r = $("#sheet-root"); if (r) r.innerHTML = ""; }
+function pickGroup(root, onPick){
+  root.addEventListener("click", e => { const b = e.target.closest("button[data-v]"); if (!b || b.disabled) return;
+    const multi = root.dataset.multi === "1";
+    if (multi) b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+    else root.querySelectorAll("button[data-v]").forEach(x => x.setAttribute("aria-pressed", x === b));
+    onPick && onPick(b.dataset.v, b);
+  });
+}
+function picked(root){ return [...root.querySelectorAll('button[aria-pressed="true"]')].map(b => b.dataset.v); }
+function copyText(el, msg){
+  const sel = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  try { navigator.clipboard.writeText(el.textContent).then(() => toast(msg), () => { sel(); toast("Selected. Copy it from here."); }); } catch(_) { sel(); toast("Selected. Copy it from here."); }
+}
+
+const NOWM = 17*60; // 5:00 PM today
+const TYPES = {alert:["Alert","--t-alert"], lost:["Lost","--t-lost"], found:["Found","--t-found"], help:["Help needed","--t-help"], notice:["Notice","--t-notice"]};
+const ago = m => { const d = NOWM - m; if (d < 1) return "just now"; if (d < 60) return d+" min ago"; if (d < 1440) return Math.floor(d/60)+" h ago"; return Math.floor(d/1440)+" d ago"; };
+function seed(){
+  return { tab:"feed", type:"all", radius:1, notifRead:false,
+    posts:[
+      {id:1, type:"alert", title:"No power on Mayur Colony lanes 3–7", body:"Went off at 3:40 PM. MSEDCL helpline says a cable fault; no time given yet.", by:"Neighbour", km:0.4, x:212, y:158, at:NOWM-80, yes:4, no:1, expires:"10 PM", verified:false, cat:"Power"},
+      {id:2, type:"lost", title:"Lost dog: Bruno, brown indie, red collar", body:"Very friendly but scared of bikes. Answers to Bruno. Last seen near Karve Road, opposite Mrutyunjay Temple.", by:"Neighbour", km:0.6, x:132, y:98, at:NOWM-130, yes:0, no:0, sightings:[{t:"Near Karishma Society gate",at:NOWM-95,x:156,y:120},{t:"Running towards Dahanukar Colony",at:NOWM-60,x:180,y:146}], cat:"Pet", reward:"Reward offered"},
+      {id:3, type:"alert", title:"Water supply cut tomorrow, 6 AM to 4 PM", body:"PMC notice for pipeline work. Parts of Kothrud, Karve Nagar and Warje affected. Store water tonight.", by:"Kothrud Residents' Forum", km:0.9, x:260, y:74, at:NOWM-300, yes:24, no:0, expires:"Tomorrow 4 PM", verified:true, cat:"Water", official:true},
+      {id:4, type:"alert", title:"Tree fallen, lane blocked near Ideal Colony", body:"Big gulmohar branch across the lane. Two-wheelers can pass on the left, cars can't.", by:"Neighbour", km:0.8, x:92, y:206, at:NOWM-40, yes:8, no:0, expires:"9 PM", verified:true, cat:"Road"},
+      {id:5, type:"found", title:"Found: black wallet near Dahanukar bus stop", body:"No cash inside, has some cards. Describe it (brand, what's inside) to claim.", by:"Neighbour", km:0.5, x:188, y:190, at:NOWM-210, yes:0, no:0, cat:"Item"},
+      {id:6, type:"alert", title:"Chain snatching reported near Paud Road signal", body:"A woman's chain was snatched by two men on a black scooter around 1 PM, according to a shopkeeper.", by:"Neighbour", km:1.0, x:300, y:190, at:NOWM-230, yes:1, no:0, expires:"Tomorrow", verified:false, cat:"Safety", safety:true},
+      {id:7, type:"help", title:"Looking for a tutor for Class 8 Marathi", body:"Two evenings a week, near Bhelke Nagar. Please suggest someone you know.", by:"Neighbour", km:0.7, x:70, y:130, at:NOWM-1500, yes:0, no:0, cat:"Ask"},
+      {id:8, type:"notice", title:"Blood donation camp this Sunday", body:"Community hall, Mayur Colony, 9 AM to 1 PM, with a hospital blood bank team. Bring ID.", by:"Mayur Colony RWA", km:0.3, x:236, y:132, at:NOWM-1700, yes:0, no:0, cat:"Event", official:true},
+      {id:9, type:"found", title:"Found: brown dog with red collar at Kothrud depot", body:"Friendly, hiding under a bench. I've given him water. Is he someone's?", by:"Neighbour", km:1.6, x:34, y:60, at:NOWM-20, yes:0, no:0, cat:"Pet", far:true}
+    ],
+    threads:[{id:1, with:"Bruno's owner", post:2, msgs:[{me:false,t:"Thank you for looking out! Please tell me if you see him."}], unread:true}],
+    notifs:[{t:"2 new sightings of Bruno within 500 m",at:NOWM-60},{t:"Water cut tomorrow: 24 neighbours confirmed",at:NOWM-200},{t:"Tree fallen near Ideal Colony",at:NOWM-40}],
+    areas:[{name:"Home · Kothrud",r:"1 km",on:true},{name:"Office · Hinjewadi Phase 1",r:"2 km",on:true},{name:"Parents · Aundh",r:"1 km",on:false}],
+    prefs:{alert:true,lost:true,found:true,help:false,notice:true,safety:true},
+    myConf:{}, points:42, nextId:100 };
+}
+const S = () => Kit.S;
+const Pst = id => S().posts.find(p=>p.id===id);
+const inRadius = p => p.km <= S().radius;
+function status(p){ if(p.type!=="alert") return ""; if(p.official) return `<span class="ver">${IC.check}Verified source</span>`; if(p.yes>=5 && p.yes>p.no*2) return `<span class="ver">${IC.check}${p.yes} confirm</span>`; return `<span class="unv">Unverified · ${p.yes} confirm</span>`; }
+function card(p){
+  const [lbl,col] = TYPES[p.type];
+  const mine = S().myConf[p.id];
+  return `<article class="post" style="--tc:var(${col})">
+    <div class="post-top"><span class="type"><i></i>${lbl} · ${esc(p.cat)}</span><span class="meta num">${p.km} km · ${ago(p.at)}</span></div>
+    <button data-action="open" data-id="${p.id}" style="all:unset;cursor:pointer;display:flex;flex-direction:column;gap:6px"><h3>${esc(p.title)}</h3><span class="meta">${esc(p.body.length>96?p.body.slice(0,94)+"…":p.body)}</span></button>
+    ${p.type==="lost"?`<div class="meta"><b style="color:var(--ink)">${p.sightings.length} sightings</b>, latest ${ago(p.sightings[p.sightings.length-1].at)}${p.reward?" · "+esc(p.reward):""}</div>`:""}
+    ${p.type==="alert"?`<div class="conf"><span class="who">${status(p)} ${p.expires?`· ends ${esc(p.expires)}`:""}</span><span class="acts">${mine?`<span class="chip">You said: ${mine==="yes"?"still on":"over"}</span>`:`<button class="btn ghost sm" data-action="conf" data-v="no" data-id="${p.id}">Over</button><button class="btn sm" data-action="conf" data-v="yes" data-id="${p.id}">Still on</button>`}</span></div>`:
+      `<div class="conf"><span class="who">Posted by <b>${esc(p.by)}</b></span><span class="acts"><button class="btn ghost sm" data-action="open" data-id="${p.id}">${p.type==="lost"?"I saw this":p.type==="found"?"It's mine":"Reply"}</button></span></div>`}
+    ${p.safety?`<div class="note" style="background:var(--warn-soft)">${IC.info}<span>Reported by one person. In an emergency, call 112. Galli shows safety reports without names or photos of suspects.</span></div>`:""}
+  </article>`;
+}
+function viewFeed(){
+  const list = S().posts.filter(p=>inRadius(p) && (S().type==="all"||p.type===S().type)).sort((a,b)=>b.at-a.at);
+  const urgent = list.filter(p=>p.type==="alert" && NOWM-p.at<120).length;
+  return `<h1 class="h-title">${urgent?`${urgent} live alert${urgent>1?"s":""} near you`:"All quiet near you"}</h1>
+  <div class="radius"><span class="lbl">Radius</span><div class="seg" role="group" aria-label="Radius">${[0.5,1,2].map(r=>`<button data-action="radius" data-v="${r}" aria-pressed="${S().radius===r}">${r<1?"500 m":r+" km"}</button>`).join("")}</div></div>
+  <div class="filters" role="group" aria-label="Type">${[["all","All"],...Object.entries(TYPES).map(([k,v])=>[k,v[0]])].map(([k,v])=>`<button data-action="type" data-v="${k}" aria-pressed="${S().type===k}">${v}</button>`).join("")}</div>
+  ${list.length?list.map(card).join(""):`<div class="card empty">Nothing here within ${S().radius<1?"500 m":S().radius+" km"}. Widen the radius or check back later.</div>`}`;
+}
+function mapSvg(highlight){
+  const R = S().radius, rpx = R*110;
+  let s = `<svg viewBox="0 0 340 260" role="img" aria-label="Map of posts near you">`;
+  s += `<rect width="340" height="260" fill="var(--map-bg)"/>`;
+  const blocks = [[14,14,70,50],[100,10,80,40],[196,12,60,36],[272,14,56,44],[14,82,48,56],[78,70,60,40],[152,62,90,34],[258,72,70,40],[14,152,60,40],[92,124,70,50],[178,110,50,44],[244,128,84,42],[14,210,90,40],[118,188,64,58],[198,172,40,72],[254,186,74,60]];
+  blocks.forEach(([x,y,w,h],i)=> s += `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="4" fill="${i===6||i===13?"var(--map-green)":"var(--map-block)"}"/>`);
+  s += `<path d="M0 60 L340 54 M0 118 L340 104 M0 176 L340 172 M88 0 L96 260 M150 0 L140 260 M246 0 L240 260" stroke="var(--map-road)" stroke-width="9" fill="none"/>`;
+  s += `<path d="M0 240 C120 214 200 250 340 220" stroke="var(--map-road)" stroke-width="13" fill="none"/><text x="250" y="246" font-size="9" fill="var(--ink-2)" font-family="var(--body)">Paud Road</text><text x="100" y="50" font-size="9" fill="var(--ink-2)" font-family="var(--body)">Karve Road</text>`;
+  s += `<circle cx="190" cy="140" r="${rpx}" fill="var(--accent)" fill-opacity=".07" stroke="var(--accent)" stroke-dasharray="4 4"/>`;
+  const b = Pst(2);
+  if (b && (highlight===2 || !highlight)) { const pts=[[b.x,b.y],...b.sightings.map(s=>[s.x,s.y])]; s += `<polyline points="${pts.map(p=>p.join(",")).join(" ")}" fill="none" stroke="var(--t-lost)" stroke-width="2" stroke-dasharray="3 3"/>`; b.sightings.forEach(si=> s += `<circle cx="${si.x}" cy="${si.y}" r="4" fill="var(--surface)" stroke="var(--t-lost)" stroke-width="2"/>`); }
+  S().posts.filter(p=>p.km<=Math.max(R,highlight?2:R)).forEach(p=>{ const col=TYPES[p.type][1]; s += `<g class="pin" tabindex="0" role="button" aria-label="${esc(p.title)}" data-action="open" data-id="${p.id}"><circle class="ring" cx="${p.x}" cy="${p.y}" r="${highlight===p.id?13:10}" fill="var(${col})" stroke="var(--surface)" stroke-width="2.5"/><text x="${p.x}" y="${p.y+4}" text-anchor="middle" font-size="11" font-weight="800" fill="#fff" font-family="var(--body)" style="pointer-events:none">${TYPES[p.type][0][0]}</text></g>`; });
+  s += `<circle cx="190" cy="140" r="7" fill="#2361D0" stroke="#fff" stroke-width="3"/><text x="190" y="162" text-anchor="middle" font-size="10" font-weight="700" fill="var(--ink)" font-family="var(--body)">You</text>`;
+  return s + `</svg>`;
+}
+function viewMap(){
+  const n = S().posts.filter(inRadius).length;
+  return `<h1 class="h-title">${n} posts on the map</h1>
+  <div class="radius"><span class="lbl">Radius</span><div class="seg" role="group" aria-label="Radius">${[0.5,1,2].map(r=>`<button data-action="radius" data-v="${r}" aria-pressed="${S().radius===r}">${r<1?"500 m":r+" km"}</button>`).join("")}</div></div>
+  <div class="map">${mapSvg()}</div>
+  <div class="legend">${Object.entries(TYPES).map(([k,v])=>`<span><i style="background:var(${v[1]})"></i>${v[0]}</span>`).join("")}<span><i style="background:#2361D0"></i>You</span></div>
+  <p class="hint">Pins are placed near, not on, the reported spot. Exact home addresses are never shown. The dotted purple line is Bruno's trail of sightings.</p>`;
+}
+function viewLost(){
+  const lost = S().posts.filter(p=>p.type==="lost"), found = S().posts.filter(p=>p.type==="found");
+  const mini = p => `<button class="post" data-action="open" data-id="${p.id}" style="--tc:var(${TYPES[p.type][1]})"><span class="type"><i></i>${TYPES[p.type][0]} · ${esc(p.cat)}</span><div class="photo" style="${p.cat==="Item"?"background:linear-gradient(135deg,#3C3F46,#1E2025)":""}">${p.cat==="Pet"?"Photo":"Photo"}</div><h3>${esc(p.title.replace(/^(Lost|Found)( dog)?: /,""))}</h3><span class="meta">${p.km} km · ${ago(p.at)}</span></button>`;
+  const hasMatch = Pst(2) && Pst(9);
+  return `<h1 class="h-title">Lost &amp; found</h1>
+  ${hasMatch?`<section class="match"><b>Possible match</b><span class="hint" style="color:var(--ink)">A brown dog with a red collar was found at Kothrud depot 20 min ago, 1.6 km away. That's just outside your radius, on Bruno's direction of travel.</span><div style="display:flex;gap:8px"><button class="btn sm" data-action="open" data-id="9">See the found post</button><button class="btn ghost sm" data-action="tell-owner">Tell Bruno's owner</button></div></section>`:""}
+  <div class="section-h"><h2>Lost</h2><span>${lost.length}</span></div><div class="lf">${lost.map(mini).join("")}</div>
+  <div class="section-h"><h2>Found</h2><span>${found.length}</span></div><div class="lf">${found.map(mini).join("")}</div>
+  <p class="hint">Lost and found posts stay up for 14 days and reach 2 km, wider than alerts, because pets and people travel.</p>`;
+}
+function viewInbox(){
+  return `<h1 class="h-title">Inbox</h1>
+  <div class="card list">${S().threads.map(t=>{const p=Pst(t.post), last=t.msgs[t.msgs.length-1];return `<button class="row" data-action="thread" data-id="${t.id}"><span class="av" style="background:var(${TYPES[p?p.type:"notice"][1]})">${esc(t.with[0])}</span><div class="row-main"><div class="row-title">${esc(t.with)}</div><div class="row-sub" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;${t.unread?"color:var(--ink);font-weight:700":""}">${last.me?"You: ":""}${esc(last.t)}</div></div>${t.unread?`<b style="color:var(--accent)">●</b>`:""}</button>`;}).join("")}</div>
+  <div class="note">${IC.shield}<span>Replies go through Galli. Neither side sees the other's number unless they choose to share it.</span></div>`;
+}
+function viewYou(){
+  return `<div style="display:flex;gap:14px;align-items:center"><span class="av" style="background:#F2551D;width:56px;height:56px;font-size:22px">R</span><div><h1 class="h-title" style="margin:0">Rhea</h1><div class="row-sub">Kothrud · verified resident · <b class="num">${S().points}</b> helpful points</div></div></div>
+  <div class="section-h"><h2>My areas</h2><button class="btn ghost sm" data-action="add-area">Add</button></div>
+  <div class="card list">${S().areas.map((a,i)=>`<label class="opt"><span><b>${esc(a.name)}</b><br><span class="row-sub">Alerts within ${a.r}</span></span><input type="checkbox" class="switch" data-area="${i}" ${a.on?"checked":""}></label>`).join("")}</div>
+  <div class="section-h"><h2>Notify me about</h2></div>
+  <div class="card list">${[["alert","Alerts","Power, water, roads"],["safety","Safety reports","Only once 3 neighbours confirm"],["lost","Lost pets and items","Within 2 km"],["found","Found items",""],["notice","Notices","From RWAs and verified groups"],["help","Help requests","Tutors, lifts, recommendations"]].map(([k,t,s])=>`<label class="opt"><span><b>${t}</b>${s?`<br><span class="row-sub">${s}</span>`:""}</span><input type="checkbox" class="switch" data-pref="${k}" ${S().prefs[k]?"checked":""}></label>`).join("")}</div>
+  <div class="card"><label class="opt"><span><b>Quiet hours</b><br><span class="row-sub">10 PM to 7 AM, except urgent confirmed alerts</span></span><input type="checkbox" class="switch" checked></label></div>`;
+}
+
+/* ---------- sheets ---------- */
+function sheetPost(id){
+  const p = Pst(id), [lbl,col] = TYPES[p.type];
+  let extra = "";
+  if (p.type==="lost") extra = `<div class="map">${mapSvg(2)}</div><div class="field"><span class="lbl">Sightings</span><div class="tl card pad">${[...p.sightings].reverse().map(s=>`<div><time>${ago(s.at)}</time><span>${esc(s.t)}</span></div>`).join("")}<div><time>${ago(p.at)}</time><span>Last seen by owner: ${esc(p.body.split("Last seen ")[1]||"")}</span></div></div></div>
+    <div class="field"><label class="lbl" for="sg">Where did you see Bruno?</label><input id="sg" placeholder="e.g. Outside Kothrud depot, heading west" value="Near the Paud Road petrol pump"><button class="btn block" style="background:var(--t-lost);color:#fff" data-action="sighting" data-id="${p.id}">Add sighting</button></div>`;
+  if (p.type==="found") extra = `<div class="photo" style="${p.cat==="Item"?"background:linear-gradient(135deg,#3C3F46,#1E2025)":""}">Photo</div><div class="field"><label class="lbl" for="claim">Describe it to prove it's yours</label><textarea id="claim" placeholder="What's inside, brand, any marks">Black leather, Woodland logo, my PAN card and a Metro card inside</textarea><button class="btn block" data-action="claim" data-id="${p.id}">Send to the finder</button><p class="hint">The finder decides. Never pay anyone to get a lost item back.</p></div>`;
+  if (p.type==="alert") extra = `<div class="field"><span class="lbl">Updates</span><div class="tl card pad"><div><time>${ago(p.at)}</time><span>Posted${p.official?" by "+esc(p.by):""}</span></div><div><time>${ago(Math.min(NOWM-5,p.at+30))}</time><span>${p.yes} neighbour${p.yes===1?"":"s"} confirmed, ${p.no} said it's over</span></div></div></div>${p.expires?`<p class="hint">This alert disappears at ${esc(p.expires)} unless someone updates it.</p>`:""}`;
+  if (p.type==="help"||p.type==="notice") extra = `<div class="field"><label class="lbl" for="rep">Reply</label><textarea id="rep">${p.type==="help"?"My daughter's tutor, Mrs. Kulkarni, teaches Marathi near Bhelke Nagar. Happy to share her number.":"Will be there!"}</textarea><button class="btn block" data-action="reply" data-id="${p.id}">Reply privately</button></div>`;
+  openSheet(`<span class="type" style="--tc:var(${col})"><i></i>${lbl}</span>`, `
+    <h3 style="font-family:var(--display);font-weight:800;font-size:22px;line-height:1.2;margin:0">${esc(p.title)}</h3>
+    <div class="meta num">${p.km} km away · ${ago(p.at)} · by ${esc(p.by)}${p.official?` <span class="ver">${IC.check}Verified group</span>`:""}</div>
+    <p style="margin:0">${esc(p.body)}</p>
+    ${extra}
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn ghost block" data-action="share" data-id="${p.id}">Share to WhatsApp</button><button class="btn ghost block" data-action="report" data-id="${p.id}">Report</button></div>`, true);
+}
+function sheetNew(){
+  openSheet("New post", `
+    <div class="field"><span class="lbl">What is it?</span><div class="pick" id="n-type">${Object.entries(TYPES).map(([k,v],i)=>`<button type="button" data-v="${k}" aria-pressed="${k==="found"}">${v[0]}<small>${({alert:"Power, water, roads, safety",lost:"Pet, keys, phone, ID",found:"Something you picked up",help:"Ask neighbours",notice:"Events, meetings"})[k]}</small></button>`).join("")}</div></div>
+    <div class="field"><label class="lbl" for="n-title">Headline</label><input id="n-title" value="Found: blue school bag near Vanaz metro"></div>
+    <div class="field"><label class="lbl" for="n-body">Details</label><textarea id="n-body">Has Class 5 books inside. Keeping it safe at the society office.</textarea></div>
+    <label class="file-lbl">${IC.camera}<span>Add a photo (faces and number plates are blurred)</span><input type="file" accept="image/*"></label>
+    <div class="field"><span class="lbl">Where</span><div class="summary"><div><span>Near</span><b>Vanaz metro station</b></div><div><span>Shown as</span><b>"About 0.5 km from you"</b></div></div></div>
+    <div class="field" id="n-exp-f" hidden><span class="lbl">Remove after</span><div class="pick" id="n-exp">${["2 hours","6 hours","24 hours"].map((x,i)=>`<button type="button" data-v="${x}" aria-pressed="${i===1}">${x}</button>`).join("")}</div></div>
+    <div class="err" id="n-err" role="alert"></div>
+    <button class="btn accent block" data-action="publish">Post to neighbours within 1 km</button>`, true);
+  pickGroup($("#n-type"), v => { $("#n-exp-f").hidden = v!=="alert"; }); pickGroup($("#n-exp"));
+}
+function sheetThread(id){
+  const t = S().threads.find(x=>x.id===id); t.unread=false;
+  openSheet(esc(t.with), `<div class="note">${IC.shield}<span>Your number stays hidden. Don't share OTPs or pay anyone to get something back.</span></div>
+  <div style="display:flex;flex-direction:column;gap:8px" id="chat">${t.msgs.map(m=>`<div class="bubble ${m.me?"me":"them"}">${esc(m.t)}</div>`).join("")}</div>
+  <form class="add-line" id="compose" style="display:flex;gap:8px"><input id="msg" style="flex:1;min-width:0;background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:11px 12px" placeholder="Message" aria-label="Message"><button class="btn" type="submit">Send</button></form>`, true);
+  $("#compose").addEventListener("submit", e=>{ e.preventDefault(); const v=$("#msg").value.trim(); if(!v) return; t.msgs.push({me:true,t:v}); $("#chat").insertAdjacentHTML("beforeend",`<div class="bubble me">${esc(v)}</div>`); $("#msg").value=""; Kit.save(); });
+  Kit.render(true);
+}
+Object.assign(Kit.actions, {
+  open: a => sheetPost(+a.dataset.id),
+  new: () => sheetNew(),
+  radius: a => { S().radius=+a.dataset.v; Kit.render(true); },
+  type: a => { S().type=a.dataset.v; Kit.render(true); },
+  conf: a => { const p=Pst(+a.dataset.id), v=a.dataset.v; S().myConf[p.id]=v; p[v]++; S().points+=1; Kit.render(true);
+    toast(v==="yes" ? (p.yes>=5 && !p.official ? `Thanks. ${p.yes} neighbours confirm, so it's now shown as confirmed.` : "Thanks. Your confirmation helps others trust this.") : "Thanks. If most people say it's over, the alert closes early."); },
+  sighting: a => { const p=Pst(+a.dataset.id), t=$("#sg").value.trim(); if(!t) return; p.sightings.push({t, at:NOWM, x:120, y:228}); S().points+=3; closeSheet(); Kit.render(true); toast("Sighting added. Bruno's owner has been notified with the spot on the map."); },
+  claim: a => { const p=Pst(+a.dataset.id); S().threads.unshift({id:S().nextId++, with:"Finder of the wallet", post:p.id, msgs:[{me:true,t:$("#claim").value.trim()}], unread:false}); closeSheet(); S().tab="inbox"; Kit.render(); toast("Sent to the finder. They'll reply here."); },
+  reply: a => { const p=Pst(+a.dataset.id); S().threads.unshift({id:S().nextId++, with:p.by==="Neighbour"?"Neighbour (help post)":p.by, post:p.id, msgs:[{me:true,t:$("#rep").value.trim()}], unread:false}); closeSheet(); toast("Reply sent privately."); Kit.render(true); },
+  publish: () => { const type=picked($("#n-type"))[0], title=$("#n-title").value.trim(); if(title.length<8){$("#n-err").textContent="Write a short headline people can act on, like \"Found: blue school bag near Vanaz metro\".";return;}
+    S().posts.push({id:S().nextId++, type, title, body:$("#n-body").value.trim(), by:"You", km:0.5, x:150, y:170, at:NOWM, yes:type==="alert"?1:0, no:0, expires:type==="alert"?picked($("#n-exp"))[0].replace(" hours"," h"):null, verified:false, cat:type==="found"||type==="lost"?"Item":"Local", sightings:[]}); closeSheet(); S().tab="feed"; S().type="all"; Kit.render(); toast("Posted. 1,240 neighbours within 1 km will see it."); },
+  share: a => { const p=Pst(+a.dataset.id); navigator.clipboard && navigator.clipboard.writeText(`${p.title}\n${p.body}\nSee updates on Galli`).catch(()=>{}); toast("Prototype: opens WhatsApp with the post and a link. Text copied."); },
+  report: a => { openSheet("Report this post", `<div class="pick" id="rp">${["False or rumour","Shares someone's private details","Hateful or targets a community","Spam or selling","Something else"].map((x,i)=>`<button type="button" data-v="${x}" aria-pressed="false">${x}</button>`).join("")}</div><div class="err" id="rp-err"></div><button class="btn block" data-action="send-report" data-id="${a.dataset.id}">Report</button><p class="hint">Posts with several reports are hidden until a moderator checks them.</p>`); pickGroup($("#rp")); },
+  "send-report": a => { if(!picked($("#rp")).length){$("#rp-err").textContent="Choose a reason.";return;} closeSheet(); toast("Reported. A moderator will review it within a few hours."); },
+  "tell-owner": () => { const t=S().threads.find(x=>x.post===2); t.msgs.push({me:true,t:"A brown dog with a red collar was just found at Kothrud depot. Could it be Bruno?"}); S().points+=5; Kit.render(true); toast("Sent to Bruno's owner, with a link to the found post."); },
+  thread: a => sheetThread(+a.dataset.id),
+  notifs: () => { S().notifRead=true; openSheet("Notifications", `<div class="card list">${S().notifs.map(n=>`<div class="row"><div class="row-main"><div class="row-title" style="font-weight:600">${esc(n.t)}</div><div class="row-sub">${ago(n.at)}</div></div></div>`).join("")}</div>`); Kit.render(true); },
+  "add-area": () => toast("Prototype: drop a pin (home, office, parents' place) and choose a radius.")
+});
+document.addEventListener("change", e => { const d=e.target.dataset||{}; if(d.area!==undefined){ S().areas[+d.area].on=e.target.checked; Kit.save(); } if(d.pref){ S().prefs[d.pref]=e.target.checked; Kit.save(); toast(e.target.checked?"You'll be notified.":"Muted."); } });
+Kit.afterRender.push(s => {
+  $("#badge").hidden = s.notifRead; $("#badge").textContent = s.notifs.length;
+  const u = s.threads.filter(t=>t.unread).length; $("#inbox-dot").hidden=!u; $("#inbox-dot").textContent=u;
+  $("#area-lbl").textContent = `Kothrud, Pune · within ${s.radius<1?"500 m":s.radius+" km"}`;
+  $("#fab").hidden = !["feed","map","lost"].includes(s.tab);
+});
+Kit.views = {feed:viewFeed, map:viewMap, lost:viewLost, inbox:viewInbox, you:viewYou};
+Kit.init({store:"galli-v1", seed});
+</script>
+
+</body></html>

@@ -25,24 +25,24 @@ const CASES = [
 ];
 CASES.forEach((c, i) => c.num = '0' + (i + 1));
 
-// Vibe-coded prototypes built with Claude. href: the claude.ai page (visitors can open it only once it is shared publicly).
+// Vibe-coded prototypes built with Claude. href: the prototype's own copy under prototypes/.
 const V = (title, type, desc, href) => ({ title, type, desc, href });
 const VIBE = [
   V('Latch Vault','Mobile app','Document management app that keeps important documents in one vault. Built in Flutter for Android.',null),
-  V('Galli Neighbourhood Alerts','Mobile app','Alerts and lost-and-found posts from neighbours within a kilometre. Neighbours confirm alerts, and lost-pet sightings are pinned on a map.','https://claude.ai/artifact/7KQrskHpgDQtsYxmvsEPoG'),
-  V('Khayal Parent Care','Mobile app','Medicine reminders for elderly parents. Family is alerted when a dose is missed, with refill tracking and a big-button parent mode in Hindi.','https://claude.ai/artifact/Bkzh5iff1TDnzu9n937r9d'),
-  V('Rasid Warranty Vault','Mobile app','Keeps every bill and warranty in one place, warns before a warranty ends and prepares a repair claim in one tap.','https://claude.ai/artifact/HwEyrzLJxQ6TBHC2ERJHdU'),
-  V('Tayyari Study Buddy','Mobile app','Turns your notes into practice questions in Hindi or English, and schedules revision just before you would forget.','https://claude.ai/artifact/Ainq3w475QRsTS6Tdnpkrw'),
-  V('Valence','Mobile app','Science study app with lessons, solved examples, notes and mock tests for Physics, Chemistry, Biology, Maths and Computer Science.','https://claude.ai/artifact/Kq5ipJXRW1Hr5Loez6iYjA'),
-  V('Utsav Wedding Planner','Mobile app','Wedding planning app for organising the big day.','https://claude.ai/artifact/APWuwqwGjBSKcf2eYKZuwa'),
-  V('Hariyali Plant Care','Mobile app','Plant care app for looking after your home plants.','https://claude.ai/artifact/79cKw5XdRPqHdogRi42uEB'),
-  V('Jodi Habit Partners','Mobile app','Habit tracker you share with a partner, so you keep each other on track.','https://claude.ai/artifact/CpCY893nLRXfq95E9okMav'),
-  V('Bahi Shop Ledger','Mobile app','A digital bahi-khata: a simple ledger for small shopkeepers.','https://claude.ai/artifact/SqtdHDQPFL3MRp8zXkJzHT'),
-  V('Lenden Skill Swap','Mobile app','Swap skills with other people: teach what you know, learn what you don\'t.','https://claude.ai/artifact/DzijRvkDxjEVGXGjAWmKo2'),
-  V('Hisaab Flat','Mobile app','Shared expense tracker for flatmates.','https://claude.ai/artifact/WZhb3ya8tRYKT7vKCxJQ4y'),
-  V('Ayura Health Platform','Healthcare platform','One consent-first health record connecting patients, doctors, hospitals, insurers, pharmacies and medical reps.','https://claude.ai/artifact/LyjJ8wZn9xvmDhegNkrdk4'),
-  V('Healthcare Digital Platform','Healthcare platform','Interactive prototype with a patient app, doctor workspace, hospital admin, insurance claims desk, pharmacy console and medical-rep app.','https://claude.ai/artifact/Sxi6tZnAqrWqUwTxCwEcDr'),
-  V('Raja Rani Chor Sipahi','Game','The classic Indian party game of hidden roles and guessing, made playable on screen.','https://claude.ai/artifact/MmiAEetuR5HZTvWQbek5hK')
+  V('Galli Neighbourhood Alerts','Mobile app','Alerts and lost-and-found posts from neighbours within a kilometre. Neighbours confirm alerts, and lost-pet sightings are pinned on a map.','prototypes/galli/'),
+  V('Khayal Parent Care','Mobile app','Medicine reminders for elderly parents. Family is alerted when a dose is missed, with refill tracking and a big-button parent mode in Hindi.','prototypes/khayal/'),
+  V('Rasid Warranty Vault','Mobile app','Keeps every bill and warranty in one place, warns before a warranty ends and prepares a repair claim in one tap.','prototypes/rasid/'),
+  V('Tayyari Study Buddy','Mobile app','Turns your notes into practice questions in Hindi or English, and schedules revision just before you would forget.','prototypes/tayyari/'),
+  V('Valence','Mobile app','Science study app with lessons, solved examples, notes and mock tests for Physics, Chemistry, Biology, Maths and Computer Science.','prototypes/valence/'),
+  V('Utsav Wedding Planner','Mobile app','One place for the whole family to plan a wedding: guests and RSVPs by event, tasks shared among relatives, the budget, and every vendor\'s balance and due date.','prototypes/utsav/'),
+  V('Hariyali Plant Care','Mobile app','Plant care that checks the weather and the soil: who needs water today, skipping balcony plants when rain is coming, and plant problems identified from a photo.','prototypes/hariyali/'),
+  V('Jodi Habit Partners','Mobile app','A habit tracker built for two. Partners see each other\'s check-ins, cheer or nudge, and share a light weekly pact.','prototypes/jodi/'),
+  V('Bahi Shop Ledger','Mobile app','An udhaar register for kirana shops, Hindi first. Say "Ramesh 340 udhaar" to record it, see who to collect from first, and send WhatsApp reminders with a UPI ID.','prototypes/bahi/'),
+  V('Lenden Skill Swap','Mobile app','Neighbours swap lessons instead of paying for them: every hour you teach earns a time credit, and every hour you learn spends one.','prototypes/lenden/'),
+  V('Hisaab Flat','Mobile app','Rent, bills and chores for flatmates sharing a flat.','prototypes/hisaab/'),
+  V('Ayura Health Platform','Healthcare platform','One consent-first health record connecting patients, doctors, hospitals, insurers, pharmacies and medical reps.','prototypes/ayura/'),
+  V('Healthcare Digital Platform','Healthcare platform','Interactive prototype with a patient app, doctor workspace, hospital admin, insurance claims desk, pharmacy console and medical-rep app.','prototypes/healthcare-digital-platform/Main.dc.html'),
+  V('Raja Rani Chor Sipahi','Game','The classic Indian chit game of Raja, Rani, Sipahi and Chor, played against computer players over several rounds.','prototypes/raja-rani/')
 ];
 const VTYPES = ['All','Mobile app','Healthcare platform','Game'];
 const VLABEL = { 'All':'All', 'Mobile app':'Mobile apps', 'Healthcare platform':'Healthcare platforms', 'Game':'Games' };

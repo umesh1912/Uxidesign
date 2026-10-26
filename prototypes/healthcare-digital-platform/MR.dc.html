@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ayura — Medical representative app</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:#0E5C52}a:hover{color:#0A463F}
+button{font:inherit}
+.shell{display:grid;grid-template-columns:248px minmax(0,1fr);height:100vh;background:#F3F4EF;color:#14201D;font-family:'Figtree',system-ui,sans-serif;font-size:14px;line-height:1.45}
+.side{background:#10231F;color:#E7EEEA;display:flex;flex-direction:column;gap:22px;padding:22px 14px;overflow:auto}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;font-size:20px;color:#fff;padding:0 8px}
+.role{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#9FB8AF;padding:0 10px;font-weight:600}
+.navlist{display:flex;flex-direction:column;gap:2px}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-height:44px;padding:0 12px;border:0;border-radius:8px;background:transparent;color:#C9D7D1;font-weight:500;text-align:left;cursor:pointer;white-space:nowrap}
+.nav:hover{background:#1A332D;color:#fff}
+.nav.on{background:#E2EFEA;color:#10231F;font-weight:700}
+.badge{min-width:22px;height:22px;padding:0 7px;border-radius:11px;background:#F2C48D;color:#3B2207;font-size:12px;font-weight:700;display:inline-grid;place-items:center}
+.sidefoot{margin-top:auto;display:flex;flex-direction:column;gap:6px;padding:14px 10px 0;border-top:1px solid #23413A}
+.me{display:flex;align-items:center;gap:10px;color:#fff;font-weight:600}
+.me .av{background:#5FC3A6;color:#10231F}
+.switch{color:#9FD6C6;font-weight:600;text-decoration:none;min-height:44px;display:flex;align-items:center}
+.switch:hover{color:#fff}
+.main{overflow:auto;min-width:0}
+.top{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:16px;padding:16px 32px;background:rgba(243,244,239,.94);backdrop-filter:blur(8px);border-bottom:1px solid #DFE3DC;flex-wrap:wrap}
+.top h1{margin:0;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:24px;font-weight:700;letter-spacing:-.01em}
+.grow{flex:1}
+.content{padding:28px 32px 56px;display:flex;flex-direction:column;gap:24px;max-width:1240px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:16px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:16px;align-items:start}
+.split{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(300px,1fr);gap:16px;align-items:start}
+.card{background:#fff;border:1px solid #DFE3DC;border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.h2{margin:0;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:18px;font-weight:700;letter-spacing:-.01em}
+.h3{margin:0;font-size:15px;font-weight:700}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:8px;border:1px solid #C3CBC2;background:#fff;color:#14201D;font-weight:600;cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{border-color:#0E5C52;color:#0E5C52}
+.btn.pri{background:#0E5C52;border-color:#0E5C52;color:#fff}
+.btn.pri:hover{background:#0A463F;color:#fff}
+.btn.dark{background:#10231F;border-color:#10231F;color:#fff}
+.btn.danger{color:#8A2121;border-color:#E3B9B5}
+.btn.danger:hover{background:#F8E0DE}
+.btn.ghost{border-color:transparent;background:transparent}
+.btn.sm{padding:0 14px;font-size:13px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid #C3CBC2;background:#fff;font-weight:500;cursor:pointer;color:#14201D;white-space:nowrap}
+.chip:hover{border-color:#10231F}
+.chip.on{background:#10231F;border-color:#10231F;color:#fff}
+.tabs{display:flex;gap:4px;border-bottom:1px solid #DFE3DC;overflow-x:auto}
+.tab{min-height:44px;padding:0 14px;border:0;background:transparent;color:#56625E;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.tab.on{color:#10231F;border-bottom-color:#0E5C52}
+.tag{display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:6px;font-size:12px;font-weight:700;background:#EEF1EC;color:#3A4642;white-space:nowrap}
+.tag.ok{background:#DDEFE7;color:#0B5040}
+.tag.wait{background:#FBEAD7;color:#7A3A0C}
+.tag.bad{background:#F8E0DE;color:#8A2121}
+.tag.info{background:#E1EAF7;color:#1F4479}
+.row{display:flex;align-items:center;gap:12px;min-width:0}
+.wrap{flex-wrap:wrap}
+.between{justify-content:space-between}
+.col{display:flex;flex-direction:column;gap:4px;min-width:0}
+.list{display:flex;flex-direction:column}
+.item{display:flex;align-items:center;gap:14px;padding:14px 0;border-top:1px solid #ECEFE9;min-width:0}
+.list > .item:first-child{border-top:0;padding-top:4px}
+.av{width:40px;height:40px;border-radius:50%;background:#E2EFEA;color:#0E5C52;display:grid;place-items:center;font-weight:700;font-size:14px;flex:none}
+.av.lg{width:56px;height:56px;font-size:18px}
+.muted{color:#56625E}
+.small{font-size:13px}
+.strong{font-weight:700}
+.k{font-size:12px;color:#56625E;text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.big{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.tw{overflow-x:auto}
+.thead,.trow{display:grid;gap:12px;align-items:center;min-width:760px;padding:0 4px}
+.thead{font-size:12px;color:#56625E;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding-bottom:10px;border-bottom:1px solid #DFE3DC}
+.trow{padding-top:12px;padding-bottom:12px;border-bottom:1px solid #ECEFE9;min-height:64px}
+.search{display:flex;align-items:center;gap:8px;flex:1;max-width:420px;min-width:220px;height:44px;padding:0 14px;border:1px solid #D3D9D1;border-radius:10px;background:#fff;color:#56625E}
+.search input{border:0;outline:0;font:inherit;flex:1;background:transparent;min-width:0;color:#14201D}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-size:13px;font-weight:700}
+.input{height:44px;border:1px solid #C3CBC2;border-radius:8px;padding:0 12px;font:inherit;background:#fff;color:#14201D;width:100%}
+.input:focus,.search:focus-within{outline:2px solid #0E5C52;outline-offset:1px}
+textarea.input{height:auto;min-height:96px;padding:10px 12px;resize:vertical}
+.toggle{width:52px;height:30px;border-radius:15px;border:0;background:#B9C2BA;position:relative;cursor:pointer;flex:none}
+.toggle::after{content:'';position:absolute;top:4px;left:4px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .15s}
+.toggle.on{background:#0E5C52}
+.toggle.on::after{left:26px}
+.scrim{position:fixed;inset:0;background:rgba(16,35,31,.5);display:grid;place-items:center;z-index:20;padding:16px}
+.modal{background:#fff;border-radius:16px;padding:24px;width:min(560px,100%);max-height:calc(100vh - 32px);overflow:auto;display:flex;flex-direction:column;gap:16px;box-shadow:0 24px 60px rgba(0,0,0,.25)}
+.banner{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:10px;background:#FBEAD7;color:#4A2306;flex-wrap:wrap}
+.banner.ok{background:#DDEFE7;color:#08392E}
+.banner.info{background:#E1EAF7;color:#152F55}
+.banner.bad{background:#F8E0DE;color:#5E1414}
+.hero{background:#10231F;color:#E7EEEA;border-radius:14px;padding:24px;display:flex;flex-direction:column;gap:16px}
+.bar{height:8px;border-radius:4px;background:#E6EAE4;overflow:hidden}
+.bar > span{display:block;height:100%;background:#0E5C52;border-radius:4px}
+.tl{display:flex;flex-direction:column}
+.tli{display:grid;grid-template-columns:96px 24px minmax(0,1fr);gap:12px}
+.tld{padding-top:16px;font-size:13px;color:#56625E;font-weight:600;text-align:right}
+.tlx{position:relative}
+.tlx::before{content:'';position:absolute;left:11px;top:0;bottom:0;width:2px;background:#DCE2DA}
+.tlx::after{content:'';position:absolute;left:5px;top:20px;width:14px;height:14px;border-radius:50%;background:#0E5C52;border:3px solid #F3F4EF}
+.tlc{margin:6px 0;padding:14px 16px;background:#fff;border:1px solid #DFE3DC;border-radius:12px;display:flex;gap:12px;align-items:flex-start;justify-content:space-between}
+.slot{min-height:44px;border-radius:8px;border:1px solid #C3CBC2;background:#fff;font-weight:600;cursor:pointer;color:#14201D}
+.slot:hover{border-color:#0E5C52}
+.slot.on{background:#0E5C52;border-color:#0E5C52;color:#fff}
+.slot:disabled{background:#EEF1EC;color:#8C9692;border-color:#EEF1EC;text-decoration:line-through;cursor:not-allowed}
+.slot.sched-open{background:#DDEFE7;border-color:#7FB8A8;color:#0B5040;font-size:13px}
+.slot.sched-blk{background:#EEF1EC;border:1px dashed #8C9692;color:#56625E;font-size:13px}
+.slot.sched-booked:disabled{background:#10231F;color:#fff;border-color:#10231F;text-decoration:none;cursor:default;opacity:1;font-size:13px}
+.pick{display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:100%;min-height:44px;padding:12px;border:1px solid transparent;border-radius:10px;background:transparent;color:#14201D;cursor:pointer;text-align:left}
+.pick:hover{background:#F3F4EF}
+.pick.on{background:#E2EFEA;border-color:#9CCBBE}
+.steps{display:flex;gap:8px;flex-wrap:wrap}
+.step{display:flex;align-items:center;gap:8px;padding:6px 12px 6px 6px;border-radius:999px;background:#EEF1EC;color:#56625E;font-weight:600;font-size:13px}
+.step b{width:24px;height:24px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:12px}
+.step.on{background:#10231F;color:#fff}
+.step.on b{background:#5FC3A6;color:#10231F}
+.step.done{background:#DDEFE7;color:#0B5040}
+.lock{display:flex;align-items:center;gap:10px;padding:14px;border-radius:10px;border:1px dashed #B9C2BA;color:#56625E;background:#F7F8F5}
+.kan{display:grid;grid-template-columns:repeat(5,minmax(220px,1fr));gap:12px;overflow-x:auto;padding-bottom:8px}
+.kcol{background:#E9ECE6;border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:10px;min-height:320px}
+.kcard{background:#fff;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:8px;border:1px solid #DFE3DC}
+@media (max-width:900px){
+.shell{grid-template-columns:1fr;height:auto;min-height:100vh}
+.side{flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px;padding:12px}
+.role{display:none}
+.navlist{flex-direction:row;overflow-x:auto;width:100%}
+.nav{width:auto}
+.sidefoot{display:none}
+.main{overflow:visible}
+.top{padding:14px 16px}
+.content{padding:20px 16px 40px}
+.split{grid-template-columns:1fr}
+.tli{grid-template-columns:64px 24px minmax(0,1fr)}
+}
+
+</style>
+</helmet>
+<div class="shell">
+<aside class="side">
+<div class="brand"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="#5FC3A6"></rect><path d="M14 7v14M7 14h14" stroke="#10231F" stroke-width="3" stroke-linecap="round"></path></svg><span>Ayura</span></div>
+<div class="role">Medical representative</div>
+<nav class="navlist" aria-label="MR navigation">
+<sc-for list="{{nav}}" as="n" hint-placeholder-count="5"><button class="{{n.cls}}" onClick="{{n.go}}"><span>{{n.label}}</span><sc-if value="{{n.hasBadge}}" hint-placeholder-val="{{false}}"><span class="badge">{{n.badge}}</span></sc-if></button></sc-for>
+</nav>
+<div class="sidefoot">
+<div class="me"><span class="av">RD</span><div class="col"><span>Rohan Desai</span><span class="small" style="color: #9FB8AF; font-weight: 500">Medivance Pharma · Pune West</span></div></div>
+<a class="switch" href="Main.dc.html">← Switch persona</a>
+</div>
+</aside>
+
+<main class="main">
+<header class="top">
+<h1>{{title}}</h1>
+<div class="grow"></div>
+<label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg><input placeholder="Doctor, speciality or hospital" aria-label="Search doctors"></label>
+</header>
+
+<div class="content">
+
+<sc-if value="{{isDoctors}}" hint-placeholder-val="{{true}}">
+<div class="banner info"><span class="strong">Doctors set the rules.</span><span>You only see doctors who accept MR meetings, and only within their windows and topics.</span></div>
+<div class="chips"><sc-for list="{{specChips}}" as="c" hint-placeholder-count="5"><button class="{{c.cls}}" onClick="{{c.pick}}">{{c.label}}</button></sc-for></div>
+<div class="grid2">
+<sc-for list="{{doctors}}" as="d" hint-placeholder-count="4">
+<div class="card">
+<div class="row" style="align-items: flex-start"><span class="av lg">{{d.init}}</span><div class="col" style="flex: 1"><span class="h3" style="font-size: 17px">{{d.name}}</span><span class="muted">{{d.spec}} · {{d.place}}</span></div><span class="{{d.prefCls}}">{{d.pref}}</span></div>
+<div class="grid" style="grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<div class="col"><span class="k">MR window</span><span>{{d.window}}</span></div>
+<div class="col"><span class="k">Topics accepted</span><span>{{d.topics}}</span></div>
+</div>
+<div class="row between wrap"><span class="muted small">Last visit: {{d.last}}</span>
+<sc-if value="{{d.canRequest}}" hint-placeholder-val="{{true}}"><button class="btn pri" onClick="{{d.request}}">Request meeting</button></sc-if>
+<sc-if value="{{d.requested}}" hint-placeholder-val="{{false}}"><span class="tag wait">Request sent · awaiting doctor</span></sc-if>
+<sc-if value="{{d.closed}}" hint-placeholder-val="{{false}}"><span class="muted small">Not accepting requests</span></sc-if>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{isMeetings}}" hint-placeholder-val="{{false}}">
+<div class="split">
+<div class="card">
+<h2 class="h2">Upcoming meetings</h2>
+<div class="list">
+<sc-for list="{{meetings}}" as="m" hint-placeholder-count="4">
+<div class="item wrap">
+<div class="col" style="width: 140px"><span class="strong">{{m.when}}</span><span class="muted small">{{m.dur}}</span></div>
+<div class="col" style="flex: 1; min-width: 200px"><span class="strong">{{m.doctor}}</span><span class="muted small">{{m.topic}} · {{m.place}}</span></div>
+<span class="{{m.cls}}">{{m.status}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+<div class="card">
+<h2 class="h2">Today's route</h2>
+<div class="tl">
+<div class="tli" style="grid-template-columns: 56px 24px minmax(0, 1fr)"><div class="tld">4:00</div><div class="tlx"></div><div class="tlc"><div class="col"><span class="strong">Dr. Arjun Mehta</span><span class="muted small">Lotus Hospital, Kothrud · Room 214</span></div></div></div>
+<div class="tli" style="grid-template-columns: 56px 24px minmax(0, 1fr)"><div class="tld">5:15</div><div class="tlx"></div><div class="tlc"><div class="col"><span class="strong">Dr. Meera Iyer</span><span class="muted small">Iyer Family Clinic, Aundh</span></div></div></div>
+<div class="tli" style="grid-template-columns: 56px 24px minmax(0, 1fr)"><div class="tld">6:30</div><div class="tlx"></div><div class="tlc"><div class="col"><span class="strong">Wellness Pharmacy</span><span class="muted small">Stock check · Baner</span></div></div></div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isFollow}}" hint-placeholder-val="{{false}}">
+<div class="card">
+<div class="row between"><h2 class="h2">Follow-ups</h2><span class="muted small">{{openCount}} open</span></div>
+<div class="list">
+<sc-for list="{{tasks}}" as="t" hint-placeholder-count="5">
+<div class="item">
+<button class="{{t.cls}}" aria-pressed="{{t.done}}" aria-label="Mark done: {{t.text}}" onClick="{{t.toggle}}"></button>
+<div class="col" style="flex: 1"><span style="{{t.textStyle}}">{{t.text}}</span><span class="muted small">{{t.doctor}}</span></div>
+<span class="{{t.dueCls}}">{{t.due}}</span>
+</div>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isHistory}}" hint-placeholder-val="{{false}}">
+<div class="card">
+<div class="tw">
+<div class="thead" style="grid-template-columns: 1fr 1.6fr 1.8fr 1.2fr 2fr"><span>Date</span><span>Doctor</span><span>Discussed</span><span>Outcome</span><span>Notes</span></div>
+<div class="trow" style="grid-template-columns: 1fr 1.6fr 1.8fr 1.2fr 2fr"><span class="strong">24 Sep</span><span>Dr. Arjun Mehta</span><span>Levothyroxine strengths</span><span class="tag ok" style="justify-self: start">Interested</span><span class="muted">Wants 88 mcg data for elderly patients</span></div>
+<div class="trow" style="grid-template-columns: 1fr 1.6fr 1.8fr 1.2fr 2fr"><span class="strong">22 Sep</span><span>Dr. Meera Iyer</span><span>Vitamin D3 sachets</span><span class="tag" style="justify-self: start">Neutral</span><span class="muted">Prefers weekly over monthly dosing</span></div>
+<div class="trow" style="grid-template-columns: 1fr 1.6fr 1.8fr 1.2fr 2fr"><span class="strong">17 Sep</span><span>Dr. Imran Shaikh</span><span>Statin combination</span><span class="tag wait" style="justify-self: start">Follow-up</span><span class="muted">Requested outcome study summary</span></div>
+<div class="trow" style="grid-template-columns: 1fr 1.6fr 1.8fr 1.2fr 2fr"><span class="strong">10 Sep</span><span>Dr. Sneha Joshi</span><span>Topical retinoid</span><span class="tag bad" style="justify-self: start">Not relevant</span><span class="muted">Asked not to cover this category</span></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isResources}}" hint-placeholder-val="{{false}}">
+<div class="banner ok"><span class="strong">Only approved material can be shared.</span><span>Each file is reviewed by Medivance medical affairs. Doctors choose whether to receive it.</span></div>
+<div class="grid">
+<sc-for list="{{resources}}" as="r" hint-placeholder-count="4">
+<div class="card">
+<div class="row between"><span class="tag info">{{r.kind}}</span><span class="muted small">{{r.size}}</span></div>
+<span class="h3" style="font-size: 16px">{{r.title}}</span>
+<span class="muted small">Approved {{r.approved}} · ref {{r.ref}}</span>
+<div class="row between"><span class="small">Shared with {{r.shared}} doctors</span><button class="btn sm" onClick="{{r.share}}">Share</button></div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+</div>
+</main>
+</div>
+
+<sc-if value="{{showReq}}" hint-placeholder-val="{{false}}">
+<div class="scrim">
+<div class="modal" role="dialog" aria-modal="true" aria-label="Request meeting">
+<h2 class="h2">Request a meeting with {{sel.name}}</h2>
+<div class="col" style="gap: 8px"><span class="strong small">Available slots in their MR window</span><div class="chips"><sc-for list="{{slotChips}}" as="c" hint-placeholder-count="4"><button class="{{c.cls}}" onClick="{{c.pick}}">{{c.label}}</button></sc-for></div></div>
+<div class="col" style="gap: 8px"><span class="strong small">Topic (doctor accepts: {{sel.topics}})</span><div class="chips"><sc-for list="{{topicChips}}" as="c" hint-placeholder-count="3"><button class="{{c.cls}}" onClick="{{c.pick}}">{{c.label}}</button></sc-for></div></div>
+<div class="field"><label for="msg">Note to the doctor</label><textarea id="msg" class="input">10 minutes to share outcome data for the new strength.</textarea></div>
+<div class="row wrap" style="justify-content: flex-end"><button class="btn" onClick="{{closeReq}}">Cancel</button><button class="btn pri" onClick="{{sendReq}}">Send request</button></div>
+</div>
+</div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+this.state = { screen: 'doctors', spec: 'All', requested: {}, showReq: false, sel: 'd1', slot: 'Thu 8 Oct · 4:00 PM', topic: 'Endocrinology', done: { t3: true }, shared: { r1: 12, r2: 7, r3: 19, r4: 4 } };
+}
+renderVals() {
+const s = this.state;
+const set = (o) => this.setState(o);
+const go = (id) => () => set({ screen: id });
+const reqCount = Object.keys(s.requested).length;
+const titles = { doctors: 'Doctors', meetings: 'Meetings', follow: 'Follow-ups', history: 'Visit history', resources: 'Shared resources' };
+const nav = [['doctors', 'Doctors'], ['meetings', 'Meetings'], ['follow', 'Follow-ups'], ['history', 'Visit history'], ['resources', 'Resources']]
+.map(([id, label]) => ({ label, cls: s.screen === id ? 'nav on' : 'nav', go: go(id), hasBadge: id === 'meetings' && reqCount > 0, badge: String(reqCount) }));
+const docDef = [
+{ id: 'd1', init: 'AM', name: 'Dr. Arjun Mehta', spec: 'Endocrinology', place: 'Lotus Hospital', open: true, window: 'Tue & Thu, 4–5 PM', topics: 'Endocrinology, Diabetes', last: '24 Sep', slots: ['Thu 8 Oct · 4:00 PM', 'Tue 13 Oct · 4:20 PM', 'Thu 15 Oct · 4:40 PM'], tlist: ['Endocrinology', 'Diabetes'] },
+{ id: 'd2', init: 'MI', name: 'Dr. Meera Iyer', spec: 'General physician', place: 'Iyer Family Clinic', open: true, window: 'Mon–Fri, 2–3 PM', topics: 'All topics', last: '22 Sep', slots: ['Fri 2 Oct · 2:00 PM', 'Mon 5 Oct · 2:30 PM'], tlist: ['Vitamins', 'Endocrinology', 'Diabetes'] },
+{ id: 'd3', init: 'IS', name: 'Dr. Imran Shaikh', spec: 'Cardiology', place: 'Lotus Hospital', open: true, window: 'Sat, 12–1 PM', topics: 'Cardiology', last: '17 Sep', slots: ['Sat 3 Oct · 12:00 PM', 'Sat 10 Oct · 12:20 PM'], tlist: ['Cardiology'] },
+{ id: 'd4', init: 'SJ', name: 'Dr. Sneha Joshi', spec: 'Dermatology', place: 'CityCare Clinic', open: false, window: 'Paused', topics: '—', last: '10 Sep', slots: [], tlist: [] },
+{ id: 'd5', init: 'VP', name: 'Dr. Vikram Patil', spec: 'Paediatrics', place: 'Little Steps Child Clinic', open: true, window: 'Wed, 3–4 PM', topics: 'Paediatrics, Vaccines', last: 'Never', slots: ['Wed 7 Oct · 3:00 PM', 'Wed 14 Oct · 3:20 PM'], tlist: ['Paediatrics', 'Vaccines'] }
+];
+const specs = ['All', 'Endocrinology', 'General physician', 'Cardiology', 'Paediatrics', 'Dermatology'];
+const specChips = specs.map((x) => ({ label: x, cls: s.spec === x ? 'chip on' : 'chip', pick: () => set({ spec: x }) }));
+const doctors = docDef.filter((d) => s.spec === 'All' || d.spec === s.spec).map((d) => {
+const rq = !!s.requested[d.id];
+return { ...d, pref: d.open ? 'Accepts MRs' : 'Not accepting', prefCls: d.open ? 'tag ok' : 'tag', canRequest: d.open && !rq, requested: rq, closed: !d.open,
+request: () => set({ showReq: true, sel: d.id, slot: d.slots[0], topic: d.tlist[0] }) };
+});
+const sel = docDef.find((d) => d.id === s.sel) || docDef[0];
+const slotChips = sel.slots.map((x) => ({ label: x, cls: s.slot === x ? 'chip on' : 'chip', pick: () => set({ slot: x }) }));
+const topicChips = sel.tlist.map((x) => ({ label: x, cls: s.topic === x ? 'chip on' : 'chip', pick: () => set({ topic: x }) }));
+const meetBase = [
+{ when: 'Today · 4:00 PM', dur: '10 min', doctor: 'Dr. Arjun Mehta', topic: 'Levothyroxine 88 mcg', place: 'Lotus Hospital', status: 'Confirmed', cls: 'tag ok' },
+{ when: 'Today · 5:15 PM', dur: '10 min', doctor: 'Dr. Meera Iyer', topic: 'Vitamin D3 sachets', place: 'Iyer Family Clinic', status: 'Confirmed', cls: 'tag ok' },
+{ when: 'Sat 3 Oct · 12:00 PM', dur: '15 min', doctor: 'Dr. Imran Shaikh', topic: 'Outcome study summary', place: 'Lotus Hospital', status: 'Pending', cls: 'tag wait' },
+{ when: 'Mon 28 Sep', dur: '—', doctor: 'Dr. Sneha Joshi', topic: 'Topical retinoid', place: 'CityCare Clinic', status: 'Declined', cls: 'tag bad' }
+];
+const extra = Object.keys(s.requested).map((id) => { const d = docDef.find((x) => x.id === id); return { when: s.requested[id].slot, dur: '10 min', doctor: d.name, topic: s.requested[id].topic, place: d.place, status: 'Pending', cls: 'tag wait' }; });
+const meetings = extra.concat(meetBase);
+const taskDef = [
+{ id: 't1', text: 'Send 88 mcg elderly-patient data', doctor: 'Dr. Arjun Mehta', due: 'Today', dueCls: 'tag wait' },
+{ id: 't2', text: 'Share outcome study summary', doctor: 'Dr. Imran Shaikh', due: 'Fri 2 Oct', dueCls: 'tag' },
+{ id: 't3', text: 'Drop Marathi patient leaflets', doctor: 'Dr. Arjun Mehta', due: 'Done', dueCls: 'tag ok' },
+{ id: 't4', text: 'Check sample stock at Wellness Pharmacy', doctor: 'Wellness Pharmacy, Baner', due: 'Today', dueCls: 'tag wait' },
+{ id: 't5', text: 'Confirm weekly vs monthly D3 preference', doctor: 'Dr. Meera Iyer', due: 'Mon 5 Oct', dueCls: 'tag' }
+];
+const tasks = taskDef.map((t) => { const dn = !!s.done[t.id]; return { ...t, done: dn, cls: dn ? 'toggle on' : 'toggle', textStyle: dn ? 'text-decoration: line-through; color: #56625E' : 'font-weight: 600', toggle: () => set({ done: { ...s.done, [t.id]: !dn } }) }; });
+const resDef = [
+{ id: 'r1', kind: 'Product monograph', title: 'Levothyroxine 88 mcg — prescribing information', size: 'PDF · 1.2 MB', approved: '12 Aug 2026', ref: 'MA-LT-0826' },
+{ id: 'r2', kind: 'Study summary', title: 'Dose titration in elderly hypothyroid patients', size: 'PDF · 640 KB', approved: '02 Sep 2026', ref: 'MA-LT-0902' },
+{ id: 'r3', kind: 'Patient leaflet', title: 'Taking your thyroid tablet — Marathi & Hindi', size: 'PDF · 380 KB', approved: '20 Jul 2026', ref: 'MA-PL-0720' },
+{ id: 'r4', kind: 'Product monograph', title: 'Vitamin D3 60K — dosing guide', size: 'PDF · 910 KB', approved: '15 Sep 2026', ref: 'MA-VD-0915' }
+];
+const resources = resDef.map((r) => ({ ...r, shared: String(s.shared[r.id]), share: () => set({ shared: { ...s.shared, [r.id]: s.shared[r.id] + 1 } }) }));
+return {
+nav, title: titles[s.screen],
+isDoctors: s.screen === 'doctors', isMeetings: s.screen === 'meetings', isFollow: s.screen === 'follow', isHistory: s.screen === 'history', isResources: s.screen === 'resources',
+specChips, doctors, sel, slotChips, topicChips, showReq: s.showReq, closeReq: () => set({ showReq: false }),
+sendReq: () => set({ showReq: false, requested: { ...s.requested, [s.sel]: { slot: s.slot, topic: s.topic } } }),
+meetings, tasks, openCount: String(tasks.filter((t) => !t.done).length), resources
+};
+}
+}
+</script>
+</body>
+</html>

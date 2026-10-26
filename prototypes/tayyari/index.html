@@ -1,0 +1,462 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Tayyari Study Buddy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&display=swap">
+<style>
+:root{
+  --bg:#ECEEF6; --surface:#FFFFFF; --surface-2:#F4F5FA; --ink:#171A2E; --ink-2:#585D78; --line:#DADDEB;
+  --primary:#2B44C8; --primary-ink:#FFFFFF; --primary-soft:#E2E6FA;
+  --accent:#FFE45C; --accent-ink:#171A2E; --accent-soft:#FFF6C7;
+  --good:#1F8150; --good-soft:#DCF1E4; --bad:#C9362B; --bad-soft:#FBE2DE; --warn:#E39B12; --warn-soft:#FCF0D3;
+  --track:#C3C8DC; --frame:#0E1020; --shadow:0 24px 60px -24px rgba(23,26,46,.45); --scrim:rgba(10,12,24,.5);
+  --display:"Bitter", Georgia, serif; --display-weight:800;
+  --body:"Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --bg:#0C0E1A; --surface:#151829; --surface-2:#1C2034; --ink:#E9EBF7; --ink-2:#A0A5C2; --line:#2A2F48;
+  --primary:#8196FF; --primary-ink:#0C0E1A; --primary-soft:#232A52; --accent:#FFE45C; --accent-ink:#171A2E; --accent-soft:#3A3413;
+  --good:#5ED39A; --good-soft:#15301F; --bad:#F2806F; --bad-soft:#3A1E1A; --warn:#F2BE4C; --warn-soft:#3A2F14;
+  --track:#3A3F5C; --frame:#000; --shadow:0 24px 60px -24px rgba(0,0,0,.8); --scrim:rgba(0,0,0,.6);}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#0C0E1A; --surface:#151829; --surface-2:#1C2034; --ink:#E9EBF7; --ink-2:#A0A5C2; --line:#2A2F48;
+  --primary:#8196FF; --primary-ink:#0C0E1A; --primary-soft:#232A52; --accent:#FFE45C; --accent-ink:#171A2E; --accent-soft:#3A3413;
+  --good:#5ED39A; --good-soft:#15301F; --bad:#F2806F; --bad-soft:#3A1E1A; --warn:#F2BE4C; --warn-soft:#3A2F14;
+  --track:#3A3F5C; --frame:#000; --shadow:0 24px 60px -24px rgba(0,0,0,.8); --scrim:rgba(0,0,0,.6);}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;padding-inline:16px;padding-block:24px;margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.stage{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:44px;align-items:start;justify-content:center}
+@media (max-width:760px){.stage{grid-template-columns:minmax(0,1fr);gap:20px}}
+.phone{position:relative;width:100%;max-width:400px;margin:0 auto;height:min(800px,calc(100svh - 48px));min-height:620px;background:var(--surface-2);border-radius:34px;border:8px solid var(--frame);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+@media (max-width:440px){.phone{border-width:0;border-radius:18px;height:calc(100svh - 48px)}}
+.appbar{padding:16px 16px 10px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{font-family:var(--display);font-size:24px;line-height:1.05;font-weight:var(--display-weight,700);letter-spacing:-.01em}
+.brand-sub{font-size:12px;color:var(--ink-2);margin-top:2px}
+.bar-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{position:relative;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--ink)}
+.icon-btn svg{width:20px;height:20px}
+.badge{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--bad);color:#fff;font-size:10.5px;font-weight:700;display:grid;place-items:center;border:2px solid var(--surface-2)}
+.screen{flex:1;overflow-y:auto;padding:4px 16px 100px;display:flex;flex-direction:column;gap:14px}
+.screen > *{flex-shrink:0}
+.tabbar{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(var(--tabs,5),1fr);background:var(--surface);border-top:1px solid var(--line);padding:6px 4px calc(8px + env(safe-area-inset-bottom,0px));z-index:3}
+.tab{background:none;border:0;padding:5px 0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;font-weight:700;color:var(--ink-2);position:relative}
+.tab svg{width:21px;height:21px}
+.tab-ico{padding:3px 12px;border-radius:999px;display:flex}
+.tab[aria-current="page"]{color:var(--ink)}
+.tab[aria-current="page"] .tab-ico{background:var(--primary-soft);color:var(--primary)}
+.tab .dot{position:absolute;top:1px;right:calc(50% - 20px);min-width:16px;height:16px;border-radius:99px;background:var(--accent);color:var(--accent-ink);font-size:10px;font-weight:800;display:grid;place-items:center;padding:0 4px}
+.fab{position:absolute;right:16px;bottom:84px;height:54px;padding:0 20px 0 16px;border-radius:18px;border:0;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;gap:6px;font-weight:800;box-shadow:0 10px 24px -8px rgba(0,0,0,.35);z-index:2}
+.fab svg{width:22px;height:22px}
+.h-title{font-family:var(--display);font-weight:var(--display-weight,700);font-size:24px;line-height:1.15;margin:2px 0 0;text-wrap:balance}
+.section-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:4px}
+.section-h h2{font-family:var(--display);font-weight:var(--display-weight,700);font-size:18px;margin:0}
+.section-h span{font-size:12px;color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius,18px)}
+.pad{padding:14px}
+.list{display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line);background:none;border-left:0;border-right:0;border-bottom:0;width:100%;text-align:left}
+.row:first-child{border-top:0}
+button.row:hover{background:var(--surface-2)}
+.card > button.row:first-child{border-radius:var(--radius,18px) var(--radius,18px) 0 0}.card > button.row:last-child{border-radius:0 0 var(--radius,18px) var(--radius,18px)}.card > button.row:only-child{border-radius:var(--radius,18px)}
+.row-main{flex:1;min-width:0}
+.row-title{font-weight:700;overflow-wrap:anywhere}
+.row-sub{font-size:12.5px;color:var(--ink-2)}
+.row-end{text-align:right;font-size:12px;white-space:nowrap}
+.row-end b{display:block;font-size:14.5px}
+.muted{color:var(--ink-2)} .hint{font-size:13px;color:var(--ink-2);margin:0}
+.ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--surface-2);color:var(--ink-2);flex:none}
+.ico svg{width:20px;height:20px}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px;flex:none}
+.av.sm{width:26px;height:26px;font-size:11px}
+.btn{border:0;border-radius:12px;padding:8px 14px;font-weight:700;font-size:13.5px;background:var(--primary);color:var(--primary-ink);white-space:nowrap}
+.btn.accent{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:var(--bad);color:#fff}
+.btn.block{width:100%;padding:13px;font-size:15px;border-radius:14px}
+.btn.sm{padding:6px 11px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap;border:0}
+.chip svg{width:12px;height:12px}
+.chip.good{background:var(--good-soft);color:var(--good)}
+.chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--ink)}
+.chip.pri{background:var(--primary-soft);color:var(--primary)}
+.chip.acc{background:var(--accent-soft);color:var(--ink)}
+.lbl{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.search{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0 12px}
+.search svg{width:18px;height:18px;color:var(--ink-2);flex:none}
+.search input{border:0;background:none;padding:11px 0;width:100%;outline:none}
+.filters{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.filters button{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:700;color:var(--ink-2)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.seg{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:3px}
+.seg button{flex:1;border:0;background:none;padding:7px;border-radius:9px;font-size:13px;font-weight:700;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--primary-soft);color:var(--ink)}
+.bar-track{height:8px;background:var(--surface-2);border-radius:99px;position:relative;overflow:hidden}
+.bar{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:var(--primary)}
+.empty{padding:18px;text-align:center;color:var(--ink-2);font-size:13.5px}
+.hero{background:var(--primary);color:var(--primary-ink);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.hero .lbl{color:inherit;opacity:.8}
+.hero-big{font-family:var(--display);font-weight:var(--display-weight,700);font-size:40px;line-height:1}
+.pill{font-size:12px;font-weight:700;background:rgba(255,255,255,.18);padding:4px 10px;border-radius:999px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.sheet-wrap{position:absolute;inset:0;background:var(--scrim);display:flex;align-items:flex-end;z-index:6}
+.sheet{width:100%;max-height:92%;overflow-y:auto;background:var(--surface);border-radius:24px 24px 0 0;padding:10px 18px calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px;animation:up .22s ease-out}
+.sheet.full{height:92%}
+.sheet > *{flex-shrink:0}
+@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}}
+.grab{width:40px;height:4px;border-radius:9px;background:var(--line);margin:0 auto}
+.sheet-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sheet-h h3{font-family:var(--display);font-weight:var(--display-weight,700);font-size:21px;margin:0;line-height:1.15;display:flex;align-items:center;gap:8px}
+.x{background:var(--surface-2);border:0;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;flex:none;color:var(--ink)}
+.field{display:flex;flex-direction:column;gap:7px}
+.field input:not([type=checkbox]):not([type=radio]):not([type=file]),.field select,.field textarea{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:11px 12px;width:100%}
+.field textarea{resize:vertical;min-height:70px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pick{display:flex;flex-wrap:wrap;gap:8px}
+.pick button{border:1px solid var(--line);background:var(--surface-2);border-radius:12px;padding:8px 12px;font-size:13.5px;font-weight:700;text-align:left}
+.pick button[aria-pressed="true"]{border-color:var(--primary);background:var(--primary-soft)}
+.pick button small{display:block;font-weight:500;font-size:11.5px;color:var(--ink-2)}
+.err{color:var(--bad);font-size:13px;min-height:1em}
+.summary{background:var(--surface-2);border-radius:14px;padding:12px;font-size:13.5px;display:flex;flex-direction:column;gap:6px}
+.summary > div{display:flex;justify-content:space-between;gap:10px}
+.note{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;background:var(--primary-soft);color:var(--ink);border-radius:12px;padding:9px 11px}
+.note svg{width:16px;height:16px;color:var(--primary);flex:none;margin-top:1px}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;padding:12px 14px;border-top:1px solid var(--line)}
+.opt:first-child{border-top:0}
+.switch{appearance:none;width:42px;height:24px;border-radius:99px;background:var(--track);position:relative;flex:none;cursor:pointer;transition:background .15s;margin:0}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .15s}
+.switch:checked{background:var(--primary)}
+.switch:checked::after{left:21px}
+.file-lbl{display:flex;align-items:center;justify-content:center;gap:8px;border:1px dashed var(--line);border-radius:12px;padding:12px;font-size:13.5px;color:var(--ink-2);cursor:pointer;background:var(--surface-2);position:relative}
+.file-lbl svg{width:20px;height:20px;flex:none}
+.file-lbl input{position:absolute;width:1px;height:1px;opacity:0}
+.check{width:28px;height:28px;border-radius:9px;border:2px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none;color:var(--primary-ink);padding:0}
+.check[aria-checked="true"]{background:var(--primary);border-color:var(--primary)}
+.check svg{width:16px;height:16px}
+.toast{position:absolute;left:16px;right:16px;top:72px;background:var(--ink);color:var(--surface);padding:11px 14px;border-radius:12px;font-size:13.5px;z-index:9;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+.notes{padding-top:8px;max-width:62ch;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--primary)}
+.notes h1{font-family:var(--display);font-weight:var(--display-weight,700);font-size:clamp(30px,5vw,46px);line-height:1.03;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.notes p{color:var(--ink-2);margin:0}
+.try{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.try div{display:flex;gap:12px;padding:11px 14px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2)}
+.try div:first-child{border-top:0}
+.try b{color:var(--ink)}
+.try .n{font-family:var(--display);font-weight:var(--display-weight,700);color:var(--primary);min-width:16px}
+.stack{display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:var(--ink-2)}
+.stack b{color:var(--ink)}
+@media (max-width:760px){.notes{order:-1;padding-top:0}.try,.stack{display:none}}
+
+.hl{background:linear-gradient(transparent 58%, var(--accent) 58%, var(--accent) 92%, transparent 92%);padding:0 2px}
+:root[data-theme="dark"] .hl{background:linear-gradient(transparent 58%, rgba(255,228,92,.35) 58%, rgba(255,228,92,.35) 92%, transparent 92%)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hl{background:linear-gradient(transparent 58%, rgba(255,228,92,.35) 58%, rgba(255,228,92,.35) 92%, transparent 92%)}}
+.count{background:var(--primary);color:var(--primary-ink);border-radius:20px;padding:16px;display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:center}
+.count .d{font-family:var(--display);font-weight:800;font-size:44px;line-height:1;text-align:center}
+.count .d small{display:block;font-family:var(--body);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
+.count .streak{display:flex;gap:4px;margin-top:6px}
+.count .streak i{width:14px;height:14px;border-radius:4px;background:rgba(255,255,255,.22)}
+.count .streak i.on{background:var(--accent)}
+.plan{display:flex;flex-direction:column}
+.plan .row .ico{background:var(--primary-soft);color:var(--primary)}
+.plan .row.done .row-title{text-decoration:line-through;color:var(--ink-2)}
+.q{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.q .qtxt{font-family:var(--display);font-weight:700;font-size:19px;line-height:1.3}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opts button{display:flex;gap:10px;align-items:center;text-align:left;border:1.5px solid var(--line);background:var(--surface);border-radius:14px;padding:11px 12px;font-weight:600;font-size:15px}
+.opts button b{width:26px;height:26px;border-radius:8px;background:var(--surface-2);display:grid;place-items:center;flex:none;font-size:13px}
+.opts button.right{border-color:var(--good);background:var(--good-soft)}
+.opts button.right b{background:var(--good);color:#fff}
+.opts button.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opts button.wrong b{background:var(--bad);color:#fff}
+.opts button:disabled{cursor:default;opacity:1}
+.expl{background:var(--accent-soft);border-radius:14px;padding:12px;font-size:14px}
+.rate{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.rate button{border:1px solid var(--line);background:var(--surface-2);border-radius:12px;padding:8px 4px;font-weight:800;font-size:13px}
+.rate button small{display:block;font-weight:600;font-size:11px;color:var(--ink-2)}
+.rate button:nth-child(1){color:var(--bad)} .rate button:nth-child(4){color:var(--good)}
+.progress-dots{display:flex;gap:4px}
+.progress-dots i{flex:1;height:5px;border-radius:9px;background:var(--line)}
+.progress-dots i.ok{background:var(--good)} .progress-dots i.no{background:var(--bad)} .progress-dots i.cur{background:var(--primary)}
+.sec-row{display:flex;flex-direction:column;gap:6px;padding:12px 14px;border-top:1px solid var(--line)}
+.sec-row:first-child{border-top:0}
+.sec-row .top{display:flex;justify-content:space-between;gap:8px}
+.topics{display:flex;flex-wrap:wrap;gap:6px}
+.topics span{font-size:12px;font-weight:700;border-radius:8px;padding:3px 8px}
+.heat{display:grid;grid-template-columns:repeat(14,1fr);gap:4px}
+.heat i{aspect-ratio:1;border-radius:4px;background:var(--surface-2);max-width:100%}
+.due{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:end;height:110px}
+.due div{display:flex;flex-direction:column;align-items:center;gap:4px;justify-content:flex-end;height:100%;font-size:11px;color:var(--ink-2)}
+.due i{width:100%;max-width:30px;background:var(--primary);border-radius:6px 6px 3px 3px}
+.due b{font-size:12px;color:var(--ink)}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--body);font-size:10px;fill:var(--ink-2)}
+.src{font-size:12.5px;color:var(--ink-2);border-left:3px solid var(--accent);padding-left:10px}
+.lang{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-weight:800;font-size:13px}
+</style>
+
+<div class="stage">
+  <div class="phone">
+    <header class="appbar">
+      <div><div class="brand"><span class="hl">Tayyari</span></div><div class="brand-sub">SSC CGL 2026 · Aman, Patna</div></div>
+      <div class="bar-actions"><button class="lang" data-action="lang" id="lang-btn">हिंदी</button><span class="av" style="background:#2B44C8">A</span></div>
+    </header>
+    <main class="screen" id="screen"></main>
+    <button class="fab" id="fab" data-action="upload"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"/></svg>Notes</button>
+    <nav class="tabbar" aria-label="Sections">
+      <button class="tab" data-tab="today"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>Today</button>
+      <button class="tab" data-tab="practice"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="m8 12 2.5 2.5L16 9"/></svg></span>Practice<span class="dot" id="due-dot" hidden></span></button>
+      <button class="tab" data-tab="syllabus"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16M4 12h16M4 19h10"/><circle cx="19" cy="19" r="2"/></svg></span>Syllabus</button>
+      <button class="tab" data-tab="notes"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg></span>Notes</button>
+      <button class="tab" data-tab="progress"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>Progress</button>
+    </nav>
+    <div id="sheet-root"></div>
+    <div class="toast" id="toast" role="status" hidden></div>
+  </div>
+  <aside class="notes">
+    <div class="eyebrow">Clickable prototype</div>
+    <h1>Tayyari: a study buddy that knows what you're about to forget</h1>
+    <p>Upload your notes, and Tayyari turns them into practice questions in Hindi or English. It then schedules revision just before you'd forget each fact, and plans your day around your weakest topics. You are Aman, preparing for SSC CGL. The questions and scores are sample data.</p>
+    <div class="try">
+      <div><span class="n">1</span><span><b>Do today's revision.</b> Answer the questions due today, then rate how easy each felt.</span></div>
+      <div><span class="n">2</span><span><b>Switch to Hindi.</b> Tap हिंदी at the top. Polity questions switch language.</span></div>
+      <div><span class="n">3</span><span><b>Turn notes into questions.</b> Tap "Notes", attach any file, and review the questions made from it.</span></div>
+      <div><span class="n">4</span><span><b>Find weak spots.</b> Syllabus shows which topics cost you the most marks.</span></div>
+      <div><span class="n">5</span><span><b>Read your mock.</b> Progress shows where marks were lost and which mistakes were confident ones.</span></div>
+    </div>
+    <div class="stack"><div><b>Planned build:</b> Flutter, Firebase, an LLM for question generation with source checks, and an FSRS-style revision scheduler on the device.</div>
+      <button class="btn ghost sm" id="reset" style="align-self:flex-start">Reset sample data</button></div>
+  </aside>
+</div>
+
+<script>
+/* ---- shared prototype kit ---- */
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+function dNum(s){const [y,m,d]=s.split("-").map(Number);return Date.UTC(y,m-1,d)/864e5;}
+function addDays(s,n){return new Date((dNum(s)+n)*864e5).toISOString().slice(0,10);}
+function addMonths(s,n){const [y,m,d]=s.split("-").map(Number);return new Date(Date.UTC(y,m-1+n,d)).toISOString().slice(0,10);}
+function dLabel(s){const [y,m,d]=s.split("-").map(Number);return d+" "+MON[m-1];}
+function dLabelY(s){const [y,m,d]=s.split("-").map(Number);return d+" "+MON[m-1]+" "+y;}
+function dow(s){return DOW[new Date(dNum(s)*864e5).getUTCDay()];}
+function t12(t){let [h,m]=t.split(":").map(Number);const ap=h>=12?"PM":"AM";h=h%12||12;return h+(m?":"+String(m).padStart(2,"0"):"")+" "+ap;}
+const inr = n => "₹" + Math.round(Math.abs(n)).toLocaleString("en-IN");
+function daysBetween(a,b){return dNum(b)-dNum(a);}
+const IC = {
+  x:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
+  bell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>',
+  info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>',
+  camera:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-3h6l2 3h3v13H4z"/><circle cx="12" cy="13" r="4"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>',
+  chev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>',
+  trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>'
+};
+const Kit = {
+  store:null, S:null, seed:null, views:{}, actions:{}, afterRender:[],
+  init(opts){
+    Object.assign(this, opts);
+    try { this.S = JSON.parse(localStorage.getItem(this.store)) || this.seed(); } catch(_) { this.S = this.seed(); }
+    document.addEventListener("click", e => this.onClick(e));
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+    const r = $("#reset"); if (r) r.addEventListener("click", () => { this.S = this.seed(); closeSheet(); this.render(); toast("Sample data restored."); });
+    this.render();
+  },
+  save(){ try { localStorage.setItem(this.store, JSON.stringify(this.S, (k,v) => k.startsWith("_") ? undefined : v)); } catch(_){} },
+  render(keep){
+    const S = this.S, sc = $("#screen"), top = sc.scrollTop;
+    sc.innerHTML = this.views[S.tab]();
+    if (keep) sc.scrollTop = top;
+    $$(".tab").forEach(t => t.removeAttribute("aria-current"));
+    const cur = $(`.tab[data-tab="${S.tab}"]`); if (cur) cur.setAttribute("aria-current","page");
+    this.afterRender.forEach(f => f(S));
+    this.save();
+  },
+  onClick(e){
+    const tab = e.target.closest(".tab");
+    if (tab){ this.S.tab = tab.dataset.tab; this.render(); $("#screen").scrollTop = 0; return; }
+    const a = e.target.closest("[data-action]"); if (!a) return;
+    const act = a.dataset.action;
+    if (act === "close-bg" && e.target !== a) return;
+    if (act === "close" || act === "close-bg") { closeSheet(); return; }
+    const fn = this.actions[act]; if (fn) fn(a, e);
+  }
+};
+function bindSearch(id, key){
+  const q = document.getElementById(id); if (!q) return;
+  q.addEventListener("input", () => { Kit.S[key] = q.value; const pos = q.selectionStart; Kit.render(true); const n = document.getElementById(id); n.focus(); n.setSelectionRange(pos,pos); });
+}
+let _tt;
+function toast(m){ const t = $("#toast"); t.textContent = m; t.hidden = false; clearTimeout(_tt); _tt = setTimeout(() => t.hidden = true, 3000); }
+function openSheet(title, body, full){
+  $("#sheet-root").innerHTML = `<div class="sheet-wrap" data-action="close-bg"><div class="sheet ${full?"full":""}" role="dialog" aria-modal="true" aria-label="${esc(title.replace(/<[^>]+>/g,""))}"><div class="grab"></div><div class="sheet-h"><h3>${title}</h3><button class="x" data-action="close" aria-label="Close">${IC.x}</button></div>${body}</div></div>`;
+}
+function closeSheet(){ const r = $("#sheet-root"); if (r) r.innerHTML = ""; }
+function pickGroup(root, onPick){
+  root.addEventListener("click", e => { const b = e.target.closest("button[data-v]"); if (!b || b.disabled) return;
+    const multi = root.dataset.multi === "1";
+    if (multi) b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+    else root.querySelectorAll("button[data-v]").forEach(x => x.setAttribute("aria-pressed", x === b));
+    onPick && onPick(b.dataset.v, b);
+  });
+}
+function picked(root){ return [...root.querySelectorAll('button[aria-pressed="true"]')].map(b => b.dataset.v); }
+function copyText(el, msg){
+  const sel = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  try { navigator.clipboard.writeText(el.textContent).then(() => toast(msg), () => { sel(); toast("Selected. Copy it from here."); }); } catch(_) { sel(); toast("Selected. Copy it from here."); }
+}
+
+const TODAY = "2026-09-28", EXAM = "2026-12-12";
+const SEC = {quant:"Quant", reason:"Reasoning", eng:"English", ga:"General Awareness"};
+const Q = [
+  {id:1, sec:"ga", topic:"Polity: Fundamental Rights", q:"Which Article of the Indian Constitution abolishes untouchability?", hi:"भारतीय संविधान का कौन-सा अनुच्छेद अस्पृश्यता का उन्मूलन करता है?", o:["Article 14","Article 15","Article 17","Article 19"], ohi:["अनुच्छेद 14","अनुच्छेद 15","अनुच्छेद 17","अनुच्छेद 19"], a:2, ex:"Article 17 abolishes untouchability and forbids its practice in any form. Article 14 is equality before law; Article 15 bars discrimination.", exhi:"अनुच्छेद 17 अस्पृश्यता का अंत करता है। अनुच्छेद 14 विधि के समक्ष समानता और अनुच्छेद 15 भेदभाव का निषेध है।", src:"Notes p.2: “Art. 17 – abolition of untouchability…”"},
+  {id:2, sec:"ga", topic:"Polity: Fundamental Rights", q:"The Right to Constitutional Remedies is given in which Article?", hi:"संवैधानिक उपचारों का अधिकार किस अनुच्छेद में दिया गया है?", o:["Article 21","Article 32","Article 226","Article 368"], ohi:["अनुच्छेद 21","अनुच्छेद 32","अनुच्छेद 226","अनुच्छेद 368"], a:1, ex:"Article 32 lets citizens go directly to the Supreme Court to enforce Fundamental Rights. Article 226 gives High Courts a similar, wider power.", exhi:"अनुच्छेद 32 के तहत नागरिक मौलिक अधिकारों के लिए सीधे सर्वोच्च न्यायालय जा सकते हैं। अनुच्छेद 226 उच्च न्यायालयों को यह शक्ति देता है।", src:"Notes p.3: “Art. 32 – heart and soul (Ambedkar)…”"},
+  {id:3, sec:"ga", topic:"Polity: Fundamental Rights", q:"Article 21A (right to education for ages 6–14) was added by which Amendment?", hi:"अनुच्छेद 21A (6–14 वर्ष के लिए शिक्षा का अधिकार) किस संशोधन से जोड़ा गया?", o:["42nd","44th","73rd","86th"], ohi:["42वाँ","44वाँ","73वाँ","86वाँ"], a:3, ex:"The 86th Amendment Act, 2002 inserted Article 21A. The 42nd (1976) added Fundamental Duties.", exhi:"86वें संशोधन अधिनियम, 2002 से अनुच्छेद 21A जोड़ा गया। 42वें संशोधन (1976) से मौलिक कर्तव्य जुड़े।", src:"Notes p.3: “21A – 86th CAA 2002…”"},
+  {id:4, sec:"ga", topic:"Polity: Fundamental Rights", q:"Which right was removed from the list of Fundamental Rights by the 44th Amendment?", hi:"44वें संशोधन द्वारा कौन-सा अधिकार मौलिक अधिकारों की सूची से हटाया गया?", o:["Right to equality","Right to property","Right to freedom of religion","Right against exploitation"], ohi:["समानता का अधिकार","संपत्ति का अधिकार","धार्मिक स्वतंत्रता का अधिकार","शोषण के विरुद्ध अधिकार"], a:1, ex:"The 44th Amendment (1978) made property a legal right under Article 300A instead of a Fundamental Right.", exhi:"44वें संशोधन (1978) ने संपत्ति के अधिकार को अनुच्छेद 300A के तहत कानूनी अधिकार बना दिया।", src:"Notes p.4: “Property – removed by 44th CAA → Art. 300A”"},
+  {id:5, sec:"quant", topic:"Profit and loss", q:"A shopkeeper marks goods 25% above cost and gives a 10% discount. What is his profit percentage?", o:["10%","12.5%","15%","17.5%"], a:1, ex:"Selling price = 1.25 × 0.90 = 1.125 of cost, so profit = 12.5%. Shortcut: 25 − 10 − (25×10)/100 = 12.5."},
+  {id:6, sec:"quant", topic:"Time and work", q:"12 men can finish a job in 15 days. How many days will 20 men take?", o:["8","9","10","12"], a:1, ex:"Work = 12 × 15 = 180 man-days. 180 ÷ 20 = 9 days."},
+  {id:7, sec:"reason", topic:"Number series", q:"Find the next number: 3, 8, 15, 24, 35, ?", o:["46","47","48","49"], a:2, ex:"Differences are 5, 7, 9, 11, so the next is 13. 35 + 13 = 48. (Also n² − 1 for n = 2…7.)"},
+  {id:8, sec:"eng", topic:"Synonyms", q:"Choose the word closest in meaning to CANDID.", o:["Frank","Secretive","Rude","Timid"], a:0, ex:"Candid means open and honest, so “frank”. “Secretive” is its opposite."},
+  {id:9, sec:"ga", topic:"Geography: India", q:"The Tropic of Cancer does NOT pass through which state?", hi:"कर्क रेखा किस राज्य से होकर नहीं गुजरती?", o:["Rajasthan","Odisha","Tripura","Mizoram"], ohi:["राजस्थान","ओडिशा","त्रिपुरा","मिज़ोरम"], a:1, ex:"It passes through Gujarat, Rajasthan, Madhya Pradesh, Chhattisgarh, Jharkhand, West Bengal, Tripura and Mizoram, not Odisha.", exhi:"यह गुजरात, राजस्थान, मध्य प्रदेश, छत्तीसगढ़, झारखंड, पश्चिम बंगाल, त्रिपुरा और मिज़ोरम से गुजरती है, ओडिशा से नहीं।"},
+  {id:10, sec:"ga", topic:"Economy: Banking", q:"Where is the headquarters of the Reserve Bank of India?", hi:"भारतीय रिज़र्व बैंक का मुख्यालय कहाँ है?", o:["New Delhi","Mumbai","Kolkata","Chennai"], ohi:["नई दिल्ली","मुंबई","कोलकाता","चेन्नई"], a:1, ex:"The RBI’s central office is in Mumbai. It moved there from Kolkata in 1937.", exhi:"RBI का केंद्रीय कार्यालय मुंबई में है। यह 1937 में कोलकाता से मुंबई आया।"}
+];
+function seed(){
+  const cards = {}; Q.forEach(q => cards[q.id] = {due: q.id<=6 ? TODAY : addDays(TODAY, q.id-5), ivl: q.id<=6?2:4, ease:2.5, reps: q.id<=6?2:3, lapses: q.id===9?2:0});
+  cards[5].due = TODAY; cards[9].due = TODAY; cards[1].due=addDays(TODAY,1); cards[2].due=addDays(TODAY,2);
+  return { tab:"today", lang:"en", cards, session:null, answered:{}, plan:{rev:false, new:false, mock:false},
+    mastery:{quant:{p:61,topics:[["Percentages",78],["Profit and loss",52],["Time and work",66],["Geometry",41],["DI",58]]}, reason:{p:84,topics:[["Series",88],["Coding",86],["Syllogism",79],["Blood relations",91]]}, eng:{p:68,topics:[["Synonyms",74],["Error spotting",55],["Cloze test",63],["Idioms",71]]}, ga:{p:49,topics:[["Polity",57],["History",46],["Geography",52],["Economy",44],["Static GK",39]]}},
+    mocks:[{n:"Mock 3",s:118},{n:"Mock 4",s:124.5},{n:"Mock 5",s:131},{n:"Mock 6",s:127},{n:"Mock 7",s:142.5}],
+    last:{quant:38, reason:44, eng:32.5, ga:28, wrong:17, neg:8.5, skipped:9, time:[["Quant",21],["Reasoning",14],["English",11],["GA",8]]},
+    heat:[0,2,3,1,0,3,4,2,3,3,1,4,4,2,0,3,2,4,3,3,2,4,4,3,1,3,4,2],
+    notes:[{id:1,name:"Fundamental Rights (Part III).pdf",pages:6,qs:4,sec:"ga",at:"2026-09-20"},{id:2,name:"Quant shortcuts – Profit & Loss.jpg",pages:1,qs:3,sec:"quant",at:"2026-09-24"}],
+    nextId:100 };
+}
+const S = () => Kit.S;
+const hi = () => S().lang==="hi";
+const dueList = () => Q.filter(q => dNum(S().cards[q.id].due) <= dNum(TODAY));
+const daysLeft = () => daysBetween(TODAY, EXAM);
+function viewToday(){
+  const due = dueList().length, h = S().heat, streak = (()=>{let n=0; for(let i=h.length-1;i>=0&&h[i]>0;i--) n++; return n;})();
+  const pl = S().plan;
+  const weakest = Object.entries(S().mastery).sort((a,b)=>a[1].p-b[1].p)[0];
+  const wt = weakest[1].topics.slice().sort((a,b)=>a[1]-b[1])[0];
+  return `
+  <section class="count"><div class="d num">${daysLeft()}<small>days left</small></div><div><b style="font-size:16px">SSC CGL Tier 1 · ${dLabelY(EXAM)}</b><div style="font-size:13px;opacity:.85">Your target date. ${streak}-day study streak.</div><div class="streak">${h.slice(-14).map(v=>`<i class="${v?"on":""}"></i>`).join("")}</div></div></section>
+  <h1 class="h-title">Today's plan <span class="muted" style="font-family:var(--body);font-size:14px;font-weight:700">about 75 min</span></h1>
+  <div class="card plan">
+    <button class="row ${pl.rev?"done":""}" data-action="start"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 13.7-5.6L20 9"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 0 1-13.7 5.6L4 15"/></svg></span><div class="row-main"><div class="row-title">${pl.rev?"Today's revision":`Revise ${due} questions due today`}</div><div class="row-sub">${pl.rev?"Done. Mistakes come back tomorrow":`~${Math.max(5,due*1.5|0)} min · before you forget them`}</div></div>${pl.rev?`<span class="chip good">${IC.check}Done</span>`:`<span class="chip pri">Start</span>`}</button>
+    <button class="row ${pl.new?"done":""}" data-action="topic" data-sec="${weakest[0]}"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v12M6 12h12"/></svg></span><div class="row-main"><div class="row-title">Learn: ${esc(wt[0])} (${esc(SEC[weakest[0]])})</div><div class="row-sub">~30 min · your weakest topic at ${wt[1]}%</div></div>${pl.new?`<span class="chip good">${IC.check}Done</span>`:""}</button>
+    <button class="row ${pl.mock?"done":""}" data-action="sectional"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg></span><div class="row-main"><div class="row-title">Sectional test: Quant, 25 questions</div><div class="row-sub">~35 min · timed, with negative marking</div></div>${pl.mock?`<span class="chip good">${IC.check}Done</span>`:""}</button>
+  </div>
+  <div class="note">${IC.info}<span>Your last mock lost <b>${S().last.neg} marks</b> to wrong answers, and 10 of those 17 were questions you felt sure about. Today's practice asks how sure you are, to catch these gaps.</span></div>
+  <div class="section-h"><h2>Revision coming up</h2><span>questions due</span></div>
+  ${dueChart()}`;
+}
+function dueChart(){
+  const days=[...Array(7)].map((_,i)=>addDays(TODAY,i)); const n=days.map(d=>Q.filter(q=>S().cards[q.id].due===d || (d===TODAY && dNum(S().cards[q.id].due)<dNum(TODAY))).length);
+  const mx=Math.max(...n,1);
+  return `<div class="card pad"><div class="due">${days.map((d,i)=>`<div><b class="num">${n[i]}</b><i style="height:${Math.max(4,n[i]/mx*70)}px;${i?"opacity:.55":""}"></i><span>${i?dow(d):"Today"}</span></div>`).join("")}</div></div>`;
+}
+function viewPractice(){
+  const s = S().session;
+  if (!s) {
+    const due = dueList();
+    return `<h1 class="h-title">Practice</h1>
+    <div class="card pad" style="display:flex;flex-direction:column;gap:10px"><b>${due.length} questions due for revision</b><span class="hint">Mixed from all sections. Rate each one after answering, and Tayyari picks when to show it again.</span><button class="btn block" data-action="start" ${due.length?"":"disabled"}>${due.length?"Start revision":"All caught up"}</button></div>
+    <div class="section-h"><h2>Practise a section</h2></div>
+    <div class="card list">${Object.entries(SEC).map(([k,v])=>`<button class="row" data-action="sec-practice" data-sec="${k}"><div class="row-main"><div class="row-title">${v}</div><div class="row-sub">${Q.filter(q=>q.sec===k).length} questions in your bank · mastery ${S().mastery[k].p}%</div></div><span class="muted" style="width:18px">${IC.chev}</span></button>`).join("")}</div>`;
+  }
+  const q = Q.find(x=>x.id===s.ids[s.i]), ans = s.picked, useHi = hi() && q.hi;
+  const opts = useHi ? q.ohi : q.o;
+  return `<div style="display:flex;justify-content:space-between;align-items:center"><span class="lbl">${esc(SEC[q.sec])} · ${esc(q.topic)}</span><button class="btn ghost sm" data-action="end">End</button></div>
+  <div class="progress-dots">${s.ids.map((id,i)=>`<i class="${i<s.i?(s.res[i]?"ok":"no"):i===s.i?"cur":""}"></i>`).join("")}</div>
+  <article class="q">
+    <div class="qtxt">${esc(useHi ? q.hi : q.q)}</div>
+    ${ans===null && !s.sure ? `<div class="field"><span class="lbl">How sure are you before answering?</span><div class="seg" id="sure">${["Guessing","Fairly sure","Certain"].map((x,i)=>`<button data-action="sure" data-v="${i}" aria-pressed="false">${x}</button>`).join("")}</div></div>` : ""}
+    <div class="opts">${opts.map((o,i)=>{let c=""; if(ans!==null){ if(i===q.a) c="right"; else if(i===ans) c="wrong"; } return `<button data-action="answer" data-i="${i}" class="${c}" ${ans!==null?"disabled":""}><b>${"ABCD"[i]}</b>${esc(o)}</button>`;}).join("")}</div>
+    ${ans!==null?`<div class="expl"><b>${ans===q.a?(useHi?"सही!":"Correct."):(useHi?"गलत।":"Not quite.")}</b> ${esc(useHi&&q.exhi?q.exhi:q.ex)}${ans!==q.a && s.sure==="2"?`<br><br><b>Watch out:</b> you were certain but wrong. In the exam this costs 0.5 marks. Tayyari will show this again tomorrow.`:""}</div>
+      ${q.src?`<div class="src">From your notes: ${esc(q.src)}</div>`:""}
+      <div class="lbl">When should you see this again?</div>
+      <div class="rate">${[["Again",1],["Hard",2],["Good",3],["Easy",4]].map(([l,g])=>`<button data-action="grade" data-g="${g}">${l}<small>${nextLabel(q.id,g,ans===q.a)}</small></button>`).join("")}</div>`:""}
+  </article>`;
+}
+function schedule(c, g, correct){
+  if (!correct || g===1) return {ivl:1, ease:Math.max(1.3,c.ease-0.2), lapses:c.lapses+(correct?0:1)};
+  const e = Math.max(1.3, c.ease + (g===2?-0.15:g===4?0.15:0));
+  const ivl = Math.max(1, Math.round((c.reps<1?1:c.reps<2?3:c.ivl*e) * (g===2?0.8:g===4?1.3:1)));
+  return {ivl, ease:e, lapses:c.lapses};
+}
+function nextLabel(id,g,correct){ const r = schedule(S().cards[id], g, correct); return r.ivl===1?"tomorrow":r.ivl<30?`${r.ivl} days`:`${Math.round(r.ivl/30)} mo`; }
+function viewSyllabus(){
+  const m = S().mastery;
+  return `<h1 class="h-title">Syllabus</h1>
+  <p class="hint" style="color:var(--ink)">Mastery comes from your answers over time, weighted towards recent ones. Red topics cost you the most marks.</p>
+  <div class="card">${Object.entries(SEC).map(([k,v])=>{const s=m[k];return `<div class="sec-row"><div class="top"><b>${v}</b><span class="num" style="font-weight:800;color:${s.p<55?"var(--bad)":s.p<75?"var(--warn)":"var(--good)"}">${s.p}%</span></div><div class="bar-track"><div class="bar" style="width:${s.p}%;background:${s.p<55?"var(--bad)":s.p<75?"var(--warn)":"var(--good)"}"></div></div><div class="topics">${s.topics.map(([t,p])=>`<span style="background:${p<55?"var(--bad-soft)":p<75?"var(--warn-soft)":"var(--good-soft)"};color:${p<55?"var(--bad)":"var(--ink)"}">${esc(t)} ${p}%</span>`).join("")}</div><button class="btn ghost sm" style="align-self:flex-start" data-action="topic" data-sec="${k}">Plan ${v.split(" ")[0]}</button></div>`;}).join("")}</div>`;
+}
+function viewNotes(){
+  return `<h1 class="h-title">Your notes</h1>
+  <p class="hint" style="color:var(--ink)">Upload class notes, PDFs or photos of a notebook. Tayyari writes questions only from what's in them, and shows the line each question came from.</p>
+  <div class="card list">${S().notes.map(n=>`<div class="row"><span class="ico">${IC.info.replace('stroke-width="2.2"','stroke-width="2"')}</span><div class="row-main"><div class="row-title">${esc(n.name)}</div><div class="row-sub">${n.pages} page${n.pages>1?"s":""} · ${n.qs} questions · ${esc(SEC[n.sec])} · ${dLabel(n.at)}</div></div></div>`).join("")}</div>
+  <button class="btn block" data-action="upload">Upload notes</button>`;
+}
+function viewProgress(){
+  const L=S().last, ms=S().mocks, total=L.quant+L.reason+L.eng+L.ga;
+  const W=330,H=130,Lp=28,R=10,T=12,B=22,mn=100,mx=160,x=i=>Lp+i*(W-Lp-R)/(ms.length-1),y=v=>T+(mx-v)/(mx-mn)*(H-T-B);
+  let svg=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="Mock scores">`; [110,130,150].forEach(t=>svg+=`<line x1="${Lp}" x2="${W-R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)"/><text x="${Lp-4}" y="${y(t)+3}" text-anchor="end">${t}</text>`);
+  svg+=`<line x1="${Lp}" x2="${W-R}" y1="${y(150)}" y2="${y(150)}" stroke="var(--good)" stroke-dasharray="4 3"/><text x="${W-R}" y="${y(150)-4}" text-anchor="end" fill="var(--good)">your target 150</text>`;
+  svg+=`<polyline fill="none" stroke="var(--primary)" stroke-width="2.5" points="${ms.map((m,i)=>x(i)+","+y(m.s)).join(" ")}"/>`; ms.forEach((m,i)=>svg+=`<circle cx="${x(i)}" cy="${y(m.s)}" r="${i===ms.length-1?5:3}" fill="${i===ms.length-1?"var(--primary)":"var(--surface)"}" stroke="var(--primary)" stroke-width="2"/><text x="${x(i)}" y="${H-6}" text-anchor="middle">${m.n.replace("Mock ","M")}</text>`); svg+=`</svg>`;
+  const lv=["var(--surface-2)","color-mix(in srgb,var(--primary) 25%,var(--surface-2))","color-mix(in srgb,var(--primary) 50%,var(--surface-2))","color-mix(in srgb,var(--primary) 75%,var(--surface-2))","var(--primary)"];
+  return `<h1 class="h-title">Progress</h1>
+  <div class="card pad"><div style="display:flex;justify-content:space-between;align-items:baseline"><b>Mock scores (out of 200)</b><span class="chip good">+${(ms[4].s-ms[3].s).toFixed(1)} last</span></div>${svg}</div>
+  <div class="card pad" style="display:flex;flex-direction:column;gap:10px"><b>Mock 7: ${total} / 200</b>
+    ${[["Reasoning",L.reason],["Quant",L.quant],["English",L.eng],["General Awareness",L.ga]].map(([n,v])=>`<div><div style="display:flex;justify-content:space-between;font-size:13.5px"><span>${n}</span><span class="num">${v} / 50</span></div><div class="bar-track"><div class="bar" style="width:${v*2}%;background:${v<35?"var(--bad)":"var(--primary)"}"></div></div></div>`).join("")}
+    <div class="summary"><div><span>Wrong answers</span><b class="num">${L.wrong} (−${L.neg} marks)</b></div><div><span>Skipped</span><b class="num">${L.skipped}</b></div><div><span>Wrong but felt sure</span><b class="num" style="color:var(--bad)">10 of 17</b></div></div>
+    <p class="hint" style="color:var(--ink)">SSC CGL Tier 1 gives 2 marks for a right answer and takes 0.5 for a wrong one. With four options, even a blind guess gains marks on average, so the bigger problem is confident mistakes. Those 10 questions are now in your revision.</p></div>
+  <div class="card pad"><b>Study days, last 4 weeks</b><div class="heat" style="margin-top:10px">${S().heat.map(v=>`<i style="background:${lv[v]}" title="${v} hr"></i>`).join("")}</div><div class="row-sub" style="margin-top:6px">Darker = more hours. Aim for 5 of 7 days.</div></div>`;
+}
+
+/* ---------- actions ---------- */
+function startSession(ids){ S().session = {ids, i:0, picked:null, res:[], sure:null}; S().tab="practice"; Kit.render(); $("#screen").scrollTop=0; }
+const GEN = [
+  {q:"Which Article prohibits discrimination on grounds of religion, race, caste, sex or place of birth?", o:["Article 14","Article 15","Article 16","Article 17"], a:1, src:"p.1: “Art. 15 – no discrimination on religion, race, caste, sex, place of birth”", ok:true},
+  {q:"Which writ is issued to release a person who has been unlawfully detained?", o:["Mandamus","Certiorari","Habeas corpus","Quo warranto"], a:2, src:"p.3: “Writs under Art. 32 – habeas corpus (produce the body)…”", ok:true},
+  {q:"Article 23 prohibits which of the following?", o:["Child labour in factories","Traffic in human beings and forced labour","Titles","Untouchability"], a:1, src:"p.4: “Art. 23 – traffic in human beings, begar”", ok:true},
+  {q:"How many Fundamental Rights are there in the Constitution today?", o:["5","6","7","8"], a:1, src:"p.1: “Originally 7… now 6”", ok:true, flag:"Check: your notes say “now 6”. Tayyari kept your wording."}
+];
+Object.assign(Kit.actions, {
+  lang: () => { S().lang = hi() ? "en" : "hi"; $("#lang-btn").textContent = hi() ? "English" : "हिंदी"; Kit.render(true); },
+  start: () => { const d = dueList(); if(!d.length){ toast("Nothing due. Come back tomorrow."); return; } startSession(d.map(q=>q.id)); },
+  "sec-practice": a => startSession(Q.filter(q=>q.sec===a.dataset.sec).map(q=>q.id)),
+  sure: a => { S().session.sure = a.dataset.v; Kit.render(true); },
+  answer: a => { const s=S().session; if(!s.sure) s.sure="1"; s.picked=+a.dataset.i; Kit.render(true); },
+  grade: a => { const s=S().session, q=Q.find(x=>x.id===s.ids[s.i]), c=S().cards[q.id], ok=s.picked===q.a, r=schedule(c,+a.dataset.g,ok);
+    Object.assign(c, {ivl:r.ivl, ease:r.ease, lapses:r.lapses, reps:ok?c.reps+1:0, due:addDays(TODAY,r.ivl)}); s.res.push(ok); s.i++; s.picked=null; s.sure=null;
+    if (s.i >= s.ids.length) { const n=s.res.filter(Boolean).length; S().session=null; S().plan.rev=true; S().heat[S().heat.length-1]=Math.max(S().heat[S().heat.length-1],3); Kit.render();
+      openSheet("Revision done", `<div class="count" style="grid-template-columns:1fr;text-align:center"><div class="d num">${n}/${s.ids.length}<small>correct</small></div></div><p class="hint" style="color:var(--ink)">Questions you got wrong come back tomorrow. The rest are spaced further apart each time you remember them.</p><button class="btn block" data-action="close">Back to today</button>`); }
+    else Kit.render(true); },
+  end: () => { S().session=null; Kit.render(); },
+  topic: a => { const k=a.dataset.sec, t=S().mastery[k].topics.slice().sort((x,y)=>x[1]-y[1]); openSheet(`Plan for ${esc(SEC[k])}`, `<p class="hint" style="color:var(--ink)">This week's focus, weakest first. Each block is 25 minutes of learning, then 10 questions.</p><div class="card list">${t.map(([n,p],i)=>`<div class="row"><span class="chip ${p<55?"bad":p<75?"warn":"good"}">${p}%</span><div class="row-main"><div class="row-title">${esc(n)}</div><div class="row-sub">${dow(addDays(TODAY,i))} · ${p<55?"Concept video + 20 questions":"10 questions + shortcuts"}</div></div></div>`).join("")}</div><button class="btn block" data-action="plan-ok" data-sec="${k}">Add to my week</button>`); },
+  "plan-ok": () => { S().plan.new=true; closeSheet(); Kit.render(true); toast("Added. Today's block is on your plan."); },
+  sectional: () => { S().plan.mock=true; Kit.render(true); toast("Prototype: a timed 25-question Quant test would start here."); },
+  upload: () => { openSheet("Turn notes into questions", `<label class="file-lbl">${IC.camera}<span>Choose a PDF or photos of your notebook</span><input id="nf" type="file" accept="image/*,application/pdf" multiple></label><div id="gen"><p class="hint">Tayyari reads the notes, writes multiple-choice questions only from them, and shows the source line for each. You approve every question.</p></div>`, true);
+    $("#nf").addEventListener("change", () => { $("#gen").innerHTML = `<div class="note">${IC.info}<span>Prototype: sample questions for “Fundamental Rights, part 2”. The real app generates them from your file.</span></div>
+      ${GEN.map((g,i)=>`<div class="card pad" style="display:flex;flex-direction:column;gap:8px"><b>${i+1}. ${esc(g.q)}</b><div class="row-sub">${g.o.map((o,j)=>`${"ABCD"[j]}) ${esc(o)}${j===g.a?" ✓":""}`).join(" · ")}</div><div class="src">${esc(g.src)}</div>${g.flag?`<div class="chip warn" style="white-space:normal">${esc(g.flag)}</div>`:""}<label class="opt" style="padding:0;border:0"><span class="row-sub">Keep this question</span><input type="checkbox" class="switch" data-gen="${i}" checked></label></div>`).join("")}
+      <button class="btn block" data-action="keep-gen">Add to my question bank</button>`; }); },
+  "keep-gen": () => { const n=$$("[data-gen]").filter(c=>c.checked).length; S().notes.unshift({id:S().nextId++, name:"Fundamental Rights part 2.pdf", pages:4, qs:n, sec:"ga", at:TODAY}); closeSheet(); S().tab="notes"; Kit.render(); toast(`${n} questions added. The first ones appear in tomorrow's revision.`); }
+});
+Kit.afterRender.push(s => { const d=dueList().length; $("#due-dot").hidden=!d||!!s.session; $("#due-dot").textContent=d; $("#fab").hidden = !["today","notes"].includes(s.tab) || s.tab==="notes"; $("#lang-btn").textContent = s.lang==="hi" ? "English" : "हिंदी"; });
+Kit.views = {today:viewToday, practice:viewPractice, syllabus:viewSyllabus, notes:viewNotes, progress:viewProgress};
+Kit.init({store:"tayyari-v1", seed});
+</script>
+
+</body></html>

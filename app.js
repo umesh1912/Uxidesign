@@ -1,4 +1,4 @@
-// Renders the portfolio pages from data.js. Routes: #/ (home) and #/about. Case studies open as PDFs.
+// Renders the portfolio pages from data.js. Routes: #/ (home), #/case-studies and #/about. Case studies open as PDFs.
 (() => {
   // Testimonials and Writing hold placeholder copy; switch on once real content is in data.js.
   const SHOW_PLACEHOLDERS = false;
@@ -27,7 +27,8 @@
 
   // ---------- Routing ----------
   function parseRoute() {
-    return { page: /^#\/about\/?$/.test(location.hash) ? 'about' : 'home' };
+    const m = location.hash.match(/^#\/(about|case-studies)\/?$/);
+    return { page: m ? m[1] : 'home' };
   }
 
   function scrollToAnchor(anchor, smooth) {
@@ -45,9 +46,8 @@
 
   const NAV_TARGETS = {
     work: () => go('#/', 'work'),
-    cases: () => go('#/', 'cases'),
+    cases: () => go('#/case-studies'),
     process: () => go('#/', 'process'),
-    vibe: () => go('#/', 'vibe'),
     services: () => go('#/', 'services'),
     about: () => go('#/about'),
     contact: () => scrollToAnchor('contact', true)
@@ -137,7 +137,7 @@
       <div class="hero">
         <div class="hero-copy">
           <div>
-            <div class="status-pill">Available for new projects · Surat, India</div>
+            <div class="status-pill">Available for new projects</div>
             <h1 class="hero-title">I design products that make complex work feel <em>effortless.</em></h1>
             <p class="hero-text">Hi, I'm Umesh, a senior product designer with 13+ years across healthcare, fintech, legal tech and enterprise. I blend deep UX craft with AI-powered workflows to ship thoughtful products, faster.</p>
           </div>
@@ -162,8 +162,77 @@
       <div class="marquee">${marquee()}</div>
     </section>
 
+    <section id="work" class="section">
+      ${sectionHead('01 · Selected work', 'Websites, apps &amp; visual design',
+        '<div class="filters" id="gallery-filters"></div>', 'section-head--split section-head--tight')}
+      <div id="gallery-slot"></div>
+      <div class="figma-list">
+        <div><div class="eyebrow eyebrow--subtle">More in Figma</div><div class="figma-list-sub">18 product files and 4 live sites</div></div>
+        <div class="tags">${map(WORK, w => `
+          <a class="figma-link" href="${esc(w.href || '#')}" target="_blank" rel="noopener">${esc(w.title)} <span>${esc(w.category)}</span></a>`)}
+        </div>
+      </div>
+    </section>
+
+    <section id="vibe" class="section">
+      ${sectionHead('02 · Vibe coding', 'Ideas I\'ve built into working apps with Claude',
+        '<div class="filters" id="vibe-filters"></div>', 'section-head--split section-head--tight')}
+      <p class="vibe-intro">Mobile apps, healthcare platforms and a game, taken from a prompt to a clickable prototype with Claude. Each one is a real, working interface, not a static mockup.</p>
+      <div class="cells vibes" id="vibe-slot"></div>
+    </section>
+
+    <section id="services" class="section">
+      ${sectionHead('03 · Services', 'How I can help your team')}
+      <div class="cells services">${map(SERVICES, s => `
+        <div class="service">
+          <span class="service-num">${s.n}</span>
+          <h3>${esc(s.title)}</h3>
+          <p>${esc(s.body)}</p>
+          ${tags(s.tags)}
+        </div>`)}
+      </div>
+    </section>
+
+    <section id="process" class="section">
+      ${sectionHead('04 · Process', 'Five steps, with AI speeding up the slow parts')}
+      <div class="cells steps">${map(PROCESS, s => `
+        <div class="step">
+          <span class="step-num">${s.n}</span>
+          <div class="step-title">${esc(s.title)}</div>
+          <p>${esc(s.body)}</p>
+          <div class="step-tools">${esc(s.tools)}</div>
+        </div>`)}
+      </div>
+    </section>
+
+    ${SHOW_PLACEHOLDERS ? `
+    <section id="testimonials" class="section">
+      ${sectionHead('05 · Kind words', 'What collaborators say')}
+      <div class="cells quotes">${map(TESTIMONIALS, t => `
+        <figure class="quote">
+          <span class="quote-mark">“</span>
+          <blockquote>${esc(t.quote)}</blockquote>
+          <figcaption><b>${esc(t.name)}</b><span>${esc(t.role)}</span></figcaption>
+        </figure>`)}
+      </div>
+    </section>
+    <section id="writing" class="section">
+      ${sectionHead('06 · Writing &amp; talks', 'Notes on AI-augmented design',
+        '<a href="https://medium.com/@anghanumeshd8" target="_blank" rel="noopener" style="font:700 14px var(--sans)">All articles on Medium ↗</a>', 'section-head--split section-head--tight')}
+      ${map(WRITING, w => `
+        <a class="writing-row" href="https://medium.com/@anghanumeshd8" target="_blank" rel="noopener">
+          <span class="label">${esc(w.type)}</span>
+          <span class="writing-title">${esc(w.title)}</span>
+          <span class="writing-arrow">↗</span>
+        </a>`)}
+    </section>` : ''}`;
+  }
+
+  // ---------- Case studies ----------
+  function caseStudiesPage() {
+    return `
     <section id="cases" class="section">
-      ${sectionHead('01 · Case studies', 'Deep dives into problems worth solving',
+      ${sectionHead('Case studies', 'Deep dives into problems worth solving',
         '<p class="section-note">AI hiring, hospitality, enterprise data and workers&#39; comp. Each opens as the full case study PDF.</p>', 'section-head--split')}
       ${map(CASES, c => `
         <a class="case-card" href="${c.pdf}" target="_blank" rel="noopener">
@@ -177,72 +246,7 @@
             <div class="metric-soft"><div class="metric-soft-value">${esc(m.v)}</div><div class="metric-soft-label">${esc(m.l)}</div></div>`)}
           </div>
         </a>`)}
-    </section>
-
-    <section id="work" class="section">
-      ${sectionHead('02 · Selected work', 'Websites, apps &amp; visual design',
-        '<div class="filters" id="gallery-filters"></div>', 'section-head--split section-head--tight')}
-      <div id="gallery-slot"></div>
-      <div class="figma-list">
-        <div><div class="eyebrow eyebrow--subtle">More in Figma</div><div class="figma-list-sub">18 product files and 4 live sites</div></div>
-        <div class="tags">${map(WORK, w => `
-          <a class="figma-link" href="${esc(w.href || '#')}" target="_blank" rel="noopener">${esc(w.title)} <span>${esc(w.category)}</span></a>`)}
-        </div>
-      </div>
-    </section>
-
-    <section id="vibe" class="section">
-      ${sectionHead('03 · Vibe coding', 'Ideas I\'ve built into working apps with Claude',
-        '<div class="filters" id="vibe-filters"></div>', 'section-head--split section-head--tight')}
-      <p class="vibe-intro">Mobile apps, healthcare platforms and a game, taken from a prompt to a clickable prototype with Claude. Each one is a real, working interface, not a static mockup.</p>
-      <div class="cells vibes" id="vibe-slot"></div>
-    </section>
-
-    <section id="services" class="section">
-      ${sectionHead('04 · Services', 'How I can help your team')}
-      <div class="cells services">${map(SERVICES, s => `
-        <div class="service">
-          <span class="service-num">${s.n}</span>
-          <h3>${esc(s.title)}</h3>
-          <p>${esc(s.body)}</p>
-          ${tags(s.tags)}
-        </div>`)}
-      </div>
-    </section>
-
-    <section id="process" class="section">
-      ${sectionHead('05 · Process', 'Five steps, with AI speeding up the slow parts')}
-      <div class="cells steps">${map(PROCESS, s => `
-        <div class="step">
-          <span class="step-num">${s.n}</span>
-          <div class="step-title">${esc(s.title)}</div>
-          <p>${esc(s.body)}</p>
-          <div class="step-tools">${esc(s.tools)}</div>
-        </div>`)}
-      </div>
-    </section>
-
-    ${SHOW_PLACEHOLDERS ? `
-    <section id="testimonials" class="section">
-      ${sectionHead('06 · Kind words', 'What collaborators say')}
-      <div class="cells quotes">${map(TESTIMONIALS, t => `
-        <figure class="quote">
-          <span class="quote-mark">“</span>
-          <blockquote>${esc(t.quote)}</blockquote>
-          <figcaption><b>${esc(t.name)}</b><span>${esc(t.role)}</span></figcaption>
-        </figure>`)}
-      </div>
-    </section>
-    <section id="writing" class="section">
-      ${sectionHead('07 · Writing &amp; talks', 'Notes on AI-augmented design',
-        '<a href="https://medium.com/@anghanumeshd8" target="_blank" rel="noopener" style="font:700 14px var(--sans)">All articles on Medium ↗</a>', 'section-head--split section-head--tight')}
-      ${map(WRITING, w => `
-        <a class="writing-row" href="https://medium.com/@anghanumeshd8" target="_blank" rel="noopener">
-          <span class="label">${esc(w.type)}</span>
-          <span class="writing-title">${esc(w.title)}</span>
-          <span class="writing-arrow">↗</span>
-        </a>`)}
-    </section>` : ''}`;
+    </section>`;
   }
 
   // ---------- About ----------
@@ -298,11 +302,14 @@
   }
 
   // ---------- Render ----------
-  const NAV_ACTIVE = { home: 'work', about: 'about' };
+  const NAV_ACTIVE = { home: 'work', 'case-studies': 'cases', about: 'about' };
 
   function render() {
     const route = parseRoute();
-    if (route.page === 'about') {
+    if (route.page === 'case-studies') {
+      app.innerHTML = caseStudiesPage();
+      document.title = 'Case studies · Umesh Anghan';
+    } else if (route.page === 'about') {
       app.innerHTML = aboutPage();
       document.title = 'About · Umesh Anghan';
     } else {

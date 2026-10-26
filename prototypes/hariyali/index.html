@@ -1,0 +1,430 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Hariyali Plant Care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#ECF0E8; --surface:#FFFFFF; --surface-2:#F4F7F1; --ink:#172015; --ink-2:#56624F; --line:#D9E0D2;
+  --primary:#2E6B3F; --primary-ink:#FFFFFF; --primary-soft:#DDEEDF;
+  --accent:#C8643B; --accent-ink:#FFFFFF; --accent-soft:#F8E4DA;
+  --water:#2F7FC1; --water-soft:#DDEBF7;
+  --good:#2E6B3F; --good-soft:#DDEEDF; --bad:#B93A2B; --bad-soft:#F9E1DC; --warn:#D48C0A; --warn-soft:#FBEFD2;
+  --track:#C4CDBC; --frame:#121A10; --shadow:0 24px 60px -24px rgba(23,32,21,.45); --scrim:rgba(12,18,10,.5);
+  --display:"Instrument Serif", Georgia, serif; --display-weight:400;
+  --body:"Work Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --bg:#0D120C; --surface:#161D14; --surface-2:#1D261B; --ink:#E9F0E4; --ink-2:#9DAB95; --line:#2B3628;
+  --primary:#7CC48E; --primary-ink:#0D120C; --primary-soft:#1D3322; --accent:#E48A60; --accent-ink:#1A0B05; --accent-soft:#3A2218;
+  --water:#6FB0EA; --water-soft:#172C3E; --good:#7CC48E; --good-soft:#1D3322; --bad:#F2806F; --bad-soft:#3A1E1A; --warn:#F2BE4C; --warn-soft:#3A2F14;
+  --track:#3A4636; --frame:#000; --shadow:0 24px 60px -24px rgba(0,0,0,.8); --scrim:rgba(0,0,0,.6);}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#0D120C; --surface:#161D14; --surface-2:#1D261B; --ink:#E9F0E4; --ink-2:#9DAB95; --line:#2B3628;
+  --primary:#7CC48E; --primary-ink:#0D120C; --primary-soft:#1D3322; --accent:#E48A60; --accent-ink:#1A0B05; --accent-soft:#3A2218;
+  --water:#6FB0EA; --water-soft:#172C3E; --good:#7CC48E; --good-soft:#1D3322; --bad:#F2806F; --bad-soft:#3A1E1A; --warn:#F2BE4C; --warn-soft:#3A2F14;
+  --track:#3A4636; --frame:#000; --shadow:0 24px 60px -24px rgba(0,0,0,.8); --scrim:rgba(0,0,0,.6);}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;padding-inline:16px;padding-block:24px;margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.stage{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:44px;align-items:start;justify-content:center}
+@media (max-width:760px){.stage{grid-template-columns:minmax(0,1fr);gap:20px}}
+.phone{position:relative;width:100%;max-width:400px;margin:0 auto;height:min(800px,calc(100svh - 48px));min-height:620px;background:var(--surface-2);border-radius:34px;border:8px solid var(--frame);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+@media (max-width:440px){.phone{border-width:0;border-radius:18px;height:calc(100svh - 48px)}}
+.appbar{padding:16px 16px 10px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{font-family:var(--display);font-size:24px;line-height:1.05;font-weight:var(--display-weight,700);letter-spacing:-.01em}
+.brand-sub{font-size:12px;color:var(--ink-2);margin-top:2px}
+.bar-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{position:relative;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--ink)}
+.icon-btn svg{width:20px;height:20px}
+.badge{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--bad);color:#fff;font-size:10.5px;font-weight:700;display:grid;place-items:center;border:2px solid var(--surface-2)}
+.screen{flex:1;overflow-y:auto;padding:4px 16px 100px;display:flex;flex-direction:column;gap:14px}
+.screen > *{flex-shrink:0}
+.tabbar{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(var(--tabs,5),1fr);background:var(--surface);border-top:1px solid var(--line);padding:6px 4px calc(8px + env(safe-area-inset-bottom,0px));z-index:3}
+.tab{background:none;border:0;padding:5px 0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;font-weight:700;color:var(--ink-2);position:relative}
+.tab svg{width:21px;height:21px}
+.tab-ico{padding:3px 12px;border-radius:999px;display:flex}
+.tab[aria-current="page"]{color:var(--ink)}
+.tab[aria-current="page"] .tab-ico{background:var(--primary-soft);color:var(--primary)}
+.tab .dot{position:absolute;top:1px;right:calc(50% - 20px);min-width:16px;height:16px;border-radius:99px;background:var(--accent);color:var(--accent-ink);font-size:10px;font-weight:800;display:grid;place-items:center;padding:0 4px}
+.fab{position:absolute;right:16px;bottom:84px;height:54px;padding:0 20px 0 16px;border-radius:18px;border:0;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;gap:6px;font-weight:800;box-shadow:0 10px 24px -8px rgba(0,0,0,.35);z-index:2}
+.fab svg{width:22px;height:22px}
+.h-title{font-family:var(--display);font-weight:var(--display-weight,700);font-size:24px;line-height:1.15;margin:2px 0 0;text-wrap:balance}
+.section-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:4px}
+.section-h h2{font-family:var(--display);font-weight:var(--display-weight,700);font-size:18px;margin:0}
+.section-h span{font-size:12px;color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius,18px)}
+.pad{padding:14px}
+.list{display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line);background:none;border-left:0;border-right:0;border-bottom:0;width:100%;text-align:left}
+.row:first-child{border-top:0}
+button.row:hover{background:var(--surface-2)}
+.card > button.row:first-child{border-radius:var(--radius,18px) var(--radius,18px) 0 0}.card > button.row:last-child{border-radius:0 0 var(--radius,18px) var(--radius,18px)}.card > button.row:only-child{border-radius:var(--radius,18px)}
+.row-main{flex:1;min-width:0}
+.row-title{font-weight:700;overflow-wrap:anywhere}
+.row-sub{font-size:12.5px;color:var(--ink-2)}
+.row-end{text-align:right;font-size:12px;white-space:nowrap}
+.row-end b{display:block;font-size:14.5px}
+.muted{color:var(--ink-2)} .hint{font-size:13px;color:var(--ink-2);margin:0}
+.ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--surface-2);color:var(--ink-2);flex:none}
+.ico svg{width:20px;height:20px}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px;flex:none}
+.av.sm{width:26px;height:26px;font-size:11px}
+.btn{border:0;border-radius:12px;padding:8px 14px;font-weight:700;font-size:13.5px;background:var(--primary);color:var(--primary-ink);white-space:nowrap}
+.btn.accent{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:var(--bad);color:#fff}
+.btn.block{width:100%;padding:13px;font-size:15px;border-radius:14px}
+.btn.sm{padding:6px 11px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap;border:0}
+.chip svg{width:12px;height:12px}
+.chip.good{background:var(--good-soft);color:var(--good)}
+.chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--ink)}
+.chip.pri{background:var(--primary-soft);color:var(--primary)}
+.chip.acc{background:var(--accent-soft);color:var(--ink)}
+.lbl{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.search{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0 12px}
+.search svg{width:18px;height:18px;color:var(--ink-2);flex:none}
+.search input{border:0;background:none;padding:11px 0;width:100%;outline:none}
+.filters{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.filters button{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:700;color:var(--ink-2)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.seg{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:3px}
+.seg button{flex:1;border:0;background:none;padding:7px;border-radius:9px;font-size:13px;font-weight:700;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--primary-soft);color:var(--ink)}
+.bar-track{height:8px;background:var(--surface-2);border-radius:99px;position:relative;overflow:hidden}
+.bar{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:var(--primary)}
+.empty{padding:18px;text-align:center;color:var(--ink-2);font-size:13.5px}
+.hero{background:var(--primary);color:var(--primary-ink);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.hero .lbl{color:inherit;opacity:.8}
+.hero-big{font-family:var(--display);font-weight:var(--display-weight,700);font-size:40px;line-height:1}
+.pill{font-size:12px;font-weight:700;background:rgba(255,255,255,.18);padding:4px 10px;border-radius:999px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.sheet-wrap{position:absolute;inset:0;background:var(--scrim);display:flex;align-items:flex-end;z-index:6}
+.sheet{width:100%;max-height:92%;overflow-y:auto;background:var(--surface);border-radius:24px 24px 0 0;padding:10px 18px calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px;animation:up .22s ease-out}
+.sheet.full{height:92%}
+.sheet > *{flex-shrink:0}
+@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}}
+.grab{width:40px;height:4px;border-radius:9px;background:var(--line);margin:0 auto}
+.sheet-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sheet-h h3{font-family:var(--display);font-weight:var(--display-weight,700);font-size:21px;margin:0;line-height:1.15;display:flex;align-items:center;gap:8px}
+.x{background:var(--surface-2);border:0;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;flex:none;color:var(--ink)}
+.field{display:flex;flex-direction:column;gap:7px}
+.field input:not([type=checkbox]):not([type=radio]):not([type=file]),.field select,.field textarea{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:11px 12px;width:100%}
+.field textarea{resize:vertical;min-height:70px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pick{display:flex;flex-wrap:wrap;gap:8px}
+.pick button{border:1px solid var(--line);background:var(--surface-2);border-radius:12px;padding:8px 12px;font-size:13.5px;font-weight:700;text-align:left}
+.pick button[aria-pressed="true"]{border-color:var(--primary);background:var(--primary-soft)}
+.pick button small{display:block;font-weight:500;font-size:11.5px;color:var(--ink-2)}
+.err{color:var(--bad);font-size:13px;min-height:1em}
+.summary{background:var(--surface-2);border-radius:14px;padding:12px;font-size:13.5px;display:flex;flex-direction:column;gap:6px}
+.summary > div{display:flex;justify-content:space-between;gap:10px}
+.note{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;background:var(--primary-soft);color:var(--ink);border-radius:12px;padding:9px 11px}
+.note svg{width:16px;height:16px;color:var(--primary);flex:none;margin-top:1px}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;padding:12px 14px;border-top:1px solid var(--line)}
+.opt:first-child{border-top:0}
+.switch{appearance:none;width:42px;height:24px;border-radius:99px;background:var(--track);position:relative;flex:none;cursor:pointer;transition:background .15s;margin:0}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .15s}
+.switch:checked{background:var(--primary)}
+.switch:checked::after{left:21px}
+.file-lbl{display:flex;align-items:center;justify-content:center;gap:8px;border:1px dashed var(--line);border-radius:12px;padding:12px;font-size:13.5px;color:var(--ink-2);cursor:pointer;background:var(--surface-2);position:relative}
+.file-lbl svg{width:20px;height:20px;flex:none}
+.file-lbl input{position:absolute;width:1px;height:1px;opacity:0}
+.check{width:28px;height:28px;border-radius:9px;border:2px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none;color:var(--primary-ink);padding:0}
+.check[aria-checked="true"]{background:var(--primary);border-color:var(--primary)}
+.check svg{width:16px;height:16px}
+.toast{position:absolute;left:16px;right:16px;top:72px;background:var(--ink);color:var(--surface);padding:11px 14px;border-radius:12px;font-size:13.5px;z-index:9;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+.notes{padding-top:8px;max-width:62ch;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--primary)}
+.notes h1{font-family:var(--display);font-weight:var(--display-weight,700);font-size:clamp(30px,5vw,46px);line-height:1.03;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.notes p{color:var(--ink-2);margin:0}
+.try{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.try div{display:flex;gap:12px;padding:11px 14px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2)}
+.try div:first-child{border-top:0}
+.try b{color:var(--ink)}
+.try .n{font-family:var(--display);font-weight:var(--display-weight,700);color:var(--primary);min-width:16px}
+.stack{display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:var(--ink-2)}
+.stack b{color:var(--ink)}
+@media (max-width:760px){.notes{order:-1;padding-top:0}.try,.stack{display:none}}
+
+.brand{font-size:30px;font-style:italic}
+.h-title{font-size:30px;line-height:1.05}
+.section-h h2{font-size:22px}
+.sheet-h h3{font-size:26px}
+.wx{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:10px 6px}
+.wx div{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11.5px;color:var(--ink-2)}
+.wx b{font-size:13px;color:var(--ink)}
+.wx .ic{font-size:18px;line-height:1.2}
+.wx .rain{color:var(--water);font-weight:700}
+.wx .today{background:var(--primary-soft);border-radius:12px;padding:4px 0}
+.pot{width:48px;height:48px;flex:none;position:relative;display:grid;place-items:end center}
+.pot .soil{position:absolute;bottom:0;left:6px;right:6px;height:22px;background:var(--accent);border-radius:3px 3px 12px 12px}
+.pot svg{position:relative;width:34px;height:34px;margin-bottom:14px;color:var(--primary)}
+.task{display:flex;gap:12px;align-items:center;padding:12px 14px;border-top:1px solid var(--line)}
+.task:first-child{border-top:0}
+.task .why{font-size:12.5px;color:var(--ink-2)}
+.water-btn{border:0;border-radius:14px;padding:9px 14px;font-weight:700;font-size:13.5px;background:var(--water);color:#fff;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.water-btn svg{width:16px;height:16px}
+:root[data-theme="dark"] .water-btn{color:#0D120C}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .water-btn{color:#0D120C}}
+.done-chip{font-size:12px;font-weight:700;color:var(--water);background:var(--water-soft);border-radius:999px;padding:4px 10px;white-space:nowrap}
+.skip-chip{font-size:12px;font-weight:700;color:var(--ink-2);background:var(--surface-2);border:1px dashed var(--line);border-radius:999px;padding:4px 10px;white-space:nowrap}
+.plants{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left}
+.pcard .pot{width:56px;height:56px}
+.pcard b{font-family:var(--display);font-size:21px;font-weight:400;line-height:1}
+.pcard .row-sub{font-size:12px}
+.lvl{height:6px;border-radius:9px;background:var(--surface-2);overflow:hidden}
+.lvl i{display:block;height:100%;background:var(--water)}
+.health{font-size:11.5px;font-weight:700;border-radius:999px;padding:2px 8px;align-self:flex-start}
+.health.ok{background:var(--good-soft);color:var(--good)} .health.watch{background:var(--warn-soft);color:var(--ink)} .health.sick{background:var(--bad-soft);color:var(--bad)}
+.scan{border:2px dashed var(--line);border-radius:22px;padding:24px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;background:var(--surface)}
+.scan .lens{width:84px;height:84px;border-radius:50%;background:var(--primary);color:var(--primary-ink);display:grid;place-items:center}
+.scan .lens svg{width:36px;height:36px}
+.result{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.conf{font-weight:700;color:var(--primary)}
+.photo{height:150px;border-radius:14px;background:radial-gradient(circle at 30% 40%,#EDEDED 0 6px,transparent 7px),radial-gradient(circle at 60% 55%,#F2F2F2 0 5px,transparent 6px),radial-gradient(circle at 45% 70%,#EAEAEA 0 4px,transparent 5px),linear-gradient(135deg,#3E7A3C,#244B26);position:relative}
+.photo span{position:absolute;left:10px;bottom:8px;font-size:11px;font-weight:700;color:#fff;background:rgba(0,0,0,.35);padding:2px 8px;border-radius:999px}
+.steps2{counter-reset:s;display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
+.steps2 li{counter-increment:s;display:flex;gap:10px;font-size:14px}
+.steps2 li:before{content:counter(s);width:22px;height:22px;border-radius:50%;background:var(--primary-soft);color:var(--primary);font-weight:700;font-size:12px;display:grid;place-items:center;flex:none}
+.soil-q{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.soil-q button{border:1px solid var(--line);background:var(--surface-2);border-radius:16px;padding:14px 10px;font-weight:700;text-align:center}
+.soil-q button small{display:block;font-weight:400;color:var(--ink-2);font-size:12px;margin-top:2px}
+.msg{white-space:pre-wrap;background:var(--surface-2);border-radius:14px;padding:12px;font-size:14px}
+</style>
+
+<div class="stage">
+  <div class="phone">
+    <header class="appbar">
+      <div><div class="brand">Hariyali</div><div class="brand-sub">Meenakshi's balcony and home · Adyar, Chennai</div></div>
+      <div class="bar-actions"><span class="av" style="background:#2E6B3F">M</span></div>
+    </header>
+    <main class="screen" id="screen"></main>
+    <nav class="tabbar" aria-label="Sections">
+      <button class="tab" data-tab="today"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></span>Today<span class="dot" id="t-dot" hidden></span></button>
+      <button class="tab" data-tab="plants"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20v-8M12 12C12 7 8 5 4 5c0 5 3 7 8 7zM12 12c0-4 3-6 7-6 0 4-3 6-7 6zM7 20h10"/></svg></span>Plants</button>
+      <button class="tab" data-tab="scan"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-3h6l2 3h3v13H4z"/><circle cx="12" cy="13" r="4"/></svg></span>Scan</button>
+      <button class="tab" data-tab="helper"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-7 4 14 3-7h4"/></svg></span>Away</button>
+      <button class="tab" data-tab="you"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>You</button>
+    </nav>
+    <div id="sheet-root"></div>
+    <div class="toast" id="toast" role="status" hidden></div>
+  </div>
+  <aside class="notes">
+    <div class="eyebrow">Clickable prototype</div>
+    <h1>Hariyali: plant care that checks the weather and the soil</h1>
+    <p>Hariyali tells you which plants need water today, and skips balcony plants when rain is coming. It asks you to check the soil first, because overwatering is a common way houseplants die. It identifies plants and problems from a photo, and writes care instructions for whoever looks after your plants while you're away. You are Meenakshi in Chennai. Plants, weather and scan results are sample data.</p>
+    <div class="try">
+      <div><span class="n">1</span><span><b>Water with a check.</b> Tap "Water" on the tulsi. Hariyali asks whether the soil is dry first.</span></div>
+      <div><span class="n">2</span><span><b>See the rain skip.</b> The curry leaf is due, but 18 mm of rain is expected tomorrow.</span></div>
+      <div><span class="n">3</span><span><b>Diagnose.</b> On Scan, attach any photo to see a sample diagnosis of mealybugs on the hibiscus.</span></div>
+      <div><span class="n">4</span><span><b>Going away?</b> On Away, make a care note for your neighbour in Tamil or English.</span></div>
+      <div><span class="n">5</span><span><b>Pets at home?</b> Turn on pet safety under You to flag plants that aren't safe for cats and dogs.</span></div>
+    </div>
+    <div class="stack"><div><b>Planned build:</b> Flutter, Firebase, a plant identification model, and a weather forecast API that adjusts watering by location.</div>
+      <button class="btn ghost sm" id="reset" style="align-self:flex-start">Reset sample data</button></div>
+  </aside>
+</div>
+
+<script>
+/* ---- shared prototype kit ---- */
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+function dNum(s){const [y,m,d]=s.split("-").map(Number);return Date.UTC(y,m-1,d)/864e5;}
+function addDays(s,n){return new Date((dNum(s)+n)*864e5).toISOString().slice(0,10);}
+function addMonths(s,n){const [y,m,d]=s.split("-").map(Number);return new Date(Date.UTC(y,m-1+n,d)).toISOString().slice(0,10);}
+function dLabel(s){const [y,m,d]=s.split("-").map(Number);return d+" "+MON[m-1];}
+function dLabelY(s){const [y,m,d]=s.split("-").map(Number);return d+" "+MON[m-1]+" "+y;}
+function dow(s){return DOW[new Date(dNum(s)*864e5).getUTCDay()];}
+function t12(t){let [h,m]=t.split(":").map(Number);const ap=h>=12?"PM":"AM";h=h%12||12;return h+(m?":"+String(m).padStart(2,"0"):"")+" "+ap;}
+const inr = n => "₹" + Math.round(Math.abs(n)).toLocaleString("en-IN");
+function daysBetween(a,b){return dNum(b)-dNum(a);}
+const IC = {
+  x:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
+  bell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>',
+  info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>',
+  camera:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-3h6l2 3h3v13H4z"/><circle cx="12" cy="13" r="4"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>',
+  chev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>',
+  trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>'
+};
+const Kit = {
+  store:null, S:null, seed:null, views:{}, actions:{}, afterRender:[],
+  init(opts){
+    Object.assign(this, opts);
+    try { this.S = JSON.parse(localStorage.getItem(this.store)) || this.seed(); } catch(_) { this.S = this.seed(); }
+    document.addEventListener("click", e => this.onClick(e));
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+    const r = $("#reset"); if (r) r.addEventListener("click", () => { this.S = this.seed(); closeSheet(); this.render(); toast("Sample data restored."); });
+    this.render();
+  },
+  save(){ try { localStorage.setItem(this.store, JSON.stringify(this.S, (k,v) => k.startsWith("_") ? undefined : v)); } catch(_){} },
+  render(keep){
+    const S = this.S, sc = $("#screen"), top = sc.scrollTop;
+    sc.innerHTML = this.views[S.tab]();
+    if (keep) sc.scrollTop = top;
+    $$(".tab").forEach(t => t.removeAttribute("aria-current"));
+    const cur = $(`.tab[data-tab="${S.tab}"]`); if (cur) cur.setAttribute("aria-current","page");
+    this.afterRender.forEach(f => f(S));
+    this.save();
+  },
+  onClick(e){
+    const tab = e.target.closest(".tab");
+    if (tab){ this.S.tab = tab.dataset.tab; this.render(); $("#screen").scrollTop = 0; return; }
+    const a = e.target.closest("[data-action]"); if (!a) return;
+    const act = a.dataset.action;
+    if (act === "close-bg" && e.target !== a) return;
+    if (act === "close" || act === "close-bg") { closeSheet(); return; }
+    const fn = this.actions[act]; if (fn) fn(a, e);
+  }
+};
+function bindSearch(id, key){
+  const q = document.getElementById(id); if (!q) return;
+  q.addEventListener("input", () => { Kit.S[key] = q.value; const pos = q.selectionStart; Kit.render(true); const n = document.getElementById(id); n.focus(); n.setSelectionRange(pos,pos); });
+}
+let _tt;
+function toast(m){ const t = $("#toast"); t.textContent = m; t.hidden = false; clearTimeout(_tt); _tt = setTimeout(() => t.hidden = true, 3000); }
+function openSheet(title, body, full){
+  $("#sheet-root").innerHTML = `<div class="sheet-wrap" data-action="close-bg"><div class="sheet ${full?"full":""}" role="dialog" aria-modal="true" aria-label="${esc(title.replace(/<[^>]+>/g,""))}"><div class="grab"></div><div class="sheet-h"><h3>${title}</h3><button class="x" data-action="close" aria-label="Close">${IC.x}</button></div>${body}</div></div>`;
+}
+function closeSheet(){ const r = $("#sheet-root"); if (r) r.innerHTML = ""; }
+function pickGroup(root, onPick){
+  root.addEventListener("click", e => { const b = e.target.closest("button[data-v]"); if (!b || b.disabled) return;
+    const multi = root.dataset.multi === "1";
+    if (multi) b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+    else root.querySelectorAll("button[data-v]").forEach(x => x.setAttribute("aria-pressed", x === b));
+    onPick && onPick(b.dataset.v, b);
+  });
+}
+function picked(root){ return [...root.querySelectorAll('button[aria-pressed="true"]')].map(b => b.dataset.v); }
+function copyText(el, msg){
+  const sel = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  try { navigator.clipboard.writeText(el.textContent).then(() => toast(msg), () => { sel(); toast("Selected. Copy it from here."); }); } catch(_) { sel(); toast("Selected. Copy it from here."); }
+}
+
+const TODAY = "2026-09-28";
+const WX = [{d:"2026-09-28",i:"☀️",hi:34,lo:27,rain:0},{d:"2026-09-29",i:"🌧️",hi:30,lo:25,rain:18},{d:"2026-09-30",i:"🌦️",hi:31,lo:25,rain:6},{d:"2026-10-01",i:"⛅",hi:33,lo:26,rain:0},{d:"2026-10-02",i:"☀️",hi:34,lo:27,rain:0},{d:"2026-10-03",i:"⛅",hi:33,lo:26,rain:1},{d:"2026-10-04",i:"🌧️",hi:29,lo:24,rain:22}];
+const LEAF = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 22V11C12 6 8 3 3 3c0 6 3 9 9 9M12 11c0-4 3-7 9-7 0 5-3 8-9 8"/></svg>';
+const DROP = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg>';
+function seed(){
+  return { tab:"today", pets:false, lang:"en", scan:null, away:{from:"2026-10-09",to:"2026-10-14",who:"Neighbour, Mrs. Lakshmi"},
+    plants:[
+      {id:1, name:"Tulsi", sci:"Ocimum tenuiflorum", place:"Balcony (covered corner)", out:false, every:2, last:"2026-09-26", health:"ok", tip:"Pinch off flower spikes to keep leaves coming.", pet:"safe"},
+      {id:2, name:"Curry leaf", sci:"Murraya koenigii", place:"Balcony (west, open)", out:true, every:3, last:"2026-09-25", health:"ok", tip:"Likes full sun. Feed once a month in summer.", pet:"unknown"},
+      {id:3, name:"Hibiscus", sci:"Hibiscus rosa-sinensis", place:"Balcony (covered)", out:false, every:1, last:"2026-09-27", health:"sick", issue:"White cotton-like spots under leaves", tip:"Heavy feeder when flowering.", pet:"safe"},
+      {id:4, name:"Money plant", sci:"Epipremnum aureum (pothos)", place:"Living room (bright, indirect)", out:false, every:6, last:"2026-09-24", health:"ok", tip:"Water when the top 2–3 cm of soil is dry.", pet:"toxic"},
+      {id:5, name:"Mogra", sci:"Jasminum sambac", place:"Balcony (west, open)", out:true, every:2, last:"2026-09-26", health:"watch", issue:"Few buds this month", tip:"Needs 6+ hours of sun to flower.", pet:"safe", feed:"2026-09-28"},
+      {id:6, name:"Snake plant", sci:"Dracaena trifasciata", place:"Bedroom (low light)", out:false, every:14, last:"2026-09-20", health:"ok", tip:"Rot is the main risk. Less water in low light.", pet:"toxic"},
+      {id:7, name:"Aloe vera", sci:"Aloe vera", place:"Kitchen window", out:false, every:12, last:"2026-09-19", health:"ok", tip:"Let the soil dry out completely.", pet:"toxic"},
+      {id:8, name:"Chilli", sci:"Capsicum annuum", place:"Balcony (west, open)", out:true, every:1, last:"2026-09-27", health:"ok", tip:"Pick ripe chillies to get more.", pet:"unknown"}
+    ],
+    log:[], done:{}, nextId:100 };
+}
+const S = () => Kit.S;
+const Pl = id => S().plants.find(p=>p.id===id);
+const nextDue = p => addDays(p.last, p.every);
+const rainSoon = () => WX[1].rain;
+function plan(p){
+  const due = daysBetween(TODAY, nextDue(p));
+  if (S().done[p.id]) return {k:"done", why:S().done[p.id]};
+  if (due > 0) return {k:"later", due};
+  if (p.out && rainSoon() >= 5) return {k:"skip", why:`Rain expected tomorrow (${rainSoon()} mm). Open balcony plant.`};
+  const hot = WX[0].hi >= 33 && p.out;
+  return {k:"water", why: `${due<0?`${-due} day${due<-1?"s":""} overdue`:"Due today"}${hot?" · hot day, water in the evening":""}`};
+}
+function pot(p){ return `<span class="pot" aria-hidden="true"><span class="soil"></span>${LEAF}</span>`; }
+function viewToday(){
+  const ps = S().plants, items = ps.map(p=>({p, r:plan(p)}));
+  const water = items.filter(x=>x.r.k==="water"), skip = items.filter(x=>x.r.k==="skip"), done = items.filter(x=>x.r.k==="done");
+  const feed = ps.filter(p=>p.feed===TODAY && !S().done["f"+p.id]), sick = ps.filter(p=>p.health==="sick");
+  return `<h1 class="h-title">${water.length?`${water.length} plant${water.length>1?"s":""} to water today`:"Nothing to water today"}</h1>
+  <div class="wx" aria-label="7-day forecast for Adyar, Chennai">${WX.map((w,i)=>`<div class="${i?"":"today"}"><span>${i?dow(w.d):"Today"}</span><span class="ic">${w.i}</span><b class="num">${w.hi}°</b><span class="${w.rain?"rain":""} num">${w.rain?w.rain+" mm":"–"}</span></div>`).join("")}</div>
+  ${water.length?`<div class="card list">${water.map(({p,r})=>`<div class="task">${pot(p)}<div class="row-main"><div class="row-title">${esc(p.name)}</div><div class="why">${esc(p.place)} · ${esc(r.why)}</div></div><button class="water-btn" data-action="water" data-id="${p.id}">${DROP}Water</button></div>`).join("")}</div>`:""}
+  ${skip.length?`<div class="section-h"><h2>Skipped for rain</h2><span>we'll check again after</span></div><div class="card list">${skip.map(({p,r})=>`<div class="task">${pot(p)}<div class="row-main"><div class="row-title">${esc(p.name)}</div><div class="why">${esc(r.why)}</div></div><button class="skip-chip" data-action="water" data-id="${p.id}">Water anyway</button></div>`).join("")}</div>`:""}
+  ${feed.length||sick.length?`<div class="section-h"><h2>Other care</h2></div><div class="card list">${feed.map(p=>`<div class="task">${pot(p)}<div class="row-main"><div class="row-title">Feed ${esc(p.name)}</div><div class="why">Monthly feed · a handful of compost or diluted liquid fertiliser</div></div><button class="btn ghost sm" data-action="fed" data-id="${p.id}">Done</button></div>`).join("")}${sick.map(p=>`<div class="task">${pot(p)}<div class="row-main"><div class="row-title">Treat ${esc(p.name)}</div><div class="why" style="color:var(--bad)">${esc(p.issue)}</div></div><button class="btn sm" data-action="go-scan" data-id="${p.id}">Diagnose</button></div>`).join("")}</div>`:""}
+  ${done.length?`<div class="section-h"><h2>Done today</h2></div><div class="card list">${done.map(({p,r})=>`<div class="task">${pot(p)}<div class="row-main"><div class="row-title">${esc(p.name)}</div><div class="why">${esc(r.why)}</div></div><span class="done-chip">✓</span></div>`).join("")}</div>`:""}`;
+}
+function viewPlants(){
+  return `<h1 class="h-title">${S().plants.length} plants</h1>
+  <div class="plants">${S().plants.map(p=>{const d=daysBetween(TODAY,nextDue(p)), pct=Math.max(0,Math.min(100,(d/p.every)*100)), r=plan(p);return `<button class="pcard" data-action="plant" data-id="${p.id}">${pot(p)}<b>${esc(p.name)}</b><span class="row-sub">${esc(p.place.split(" (")[0])}</span><span class="health ${p.health}">${({ok:"Healthy",watch:"Keep an eye",sick:"Needs care"})[p.health]}</span>${S().pets&&p.pet==="toxic"?`<span class="health sick">Not pet-safe</span>`:""}<div class="lvl" aria-label="Water left"><i style="width:${r.k==="done"?100:pct}%"></i></div><span class="row-sub num">${r.k==="done"?"Watered today":d>0?`Water in ${d} day${d>1?"s":""}`:r.k==="skip"?"Skipped for rain":"Water today"}</span></button>`;}).join("")}</div>
+  <button class="btn block" data-action="go-scan">Add a plant by photo</button>`;
+}
+const DIAG = {issue:"Mealybugs", conf:87, alt:"Whitefly (9%)", steps:["Move the hibiscus away from other plants for two weeks.","Dab visible bugs with cotton dipped in a little rubbing alcohol, or wash them off with a strong spray of water.","Spray leaves, especially undersides, with neem oil soap solution every 5–7 days, in the evening.","Check new growth and leaf joints every few days. Ants on the plant often mean the pests are still there."], avoid:"Don't spray in full sun, and test on one leaf first."};
+function viewScan(){
+  const s = S().scan;
+  return `<h1 class="h-title">Identify or diagnose</h1>
+  ${!s?`<label class="scan"><span class="lens">${IC.camera}</span><b>Take or choose a photo</b><span class="hint">A clear photo of the whole plant, or of the problem up close.</span><input id="snap" type="file" accept="image/*" style="position:absolute;width:1px;height:1px;opacity:0"></label>
+  <div class="note">${IC.info}<span>Prototype: the camera isn't available here. Choose any image and you'll see a sample result for the hibiscus.</span></div>`:
+  `<div class="photo"><span>Your photo</span></div>
+  <div class="result"><div class="lbl">Plant</div><b style="font-family:var(--display);font-size:24px;font-weight:400">Hibiscus <i style="font-size:16px;color:var(--ink-2)">Hibiscus rosa-sinensis</i></b><span class="conf">96% match · matches your balcony hibiscus</span></div>
+  <div class="result" style="border-color:var(--bad)"><div class="lbl" style="color:var(--bad)">Likely problem</div><b style="font-family:var(--display);font-size:24px;font-weight:400">${DIAG.issue}</b><span class="conf" style="color:var(--bad)">${DIAG.conf}% likely · also possible: ${DIAG.alt}</span><span class="hint" style="color:var(--ink)">White, cottony clusters on leaf undersides and stems. They suck sap and leave sticky residue.</span></div>
+  <div class="result"><div class="lbl">What to do</div><ol class="steps2">${DIAG.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol><div class="note" style="background:var(--warn-soft)">${IC.info}<span>${esc(DIAG.avoid)} Keep sprays away from pets and children.</span></div></div>
+  <div class="two"><button class="btn ghost block" data-action="rescan">New photo</button><button class="btn block" data-action="treat">Add treatment reminders</button></div>
+  <p class="hint">Photo diagnosis is a best guess. If a plant keeps getting worse, ask a local nursery.</p>`}`;
+}
+function careText(lang){
+  const a = S().away, ps = S().plants;
+  if (lang==="ta") return `வணக்கம் லக்ஷ்மி அம்மா 🙏\n${dLabel(a.from)} முதல் ${dLabel(a.to)} வரை செடிகளைப் பார்த்துக்கொள்ள நன்றி.\n\nபால்கனி (துளசி, கறிவேப்பிலை, மல்லிகை, மிளகாய், செம்பருத்தி): மாலையில் தினமும் தண்ணீர் ஊற்றவும். மழை பெய்த நாளில் வேண்டாம்.\nவீட்டுக்குள் (மணி பிளான்ட்): ${dLabel("2026-10-11")} அன்று ஒரு முறை மட்டும்.\nஸ்நேக் பிளான்ட், கற்றாழை: தண்ணீர் வேண்டாம்.\n\nசந்தேகம் இருந்தால் மண்ணைத் தொட்டுப் பாருங்கள்: ஈரமாக இருந்தால் ஊற்ற வேண்டாம்.`;
+  const bal = ps.filter(p=>p.out||p.place.startsWith("Balcony")).map(p=>p.name).join(", ");
+  return `Hi Lakshmi aunty 🙏\nThank you for looking after the plants from ${dLabel(a.from)} to ${dLabel(a.to)}.\n\nBalcony (${bal}): water every evening, a mug each. Skip any day it rains.\nIndoors, money plant: water once, on ${dLabel("2026-10-11")}.\nSnake plant and aloe: no water needed.\n\nIf in doubt, touch the soil. If it's damp, don't water.`;
+}
+function viewHelper(){
+  const a = S().away;
+  return `<h1 class="h-title">Going away?</h1>
+  <p class="hint" style="color:var(--ink)">Hariyali writes simple care notes for whoever looks after your plants, planned around the forecast and each plant's needs.</p>
+  <div class="card pad" style="display:flex;flex-direction:column;gap:10px"><div class="summary"><div><span>Away</span><b>${dLabel(a.from)} to ${dLabel(a.to)}</b></div><div><span>Helper</span><b>${esc(a.who)}</b></div></div>
+    <div class="seg" role="group" aria-label="Language">${[["en","English"],["ta","தமிழ்"]].map(([k,v])=>`<button data-action="lang" data-v="${k}" aria-pressed="${S().lang===k}">${v}</button>`).join("")}</div>
+    <div class="msg" id="care">${esc(careText(S().lang))}</div>
+    <button class="btn block" data-action="copy-care">Copy for WhatsApp</button></div>
+  <div class="note">${IC.info}<span>Before you go: water everything well, move the balcony pots out of the harshest afternoon sun, and group indoor plants together to keep them humid.</span></div>`;
+}
+function viewYou(){
+  return `<h1 class="h-title">Your home</h1>
+  <div class="card"><div class="opt"><span><b>Location</b><br><span class="row-sub">Adyar, Chennai · forecast used for balcony plants</span></span><span class="chip">Change</span></div>
+  <label class="opt"><span><b>Pets at home</b><br><span class="row-sub">Flag plants that aren't safe for cats and dogs</span></span><input type="checkbox" class="switch" data-set="pets" ${S().pets?"checked":""}></label>
+  <label class="opt"><span><b>Reminder time</b><br><span class="row-sub">6:30 PM, when it's cooler</span></span><span class="chip">6:30 PM</span></label></div>
+  <div class="section-h"><h2>Spots in your home</h2></div>
+  <div class="card list">${[...new Set(S().plants.map(p=>p.place))].map(pl=>`<div class="row"><div class="row-main"><div class="row-title">${esc(pl)}</div><div class="row-sub">${S().plants.filter(p=>p.place===pl).map(p=>p.name).join(", ")}</div></div></div>`).join("")}</div>
+  <p class="hint">Light and whether a spot gets rain change how often each plant needs water.</p>`;
+}
+
+/* ---------- actions ---------- */
+Object.assign(Kit.actions, {
+  water: a => { const p=Pl(+a.dataset.id); openSheet(`${esc(p.name)}`, `
+    <p style="margin:0;font-size:15px">Before watering, push a finger 2–3 cm into the soil. How does it feel?</p>
+    <div class="soil-q"><button data-action="soil" data-v="dry" data-id="${p.id}">Dry<small>Water now</small></button><button data-action="soil" data-v="damp" data-id="${p.id}">Still damp<small>Wait a bit</small></button></div>
+    <p class="hint">Overwatering is a common reason houseplants fail. Checking first protects the roots.</p>`); },
+  soil: a => { const p=Pl(+a.dataset.id); if(a.dataset.v==="dry"){ p.last=TODAY; S().done[p.id]="Watered at 6:30 PM"; S().log.unshift({p:p.id,t:"water"}); closeSheet(); Kit.render(true); toast(`${p.name} watered. Next check ${dLabel(nextDue(p))}.`); }
+    else { p.last=addDays(TODAY,2-p.every); p.every=p.every>=2?p.every+1:p.every; S().done[p.id]="Soil was damp: checking again in 2 days"; closeSheet(); Kit.render(true); toast(`Good call. Hariyali will wait 2 days and learn that ${p.name} dries slower here.`); } },
+  fed: a => { S().done["f"+a.dataset.id]=true; Kit.render(true); toast("Fed. Next feed in a month."); },
+  plant: a => { const p=Pl(+a.dataset.id); openSheet(`${esc(p.name)}`, `<div style="display:flex;gap:14px;align-items:center">${pot(p)}<div><i class="muted">${esc(p.sci)}</i><div class="row-sub">${esc(p.place)}</div></div></div>
+    <div class="summary"><div><span>Water</span><b>about every ${p.every} day${p.every>1?"s":""}</b></div><div><span>Last watered</span><b>${dLabel(p.last)}</b></div><div><span>Next check</span><b>${dLabel(nextDue(p))}</b></div>${S().pets?`<div><span>Pets</span><b style="color:${p.pet==="toxic"?"var(--bad)":"var(--ink)"}">${({toxic:"Toxic to cats and dogs",safe:"Generally considered safe",unknown:"Not sure; keep out of reach"})[p.pet]}</b></div>`:""}</div>
+    <div class="note">${IC.info}<span>${esc(p.tip)}</span></div>${p.issue?`<div class="note" style="background:var(--bad-soft)">${IC.info}<span>${esc(p.issue)}</span></div>`:""}
+    <button class="btn ghost block" data-action="go-scan" data-id="${p.id}">Check with a photo</button>`); },
+  "go-scan": () => { closeSheet(); S().tab="scan"; Kit.render(); },
+  rescan: () => { S().scan=null; Kit.render(); },
+  treat: () => { const h=Pl(3); h.health="watch"; h.issue="Mealybug treatment: neem spray every 5–7 days"; toast("Reminders added: neem spray every 6 days for 4 weeks, and a check-up photo in 2 weeks."); S().tab="today"; Kit.render(); },
+  lang: a => { S().lang=a.dataset.v; Kit.render(true); },
+  "copy-care": () => copyText($("#care"), "Care note copied.")
+});
+document.addEventListener("change", e => { if(e.target.id==="snap"){ S().scan="hibiscus"; Kit.render(); return; } const k=e.target.dataset && e.target.dataset.set; if(k){ S()[k]=e.target.checked; Kit.render(true); toast(e.target.checked?"Pet safety on. 3 plants are flagged.":"Pet safety off."); } });
+Kit.afterRender.push(s => { const n=s.plants.filter(p=>plan(p).k==="water").length; $("#t-dot").hidden=!n; $("#t-dot").textContent=n; });
+Kit.views = {today:viewToday, plants:viewPlants, scan:viewScan, helper:viewHelper, you:viewYou};
+Kit.init({store:"hariyali-v1", seed});
+</script>
+
+</body></html>

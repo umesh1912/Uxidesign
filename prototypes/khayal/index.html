@@ -1,0 +1,634 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Khayal Parent Care</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,600;7..72,700&family=Atkinson+Hyperlegible:wght@400;700&display=swap">
+<style>
+:root{
+  --bg:#E9EFF2; --surface:#FFFFFF; --surface-2:#F4F8F9; --ink:#13242E; --ink-2:#526470; --line:#D6E0E5;
+  --primary:#1D5C7A; --primary-ink:#FFFFFF; --primary-soft:#DDEBF2;
+  --accent:#F29E4C; --accent-ink:#2A1606; --accent-soft:#FDEBD8;
+  --good:#2B7A4B; --good-soft:#DDF1E4; --bad:#BF3B2C; --bad-soft:#F9E1DD; --warn:#E3A33B; --warn-soft:#FBEFD6;
+  --track:#BFCBD1; --frame:#0F1D25; --shadow:0 24px 60px -24px rgba(19,36,46,.4); --scrim:rgba(10,20,26,.5);
+  --display:"Literata", Georgia, serif; --display-weight:600;
+  --body:"Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --bg:#0C1418; --surface:#142026; --surface-2:#1A2830; --ink:#E6EEF1; --ink-2:#9AAEB8; --line:#28373F;
+  --primary:#6FB3D6; --primary-ink:#0C1418; --primary-soft:#1B3442; --accent:#F5AE66; --accent-ink:#2A1606; --accent-soft:#3A2A18;
+  --good:#6ED49A; --good-soft:#163426; --bad:#F2806F; --bad-soft:#3C1F1A; --warn:#F2BE5C; --warn-soft:#3A2F16;
+  --track:#35464F; --frame:#000; --shadow:0 24px 60px -24px rgba(0,0,0,.8); --scrim:rgba(0,0,0,.6);}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#0C1418; --surface:#142026; --surface-2:#1A2830; --ink:#E6EEF1; --ink-2:#9AAEB8; --line:#28373F;
+  --primary:#6FB3D6; --primary-ink:#0C1418; --primary-soft:#1B3442; --accent:#F5AE66; --accent-ink:#2A1606; --accent-soft:#3A2A18;
+  --good:#6ED49A; --good-soft:#163426; --bad:#F2806F; --bad-soft:#3C1F1A; --warn:#F2BE5C; --warn-soft:#3A2F16;
+  --track:#35464F; --frame:#000; --shadow:0 24px 60px -24px rgba(0,0,0,.8); --scrim:rgba(0,0,0,.6);}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;padding-inline:16px;padding-block:24px;margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.stage{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:44px;align-items:start;justify-content:center}
+@media (max-width:760px){.stage{grid-template-columns:minmax(0,1fr);gap:20px}}
+.phone{position:relative;width:100%;max-width:400px;margin:0 auto;height:min(800px,calc(100svh - 48px));min-height:620px;background:var(--surface-2);border-radius:34px;border:8px solid var(--frame);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+@media (max-width:440px){.phone{border-width:0;border-radius:18px;height:calc(100svh - 48px)}}
+.appbar{padding:16px 16px 10px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{font-family:var(--display);font-size:24px;line-height:1.05;font-weight:var(--display-weight,700);letter-spacing:-.01em}
+.brand-sub{font-size:12px;color:var(--ink-2);margin-top:2px}
+.bar-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{position:relative;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--ink)}
+.icon-btn svg{width:20px;height:20px}
+.badge{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--bad);color:#fff;font-size:10.5px;font-weight:700;display:grid;place-items:center;border:2px solid var(--surface-2)}
+.screen{flex:1;overflow-y:auto;padding:4px 16px 100px;display:flex;flex-direction:column;gap:14px}
+.screen > *{flex-shrink:0}
+.tabbar{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(var(--tabs,5),1fr);background:var(--surface);border-top:1px solid var(--line);padding:6px 4px calc(8px + env(safe-area-inset-bottom,0px));z-index:3}
+.tab{background:none;border:0;padding:5px 0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;font-weight:700;color:var(--ink-2);position:relative}
+.tab svg{width:21px;height:21px}
+.tab-ico{padding:3px 12px;border-radius:999px;display:flex}
+.tab[aria-current="page"]{color:var(--ink)}
+.tab[aria-current="page"] .tab-ico{background:var(--primary-soft);color:var(--primary)}
+.tab .dot{position:absolute;top:1px;right:calc(50% - 20px);min-width:16px;height:16px;border-radius:99px;background:var(--accent);color:var(--accent-ink);font-size:10px;font-weight:800;display:grid;place-items:center;padding:0 4px}
+.fab{position:absolute;right:16px;bottom:84px;height:54px;padding:0 20px 0 16px;border-radius:18px;border:0;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;gap:6px;font-weight:800;box-shadow:0 10px 24px -8px rgba(0,0,0,.35);z-index:2}
+.fab svg{width:22px;height:22px}
+.h-title{font-family:var(--display);font-weight:var(--display-weight,700);font-size:24px;line-height:1.15;margin:2px 0 0;text-wrap:balance}
+.section-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:4px}
+.section-h h2{font-family:var(--display);font-weight:var(--display-weight,700);font-size:18px;margin:0}
+.section-h span{font-size:12px;color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius,18px)}
+.pad{padding:14px}
+.list{display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line);background:none;border-left:0;border-right:0;border-bottom:0;width:100%;text-align:left}
+.row:first-child{border-top:0}
+button.row:hover{background:var(--surface-2)}
+.card > button.row:first-child{border-radius:var(--radius,18px) var(--radius,18px) 0 0}.card > button.row:last-child{border-radius:0 0 var(--radius,18px) var(--radius,18px)}.card > button.row:only-child{border-radius:var(--radius,18px)}
+.row-main{flex:1;min-width:0}
+.row-title{font-weight:700;overflow-wrap:anywhere}
+.row-sub{font-size:12.5px;color:var(--ink-2)}
+.row-end{text-align:right;font-size:12px;white-space:nowrap}
+.row-end b{display:block;font-size:14.5px}
+.muted{color:var(--ink-2)} .hint{font-size:13px;color:var(--ink-2);margin:0}
+.ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--surface-2);color:var(--ink-2);flex:none}
+.ico svg{width:20px;height:20px}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px;flex:none}
+.av.sm{width:26px;height:26px;font-size:11px}
+.btn{border:0;border-radius:12px;padding:8px 14px;font-weight:700;font-size:13.5px;background:var(--primary);color:var(--primary-ink);white-space:nowrap}
+.btn.accent{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:var(--bad);color:#fff}
+.btn.block{width:100%;padding:13px;font-size:15px;border-radius:14px}
+.btn.sm{padding:6px 11px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap;border:0}
+.chip svg{width:12px;height:12px}
+.chip.good{background:var(--good-soft);color:var(--good)}
+.chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--ink)}
+.chip.pri{background:var(--primary-soft);color:var(--primary)}
+.chip.acc{background:var(--accent-soft);color:var(--ink)}
+.lbl{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.search{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0 12px}
+.search svg{width:18px;height:18px;color:var(--ink-2);flex:none}
+.search input{border:0;background:none;padding:11px 0;width:100%;outline:none}
+.filters{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.filters button{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:700;color:var(--ink-2)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.seg{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:3px}
+.seg button{flex:1;border:0;background:none;padding:7px;border-radius:9px;font-size:13px;font-weight:700;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--primary-soft);color:var(--ink)}
+.bar-track{height:8px;background:var(--surface-2);border-radius:99px;position:relative;overflow:hidden}
+.bar{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:var(--primary)}
+.empty{padding:18px;text-align:center;color:var(--ink-2);font-size:13.5px}
+.hero{background:var(--primary);color:var(--primary-ink);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.hero .lbl{color:inherit;opacity:.8}
+.hero-big{font-family:var(--display);font-weight:var(--display-weight,700);font-size:40px;line-height:1}
+.pill{font-size:12px;font-weight:700;background:rgba(255,255,255,.18);padding:4px 10px;border-radius:999px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.sheet-wrap{position:absolute;inset:0;background:var(--scrim);display:flex;align-items:flex-end;z-index:6}
+.sheet{width:100%;max-height:92%;overflow-y:auto;background:var(--surface);border-radius:24px 24px 0 0;padding:10px 18px calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px;animation:up .22s ease-out}
+.sheet.full{height:92%}
+@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}}
+.grab{width:40px;height:4px;border-radius:9px;background:var(--line);margin:0 auto}
+.sheet-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sheet-h h3{font-family:var(--display);font-weight:var(--display-weight,700);font-size:21px;margin:0;line-height:1.15;display:flex;align-items:center;gap:8px}
+.x{background:var(--surface-2);border:0;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;flex:none;color:var(--ink)}
+.field{display:flex;flex-direction:column;gap:7px}
+.field input:not([type=checkbox]):not([type=radio]):not([type=file]),.field select,.field textarea{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:11px 12px;width:100%}
+.field textarea{resize:vertical;min-height:70px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pick{display:flex;flex-wrap:wrap;gap:8px}
+.pick button{border:1px solid var(--line);background:var(--surface-2);border-radius:12px;padding:8px 12px;font-size:13.5px;font-weight:700;text-align:left}
+.pick button[aria-pressed="true"]{border-color:var(--primary);background:var(--primary-soft)}
+.pick button small{display:block;font-weight:500;font-size:11.5px;color:var(--ink-2)}
+.err{color:var(--bad);font-size:13px;min-height:1em}
+.summary{background:var(--surface-2);border-radius:14px;padding:12px;font-size:13.5px;display:flex;flex-direction:column;gap:6px}
+.summary > div{display:flex;justify-content:space-between;gap:10px}
+.note{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;background:var(--primary-soft);color:var(--ink);border-radius:12px;padding:9px 11px}
+.note svg{width:16px;height:16px;color:var(--primary);flex:none;margin-top:1px}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;padding:12px 14px;border-top:1px solid var(--line)}
+.opt:first-child{border-top:0}
+.switch{appearance:none;width:42px;height:24px;border-radius:99px;background:var(--track);position:relative;flex:none;cursor:pointer;transition:background .15s;margin:0}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .15s}
+.switch:checked{background:var(--primary)}
+.switch:checked::after{left:21px}
+.file-lbl{display:flex;align-items:center;justify-content:center;gap:8px;border:1px dashed var(--line);border-radius:12px;padding:12px;font-size:13.5px;color:var(--ink-2);cursor:pointer;background:var(--surface-2);position:relative}
+.file-lbl svg{width:20px;height:20px;flex:none}
+.file-lbl input{position:absolute;width:1px;height:1px;opacity:0}
+.check{width:28px;height:28px;border-radius:9px;border:2px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none;color:var(--primary-ink);padding:0}
+.check[aria-checked="true"]{background:var(--primary);border-color:var(--primary)}
+.check svg{width:16px;height:16px}
+.toast{position:absolute;left:16px;right:16px;top:72px;background:var(--ink);color:var(--surface);padding:11px 14px;border-radius:12px;font-size:13.5px;z-index:9;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+.notes{padding-top:8px;max-width:62ch;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--primary)}
+.notes h1{font-family:var(--display);font-weight:var(--display-weight,700);font-size:clamp(30px,5vw,46px);line-height:1.03;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.notes p{color:var(--ink-2);margin:0}
+.try{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.try div{display:flex;gap:12px;padding:11px 14px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2)}
+.try div:first-child{border-top:0}
+.try b{color:var(--ink)}
+.try .n{font-family:var(--display);font-weight:var(--display-weight,700);color:var(--primary);min-width:16px}
+.stack{display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:var(--ink-2)}
+.stack b{color:var(--ink)}
+@media (max-width:760px){.notes{order:-1;padding-top:0}.try,.stack{display:none}}
+
+.brand i{font-style:normal;color:var(--accent)}
+.who{display:flex;gap:8px}
+.who button{flex:1;display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--surface);border-radius:16px;padding:8px 10px;text-align:left}
+.who button[aria-pressed="true"]{border-color:var(--primary);background:var(--primary-soft)}
+.who b{display:block;font-size:14.5px}
+.who small{font-size:12px;color:var(--ink-2)}
+.alert{background:var(--bad-soft);border:1px solid color-mix(in srgb,var(--bad) 35%,transparent);border-radius:18px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.alert b.t{font-size:15.5px}
+.alert .acts{display:flex;gap:8px;flex-wrap:wrap}
+.dose{display:flex;gap:12px;align-items:center;padding:12px 14px;border-top:1px solid var(--line)}
+.dose:first-child{border-top:0}
+.time{width:62px;flex:none;font-weight:700;font-size:13.5px}
+.time small{display:block;font-weight:400;color:var(--ink-2);font-size:11.5px}
+.pillc{width:12px;height:12px;border-radius:50%;flex:none;border:1px solid rgba(0,0,0,.15)}
+.st{font-size:12px;font-weight:700;white-space:nowrap;border-radius:999px;padding:3px 9px}
+.st.taken{background:var(--good-soft);color:var(--good)}
+.st.missed{background:var(--bad-soft);color:var(--bad)}
+.st.due{background:var(--warn-soft);color:var(--ink)}
+.st.up{background:var(--surface-2);color:var(--ink-2)}
+.st.skipped{background:var(--surface-2);color:var(--ink-2);text-decoration:line-through}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;align-items:end;height:74px}
+.week div{display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end;font-size:11px;color:var(--ink-2)}
+.week i{display:block;width:100%;max-width:26px;border-radius:6px 6px 3px 3px;background:var(--primary)}
+.week i.low{background:var(--warn)}
+.hero .hero-big small{font-family:var(--body);font-size:15px;font-weight:700;margin-left:6px}
+.chart{width:100%;height:auto;display:block}
+.chart text{font-family:var(--body);font-size:10px;fill:var(--ink-2)}
+.stock{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin-top:6px}
+.stock i{display:block;height:100%;border-radius:99px}
+.ladder{display:flex;flex-direction:column;gap:0}
+.ladder div{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border-top:1px solid var(--line);font-size:13.5px}
+.ladder div:first-child{border-top:0}
+.ladder b.m{min-width:52px;font-size:13px;color:var(--primary)}
+.num-big{font-family:var(--display);font-weight:700;font-size:26px}
+/* parent mode */
+.pm{position:absolute;inset:0;background:var(--surface-2);display:flex;flex-direction:column;z-index:4}
+.pm-top{padding:16px 18px 8px;display:flex;justify-content:space-between;align-items:center}
+.pm-clock{font-family:var(--display);font-weight:700;font-size:40px;line-height:1}
+.pm-date{font-size:16px;color:var(--ink-2)}
+.pm-body{flex:1;overflow-y:auto;padding:6px 16px 20px;display:flex;flex-direction:column;gap:14px}
+.pm-card{background:var(--surface);border:2px solid var(--primary);border-radius:24px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.pm-card.missed{border-color:var(--bad)}
+.pm-card .when2{font-size:17px;font-weight:700;color:var(--primary)}
+.pm-card.missed .when2{color:var(--bad)}
+.pm-name{font-family:var(--display);font-weight:700;font-size:30px;line-height:1.1}
+.pm-how{font-size:19px;line-height:1.35}
+.pm-pill{display:flex;align-items:center;gap:12px;font-size:17px}
+.pm-pill i{width:30px;height:30px;border-radius:50%;border:2px solid rgba(0,0,0,.15)}
+.pm-yes{background:var(--good);color:#fff;border:0;border-radius:20px;padding:22px;font-size:24px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:10px}
+:root[data-theme="dark"] .pm-yes{color:#0C1418}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .pm-yes{color:#0C1418}}
+.pm-yes svg{width:30px;height:30px}
+.pm-later{background:var(--surface-2);border:2px solid var(--line);border-radius:18px;padding:16px;font-size:19px;font-weight:700}
+.pm-list{display:flex;flex-direction:column;background:var(--surface);border-radius:20px;border:1px solid var(--line)}
+.pm-list div{display:flex;align-items:center;gap:12px;padding:14px 16px;border-top:1px solid var(--line);font-size:18px}
+.pm-list div:first-child{border-top:0}
+.pm-list .tick{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;flex:none;background:var(--surface-2);color:var(--ink-2)}
+.pm-list .tick.ok{background:var(--good);color:#fff}
+.pm-list .tick.no{background:var(--bad-soft);color:var(--bad)}
+.pm-list .tick svg{width:18px;height:18px}
+.pm-help{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pm-help button{border:2px solid var(--line);background:var(--surface);border-radius:18px;padding:16px 10px;font-size:17px;font-weight:700}
+.pm-lang{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:8px 14px;font-weight:700;font-size:15px}
+.pm-exit{font-size:12.5px;border:0;background:none;color:var(--ink-2);text-decoration:underline;padding:6px}
+</style>
+
+<div class="stage">
+  <div class="phone" id="phone">
+    <header class="appbar">
+      <div><div class="brand">Khayal<i>.</i></div><div class="brand-sub">Looking after Papa and Mummy</div></div>
+      <div class="bar-actions">
+        <button class="btn ghost sm" data-action="parent-mode">Parent's phone</button>
+        <span class="av" style="background:#1D5C7A">K</span>
+      </div>
+    </header>
+    <main class="screen" id="screen"></main>
+    <button class="fab" id="fab" data-action="fab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span id="fab-lbl">Medicine</span></button>
+    <nav class="tabbar" aria-label="Sections">
+      <button class="tab" data-tab="today"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>Today<span class="dot" id="today-dot" hidden></span></button>
+      <button class="tab" data-tab="meds"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="8" rx="4" transform="rotate(-35 12 12)"/><path d="m9.5 8.5 5 7"/></svg></span>Medicines</button>
+      <button class="tab" data-tab="refills"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10v4H7zM6 7h12v14H6z"/><path d="M10 14h4M12 12v4"/></svg></span>Refills<span class="dot" id="refill-dot" hidden></span></button>
+      <button class="tab" data-tab="health"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg></span>Health</button>
+      <button class="tab" data-tab="family"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20a6 6 0 0 1 12 0M15 20a4 4 0 0 1 6-3.5"/></svg></span>Family</button>
+    </nav>
+    <div id="pm-root"></div>
+    <div id="sheet-root"></div>
+    <div class="toast" id="toast" role="status" hidden></div>
+  </div>
+
+  <aside class="notes">
+    <div class="eyebrow">Clickable prototype</div>
+    <h1>Khayal: your parents' medicines, from wherever you are</h1>
+    <p>You are Karan, working in Pune. Your parents live in Nagpur. Khayal reminds them to take their medicines, and it tells you, and a nearby neighbour if needed, when a dose is missed. Medicines and readings are sample data. This is not medical advice.</p>
+    <div class="try">
+      <div><span class="n">1</span><span><b>Handle a missed dose.</b> Mummy's 2 PM calcium wasn't confirmed. Open Mummy's day on Today and choose what to do.</span></div>
+      <div><span class="n">2</span><span><b>See the parent's side.</b> With Mummy selected, tap "Parent's phone" for the big-button view. Try Hindi, then tap "I took it".</span></div>
+      <div><span class="n">3</span><span><b>Scan a prescription.</b> Add a medicine, attach any photo, and review what the scan found.</span></div>
+      <div><span class="n">4</span><span><b>Order a refill.</b> Telmisartan runs out in 9 days. Send the list to the chemist.</span></div>
+      <div><span class="n">5</span><span><b>Prepare for the doctor.</b> On Health, log a BP reading and open the doctor summary.</span></div>
+    </div>
+    <div class="stack"><div><b>Planned build:</b> Flutter app with two modes (caregiver and parent), Firebase, exact-time local alarms, and push alerts to family.</div>
+      <button class="btn ghost sm" id="reset" style="align-self:flex-start">Reset sample data</button></div>
+  </aside>
+</div>
+
+<script>
+/* ---- shared prototype kit ---- */
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+function dNum(s){const [y,m,d]=s.split("-").map(Number);return Date.UTC(y,m-1,d)/864e5;}
+function addDays(s,n){return new Date((dNum(s)+n)*864e5).toISOString().slice(0,10);}
+function addMonths(s,n){const [y,m,d]=s.split("-").map(Number);return new Date(Date.UTC(y,m-1+n,d)).toISOString().slice(0,10);}
+function dLabel(s){const [y,m,d]=s.split("-").map(Number);return d+" "+MON[m-1];}
+function dLabelY(s){const [y,m,d]=s.split("-").map(Number);return d+" "+MON[m-1]+" "+y;}
+function dow(s){return DOW[new Date(dNum(s)*864e5).getUTCDay()];}
+function t12(t){let [h,m]=t.split(":").map(Number);const ap=h>=12?"PM":"AM";h=h%12||12;return h+(m?":"+String(m).padStart(2,"0"):"")+" "+ap;}
+const inr = n => "₹" + Math.round(Math.abs(n)).toLocaleString("en-IN");
+function daysBetween(a,b){return dNum(b)-dNum(a);}
+const IC = {
+  x:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
+  bell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>',
+  info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>',
+  camera:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-3h6l2 3h3v13H4z"/><circle cx="12" cy="13" r="4"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>',
+  chev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>',
+  trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>'
+};
+const Kit = {
+  store:null, S:null, seed:null, views:{}, actions:{}, afterRender:[],
+  init(opts){
+    Object.assign(this, opts);
+    try { this.S = JSON.parse(localStorage.getItem(this.store)) || this.seed(); } catch(_) { this.S = this.seed(); }
+    document.addEventListener("click", e => this.onClick(e));
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+    const r = $("#reset"); if (r) r.addEventListener("click", () => { this.S = this.seed(); closeSheet(); this.render(); toast("Sample data restored."); });
+    this.render();
+  },
+  save(){ try { localStorage.setItem(this.store, JSON.stringify(this.S, (k,v) => k.startsWith("_") ? undefined : v)); } catch(_){} },
+  render(keep){
+    const S = this.S, sc = $("#screen"), top = sc.scrollTop;
+    sc.innerHTML = this.views[S.tab]();
+    if (keep) sc.scrollTop = top;
+    $$(".tab").forEach(t => t.removeAttribute("aria-current"));
+    const cur = $(`.tab[data-tab="${S.tab}"]`); if (cur) cur.setAttribute("aria-current","page");
+    this.afterRender.forEach(f => f(S));
+    this.save();
+  },
+  onClick(e){
+    const tab = e.target.closest(".tab");
+    if (tab){ this.S.tab = tab.dataset.tab; this.render(); $("#screen").scrollTop = 0; return; }
+    const a = e.target.closest("[data-action]"); if (!a) return;
+    const act = a.dataset.action;
+    if (act === "close-bg" && e.target !== a) return;
+    if (act === "close" || act === "close-bg") { closeSheet(); return; }
+    const fn = this.actions[act]; if (fn) fn(a, e);
+  }
+};
+function bindSearch(id, key){
+  const q = document.getElementById(id); if (!q) return;
+  q.addEventListener("input", () => { Kit.S[key] = q.value; const pos = q.selectionStart; Kit.render(true); const n = document.getElementById(id); n.focus(); n.setSelectionRange(pos,pos); });
+}
+let _tt;
+function toast(m){ const t = $("#toast"); t.textContent = m; t.hidden = false; clearTimeout(_tt); _tt = setTimeout(() => t.hidden = true, 3000); }
+function openSheet(title, body, full){
+  $("#sheet-root").innerHTML = `<div class="sheet-wrap" data-action="close-bg"><div class="sheet ${full?"full":""}" role="dialog" aria-modal="true" aria-label="${esc(title.replace(/<[^>]+>/g,""))}"><div class="grab"></div><div class="sheet-h"><h3>${title}</h3><button class="x" data-action="close" aria-label="Close">${IC.x}</button></div>${body}</div></div>`;
+}
+function closeSheet(){ const r = $("#sheet-root"); if (r) r.innerHTML = ""; }
+function pickGroup(root, onPick){
+  root.addEventListener("click", e => { const b = e.target.closest("button[data-v]"); if (!b || b.disabled) return;
+    const multi = root.dataset.multi === "1";
+    if (multi) b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+    else root.querySelectorAll("button[data-v]").forEach(x => x.setAttribute("aria-pressed", x === b));
+    onPick && onPick(b.dataset.v, b);
+  });
+}
+function picked(root){ return [...root.querySelectorAll('button[aria-pressed="true"]')].map(b => b.dataset.v); }
+function copyText(el, msg){
+  const sel = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  try { navigator.clipboard.writeText(el.textContent).then(() => toast(msg), () => { sel(); toast("Selected. Copy it from here."); }); } catch(_) { sel(); toast("Selected. Copy it from here."); }
+}
+
+const TODAY = "2026-09-28", NOW = "17:00";
+const mins = t => { const [h,m] = t.split(":").map(Number); return h*60+m; };
+const HI = {took:"मैंने ले ली", later:"15 मिनट बाद याद दिलाएँ", next:"अगली दवा", missed:"छूट गई", today:"आज की दवाइयाँ", call:"करन को फ़ोन", help:"मदद चाहिए", after:"खाने के बाद", before:"खाने से पहले", empty:"खाली पेट"};
+function seed(){
+  return {
+    tab:"today", who:"mummy", mode:"care", lang:"en", pmWho:"papa",
+    people:{
+      papa:{name:"Papa", full:"Suresh Sharma", age:68, color:"#1D5C7A", phone:"+91 98220 41137", conditions:"Type 2 diabetes, high BP"},
+      mummy:{name:"Mummy", full:"Kamla Sharma", age:64, color:"#B5602B", phone:"+91 98220 41138", conditions:"Hypothyroidism, low bone density"}
+    },
+    meds:[
+      {id:1, who:"papa", name:"Metformin", strength:"500 mg", form:"tablet", purpose:"for sugar", color:"#F4F4F0", times:["08:30","20:30"], food:"after", stock:22, per:1},
+      {id:2, who:"papa", name:"Telmisartan", strength:"40 mg", form:"tablet", purpose:"for BP", color:"#F7D9DE", times:["08:00"], food:"any", stock:9, per:1},
+      {id:3, who:"papa", name:"Atorvastatin", strength:"10 mg", form:"tablet", purpose:"for cholesterol", color:"#DDEAF7", times:["21:30"], food:"any", stock:40, per:1},
+      {id:4, who:"mummy", name:"Thyroxine", strength:"50 mcg", form:"tablet", purpose:"for thyroid", color:"#F4F4F0", times:["06:30"], food:"empty", stock:60, per:1},
+      {id:5, who:"mummy", name:"Pantoprazole", strength:"40 mg", form:"tablet", purpose:"for acidity", color:"#F6E6A8", times:["07:30"], food:"before", stock:12, per:1},
+      {id:6, who:"mummy", name:"Calcium + Vitamin D3", strength:"500 mg", form:"tablet", purpose:"for bones", color:"#FFFFFF", times:["14:00"], food:"after", stock:18, per:1}
+    ],
+    log:{ "1|08:30":{s:"taken",at:"09:10"}, "2|08:00":{s:"taken",at:"08:05"}, "4|06:30":{s:"taken",at:"06:40"}, "5|07:30":{s:"taken",at:"07:35"} },
+    week:{papa:[100,100,75,100,100,75,100], mummy:[100,67,100,100,100,100,100]},
+    bp:[{d:"2026-09-22",s:138,di:86},{d:"2026-09-23",s:142,di:88},{d:"2026-09-24",s:135,di:84},{d:"2026-09-25",s:131,di:82},{d:"2026-09-26",s:129,di:80},{d:"2026-09-27",s:133,di:83},{d:"2026-09-28",s:128,di:79}],
+    sugar:[{d:"2026-09-22",v:132},{d:"2026-09-23",v:128},{d:"2026-09-24",v:141},{d:"2026-09-25",v:125},{d:"2026-09-26",v:119},{d:"2026-09-27",v:122},{d:"2026-09-28",v:118}],
+    visits:[{who:"papa", t:"Dr. Deshpande (diabetes)", d:"2026-10-06", time:"11:00", note:"Carry sugar log and HbA1c report"},{who:"mummy", t:"Thyroid blood test (TSH)", d:"2026-10-15", time:"08:00", note:"Before taking Thyroxine"}],
+    family:[
+      {id:"karan", name:"Karan (you)", rel:"Son · Pune", color:"#1D5C7A", step:60, on:true},
+      {id:"neha", name:"Neha", rel:"Daughter · Bengaluru", color:"#7A4FB5", step:60, on:true},
+      {id:"joshi", name:"Mr. Joshi", rel:"Neighbour · 2 floors down", color:"#5E7A2B", step:120, on:true}
+    ],
+    alerts:[{t:"Mummy hasn't confirmed Calcium + Vitamin D3 (2:00 PM). Reminded her twice.", at:"15:00"}],
+    activity:[
+      {t:"Papa took Metformin at 9:10 AM (40 min late)", at:"09:10"},
+      {t:"Papa took Telmisartan at 8:05 AM", at:"08:05"},
+      {t:"Mummy took Pantoprazole at 7:35 AM", at:"07:35"},
+      {t:"Mummy took Thyroxine at 6:40 AM", at:"06:40"}
+    ],
+    nextId:100
+  };
+}
+const S = () => Kit.S;
+const P = w => S().people[w];
+const medsOf = w => S().meds.filter(m=>m.who===w);
+function dosesOf(w){
+  return medsOf(w).flatMap(m => m.times.map(t => ({m, t, key:m.id+"|"+t}))).sort((a,b)=>mins(a.t)-mins(b.t));
+}
+function status(d){
+  const l = S().log[d.key]; if (l) return l.s;
+  const diff = mins(NOW) - mins(d.t);
+  if (diff >= 60) return "missed"; if (diff >= 0) return "due"; return "up";
+}
+const ST = {taken:"Taken", missed:"Missed", due:"Due now", up:"Later", skipped:"Skipped"};
+const foodTxt = f => ({after:"after food", before:"before food", empty:"on an empty stomach", any:"with or without food"})[f];
+const daysLeft = m => Math.floor(m.stock / (m.times.length * m.per));
+function adherenceToday(w){ const ds = dosesOf(w).filter(d => status(d)!=="up" && status(d)!=="due"); if(!ds.length) return 100; return Math.round(ds.filter(d=>status(d)==="taken").length/ds.length*100); }
+
+/* ---------- caregiver views ---------- */
+function whoSwitch(){
+  return `<div class="who" role="group" aria-label="Choose parent">${["papa","mummy"].map(w=>{const p=P(w), miss=dosesOf(w).filter(d=>status(d)==="missed").length;return `<button data-action="who" data-w="${w}" aria-pressed="${S().who===w}"><span class="av" style="background:${p.color}">${p.name[0]}</span><span><b>${p.name}</b><small>${miss?`<span style="color:var(--bad);font-weight:700">${miss} missed</span>`:`${adherenceToday(w)}% today`}</small></span></button>`;}).join("")}</div>`;
+}
+function doseRow(d, big){
+  const s = status(d), l = S().log[d.key], m = d.m;
+  const sub = s==="taken" ? `Taken at ${t12(l.at)}${mins(l.at)-mins(d.t)>30?" (late)":""}` : `${m.strength} · ${m.per} ${m.form} · ${foodTxt(m.food)}`;
+  const act = (s==="missed"||s==="due") ? `<button class="btn sm" data-action="dose" data-k="${d.key}">Update</button>` : `<span class="st ${s}">${ST[s]}</span>`;
+  return `<div class="dose"><div class="time num">${t12(d.t)}</div><span class="pillc" style="background:${m.color}"></span><div class="row-main"><div class="row-title">${esc(m.name)} <span class="row-sub" style="font-weight:400">${esc(m.purpose)}</span></div><div class="row-sub">${esc(sub)}</div></div>${act}</div>`;
+}
+function viewToday(){
+  const w = S().who, p = P(w), ds = dosesOf(w);
+  const missed = ["papa","mummy"].flatMap(x => dosesOf(x).filter(d=>status(d)==="missed").map(d=>({...d,w:x})));
+  const wk = S().week[w];
+  const avg = Math.round(wk.reduce((a,b)=>a+b,0)/wk.length);
+  const taken = ds.filter(d=>status(d)==="taken").length;
+  return `
+  ${missed.map(d=>`<section class="alert" role="alert"><b class="t">${P(d.w).name} hasn't taken ${esc(d.m.name)} (${t12(d.t)})</b><span class="row-sub" style="color:var(--ink)">Khayal reminded ${P(d.w).name} at ${t12(d.t)} and again at ${t12(String(Math.floor((mins(d.t)+30)/60)).padStart(2,"0")+":"+String((mins(d.t)+30)%60).padStart(2,"0"))}. You were alerted at ${t12(String(Math.floor((mins(d.t)+60)/60)).padStart(2,"0")+":"+String((mins(d.t)+60)%60).padStart(2,"0"))}.</span>
+    <div class="acts"><button class="btn sm" data-action="call" data-w="${d.w}">Call ${P(d.w).name}</button><button class="btn ghost sm" data-action="dose" data-k="${d.key}">Update dose</button><button class="btn ghost sm" data-action="ask-joshi">Ask Mr. Joshi</button></div></section>`).join("")}
+  ${whoSwitch()}
+  <section class="hero">
+    <div class="lbl">${p.name} · this week</div>
+    <div class="hero-big num">${avg}%<small>of doses on time</small></div>
+    <div class="week" aria-label="Last 7 days">${wk.map((v,i)=>`<div><i class="${v<90?"low":""}" style="height:${Math.max(8,v*0.52)}px;background:${v<90?"var(--accent)":"color-mix(in srgb, var(--primary-ink) 80%, transparent)"}"></i><span style="color:inherit;opacity:.8">${DOW[(new Date(dNum(addDays(TODAY,i-6))*864e5)).getUTCDay()][0]}</span></div>`).join("")}</div>
+  </section>
+  <div class="section-h"><h2>${p.name}'s day</h2><span class="num">${taken} of ${ds.length} taken · now ${t12(NOW)}</span></div>
+  <div class="card list">${ds.map(d=>doseRow(d)).join("")}</div>
+  <div class="section-h"><h2>Recent</h2></div>
+  <div class="card list">${S().activity.slice(0,4).map(a=>`<div class="row"><div class="row-main"><div class="row-sub" style="color:var(--ink)">${esc(a.t)}</div></div><span class="row-sub num">${t12(a.at)}</span></div>`).join("")}</div>`;
+}
+function viewMeds(){
+  const w = S().who;
+  return `${whoSwitch()}
+  <div class="section-h"><h2>${P(w).name}'s medicines</h2><span>${medsOf(w).length} active</span></div>
+  <div class="card list">${medsOf(w).map(m=>`<button class="row" data-action="med" data-id="${m.id}"><span class="ico" style="background:${m.color};border:1px solid var(--line)"></span><div class="row-main"><div class="row-title">${esc(m.name)} ${esc(m.strength)}</div><div class="row-sub">${esc(m.purpose)} · ${m.times.map(t12).join(", ")} · ${foodTxt(m.food)}</div></div><span class="muted" style="width:18px">${IC.chev}</span></button>`).join("")}</div>
+  <div class="note">${IC.info}<span>Khayal never changes a prescription. Any change to doses should come from ${P(w).name}'s doctor.</span></div>
+  <p class="hint">${P(w).full}, ${P(w).age} · ${esc(P(w).conditions)}</p>`;
+}
+function viewRefills(){
+  const all = [...S().meds].sort((a,b)=>daysLeft(a)-daysLeft(b));
+  const low = all.filter(m=>daysLeft(m)<=10);
+  return `<h1 class="h-title">Refills</h1>
+  ${low.length?`<div class="card pad" style="background:var(--accent-soft);border-color:transparent;display:flex;flex-direction:column;gap:10px"><b>${low.length} medicine${low.length>1?"s":""} will run out within 10 days</b><span class="hint" style="color:var(--ink)">Send one list to the chemist near your parents. Most in Nagpur deliver the same day.</span><button class="btn" data-action="order">Send list to chemist</button></div>`:""}
+  <div class="card list">${all.map(m=>{const dl=daysLeft(m), pct=Math.min(100,dl/30*100), c=dl<=7?"var(--bad)":dl<=10?"var(--warn)":"var(--good)";return `<div class="row"><span class="pillc" style="background:${m.color};width:14px;height:14px"></span><div class="row-main"><div class="row-title">${esc(m.name)} <span class="row-sub" style="font-weight:400">· ${P(m.who).name}</span></div><div class="row-sub num">${m.stock} left · runs out ${dLabel(addDays(TODAY,dl))}</div><div class="stock"><i style="width:${pct}%;background:${c}"></i></div></div><div class="row-end"><b class="num" style="color:${c}">${dl} days</b><button class="btn ghost sm" data-action="refilled" data-id="${m.id}" style="margin-top:4px">Refilled</button></div></div>`;}).join("")}</div>
+  <p class="hint">Stock goes down each time a dose is marked taken. Tap "Refilled" when a new strip arrives.</p>`;
+}
+function lineChart(pts, opts){
+  const W=330, H=140, L=30, R=8, T=10, B=22, n=pts.length;
+  const x=i=>L+i*(W-L-R)/(n-1), y=v=>T+(opts.max-v)/(opts.max-opts.min)*(H-T-B);
+  let s=`<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(opts.label)}">`;
+  s+=`<rect x="${L}" y="${y(opts.band[1])}" width="${W-L-R}" height="${y(opts.band[0])-y(opts.band[1])}" fill="var(--good-soft)"/>`;
+  opts.ticks.forEach(t=>{s+=`<line x1="${L}" x2="${W-R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)"/><text x="${L-4}" y="${y(t)+3}" text-anchor="end">${t}</text>`;});
+  opts.series.forEach(se=>{
+    s+=`<polyline fill="none" stroke="${se.color}" stroke-width="2.2" stroke-linejoin="round" points="${pts.map((p,i)=>x(i)+","+y(se.get(p))).join(" ")}"/>`;
+    pts.forEach((p,i)=>{s+=`<circle cx="${x(i)}" cy="${y(se.get(p))}" r="${i===n-1?4:2.6}" fill="${i===n-1?se.color:"var(--surface)"}" stroke="${se.color}" stroke-width="2"/>`;});
+  });
+  pts.forEach((p,i)=>{s+=`<text x="${x(i)}" y="${H-6}" text-anchor="middle">${dow(p.d)[0]}</text>`;});
+  return s+`</svg>`;
+}
+function viewHealth(){
+  const bp=S().bp, sg=S().sugar, lb=bp[bp.length-1], ls=sg[sg.length-1];
+  const avgS=Math.round(bp.reduce((a,b)=>a+b.s,0)/bp.length), avgD=Math.round(bp.reduce((a,b)=>a+b.di,0)/bp.length);
+  const avgSug=Math.round(sg.reduce((a,b)=>a+b.v,0)/sg.length);
+  return `<h1 class="h-title">Papa's readings</h1>
+  <div class="two"><div class="card pad"><div class="lbl">Blood pressure</div><div class="num-big num">${lb.s}/${lb.di}</div><div class="row-sub">Today · 7-day avg ${avgS}/${avgD}</div></div><div class="card pad"><div class="lbl">Fasting sugar</div><div class="num-big num">${ls.v}</div><div class="row-sub">mg/dL today · avg ${avgSug}</div></div></div>
+  <div class="card pad"><div style="display:flex;justify-content:space-between;align-items:baseline"><b>Blood pressure, last 7 days</b><span class="row-sub">green = doctor's target</span></div>
+  ${lineChart(bp,{label:"Blood pressure",min:70,max:150,band:[70,130],ticks:[80,100,120,140],series:[{color:"var(--primary)",get:p=>p.s},{color:"var(--accent)",get:p=>p.di}]})}
+  <div class="row-sub"><span style="color:var(--primary);font-weight:700">●</span> Systolic <span style="color:var(--accent);font-weight:700;margin-left:10px">●</span> Diastolic</div></div>
+  <div class="card pad"><b>Fasting sugar, last 7 days</b>${lineChart(sg,{label:"Fasting sugar",min:90,max:150,band:[90,130],ticks:[100,120,140],series:[{color:"var(--primary)",get:p=>p.v}]})}</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><button class="btn ghost block" data-action="add-reading">Add reading</button><button class="btn block" data-action="report">Doctor summary</button></div>
+  <div class="section-h"><h2>Coming up</h2></div>
+  <div class="card list">${S().visits.map(v=>`<div class="row"><span class="av sm" style="background:${P(v.who).color}">${P(v.who).name[0]}</span><div class="row-main"><div class="row-title">${esc(v.t)}</div><div class="row-sub">${dow(v.d)} ${dLabel(v.d)}, ${t12(v.time)} · ${esc(v.note)}</div></div></div>`).join("")}</div>
+  <p class="hint">Readings are for sharing with the doctor. Khayal doesn't diagnose or suggest dose changes.</p>`;
+}
+function viewFamily(){
+  const f=S().family;
+  return `<h1 class="h-title">Who gets told</h1>
+  <p class="hint" style="color:var(--ink)">If a dose isn't confirmed, Khayal works up this ladder until someone responds.</p>
+  <div class="card ladder">
+    <div><b class="m">0 min</b><span>Alarm on the parent's phone, with a photo of the pill and a spoken reminder</span></div>
+    <div><b class="m">30 min</b><span>Second alarm, louder, on the parent's phone</span></div>
+    ${f.filter(x=>x.on).sort((a,b)=>a.step-b.step).map(x=>`<div><b class="m">${x.step} min</b><span>Alert to <b>${esc(x.name)}</b> with a one-tap call button</span></div>`).join("")}
+  </div>
+  <div class="section-h"><h2>Family and helpers</h2><button class="btn ghost sm" data-action="invite">Invite</button></div>
+  <div class="card list">${f.map(x=>`<div class="row"><span class="av" style="background:${x.color}">${x.name[0]}</span><div class="row-main"><div class="row-title">${esc(x.name)}</div><div class="row-sub">${esc(x.rel)} · alerted after ${x.step} min</div></div><input type="checkbox" class="switch" data-fam="${x.id}" ${x.on?"checked":""} aria-label="Send alerts to ${esc(x.name)}"></div>`).join("")}</div>
+  <div class="card"><label class="opt"><span><b>Quiet hours for family alerts</b><br><span class="row-sub">11 PM to 6 AM, except for missed critical medicines</span></span><input type="checkbox" class="switch" checked></label>
+  <label class="opt"><span><b>Weekly summary on Sunday</b><br><span class="row-sub">Doses, readings and refills for both parents</span></span><input type="checkbox" class="switch" checked></label></div>`;
+}
+
+/* ---------- parent mode ---------- */
+function renderParent(){
+  const root = $("#pm-root");
+  if (S().mode !== "parent"){ root.innerHTML=""; return; }
+  const w = S().pmWho, p = P(w), ds = dosesOf(w), hi = S().lang==="hi";
+  const next = ds.find(d=>status(d)==="missed"||status(d)==="due") || ds.find(d=>status(d)==="up");
+  const T = (en, k) => hi ? HI[k] : en;
+  const foodHi = f => ({after:HI.after, before:HI.before, empty:HI.empty, any:""})[f];
+  root.innerHTML = `<div class="pm" role="region" aria-label="${p.name}'s phone">
+    <div class="pm-top"><div><div class="pm-clock num">${t12(NOW)}</div><div class="pm-date">${dow(TODAY)}, ${dLabel(TODAY)} · ${p.name}</div></div><button class="pm-lang" data-action="lang">${hi?"English":"हिंदी"}</button></div>
+    <div class="pm-body">
+      ${next?`<div class="pm-card ${status(next)==="missed"?"missed":""}">
+        <div class="when2">${status(next)==="missed"?T("Missed at "+t12(next.t),"missed")+(hi?" · "+t12(next.t):""):status(next)==="due"?T("Take now","next"):T("Next at "+t12(next.t),"next")+(hi?" · "+t12(next.t):"")}</div>
+        <div class="pm-name">${esc(next.m.name)}</div>
+        <div class="pm-pill"><i style="background:${next.m.color}"></i><span>${next.m.per} ${hi?"गोली":next.m.form} · ${hi?foodHi(next.m.food):foodTxt(next.m.food)}</span></div>
+        <div class="pm-how">${hi?"":esc(next.m.purpose.replace("for","For"))}</div>
+        ${status(next)!=="up" || mins(next.t)-mins(NOW)<=30 ? `<button class="pm-yes" data-action="pm-took" data-k="${next.key}">${IC.check}${T("I took it","took")}</button>
+        <button class="pm-later" data-action="pm-later">${T("Remind me in 15 min","later")}</button>` : `<div class="pm-how" style="color:var(--ink-2)">${hi?"अभी कोई दवा नहीं। समय होने पर हम याद दिलाएँगे।":"Nothing to take right now. We'll remind you when it's time."}</div>`}
+      </div>`:`<div class="pm-card"><div class="pm-name">${hi?"आज की सब दवाइयाँ हो गईं":"All done for today"}</div></div>`}
+      <div class="lbl" style="font-size:13px">${T("Today's medicines","today")}</div>
+      <div class="pm-list">${ds.map(d=>{const s=status(d);return `<div><span class="tick ${s==="taken"?"ok":s==="missed"?"no":""}">${s==="taken"?IC.check:s==="missed"?"!":""}</span><span style="flex:1"><b>${esc(d.m.name)}</b><br><span style="font-size:15px;color:var(--ink-2)">${t12(d.t)}</span></span></div>`;}).join("")}</div>
+      <div class="pm-help"><button data-action="pm-call">${T("Call Karan","call")}</button><button data-action="pm-help">${T("I need help","help")}</button></div>
+      <button class="pm-exit" data-action="care-mode">Prototype: back to Karan's view</button>
+    </div></div>`;
+}
+Kit.afterRender.push(s => {
+  const miss = ["papa","mummy"].reduce((a,w)=>a+dosesOf(w).filter(d=>status(d)==="missed").length,0);
+  $("#today-dot").hidden=!miss; $("#today-dot").textContent=miss;
+  const low = s.meds.filter(m=>daysLeft(m)<=10).length; $("#refill-dot").hidden=!low; $("#refill-dot").textContent=low;
+  $("#fab").hidden = !["meds","today"].includes(s.tab);
+  renderParent();
+});
+
+/* ---------- sheets ---------- */
+function markDose(key, s, at){
+  const [id,t] = key.split("|"); const m = S().meds.find(x=>x.id===+id);
+  S().log[key] = {s, at}; if (s==="taken") m.stock = Math.max(0, m.stock - m.per);
+  S().activity.unshift({t: s==="taken" ? `${P(m.who).name} took ${m.name} at ${t12(at)}${mins(at)-mins(t)>30?" (late)":""}` : `${m.name} skipped for ${P(m.who).name}`, at: NOW});
+}
+function sheetDose(key){
+  const [id,t] = key.split("|"); const m = S().meds.find(x=>x.id===+id), p = P(m.who);
+  openSheet(`${esc(m.name)} · ${t12(t)}`, `
+    <p class="hint" style="color:var(--ink)">${p.name} hasn't confirmed this dose. If you've checked with ${p.name}, record what happened.</p>
+    <div class="pick" id="d-pick"><button data-v="taken" aria-pressed="true">Taken<small>${p.name} took it late</small></button><button data-v="skipped" aria-pressed="false">Skipped<small>Not taken today</small></button></div>
+    <div class="field" id="d-when"><label class="lbl" for="d-at">Taken at</label><input id="d-at" type="time" value="${NOW}"></div>
+    <div class="field" id="d-why" hidden><span class="lbl">Reason</span><div class="pick" id="d-reason"><button data-v="Forgot" aria-pressed="true">Forgot</button><button data-v="Felt unwell" aria-pressed="false">Felt unwell</button><button data-v="Ran out" aria-pressed="false">Ran out</button><button data-v="Doctor said to stop" aria-pressed="false">Doctor said to stop</button></div></div>
+    <div class="note">${IC.info}<span>Don't give a double dose to catch up unless the doctor has said it's safe.</span></div>
+    <button class="btn block" data-action="save-dose" data-k="${key}">Save</button>`);
+  pickGroup($("#d-pick"), v => { $("#d-when").hidden = v!=="taken"; $("#d-why").hidden = v!=="skipped"; });
+  pickGroup($("#d-reason"));
+}
+function sheetMed(id){
+  const m = S().meds.find(x=>x.id===id);
+  openSheet(`${esc(m.name)} ${esc(m.strength)}`, `
+    <div class="summary"><div><span>For</span><b>${P(m.who).name} · ${esc(m.purpose)}</b></div><div><span>Dose</span><b>${m.per} ${m.form}</b></div><div><span>Times</span><b>${m.times.map(t12).join(", ")}</b></div><div><span>How</span><b>${foodTxt(m.food)}</b></div><div><span>Stock</span><b class="num">${m.stock} left · ${daysLeft(m)} days</b></div></div>
+    <div class="field"><span class="lbl">Pill photo on ${P(m.who).name}'s phone</span><div style="display:flex;align-items:center;gap:12px"><span style="width:56px;height:56px;border-radius:50%;background:${m.color};border:2px solid var(--line)"></span><span class="hint">Shown with every reminder so ${P(m.who).name} picks the right strip.</span></div></div>
+    <div id="stop-zone"><button class="btn ghost block" data-action="ask-stop" data-id="${m.id}">Stop this medicine</button></div>`);
+}
+const SCAN = [
+  {name:"Vildagliptin", strength:"50 mg", purpose:"for sugar", times:["08:30","20:30"], food:"after", per:1, stock:28, color:"#F2E5C9", conf:96},
+  {name:"Amlodipine", strength:"5 mg", purpose:"for BP", times:["21:00"], food:"any", per:1, stock:14, color:"#FFFFFF", conf:91}
+];
+function sheetAdd(){
+  const w = S().who;
+  openSheet(`Add a medicine for ${P(w).name}`, `
+    <label class="file-lbl">${IC.camera}<span>Scan the prescription</span><input id="rx" type="file" accept="image/*,application/pdf"></label>
+    <div id="scan-out"></div>
+    <div class="lbl" style="text-align:center">or type it in</div>
+    <form id="med-form" style="display:flex;flex-direction:column;gap:12px" novalidate>
+      <div class="two"><div class="field"><label class="lbl" for="m-name">Medicine</label><input id="m-name" placeholder="e.g. Metformin" value=""></div><div class="field"><label class="lbl" for="m-str">Strength</label><input id="m-str" placeholder="500 mg"></div></div>
+      <div class="field"><label class="lbl" for="m-for">What it's for (in plain words)</label><input id="m-for" placeholder="for sugar"></div>
+      <div class="field"><span class="lbl">When</span><div class="pick" id="m-times" data-multi="1">${["06:30","08:00","09:00","13:00","14:00","20:00","21:30"].map(t=>`<button type="button" data-v="${t}" aria-pressed="${t==="09:00"}">${t12(t)}</button>`).join("")}</div></div>
+      <div class="field"><span class="lbl">With food</span><div class="pick" id="m-food">${["after","before","empty","any"].map(f=>`<button type="button" data-v="${f}" aria-pressed="${f==="after"}">${foodTxt(f)}</button>`).join("")}</div></div>
+      <div class="field"><label class="lbl" for="m-stock">Tablets at home</label><input id="m-stock" inputmode="numeric" value="30"></div>
+      <div class="err" id="m-err" role="alert"></div>
+      <button class="btn block" type="submit">Add medicine</button>
+    </form>`, true);
+  pickGroup($("#m-times")); pickGroup($("#m-food"));
+  $("#rx").addEventListener("change", () => {
+    $("#scan-out").innerHTML = `<div class="card pad" style="display:flex;flex-direction:column;gap:10px"><b>Found 2 medicines on the prescription</b>${SCAN.map((s,i)=>`<label class="opt" style="padding:8px 0;border-top:${i?"1px solid var(--line)":"0"}"><span><b>${s.name} ${s.strength}</b><br><span class="row-sub">${s.times.map(t12).join(", ")} · ${foodTxt(s.food)} · ${s.conf}% sure</span></span><input type="checkbox" class="switch" data-scan="${i}" checked></label>`).join("")}<p class="hint">Prototype: these are sample results. The real app reads the photo and asks you to check every line.</p><button class="btn block" data-action="add-scan">Add selected</button></div>`;
+  });
+  $("#med-form").addEventListener("submit", e => { e.preventDefault();
+    const name=$("#m-name").value.trim(), times=picked($("#m-times")).sort();
+    if(!name){$("#m-err").textContent="Type the medicine name as it's written on the strip.";return;}
+    if(!times.length){$("#m-err").textContent="Pick at least one time.";return;}
+    if(S().meds.some(m=>m.who===w && m.name.toLowerCase()===name.toLowerCase())){$("#m-err").textContent=`${P(w).name} already has ${name}. Check with the doctor before adding it twice.`;return;}
+    S().meds.push({id:S().nextId++, who:w, name, strength:$("#m-str").value.trim()||"", form:"tablet", purpose:$("#m-for").value.trim()||"as prescribed", color:"#EDEDED", times, food:picked($("#m-food"))[0], stock:+$("#m-stock").value||0, per:1});
+    closeSheet(); Kit.render(); toast(`${name} added. ${P(w).name}'s phone will remind at ${times.map(t12).join(" and ")}.`);
+  });
+}
+function sheetReport(){
+  const bp=S().bp, sg=S().sugar;
+  const txt = `Khayal summary for Suresh Sharma (68), 22–28 Sep 2026
+Doses on time: ${Math.round(S().week.papa.reduce((a,b)=>a+b,0)/7)}%
+BP 7-day average: ${Math.round(bp.reduce((a,b)=>a+b.s,0)/7)}/${Math.round(bp.reduce((a,b)=>a+b.di,0)/7)} (range ${Math.min(...bp.map(b=>b.s))}–${Math.max(...bp.map(b=>b.s))} systolic)
+Fasting sugar 7-day average: ${Math.round(sg.reduce((a,b)=>a+b.v,0)/7)} mg/dL (range ${Math.min(...sg.map(b=>b.v))}–${Math.max(...sg.map(b=>b.v))})
+Medicines: ${medsOf("papa").map(m=>`${m.name} ${m.strength} ${m.times.map(t12).join("/")}`).join("; ")}
+Missed or late doses: Metformin late on 2 mornings`;
+  openSheet("Doctor summary", `<p class="hint" style="color:var(--ink)">For Papa's visit to Dr. Deshpande on ${dLabel("2026-10-06")}. The real app makes a one-page PDF. Here you can copy the text.</p>
+    <pre id="rep" style="white-space:pre-wrap;font-family:var(--body);font-size:13.5px;background:var(--surface-2);border-radius:14px;padding:12px;margin:0">${esc(txt)}</pre>
+    <button class="btn block" data-action="copy-rep">Copy summary</button>`);
+}
+function sheetReading(){
+  openSheet("Add a reading for Papa", `
+    <div class="seg" id="r-type"><button type="button" data-v="bp" aria-pressed="true">Blood pressure</button><button type="button" data-v="sugar" aria-pressed="false">Fasting sugar</button></div>
+    <div id="r-bp" class="two"><div class="field"><label class="lbl" for="r-s">Upper (systolic)</label><input id="r-s" inputmode="numeric" value="126"></div><div class="field"><label class="lbl" for="r-d">Lower (diastolic)</label><input id="r-d" inputmode="numeric" value="80"></div></div>
+    <div id="r-sg" class="field" hidden><label class="lbl" for="r-v">mg/dL</label><input id="r-v" inputmode="numeric" value="116"></div>
+    <div class="err" id="r-err" role="alert"></div>
+    <button class="btn block" data-action="save-reading">Save reading</button>`);
+  $("#r-type").addEventListener("click", e => { const b=e.target.closest("button"); if(!b) return; $$("#r-type button").forEach(x=>x.setAttribute("aria-pressed",x===b)); $("#r-bp").hidden=b.dataset.v!=="bp"; $("#r-sg").hidden=b.dataset.v!=="sugar"; });
+}
+
+/* ---------- actions ---------- */
+Object.assign(Kit.actions, {
+  who: a => { S().who = a.dataset.w; Kit.render(true); },
+  dose: a => sheetDose(a.dataset.k),
+  "save-dose": a => { const s = picked($("#d-pick"))[0]; markDose(a.dataset.k, s, s==="taken" ? $("#d-at").value || NOW : NOW); S().alerts = []; closeSheet(); Kit.render(true); toast(s==="taken" ? "Marked as taken. Family alerts for this dose are cleared." : "Marked as skipped. It will show in the weekly summary."); },
+  call: a => { const p = P(a.dataset.w); openSheet(`Call ${p.name}`, `<div class="summary"><div><span>${esc(p.full)}</span><b class="num" id="ph">${p.phone}</b></div></div><p class="hint">Calls go through your phone dialer in the real app.</p><button class="btn block" data-action="copy-ph">Copy number</button>`); },
+  "copy-ph": () => copyText($("#ph"), "Number copied."),
+  "ask-joshi": () => toast("Prototype: Mr. Joshi would get a message asking him to check on Mummy."),
+  fab: () => sheetAdd(),
+  med: a => sheetMed(+a.dataset.id),
+  "ask-stop": a => { $("#stop-zone").innerHTML = `<div class="summary" style="background:var(--bad-soft)"><b>Stop reminders for this medicine?</b><span class="hint" style="color:var(--ink)">Only do this if the doctor has stopped it. The history stays.</span><div class="two"><button class="btn ghost" data-action="close">Keep it</button><button class="btn danger" data-action="stop" data-id="${a.dataset.id}">Stop</button></div></div>`; },
+  stop: a => { const m=S().meds.find(x=>x.id===+a.dataset.id); S().meds=S().meds.filter(x=>x!==m); closeSheet(); Kit.render(); toast(`${m.name} stopped. No more reminders.`); },
+  "add-scan": () => { const w=S().who; let n=0; $$("[data-scan]").forEach(c=>{ if(c.checked){ const s=SCAN[+c.dataset.scan]; S().meds.push({...s, id:S().nextId++, who:w, form:"tablet"}); n++; } }); closeSheet(); Kit.render(); toast(`${n} medicine${n===1?"":"s"} added for ${P(w).name}.`); },
+  order: () => { const low=S().meds.filter(m=>daysLeft(m)<=10); const txt=`Namaste, please deliver to Sharma, Flat 4, Shivaji Nagar, Nagpur:\n`+low.map(m=>`• ${m.name} ${m.strength} × ${m.times.length*30} (${P(m.who).name})`).join("\n")+`\nPayment by UPI on delivery. – Karan`; openSheet("Send list to chemist", `<pre id="ord" style="white-space:pre-wrap;font-family:var(--body);font-size:14px;background:var(--surface-2);border-radius:14px;padding:12px;margin:0">${esc(txt)}</pre><div class="summary"><div><span>Chemist</span><b>Shree Medical, Shivaji Nagar</b></div><div><span>WhatsApp</span><b class="num">+91 712 255 0199</b></div></div><p class="hint">The real app opens WhatsApp with this message filled in. Prices and stock are confirmed by the chemist.</p><button class="btn block" data-action="copy-ord">Copy message</button>`); },
+  "copy-ord": () => copyText($("#ord"), "Order message copied."),
+  refilled: a => { const m=S().meds.find(x=>x.id===+a.dataset.id); m.stock += m.times.length*30; Kit.render(true); toast(`${m.name} refilled. Enough for ${daysLeft(m)} days.`); },
+  "add-reading": () => sheetReading(),
+  "save-reading": () => { const bp=$("#r-type [aria-pressed='true']").dataset.v==="bp";
+    if(bp){ const s=+$("#r-s").value, d=+$("#r-d").value; if(!(s>60&&s<260&&d>30&&d<160&&s>d)){$("#r-err").textContent="Check the numbers. Upper should be bigger than lower, like 126/80.";return;} S().bp.shift(); S().bp.push({d:TODAY,s,di:d}); }
+    else { const v=+$("#r-v").value; if(!(v>30&&v<600)){$("#r-err").textContent="Enter the number from the meter, like 116.";return;} S().sugar.shift(); S().sugar.push({d:TODAY,v}); }
+    closeSheet(); Kit.render(true); toast("Reading saved. It's in the doctor summary."); },
+  report: () => sheetReport(),
+  "copy-rep": () => copyText($("#rep"), "Summary copied."),
+  invite: () => toast("Prototype: sends a WhatsApp invite link so a sibling or neighbour can join."),
+  "parent-mode": () => { S().mode="parent"; S().pmWho=S().who; Kit.render(); },
+  "care-mode": () => { S().mode="care"; Kit.render(); },
+  lang: () => { S().lang = S().lang==="hi" ? "en" : "hi"; Kit.render(true); },
+  "pm-took": a => { markDose(a.dataset.k, "taken", NOW); Kit.render(true); toast(S().lang==="hi" ? "बहुत अच्छे! करन को बता दिया गया है।" : "Well done! Karan can see it now."); },
+  "pm-later": () => toast(S().lang==="hi" ? "ठीक है, 15 मिनट बाद फिर याद दिलाएँगे।" : "OK. We'll remind you again at 5:15 PM."),
+  "pm-call": () => toast("Prototype: this would call Karan with one tap."),
+  "pm-help": () => toast("Prototype: Karan, Neha and Mr. Joshi would get an urgent alert with Papa's location.")
+});
+document.addEventListener("change", e => { const id=e.target.dataset && e.target.dataset.fam; if(!id) return; const f=S().family.find(x=>x.id===id); f.on=e.target.checked; Kit.render(true); toast(f.on?`${f.name} will get alerts again.`:`${f.name} won't get alerts.`); });
+Kit.views = {today:viewToday, meds:viewMeds, refills:viewRefills, health:viewHealth, family:viewFamily};
+Kit.init({store:"khayal-v1", seed});
+</script>
+
+</body></html>

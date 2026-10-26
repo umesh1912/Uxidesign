@@ -1,0 +1,510 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Rasid Warranty Vault</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#E8EAEE; --surface:#FFFFFF; --surface-2:#F4F5F7; --ink:#15171C; --ink-2:#5A5F6B; --line:#DADDE3;
+  --primary:#15171C; --primary-ink:#FFFFFF; --primary-soft:#E4E7FF;
+  --accent:#2B55F0; --accent-ink:#FFFFFF; --accent-soft:#E2E8FF;
+  --good:#1E7F4F; --good-soft:#DCF1E5; --bad:#C8372B; --bad-soft:#FBE3E0; --warn:#D99108; --warn-soft:#FCF0D2;
+  --track:#C3C8D2; --frame:#0B0C10; --shadow:0 24px 60px -24px rgba(21,23,28,.45); --scrim:rgba(10,11,14,.5);
+  --paper:#FFFFFF; --paper-ink:#1D1F24;
+  --display:"IBM Plex Sans", system-ui, sans-serif; --display-weight:700;
+  --body:"IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace; --radius:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --bg:#0B0C10; --surface:#15171D; --surface-2:#1C1F27; --ink:#ECEEF3; --ink-2:#9CA2B0; --line:#2A2E38;
+  --primary:#ECEEF3; --primary-ink:#0B0C10; --primary-soft:#232838; --accent:#6D8CFF; --accent-ink:#0B0C10; --accent-soft:#1D2544;
+  --good:#5ED39A; --good-soft:#15301F; --bad:#F2806F; --bad-soft:#3A1E1A; --warn:#F2BE4C; --warn-soft:#3A2F14;
+  --track:#3A3F4C; --frame:#000; --shadow:0 24px 60px -24px rgba(0,0,0,.8); --scrim:rgba(0,0,0,.6); --paper:#F1F1EE; --paper-ink:#1D1F24;}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#0B0C10; --surface:#15171D; --surface-2:#1C1F27; --ink:#ECEEF3; --ink-2:#9CA2B0; --line:#2A2E38;
+  --primary:#ECEEF3; --primary-ink:#0B0C10; --primary-soft:#232838; --accent:#6D8CFF; --accent-ink:#0B0C10; --accent-soft:#1D2544;
+  --good:#5ED39A; --good-soft:#15301F; --bad:#F2806F; --bad-soft:#3A1E1A; --warn:#F2BE4C; --warn-soft:#3A2F14;
+  --track:#3A3F4C; --frame:#000; --shadow:0 24px 60px -24px rgba(0,0,0,.8); --scrim:rgba(0,0,0,.6); --paper:#F1F1EE; --paper-ink:#1D1F24;}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;padding-inline:16px;padding-block:24px;margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.stage{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:44px;align-items:start;justify-content:center}
+@media (max-width:760px){.stage{grid-template-columns:minmax(0,1fr);gap:20px}}
+.phone{position:relative;width:100%;max-width:400px;margin:0 auto;height:min(800px,calc(100svh - 48px));min-height:620px;background:var(--surface-2);border-radius:34px;border:8px solid var(--frame);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+@media (max-width:440px){.phone{border-width:0;border-radius:18px;height:calc(100svh - 48px)}}
+.appbar{padding:16px 16px 10px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{font-family:var(--display);font-size:24px;line-height:1.05;font-weight:var(--display-weight,700);letter-spacing:-.01em}
+.brand-sub{font-size:12px;color:var(--ink-2);margin-top:2px}
+.bar-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{position:relative;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--ink)}
+.icon-btn svg{width:20px;height:20px}
+.badge{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--bad);color:#fff;font-size:10.5px;font-weight:700;display:grid;place-items:center;border:2px solid var(--surface-2)}
+.screen{flex:1;overflow-y:auto;padding:4px 16px 100px;display:flex;flex-direction:column;gap:14px}
+.screen > *{flex-shrink:0}
+.tabbar{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(var(--tabs,5),1fr);background:var(--surface);border-top:1px solid var(--line);padding:6px 4px calc(8px + env(safe-area-inset-bottom,0px));z-index:3}
+.tab{background:none;border:0;padding:5px 0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;font-weight:700;color:var(--ink-2);position:relative}
+.tab svg{width:21px;height:21px}
+.tab-ico{padding:3px 12px;border-radius:999px;display:flex}
+.tab[aria-current="page"]{color:var(--ink)}
+.tab[aria-current="page"] .tab-ico{background:var(--primary-soft);color:var(--primary)}
+.tab .dot{position:absolute;top:1px;right:calc(50% - 20px);min-width:16px;height:16px;border-radius:99px;background:var(--accent);color:var(--accent-ink);font-size:10px;font-weight:800;display:grid;place-items:center;padding:0 4px}
+.fab{position:absolute;right:16px;bottom:84px;height:54px;padding:0 20px 0 16px;border-radius:18px;border:0;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;gap:6px;font-weight:800;box-shadow:0 10px 24px -8px rgba(0,0,0,.35);z-index:2}
+.fab svg{width:22px;height:22px}
+.h-title{font-family:var(--display);font-weight:var(--display-weight,700);font-size:24px;line-height:1.15;margin:2px 0 0;text-wrap:balance}
+.section-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:4px}
+.section-h h2{font-family:var(--display);font-weight:var(--display-weight,700);font-size:18px;margin:0}
+.section-h span{font-size:12px;color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius,18px)}
+.pad{padding:14px}
+.list{display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line);background:none;border-left:0;border-right:0;border-bottom:0;width:100%;text-align:left}
+.row:first-child{border-top:0}
+button.row:hover{background:var(--surface-2)}
+.card > button.row:first-child{border-radius:var(--radius,18px) var(--radius,18px) 0 0}.card > button.row:last-child{border-radius:0 0 var(--radius,18px) var(--radius,18px)}.card > button.row:only-child{border-radius:var(--radius,18px)}
+.row-main{flex:1;min-width:0}
+.row-title{font-weight:700;overflow-wrap:anywhere}
+.row-sub{font-size:12.5px;color:var(--ink-2)}
+.row-end{text-align:right;font-size:12px;white-space:nowrap}
+.row-end b{display:block;font-size:14.5px}
+.muted{color:var(--ink-2)} .hint{font-size:13px;color:var(--ink-2);margin:0}
+.ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--surface-2);color:var(--ink-2);flex:none}
+.ico svg{width:20px;height:20px}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px;flex:none}
+.av.sm{width:26px;height:26px;font-size:11px}
+.btn{border:0;border-radius:12px;padding:8px 14px;font-weight:700;font-size:13.5px;background:var(--primary);color:var(--primary-ink);white-space:nowrap}
+.btn.accent{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:var(--bad);color:#fff}
+.btn.block{width:100%;padding:13px;font-size:15px;border-radius:14px}
+.btn.sm{padding:6px 11px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap;border:0}
+.chip svg{width:12px;height:12px}
+.chip.good{background:var(--good-soft);color:var(--good)}
+.chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--ink)}
+.chip.pri{background:var(--primary-soft);color:var(--primary)}
+.chip.acc{background:var(--accent-soft);color:var(--ink)}
+.lbl{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.search{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0 12px}
+.search svg{width:18px;height:18px;color:var(--ink-2);flex:none}
+.search input{border:0;background:none;padding:11px 0;width:100%;outline:none}
+.filters{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.filters button{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:700;color:var(--ink-2)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.seg{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:3px}
+.seg button{flex:1;border:0;background:none;padding:7px;border-radius:9px;font-size:13px;font-weight:700;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--primary-soft);color:var(--ink)}
+.bar-track{height:8px;background:var(--surface-2);border-radius:99px;position:relative;overflow:hidden}
+.bar{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:var(--primary)}
+.empty{padding:18px;text-align:center;color:var(--ink-2);font-size:13.5px}
+.hero{background:var(--primary);color:var(--primary-ink);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.hero .lbl{color:inherit;opacity:.8}
+.hero-big{font-family:var(--display);font-weight:var(--display-weight,700);font-size:40px;line-height:1}
+.pill{font-size:12px;font-weight:700;background:rgba(255,255,255,.18);padding:4px 10px;border-radius:999px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.sheet-wrap{position:absolute;inset:0;background:var(--scrim);display:flex;align-items:flex-end;z-index:6}
+.sheet{width:100%;max-height:92%;overflow-y:auto;background:var(--surface);border-radius:24px 24px 0 0;padding:10px 18px calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px;animation:up .22s ease-out}
+.sheet.full{height:92%}
+@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}}
+.grab{width:40px;height:4px;border-radius:9px;background:var(--line);margin:0 auto}
+.sheet-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sheet-h h3{font-family:var(--display);font-weight:var(--display-weight,700);font-size:21px;margin:0;line-height:1.15;display:flex;align-items:center;gap:8px}
+.x{background:var(--surface-2);border:0;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;flex:none;color:var(--ink)}
+.field{display:flex;flex-direction:column;gap:7px}
+.field input:not([type=checkbox]):not([type=radio]):not([type=file]),.field select,.field textarea{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:11px 12px;width:100%}
+.field textarea{resize:vertical;min-height:70px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pick{display:flex;flex-wrap:wrap;gap:8px}
+.pick button{border:1px solid var(--line);background:var(--surface-2);border-radius:12px;padding:8px 12px;font-size:13.5px;font-weight:700;text-align:left}
+.pick button[aria-pressed="true"]{border-color:var(--primary);background:var(--primary-soft)}
+.pick button small{display:block;font-weight:500;font-size:11.5px;color:var(--ink-2)}
+.err{color:var(--bad);font-size:13px;min-height:1em}
+.summary{background:var(--surface-2);border-radius:14px;padding:12px;font-size:13.5px;display:flex;flex-direction:column;gap:6px}
+.summary > div{display:flex;justify-content:space-between;gap:10px}
+.note{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;background:var(--primary-soft);color:var(--ink);border-radius:12px;padding:9px 11px}
+.note svg{width:16px;height:16px;color:var(--primary);flex:none;margin-top:1px}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;padding:12px 14px;border-top:1px solid var(--line)}
+.opt:first-child{border-top:0}
+.switch{appearance:none;width:42px;height:24px;border-radius:99px;background:var(--track);position:relative;flex:none;cursor:pointer;transition:background .15s;margin:0}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .15s}
+.switch:checked{background:var(--primary)}
+.switch:checked::after{left:21px}
+.file-lbl{display:flex;align-items:center;justify-content:center;gap:8px;border:1px dashed var(--line);border-radius:12px;padding:12px;font-size:13.5px;color:var(--ink-2);cursor:pointer;background:var(--surface-2);position:relative}
+.file-lbl svg{width:20px;height:20px;flex:none}
+.file-lbl input{position:absolute;width:1px;height:1px;opacity:0}
+.check{width:28px;height:28px;border-radius:9px;border:2px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none;color:var(--primary-ink);padding:0}
+.check[aria-checked="true"]{background:var(--primary);border-color:var(--primary)}
+.check svg{width:16px;height:16px}
+.toast{position:absolute;left:16px;right:16px;top:72px;background:var(--ink);color:var(--surface);padding:11px 14px;border-radius:12px;font-size:13.5px;z-index:9;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+.notes{padding-top:8px;max-width:62ch;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--primary)}
+.notes h1{font-family:var(--display);font-weight:var(--display-weight,700);font-size:clamp(30px,5vw,46px);line-height:1.03;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.notes p{color:var(--ink-2);margin:0}
+.try{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.try div{display:flex;gap:12px;padding:11px 14px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2)}
+.try div:first-child{border-top:0}
+.try b{color:var(--ink)}
+.try .n{font-family:var(--display);font-weight:var(--display-weight,700);color:var(--primary);min-width:16px}
+.stack{display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:var(--ink-2)}
+.stack b{color:var(--ink)}
+@media (max-width:760px){.notes{order:-1;padding-top:0}.try,.stack{display:none}}
+
+.mono{font-family:var(--mono)}
+.brand{letter-spacing:-.02em}
+.brand span{font-family:var(--mono);font-weight:500;font-size:13px;color:var(--ink-2);margin-left:6px;letter-spacing:0}
+.tab[aria-current="page"] .tab-ico{background:var(--accent-soft);color:var(--accent)}
+.vault{background:var(--primary);color:var(--primary-ink);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.vault .big{font-family:var(--mono);font-weight:600;font-size:34px;line-height:1;letter-spacing:-.02em}
+.vault .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px dashed color-mix(in srgb,var(--primary-ink) 30%,transparent);padding-top:10px}
+.vault .grid b{display:block;font-family:var(--mono);font-size:18px}
+.vault .grid span{font-size:11.5px;opacity:.75}
+.scanbar{display:flex;gap:10px}
+.scanbar button{flex:1;display:flex;align-items:center;gap:10px;border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:12px;text-align:left;font-weight:600;font-size:13.5px}
+.scanbar svg{width:22px;height:22px;color:var(--accent);flex:none}
+.scanbar small{display:block;font-weight:400;color:var(--ink-2);font-size:11.5px}
+.item{display:flex;gap:12px;align-items:center;padding:12px 14px;border-top:1px solid var(--line);width:100%;text-align:left;background:none;border-left:0;border-right:0;border-bottom:0}
+.item:first-child{border-top:0}
+.item:hover{background:var(--surface-2)}
+.thumb{width:44px;height:44px;border-radius:10px;background:var(--surface-2);display:grid;place-items:center;flex:none;color:var(--ink-2);border:1px solid var(--line)}
+.thumb svg{width:22px;height:22px}
+.wbar{height:6px;border-radius:9px;background:var(--surface-2);margin-top:6px;overflow:hidden}
+.wbar i{display:block;height:100%;border-radius:9px}
+.days{font-family:var(--mono);font-weight:600;font-size:14px}
+.receipt{background:var(--paper);color:var(--paper-ink);font-family:var(--mono);font-size:12.5px;padding:16px 16px 22px;position:relative;box-shadow:0 1px 0 var(--line);line-height:1.5;
+  -webkit-mask:linear-gradient(#000 0 0) top/100% calc(100% - 8px) no-repeat, radial-gradient(circle 6px at 8px 100%, transparent 5.5px, #000 6px) bottom left/16px 8px repeat-x;
+  mask:linear-gradient(#000 0 0) top/100% calc(100% - 8px) no-repeat, radial-gradient(circle 6px at 8px 100%, transparent 5.5px, #000 6px) bottom left/16px 8px repeat-x}
+.receipt .r{display:flex;justify-content:space-between;gap:10px}
+.receipt hr{border:0;border-top:1px dashed #9aa0aa;margin:8px 0}
+.receipt .ctr{text-align:center;font-weight:600}
+.wlist{display:flex;flex-direction:column;gap:0}
+.wl{display:flex;gap:10px;align-items:center;padding:10px 14px;border-top:1px solid var(--line)}
+.wl:first-child{border-top:0}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:13.5px}
+.kv dt{color:var(--ink-2)}
+.kv dd{margin:0;text-align:right;font-family:var(--mono);font-size:13px;overflow-wrap:anywhere}
+.steps{display:flex;flex-direction:column;gap:0;padding:4px 0}
+.stp{display:flex;gap:12px;padding:8px 0;position:relative}
+.stp:before{content:"";position:absolute;left:9px;top:26px;bottom:-8px;width:2px;background:var(--line)}
+.stp:last-child:before{display:none}
+.stp i{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);background:var(--surface);flex:none;display:grid;place-items:center;z-index:1}
+.stp.done i{background:var(--good);border-color:var(--good);color:#fff}
+.stp.now i{border-color:var(--accent);background:var(--accent-soft)}
+.stp i svg{width:12px;height:12px}
+.stp b{display:block;font-size:14px}
+.stp span{font-size:12.5px;color:var(--ink-2)}
+.rooms{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.rooms button{border:1px solid var(--line);background:var(--surface);border-radius:14px;padding:12px;text-align:left;font-weight:600}
+.rooms button small{display:block;font-weight:400;color:var(--ink-2);font-size:12px}
+.fwd{font-family:var(--mono);background:var(--surface-2);border:1px dashed var(--line);border-radius:10px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px}
+</style>
+
+<div class="stage">
+  <div class="phone">
+    <header class="appbar">
+      <div><div class="brand">Rasid<span>/ vault</span></div><div class="brand-sub">Flat 204, Kondapur · shared with Arjun</div></div>
+      <div class="bar-actions"><button class="icon-btn" data-action="alerts" aria-label="Alerts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="badge" id="badge" hidden></span></button><span class="av" style="background:#2B55F0">P</span></div>
+    </header>
+    <main class="screen" id="screen"></main>
+    <button class="fab" id="fab" data-action="add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a1 1 0 0 1 1-1h2M17 4h2a1 1 0 0 1 1 1v2M20 17v2a1 1 0 0 1-1 1h-2M7 20H5a1 1 0 0 1-1-1v-2M7 12h10"/></svg>Scan bill</button>
+    <nav class="tabbar" aria-label="Sections">
+      <button class="tab" data-tab="home"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/></svg></span>Home</button>
+      <button class="tab" data-tab="vault"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="12" cy="12" r="3.5"/><path d="M12 8.5V7M15.5 12H17"/></svg></span>Vault</button>
+      <button class="tab" data-tab="claims"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span>Claims<span class="dot" id="claim-dot" hidden></span></button>
+      <button class="tab" data-tab="reminders"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>Reminders</button>
+      <button class="tab" data-tab="settings"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span>You</button>
+    </nav>
+    <div id="sheet-root"></div>
+    <div class="toast" id="toast" role="status" hidden></div>
+  </div>
+  <aside class="notes">
+    <div class="eyebrow" style="color:var(--accent)">Clickable prototype</div>
+    <h1>Rasid: every bill, every warranty, found in seconds</h1>
+    <p>You are Priya in Hyderabad. Rasid keeps the bill for every appliance and gadget in the house, tells you before a warranty runs out, and gets a repair claim ready in one tap. All items are sample data.</p>
+    <div class="try">
+      <div><span class="n">1</span><span><b>Catch an expiring warranty.</b> The mixer grinder's warranty ends in 7 days. Open it from Home.</span></div>
+      <div><span class="n">2</span><span><b>Start a claim.</b> Pick the problem, and Rasid assembles the invoice number, serial and dates to send.</span></div>
+      <div><span class="n">3</span><span><b>Scan a new bill.</b> Tap "Scan bill", attach any image, and check what was read.</span></div>
+      <div><span class="n">4</span><span><b>Follow a repair.</b> The washing machine claim is waiting for a part. See its timeline under Claims.</span></div>
+      <div><span class="n">5</span><span><b>Set up forwarding.</b> Under You, copy your forwarding address for online-order emails.</span></div>
+    </div>
+    <div class="stack"><div><b>Planned build:</b> Flutter, Firebase, on-device text recognition plus a cloud invoice parser, and email-forward ingestion.</div>
+      <button class="btn ghost sm" id="reset" style="align-self:flex-start">Reset sample data</button></div>
+  </aside>
+</div>
+
+<script>
+/* ---- shared prototype kit ---- */
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+function dNum(s){const [y,m,d]=s.split("-").map(Number);return Date.UTC(y,m-1,d)/864e5;}
+function addDays(s,n){return new Date((dNum(s)+n)*864e5).toISOString().slice(0,10);}
+function addMonths(s,n){const [y,m,d]=s.split("-").map(Number);return new Date(Date.UTC(y,m-1+n,d)).toISOString().slice(0,10);}
+function dLabel(s){const [y,m,d]=s.split("-").map(Number);return d+" "+MON[m-1];}
+function dLabelY(s){const [y,m,d]=s.split("-").map(Number);return d+" "+MON[m-1]+" "+y;}
+function dow(s){return DOW[new Date(dNum(s)*864e5).getUTCDay()];}
+function t12(t){let [h,m]=t.split(":").map(Number);const ap=h>=12?"PM":"AM";h=h%12||12;return h+(m?":"+String(m).padStart(2,"0"):"")+" "+ap;}
+const inr = n => "₹" + Math.round(Math.abs(n)).toLocaleString("en-IN");
+function daysBetween(a,b){return dNum(b)-dNum(a);}
+const IC = {
+  x:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
+  bell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>',
+  info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>',
+  camera:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-3h6l2 3h3v13H4z"/><circle cx="12" cy="13" r="4"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>',
+  chev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>',
+  trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>'
+};
+const Kit = {
+  store:null, S:null, seed:null, views:{}, actions:{}, afterRender:[],
+  init(opts){
+    Object.assign(this, opts);
+    try { this.S = JSON.parse(localStorage.getItem(this.store)) || this.seed(); } catch(_) { this.S = this.seed(); }
+    document.addEventListener("click", e => this.onClick(e));
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+    const r = $("#reset"); if (r) r.addEventListener("click", () => { this.S = this.seed(); closeSheet(); this.render(); toast("Sample data restored."); });
+    this.render();
+  },
+  save(){ try { localStorage.setItem(this.store, JSON.stringify(this.S, (k,v) => k.startsWith("_") ? undefined : v)); } catch(_){} },
+  render(keep){
+    const S = this.S, sc = $("#screen"), top = sc.scrollTop;
+    sc.innerHTML = this.views[S.tab]();
+    if (keep) sc.scrollTop = top;
+    $$(".tab").forEach(t => t.removeAttribute("aria-current"));
+    const cur = $(`.tab[data-tab="${S.tab}"]`); if (cur) cur.setAttribute("aria-current","page");
+    this.afterRender.forEach(f => f(S));
+    this.save();
+  },
+  onClick(e){
+    const tab = e.target.closest(".tab");
+    if (tab){ this.S.tab = tab.dataset.tab; this.render(); $("#screen").scrollTop = 0; return; }
+    const a = e.target.closest("[data-action]"); if (!a) return;
+    const act = a.dataset.action;
+    if (act === "close-bg" && e.target !== a) return;
+    if (act === "close" || act === "close-bg") { closeSheet(); return; }
+    const fn = this.actions[act]; if (fn) fn(a, e);
+  }
+};
+function bindSearch(id, key){
+  const q = document.getElementById(id); if (!q) return;
+  q.addEventListener("input", () => { Kit.S[key] = q.value; const pos = q.selectionStart; Kit.render(true); const n = document.getElementById(id); n.focus(); n.setSelectionRange(pos,pos); });
+}
+let _tt;
+function toast(m){ const t = $("#toast"); t.textContent = m; t.hidden = false; clearTimeout(_tt); _tt = setTimeout(() => t.hidden = true, 3000); }
+function openSheet(title, body, full){
+  $("#sheet-root").innerHTML = `<div class="sheet-wrap" data-action="close-bg"><div class="sheet ${full?"full":""}" role="dialog" aria-modal="true" aria-label="${esc(title.replace(/<[^>]+>/g,""))}"><div class="grab"></div><div class="sheet-h"><h3>${title}</h3><button class="x" data-action="close" aria-label="Close">${IC.x}</button></div>${body}</div></div>`;
+}
+function closeSheet(){ const r = $("#sheet-root"); if (r) r.innerHTML = ""; }
+function pickGroup(root, onPick){
+  root.addEventListener("click", e => { const b = e.target.closest("button[data-v]"); if (!b || b.disabled) return;
+    const multi = root.dataset.multi === "1";
+    if (multi) b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+    else root.querySelectorAll("button[data-v]").forEach(x => x.setAttribute("aria-pressed", x === b));
+    onPick && onPick(b.dataset.v, b);
+  });
+}
+function picked(root){ return [...root.querySelectorAll('button[aria-pressed="true"]')].map(b => b.dataset.v); }
+function copyText(el, msg){
+  const sel = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  try { navigator.clipboard.writeText(el.textContent).then(() => toast(msg), () => { sel(); toast("Selected. Copy it from here."); }); } catch(_) { sel(); toast("Selected. Copy it from here."); }
+}
+
+const TODAY = "2026-09-28";
+const CAT = {kitchen:["Kitchen",'<path d="M5 3v8a3 3 0 0 0 6 0V3M8 3v18M16 3c-2 0-3 3-3 7h3v11"/>'],cooling:["Cooling",'<path d="M12 2v20M4.9 7l14.2 10M4.9 17 19.1 7"/>'],laundry:["Laundry",'<rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="13" r="4.5"/><path d="M8 6.5h.01M11 6.5h3"/>'],phone:["Phones",'<rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M11 18.5h2"/>'],computer:["Computers",'<rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M2 20h20"/>'],water:["Water",'<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/>'],audio:["Audio",'<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/>'],home:["Home",'<path d="M12 12h.01M4 12a8 8 0 0 1 16 0M2 12h20M12 12v9"/>']};
+const cico = c => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">${CAT[c][1]}</svg>`;
+function seed(){
+  return { tab:"home", q:"", cat:"all", show:"all",
+    items:[
+      {id:1, name:"Mixer grinder", brand:"Prestige", model:"Iris 750W", serial:"PIR750-24-118392", cat:"kitchen", room:"Kitchen", price:4299, date:"2024-10-06", store:"Ratnadeep Homes, Kondapur", inv:"RH/24-25/08812", w:[{t:"Product",until:"2026-10-05"}], owner:"Priya"},
+      {id:2, name:"Smartphone", brand:"OnePlus", model:"12R 8/256", serial:"IMEI 86••••••••4471", cat:"phone", room:"Priya", price:39999, date:"2025-10-15", store:"Amazon.in", inv:"IN-HYD-5521907", w:[{t:"Product",until:"2026-10-14"}], owner:"Priya"},
+      {id:3, name:"Laptop", brand:"HP", model:"Pavilion 14-ek2", serial:"5CD4381XKQ", cat:"computer", room:"Study", price:62990, date:"2026-01-02", store:"Vijay Sales, Madhapur", inv:"VS/MDP/260102/77", w:[{t:"Product",until:"2027-01-01"}], owner:"Arjun"},
+      {id:4, name:"Water purifier", brand:"Kent", model:"Grand Plus RO", serial:"KGP-2511-40219", cat:"water", room:"Kitchen", price:17500, date:"2025-11-20", store:"Kent authorised dealer", inv:"KD/1120/339", w:[{t:"Product",until:"2026-11-19"},{t:"AMC (paid)",until:"2027-11-19"}], owner:"Priya"},
+      {id:5, name:"Refrigerator", brand:"Samsung", model:"253 L Frost Free", serial:"0A2K4ABT700219", cat:"kitchen", room:"Kitchen", price:27490, date:"2024-10-03", store:"Reliance Digital, Kukatpally", inv:"RD/KKP/1003/2291", w:[{t:"Product",until:"2025-10-02"},{t:"Extended (₹1,999)",until:"2027-10-02"},{t:"Compressor",until:"2034-10-02"}], owner:"Priya"},
+      {id:6, name:"Split AC 1.5 ton", brand:"LG", model:"Dual Inverter 5★", serial:"503KAXQ0N119", cat:"cooling", room:"Bedroom", price:41990, date:"2025-04-12", store:"Croma, Gachibowli", inv:"CRM/GCB/0412/118", w:[{t:"Product",until:"2026-04-11"},{t:"Compressor",until:"2035-04-11"}], owner:"Arjun"},
+      {id:7, name:"Washing machine", brand:"Bosch", model:"7 kg Front Load", serial:"WAJ2416SIN-338120", cat:"laundry", room:"Utility", price:33990, date:"2023-11-08", store:"Croma, Gachibowli", inv:"CRM/GCB/1108/044", w:[{t:"Product",until:"2025-11-07"},{t:"Motor",until:"2035-11-07"}], owner:"Priya"},
+      {id:8, name:"Wireless earbuds", brand:"boAt", model:"Airdopes 141", serial:"BT141-A99201", cat:"audio", room:"Arjun", price:1799, date:"2026-03-01", store:"Flipkart", inv:"OD4290117", w:[{t:"Product",until:"2027-02-28"}], owner:"Arjun"},
+      {id:9, name:"Ceiling fans ×3", brand:"Havells", model:"Stealth Air BLDC", serial:"3 units", cat:"home", room:"Living room", price:8970, date:"2024-06-10", store:"Local electrician (cash bill)", inv:"Handwritten #312", w:[{t:"Product",until:"2026-06-09"}], owner:"Arjun"}
+    ],
+    claims:[{id:1, item:7, issue:"Drum makes a grinding noise during spin", under:"Motor warranty", ref:"BSH-SR-2609-55812", steps:[{t:"Claim raised with Bosch",d:"2026-09-20",done:true},{t:"Technician visited",d:"2026-09-22",done:true,note:"Motor bearing needs replacement"},{t:"Waiting for spare part",d:"2026-09-22",now:true,note:"Promised within 5 working days"},{t:"Repair done",d:null}]}],
+    reminders:[
+      {id:1, t:"Mixer grinder warranty ends", d:"2026-10-05", item:1, kind:"warranty", on:true},
+      {id:2, t:"OnePlus 12R warranty ends", d:"2026-10-14", item:2, kind:"warranty", on:true},
+      {id:3, t:"Change RO filter (every 6 months)", d:"2026-11-20", item:4, kind:"service", on:true},
+      {id:4, t:"Kent purifier warranty ends (AMC continues)", d:"2026-11-19", item:4, kind:"warranty", on:true},
+      {id:5, t:"Service ACs before summer", d:"2027-02-15", item:6, kind:"service", on:true},
+      {id:6, t:"Refrigerator extended warranty ends", d:"2027-10-02", item:5, kind:"warranty", on:true}
+    ],
+    nextId:100 };
+}
+const S = () => Kit.S;
+const I = id => S().items.find(i=>i.id===id);
+const activeW = it => it.w.filter(w=>daysBetween(TODAY,w.until)>=0).sort((a,b)=>dNum(a.until)-dNum(b.until));
+const mainW = it => activeW(it)[0] || it.w.sort((a,b)=>dNum(b.until)-dNum(a.until))[0];
+function wState(it){ const a = activeW(it); if(!a.length) return {k:"out", d:null, w:it.w[it.w.length-1]}; const d = daysBetween(TODAY,a[0].until); return {k: d<=30?"soon":"ok", d, w:a[0]}; }
+const monthsLabel = d => d>=365 ? `${(d/365).toFixed(d>=730?0:1).replace(".0","")} yr` : d>=60 ? `${Math.round(d/30)} mo` : `${d} days`;
+function itemRow(it){
+  const s = wState(it), total = daysBetween(it.date, s.w.until), left = s.d ?? 0;
+  const col = s.k==="soon" ? "var(--warn)" : s.k==="ok" ? "var(--good)" : "var(--track)";
+  const right = s.k==="out" ? `<span class="chip">Out of warranty</span>` : `<div class="row-end"><span class="days" style="color:${s.k==="soon"?"var(--bad)":"var(--ink)"}">${monthsLabel(left)}</span><div class="row-sub">${esc(s.w.t.split(" (")[0])}</div></div>`;
+  return `<button class="item" data-action="item" data-id="${it.id}"><span class="thumb">${cico(it.cat)}</span><div class="row-main"><div class="row-title">${esc(it.brand)} ${esc(it.name)}</div><div class="row-sub">${esc(it.model)} · ${inr(it.price)}</div>${s.k!=="out"?`<div class="wbar"><i style="width:${Math.max(4,Math.min(100,left/total*100))}%;background:${col}"></i></div>`:""}</div>${right}</button>`;
+}
+function viewHome(){
+  const its = S().items, prot = its.filter(i=>wState(i).k!=="out"), soon = its.filter(i=>wState(i).k==="soon").sort((a,b)=>wState(a).d-wState(b).d);
+  const val = prot.reduce((a,i)=>a+i.price,0);
+  const openClaims = S().claims.filter(c=>!c.steps[c.steps.length-1].done);
+  return `
+  <section class="vault">
+    <div class="lbl" style="color:inherit;opacity:.7">Still under warranty</div>
+    <div class="big num">${inr(val)}</div>
+    <div class="grid"><div><b>${its.length}</b><span>items saved</span></div><div><b>${prot.length}</b><span>covered today</span></div><div><b style="color:${soon.length?"var(--warn)":"inherit"}">${soon.length}</b><span>end in 30 days</span></div></div>
+  </section>
+  <div class="scanbar"><button data-action="add">${IC.camera}<span>Scan a bill<small>Photo or PDF</small></span></button><button data-action="go-settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>Forward an email<small>Online orders</small></span></button></div>
+  ${soon.length?`<div class="section-h"><h2>Ending soon</h2><span>act before the date</span></div><div class="card list">${soon.map(itemRow).join("")}</div>`:""}
+  ${openClaims.length?`<div class="section-h"><h2>Open repair</h2></div>${openClaims.map(c=>{const it=I(c.item), cur=c.steps.find(s=>s.now);return `<button class="card pad" data-action="claim" data-id="${c.id}" style="text-align:left;display:flex;gap:12px;align-items:center;width:100%"><span class="thumb">${cico(it.cat)}</span><div class="row-main"><div class="row-title">${esc(it.brand)} ${esc(it.name)}</div><div class="row-sub">${esc(cur?cur.t:"In progress")} · since ${dLabel(cur&&cur.d?cur.d:c.steps[0].d)}</div></div><span class="chip warn">Day ${daysBetween(c.steps[0].d,TODAY)}</span></button>`;}).join("")}`:""}
+  <div class="section-h"><h2>Recently added</h2><button class="btn ghost sm" data-action="go-vault">All ${its.length}</button></div>
+  <div class="card list">${[...its].sort((a,b)=>dNum(b.date)-dNum(a.date)).slice(0,3).map(itemRow).join("")}</div>`;
+}
+function viewVault(){
+  const q = S().q.trim().toLowerCase();
+  let list = S().items.filter(i => (S().cat==="all"||i.cat===S().cat) && (S().show==="all" || (S().show==="covered" ? wState(i).k!=="out" : wState(i).k==="out")) && (!q || [i.name,i.brand,i.model,i.store,i.serial,i.room].join(" ").toLowerCase().includes(q)));
+  list.sort((a,b)=>{const A=wState(a),B=wState(b);return (A.d??99999)-(B.d??99999);});
+  const cats = [...new Set(S().items.map(i=>i.cat))];
+  return `<h1 class="h-title">Vault</h1>
+  <label class="search">${IC.search}<input id="q" type="search" placeholder="Brand, model, serial, shop…" value="${esc(S().q)}" aria-label="Search the vault"></label>
+  <div class="seg" role="group" aria-label="Warranty status">${[["all","All"],["covered","Covered"],["out","Expired"]].map(([k,v])=>`<button data-action="show" data-v="${k}" aria-pressed="${S().show===k}">${v}</button>`).join("")}</div>
+  <div class="filters" role="group" aria-label="Category">${[["all","All"],...cats.map(c=>[c,CAT[c][0]])].map(([k,v])=>`<button data-action="cat" data-v="${k}" aria-pressed="${S().cat===k}">${v}</button>`).join("")}</div>
+  <div class="card list">${list.length?list.map(itemRow).join(""):`<div class="empty">Nothing matches. Try the serial number or the shop name.</div>`}</div>
+  <p class="hint">Sorted by the warranty that ends first. Items with more than one warranty, like a compressor, show the next one to end.</p>`;
+}
+function claimCard(c){
+  const it = I(c.item), done = c.steps[c.steps.length-1].done;
+  return `<article class="card pad" style="display:flex;flex-direction:column;gap:8px"><div style="display:flex;gap:12px;align-items:center"><span class="thumb">${cico(it.cat)}</span><div class="row-main"><div class="row-title">${esc(it.brand)} ${esc(it.name)}</div><div class="row-sub">${esc(c.issue)}</div></div><span class="chip ${done?"good":"warn"}">${done?"Fixed":"Open"}</span></div>
+  <div class="steps">${c.steps.map(s=>`<div class="stp ${s.done?"done":s.now?"now":""}"><i>${s.done?IC.check:""}</i><div><b>${esc(s.t)}</b><span>${s.d?dLabel(s.d):"Pending"}${s.note?" · "+esc(s.note):""}</span></div></div>`).join("")}</div>
+  <div class="row-sub mono">Ref ${esc(c.ref)} · ${esc(c.under)}</div>
+  ${done?"":`<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn sm" data-action="claim-next" data-id="${c.id}">Update status</button>${daysBetween(c.steps[0].d,TODAY)>=7?`<button class="btn ghost sm" data-action="escalate" data-id="${c.id}">It's taking too long</button>`:""}</div>`}</article>`;
+}
+function viewClaims(){
+  return `<h1 class="h-title">Repairs and claims</h1>
+  <p class="hint" style="color:var(--ink)">Start a claim from any item in the vault. Rasid gathers the proof the service centre asks for.</p>
+  ${S().claims.length?S().claims.slice().reverse().map(claimCard).join(""):`<div class="card empty">No claims yet.</div>`}
+  <div class="note">${IC.info}<span>Keep the reference number the service centre gives you. It's what you quote when you follow up or escalate.</span></div>`;
+}
+function viewReminders(){
+  const r = [...S().reminders].sort((a,b)=>dNum(a.d)-dNum(b.d));
+  return `<h1 class="h-title">Reminders</h1>
+  <p class="hint" style="color:var(--ink)">Rasid reminds you 30 days and 7 days before a warranty ends, and on service dates.</p>
+  <div class="card list">${r.map(x=>{const d=daysBetween(TODAY,x.d);return `<div class="row"><span class="thumb" style="width:40px;height:40px">${x.kind==="warranty"?IC.shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg>'}</span><div class="row-main"><div class="row-title">${esc(x.t)}</div><div class="row-sub"><span class="mono">${dLabelY(x.d)}</span> · ${d<=30?`<b style="color:var(--bad)">in ${d} days</b>`:`in ${monthsLabel(d)}`}</div></div><input type="checkbox" class="switch" data-rem="${x.id}" ${x.on?"checked":""} aria-label="Remind me: ${esc(x.t)}"></div>`;}).join("")}</div>
+  <button class="btn ghost block" data-action="add-rem">Add a service reminder</button>`;
+}
+function viewSettings(){
+  return `<h1 class="h-title">You</h1>
+  <div class="card pad" style="display:flex;flex-direction:column;gap:10px"><b>Forward order emails to Rasid</b><span class="hint">Forward confirmation emails from Amazon, Flipkart, Croma and others. Rasid reads the item, price and date, and files the invoice.</span><div class="fwd"><span id="fwd">priya.k7@in.rasid.app</span><button class="btn ghost sm" data-action="copy-fwd">Copy</button></div></div>
+  <div class="section-h"><h2>Household</h2></div>
+  <div class="card list"><div class="row"><span class="av" style="background:#2B55F0">P</span><div class="row-main"><div class="row-title">Priya (you)</div><div class="row-sub">Owner · 5 items</div></div></div><div class="row"><span class="av" style="background:#B5602B">A</span><div class="row-main"><div class="row-title">Arjun</div><div class="row-sub">Can add and claim · 4 items</div></div></div></div>
+  <div class="section-h"><h2>Rooms</h2></div>
+  <div class="rooms">${[...new Set(S().items.map(i=>i.room))].map(r=>`<button data-action="room" data-v="${esc(r)}">${esc(r)}<small>${S().items.filter(i=>i.room===r).length} item${S().items.filter(i=>i.room===r).length===1?"":"s"}</small></button>`).join("")}</div>
+  <div class="card"><label class="opt"><span><b>Backup bills to the cloud</b><br><span class="row-sub">Encrypted. Available if you lose your phone.</span></span><input type="checkbox" class="switch" checked></label><label class="opt"><span><b>Read bills on the device first</b><br><span class="row-sub">Only unclear bills are sent for cloud reading</span></span><input type="checkbox" class="switch" checked></label></div>
+  <button class="btn ghost block" data-action="export">Export for insurance (PDF + CSV)</button>`;
+}
+
+/* ---------- sheets ---------- */
+function sheetItem(id){
+  const it = I(id), s = wState(it);
+  openSheet(`${esc(it.brand)} ${esc(it.name)}`, `
+    <div class="receipt"><div class="ctr">${esc(it.store.toUpperCase())}</div><div class="ctr" style="font-weight:400">TAX INVOICE</div><hr>
+      <div class="r"><span>Inv</span><span>${esc(it.inv)}</span></div><div class="r"><span>Date</span><span>${dLabelY(it.date)}</span></div><hr>
+      <div class="r"><span>${esc(it.brand)} ${esc(it.model)}</span><span>${inr(it.price)}</span></div><div class="r" style="font-size:11.5px"><span>S/N ${esc(it.serial)}</span></div><hr>
+      <div class="r" style="font-weight:600"><span>TOTAL (incl. GST)</span><span>${inr(it.price)}</span></div></div>
+    <div class="field"><span class="lbl">Warranties</span><div class="card wlist">${it.w.map(w=>{const d=daysBetween(TODAY,w.until);return `<div class="wl"><div class="row-main"><div class="row-title">${esc(w.t)}</div><div class="row-sub mono">until ${dLabelY(w.until)}</div></div>${d<0?`<span class="chip">Ended</span>`:d<=30?`<span class="chip bad">${d} days left</span>`:`<span class="chip good">${monthsLabel(d)} left</span>`}</div>`;}).join("")}</div></div>
+    <dl class="kv"><dt>Room</dt><dd>${esc(it.room)}</dd><dt>Owner</dt><dd>${esc(it.owner)}</dd><dt>Bought</dt><dd>${dLabelY(it.date)}</dd><dt>Serial</dt><dd>${esc(it.serial)}</dd></dl>
+    ${s.k==="soon"?`<div class="note" style="background:var(--warn-soft)">${IC.info}<span>Ends on ${dLabel(s.w.until)}. If anything is wrong with it, even a small noise, get it checked before then.</span></div>`:""}
+    ${s.k!=="out"?`<button class="btn accent block" data-action="new-claim" data-id="${it.id}">Something's wrong: start a claim</button>`:`<button class="btn ghost block" data-action="paid-repair" data-id="${it.id}">Log a paid repair</button>`}
+    <div id="del-zone"><button class="btn ghost block" data-action="ask-del" data-id="${it.id}">Remove from vault</button></div>`, true);
+}
+function sheetClaim(id){
+  const it = I(id), s = wState(it);
+  openSheet(`Claim for ${esc(it.name.toLowerCase())}`, `
+    <div class="field"><span class="lbl">What's wrong?</span><div class="pick" id="issue">${["Not working at all","Making noise","Overheating","Leaking","Part broken","Something else"].map((x,i)=>`<button type="button" data-v="${x}" aria-pressed="${i===1}">${x}</button>`).join("")}</div></div>
+    <div class="field"><label class="lbl" for="c-note">Details (optional)</label><textarea id="c-note">Jar makes a loud rattling sound on the highest speed.</textarea></div>
+    <div class="field"><span class="lbl">What Rasid will send</span><div class="summary mono" style="font-size:12.5px" id="c-sum"></div></div>
+    <div class="field"><span class="lbl">Proof checklist</span><div class="card list">${[["Invoice photo","saved "+dLabel(it.date)],["Serial number",it.serial],["Warranty valid","until "+dLabel(s.w.until)]].map(([a,b])=>`<div class="row"><span class="chip good">${IC.check}</span><div class="row-main"><div class="row-title">${a}</div><div class="row-sub mono">${esc(b)}</div></div></div>`).join("")}</div></div>
+    <p class="hint">The real app sends this to ${esc(it.brand)}'s service request form or WhatsApp, and you can also copy it.</p>
+    <button class="btn accent block" data-action="raise" data-id="${it.id}">Raise claim with ${esc(it.brand)}</button>`, true);
+  const upd = () => { const iss = picked($("#issue"))[0]; $("#c-sum").innerHTML = [["Product",`${it.brand} ${it.model}`],["Serial",it.serial],["Invoice",`${it.inv}, ${dLabelY(it.date)}`],["Warranty",`${s.w.t} until ${dLabelY(s.w.until)}`],["Problem",iss]].map(([a,b])=>`<div><span>${a}</span><b style="text-align:right">${esc(b)}</b></div>`).join(""); };
+  pickGroup($("#issue"), upd); upd();
+}
+const SCAN = {store:"Vijay Sales, Kondapur", inv:"VS/KDP/260926/412", date:"2026-09-26", brand:"Philips", name:"Air fryer", model:"HD9252/90 4.1 L", price:7999, gst:"36AAACV1234F1Z9", warranty:24, conf:{price:99,date:97,model:88,warranty:62}};
+function sheetAdd(){
+  openSheet("Add a bill", `
+    <label class="file-lbl">${IC.camera}<span>Take or choose a photo of the bill</span><input id="bill" type="file" accept="image/*,application/pdf"></label>
+    <div id="scan-out"><p class="hint">Rasid reads the shop, date, item, price and serial number. You check them before saving.</p></div>`, true);
+  $("#bill").addEventListener("change", () => {
+    const f = SCAN, c = f.conf;
+    const conf = n => n>=90?"":`<span class="chip ${n<70?"bad":"warn"}" style="margin-left:6px">check</span>`;
+    $("#scan-out").innerHTML = `
+      <div class="receipt"><div class="ctr">${f.store.toUpperCase()}</div><div class="ctr" style="font-weight:400">GSTIN ${f.gst}</div><hr><div class="r"><span>Inv</span><span>${f.inv}</span></div><div class="r"><span>Date</span><span>26/09/2026</span></div><hr><div class="r"><span>${f.brand.toUpperCase()} ${f.model}</span><span>7,999.00</span></div><hr><div class="r" style="font-weight:600"><span>TOTAL</span><span>7,999.00</span></div></div>
+      <div class="note">${IC.info}<span>Prototype: this is a sample reading. The real app reads your photo.</span></div>
+      <div class="two"><div class="field"><label class="lbl" for="a-brand">Brand</label><input id="a-brand" value="${f.brand}"></div><div class="field"><label class="lbl" for="a-name">Item${conf(c.model)}</label><input id="a-name" value="${f.name}"></div></div>
+      <div class="two"><div class="field"><label class="lbl" for="a-price">Price (₹)</label><input id="a-price" inputmode="numeric" value="${f.price}"></div><div class="field"><label class="lbl" for="a-date">Bought on</label><input id="a-date" type="date" value="${f.date}"></div></div>
+      <div class="field"><span class="lbl">Warranty${conf(c.warranty)}</span><div class="pick" id="a-w">${[12,24,36,60].map(m=>`<button type="button" data-v="${m}" aria-pressed="${m===f.warranty}">${m/12} year${m>12?"s":""}${m===24?"<small>Usual for Philips</small>":""}</button>`).join("")}</div><p class="hint">Warranty isn't printed on this bill. Check the warranty card in the box.</p></div>
+      <div class="field"><label class="lbl" for="a-serial">Serial number (from the sticker)</label><input id="a-serial" placeholder="e.g. HD9252-2609-1182"></div>
+      <div class="field"><label class="lbl" for="a-room">Room</label><select id="a-room">${[...new Set(S().items.map(i=>i.room))].map(r=>`<option ${r==="Kitchen"?"selected":""}>${esc(r)}</option>`).join("")}</select></div>
+      <div class="err" id="a-err" role="alert"></div>
+      <button class="btn accent block" data-action="save-bill">Save to vault</button>`;
+    pickGroup($("#a-w"));
+  });
+}
+
+Object.assign(Kit.actions, {
+  add: () => sheetAdd(),
+  item: a => sheetItem(+a.dataset.id),
+  claim: () => { S().tab="claims"; Kit.render(); },
+  "go-vault": () => { S().tab="vault"; Kit.render(); },
+  "go-settings": () => { S().tab="settings"; Kit.render(); },
+  show: a => { S().show=a.dataset.v; Kit.render(true); },
+  cat: a => { S().cat=a.dataset.v; Kit.render(true); },
+  room: a => { S().tab="vault"; S().q=a.dataset.v; Kit.render(); },
+  "new-claim": a => sheetClaim(+a.dataset.id),
+  raise: a => { const it=I(+a.dataset.id), iss=picked($("#issue"))[0]; S().claims.push({id:S().nextId++, item:it.id, issue:iss+(($("#c-note").value.trim())?": "+$("#c-note").value.trim().replace(/\.+$/,""):""), under:wState(it).w.t+" warranty", ref:"Waiting for reference", steps:[{t:`Claim raised with ${it.brand}`,d:TODAY,done:true},{t:"Technician visit",d:null,now:true,note:"Service centre usually calls within 48 hours"},{t:"Repair done",d:null}]}); closeSheet(); S().tab="claims"; Kit.render(); toast(`Claim raised with ${it.brand}. Proof attached, and dated before the warranty ends.`); },
+  "claim-next": a => { const c=S().claims.find(x=>x.id===+a.dataset.id); const i=c.steps.findIndex(s=>s.now); if(i<0) return; c.steps[i].done=true; c.steps[i].now=false; c.steps[i].d=c.steps[i].d||TODAY; if(c.steps[i+1]){ c.steps[i+1].now=!(i+1===c.steps.length-1)?true:false; if(i+1===c.steps.length-1){c.steps[i+1].done=true;c.steps[i+1].d=TODAY;} } Kit.render(true); toast(c.steps[c.steps.length-1].done?"Marked as repaired. Nice.":"Status updated."); },
+  escalate: a => { const c=S().claims.find(x=>x.id===+a.dataset.id), it=I(c.item), days=daysBetween(c.steps[0].d,TODAY);
+    const txt=`Complaint: ${it.brand} ${it.name} (${it.model}), serial ${it.serial}\nBought ${dLabelY(it.date)} from ${it.store}, invoice ${it.inv}, ${inr(it.price)}.\nUnder ${c.under} until ${dLabelY(wState(it).w.until)}.\nProblem: ${c.issue}.\nService request ${c.ref} raised ${dLabelY(c.steps[0].d)}. Technician visited ${dLabelY(c.steps[1].d||c.steps[0].d)}. Still unresolved after ${days} days.\nRequest: repair within 7 days or replacement.`;
+    openSheet("Escalate this claim", `<p class="hint" style="color:var(--ink)">Most delays are solved by escalating to the brand first. If that fails, the National Consumer Helpline and the government's e-Jagriti portal can help.</p>
+    <div class="card list"><div class="row"><span class="chip">1</span><div class="row-main"><div class="row-title">Email ${esc(it.brand)}'s customer care head</div><div class="row-sub">Use the complaint below, with your reference number</div></div></div><div class="row"><span class="chip">2</span><div class="row-main"><div class="row-title">National Consumer Helpline</div><div class="row-sub">Call 1915, or file online. They contact the company for you.</div></div></div><div class="row"><span class="chip">3</span><div class="row-main"><div class="row-title">e-Jagriti consumer complaint</div><div class="row-sub">Formal complaint under the Consumer Protection Act, 2019</div></div></div></div>
+    <pre id="esc" class="summary mono" style="white-space:pre-wrap;font-size:12px;margin:0">${esc(txt)}</pre><button class="btn block" data-action="copy-esc">Copy complaint text</button><p class="hint">This is general information, not legal advice.</p>`, true); },
+  "copy-esc": () => copyText($("#esc"), "Complaint text copied."),
+  "save-bill": () => { const name=$("#a-name").value.trim(), price=+$("#a-price").value, date=$("#a-date").value; if(!name||!(price>0)||!date){$("#a-err").textContent="Check the item name, price and date before saving.";return;}
+    const m=+picked($("#a-w"))[0]; const until=addDays(addMonths(date,m),-1);
+    S().items.push({id:S().nextId++, name, brand:$("#a-brand").value.trim(), model:SCAN.model, serial:$("#a-serial").value.trim()||"Add from sticker", cat:"kitchen", room:$("#a-room").value, price, date, store:SCAN.store, inv:SCAN.inv, w:[{t:"Product",until}], owner:"Priya"});
+    S().reminders.push({id:S().nextId++, t:`${$("#a-brand").value.trim()} ${name.toLowerCase()} warranty ends`, d:until, item:S().nextId-1, kind:"warranty", on:true});
+    closeSheet(); S().tab="vault"; S().q=""; Kit.render(); toast(`Saved. Covered until ${dLabelY(until)}. We'll remind you 30 days before.`); },
+  "ask-del": a => { $("#del-zone").innerHTML=`<div class="summary" style="background:var(--bad-soft)"><b>Remove this item and its bill?</b><span class="hint" style="color:var(--ink)">Its reminders will be removed too.</span><div class="two"><button class="btn ghost" data-action="close">Keep</button><button class="btn danger" data-action="del" data-id="${a.dataset.id}">Remove</button></div></div>`; },
+  del: a => { const id=+a.dataset.id, it=I(id); S().items=S().items.filter(i=>i.id!==id); S().reminders=S().reminders.filter(r=>r.item!==id); closeSheet(); Kit.render(true); toast(`${it.brand} ${it.name} removed.`); },
+  "paid-repair": () => toast("Prototype: log the repair cost and bill, so you have the history if you sell or insure it."),
+  "add-rem": () => toast("Prototype: pick an item, a task like \"clean AC filters\", and how often."),
+  alerts: () => { const soon=S().reminders.filter(r=>r.on && daysBetween(TODAY,r.d)<=30 && daysBetween(TODAY,r.d)>=0); openSheet("Alerts", `<div class="card list">${soon.map(r=>`<button class="row" data-action="item" data-id="${r.item}"><span class="chip bad">${daysBetween(TODAY,r.d)}d</span><div class="row-main"><div class="row-title">${esc(r.t)}</div><div class="row-sub mono">${dLabelY(r.d)}</div></div></button>`).join("")||`<div class="empty">Nothing urgent.</div>`}</div>`); },
+  "copy-fwd": () => copyText($("#fwd"), "Forwarding address copied."),
+  export: () => toast("Prototype: creates a PDF list of items, prices, serials and bills for a home insurance claim.")
+});
+document.addEventListener("change", e => { const id=e.target.dataset && e.target.dataset.rem; if(!id) return; const r=S().reminders.find(x=>x.id===+id); r.on=e.target.checked; Kit.save(); toast(r.on?"Reminder on.":"Reminder off."); });
+Kit.afterRender.push(s => {
+  const n = s.reminders.filter(r=>r.on && daysBetween(TODAY,r.d)<=30 && daysBetween(TODAY,r.d)>=0).length; $("#badge").hidden=!n; $("#badge").textContent=n;
+  const o = s.claims.filter(c=>!c.steps[c.steps.length-1].done).length; $("#claim-dot").hidden=!o; $("#claim-dot").textContent=o;
+  $("#fab").hidden = !["home","vault"].includes(s.tab);
+  bindSearch("q","q");
+});
+Kit.views = {home:viewHome, vault:viewVault, claims:viewClaims, reminders:viewReminders, settings:viewSettings};
+Kit.init({store:"rasid-v1", seed});
+</script>
+
+</body></html>

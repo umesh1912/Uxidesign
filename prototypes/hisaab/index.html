@@ -1,0 +1,769 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Hisaab Flat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#E9EEE8; --surface:#FFFFFF; --surface-2:#F4F7F2; --ink:#16221D; --ink-2:#56635C; --line:#DAE1D8;
+  --brand:#1E5C4A; --brand-ink:#FFFFFF; --brand-soft:#DCEBE4;
+  --marigold:#E3A21A; --marigold-soft:#FBEFD2;
+  --owe:#B4441B; --owe-soft:#F8E3DA; --owed:#1C7446; --owed-soft:#DDF0E4;
+  --frame:#1A2420; --track:#BFC9BE; --shadow:0 24px 60px -24px rgba(22,34,29,.35); --scrim:rgba(10,16,14,.45);
+  --display:"Bricolage Grotesque", "Trebuchet MS", system-ui, sans-serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0D1311; --surface:#151E1A; --surface-2:#1C2722; --ink:#E6EDE8; --ink-2:#98A69F; --line:#29362F;
+    --brand:#62BB98; --brand-ink:#0D1311; --brand-soft:#1F3A30;
+    --marigold:#F0B840; --marigold-soft:#3A2F14;
+    --owe:#F08A5D; --owe-soft:#3B231A; --owed:#5ED39A; --owed-soft:#173424;
+    --frame:#000000; --track:#3C4A44; --shadow:0 24px 60px -24px rgba(0,0,0,.8); --scrim:rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0D1311; --surface:#151E1A; --surface-2:#1C2722; --ink:#E6EDE8; --ink-2:#98A69F; --line:#29362F;
+  --brand:#62BB98; --brand-ink:#0D1311; --brand-soft:#1F3A30;
+  --marigold:#F0B840; --marigold-soft:#3A2F14;
+  --owe:#F08A5D; --owe-soft:#3B231A; --owed:#5ED39A; --owed-soft:#173424;
+  --frame:#000000; --track:#3C4A44; --shadow:0 24px 60px -24px rgba(0,0,0,.8); --scrim:rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;padding-inline:16px;padding-block:24px}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--marigold);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+
+.stage{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:44px;align-items:start;justify-content:center}
+@media (max-width:760px){.stage{grid-template-columns:minmax(0,1fr);gap:20px}}
+
+.phone{position:relative;width:100%;max-width:400px;margin:0 auto;height:min(800px,calc(100svh - 48px));min-height:620px;background:var(--surface-2);border-radius:34px;border:8px solid var(--frame);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+@media (max-width:440px){.phone{border-width:0;border-radius:18px;height:calc(100svh - 48px)}}
+.appbar{padding:16px 16px 10px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--surface-2)}
+.flat-btn{background:none;border:0;padding:0;text-align:left;display:flex;flex-direction:column}
+.flat-name{font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:-.01em;line-height:1.1;display:flex;align-items:center;gap:4px}
+.flat-name svg{width:16px;height:16px;color:var(--ink-2)}
+.flat-sub{font-size:12px;color:var(--ink-2)}
+.bar-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{position:relative;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--ink)}
+.icon-btn svg{width:19px;height:19px}
+.badge{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--owe);color:#fff;font-size:10.5px;font-weight:700;display:grid;place-items:center;border:2px solid var(--surface-2)}
+.screen{flex:1;overflow-y:auto;padding:4px 16px 100px;display:flex;flex-direction:column;gap:14px}
+.screen > *{flex-shrink:0}
+.tabbar{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(5,1fr);background:var(--surface);border-top:1px solid var(--line);padding:6px 4px calc(8px + env(safe-area-inset-bottom,0px))}
+.tab{background:none;border:0;padding:5px 0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;font-weight:600;color:var(--ink-2);border-radius:12px;position:relative}
+.tab svg{width:21px;height:21px}
+.tab[aria-current="page"]{color:var(--brand)}
+.tab[aria-current="page"] .tab-ico{background:var(--brand-soft)}
+.tab-ico{padding:3px 12px;border-radius:999px;display:flex}
+.tab .dot{position:absolute;top:2px;right:calc(50% - 20px);min-width:16px;height:16px;border-radius:99px;background:var(--marigold);color:#1B1405;font-size:10px;font-weight:700;display:grid;place-items:center;padding:0 4px}
+.fab{position:absolute;right:16px;bottom:84px;height:54px;padding:0 20px 0 16px;border-radius:18px;border:0;background:var(--marigold);color:#1B1405;display:flex;align-items:center;gap:6px;font-weight:700;box-shadow:0 10px 24px -8px rgba(0,0,0,.35);z-index:2}
+.fab svg{width:22px;height:22px}
+
+.section-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:4px}
+.section-h h2{font-family:var(--display);font-weight:600;font-size:17px;margin:0}
+.section-h span{font-size:12px;color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px}
+.list{display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line);background:none;border-left:0;border-right:0;border-bottom:0;width:100%;text-align:left}
+.row:first-child{border-top:0}
+button.row:hover{background:var(--surface-2)}
+.card > button.row:first-child{border-radius:18px 18px 0 0}
+.card > button.row:last-child{border-radius:0 0 18px 18px}
+.card > button.row:only-child{border-radius:18px}
+.row-main{flex:1;min-width:0}
+.row-title{font-weight:600;overflow-wrap:anywhere}
+.row-sub{font-size:12.5px;color:var(--ink-2)}
+.row-end{text-align:right;font-size:12px;white-space:nowrap}
+.row-end b{display:block;font-size:14.5px}
+.date-h{font-size:11.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);padding:10px 14px 2px}
+
+.hero{background:var(--brand);color:var(--brand-ink);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:12px}
+.hero-label{font-size:12px;text-transform:uppercase;letter-spacing:.08em;opacity:.85;font-weight:600}
+.hero-amt{font-family:var(--display);font-weight:800;font-size:40px;line-height:1;letter-spacing:-.02em}
+.hero-meta{display:flex;gap:8px;flex-wrap:wrap}
+.hero-pill{font-size:12px;background:rgba(255,255,255,.16);padding:4px 10px;border-radius:999px}
+:root[data-theme="dark"] .hero-pill{background:rgba(0,0,0,.15)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .hero-pill{background:rgba(0,0,0,.15)}}
+
+.av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;flex:none}
+.av.sm{width:24px;height:24px;font-size:10.5px}
+.av.away{filter:grayscale(1);opacity:.5}
+.ico{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:var(--surface-2);color:var(--ink-2);flex:none}
+.ico svg{width:20px;height:20px}
+.ico.pay{background:var(--owed-soft);color:var(--owed)}
+.ico.bill{background:var(--marigold-soft);color:var(--ink)}
+
+.btn{border:0;border-radius:12px;padding:8px 14px;font-weight:600;font-size:13.5px;background:var(--brand);color:var(--brand-ink);white-space:nowrap}
+.btn.ghost{background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:var(--owe);color:#fff}
+.btn.block{width:100%;padding:13px;font-size:15px;border-radius:14px}
+.btn.sm{padding:6px 11px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.owe{color:var(--owe)} .owed{color:var(--owed)} .muted{color:var(--ink-2)}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap}
+.chip.late{background:var(--owe-soft);color:var(--owe)}
+.chip.today{background:var(--marigold-soft);color:var(--ink)}
+.chip.ok{background:var(--owed-soft);color:var(--owed)}
+
+.filters{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.filters button{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:600;color:var(--ink-2)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.search{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0 12px}
+.search svg{width:18px;height:18px;color:var(--ink-2);flex:none}
+.search input{border:0;background:none;padding:11px 0;width:100%;outline:none}
+
+.trend{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:end;height:120px;padding:14px 14px 0}
+.trend-col{display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end}
+.trend-bar{width:100%;max-width:56px;border-radius:8px 8px 3px 3px;background:var(--brand-soft)}
+.trend-bar.cur{background:var(--brand)}
+.trend-val{font-size:11.5px;font-weight:600}
+.trend-lbl{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:6px 14px 12px;font-size:12px;color:var(--ink-2);text-align:center}
+
+.chore{padding:14px;display:flex;flex-direction:column;gap:12px}
+.chore-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.chore-name{font-weight:700;font-size:16px}
+.rotation{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.rotation .av{opacity:.4}
+.rotation .av.cur{opacity:1;box-shadow:0 0 0 2px var(--surface),0 0 0 4px var(--marigold)}
+.rot-arrow{color:var(--ink-2);font-size:12px}
+.chore-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.whose{display:flex;align-items:center;gap:8px;font-size:13.5px}
+
+.toggle{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:3px}
+.toggle button{flex:1;border:0;background:none;padding:7px;border-radius:9px;font-size:13px;font-weight:600;color:var(--ink-2)}
+.toggle button[aria-pressed="true"]{background:var(--brand-soft);color:var(--ink)}
+.bar-track{height:8px;background:var(--surface-2);border-radius:99px;position:relative;overflow:hidden}
+.bar{position:absolute;top:0;bottom:0;border-radius:99px}
+.bar-mid{position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--line)}
+.fair{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink-2);opacity:.6}
+.empty{padding:18px;text-align:center;color:var(--ink-2);font-size:13.5px}
+
+.check{width:26px;height:26px;border-radius:8px;border:2px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none;color:var(--brand-ink)}
+.check[aria-checked="true"]{background:var(--brand);border-color:var(--brand)}
+.check svg{width:15px;height:15px}
+.struck .row-title{text-decoration:line-through;color:var(--ink-2)}
+.add-line{display:flex;gap:8px}
+.add-line input{flex:1;min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 12px}
+
+.sheet-wrap{position:absolute;inset:0;background:var(--scrim);display:flex;align-items:flex-end;z-index:5}
+.sheet{width:100%;max-height:90%;overflow-y:auto;background:var(--surface);border-radius:24px 24px 0 0;padding:10px 18px calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px;animation:up .22s ease-out}
+@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}}
+.grab{width:40px;height:4px;border-radius:9px;background:var(--line);margin:0 auto}
+.sheet-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sheet-h h3{font-family:var(--display);font-weight:800;font-size:20px;margin:0}
+.x{background:var(--surface-2);border:0;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;flex:none}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label,.field .lbl{font-size:11.5px;font-weight:700;color:var(--ink-2);text-transform:uppercase;letter-spacing:.07em}
+.field input,.field select{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:11px 12px;width:100%}
+.amt-input{font-family:var(--display);font-size:28px!important;font-weight:800}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.split-rows{display:flex;flex-direction:column;gap:8px}
+.split-row{display:flex;align-items:center;gap:10px}
+.split-row .who{flex:1;display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px}
+.split-row input:not(.mini-check){width:110px;background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:8px 10px;text-align:right}
+.split-row .share{min-width:78px;text-align:right;font-size:13px;color:var(--ink-2)}
+.split-row.off .who{opacity:.45}
+.mini-check{width:22px;height:22px;accent-color:var(--brand)}
+.err{color:var(--owe);font-size:13px;min-height:1em}
+.hint{font-size:13px;color:var(--ink-2)}
+.opt{display:flex;align-items:center;gap:10px;font-size:14px}
+.upi{display:flex;gap:8px;align-items:center;background:var(--surface-2);border:1px dashed var(--line);border-radius:12px;padding:10px 12px}
+.upi code{flex:1;font-size:14px;font-family:ui-monospace,Menlo,Consolas,monospace;user-select:all;overflow-wrap:anywhere}
+.deeplink{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11.5px;color:var(--ink-2);background:var(--surface-2);border-radius:10px;padding:8px 10px;overflow-wrap:anywhere}
+.big-pay{text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;padding:6px 0}
+.big-pay .hero-amt{color:var(--ink)}
+.receipt{width:100%;max-height:180px;object-fit:cover;border-radius:12px;border:1px solid var(--line)}
+.field .file-lbl{text-transform:none;letter-spacing:0;font-weight:500;font-size:13.5px}
+.file-lbl{display:flex;align-items:center;justify-content:center;gap:8px;border:1px dashed var(--line);border-radius:12px;padding:12px;font-size:13.5px;color:var(--ink-2);cursor:pointer;background:var(--surface-2)}
+.file-lbl input{position:absolute;width:1px;height:1px;opacity:0}
+.invite{font-family:var(--display);font-weight:800;font-size:28px;letter-spacing:.08em;text-align:center;padding:12px;border-radius:14px;background:var(--marigold-soft);color:var(--ink)}
+.confirm{display:flex;flex-direction:column;gap:10px;background:var(--owe-soft);border-radius:14px;padding:12px}
+.field label.opt{text-transform:none;letter-spacing:0;font-weight:500}
+.field input.switch{width:42px;padding:0;border:0}
+.switch{appearance:none;width:42px;height:24px;border-radius:99px;background:var(--track);position:relative;flex:none;cursor:pointer;transition:background .15s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .15s}
+.switch:checked{background:var(--brand)}
+.switch:checked::after{left:21px}
+
+.toast{position:absolute;left:16px;right:16px;bottom:148px;background:var(--ink);color:var(--surface);padding:11px 14px;border-radius:12px;font-size:13.5px;z-index:9;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+
+.notes{padding-top:8px;max-width:62ch;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;color:var(--brand)}
+.notes h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,5vw,44px);line-height:1.02;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.notes p{color:var(--ink-2);margin:0}
+.new-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.new-item{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px}
+.new-item b{display:block;font-size:14px;margin-bottom:2px}
+.new-item span{font-size:13px;color:var(--ink-2)}
+.stack{display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--line);padding-top:14px;font-size:13.5px;color:var(--ink-2)}
+.stack b{color:var(--ink)}
+@media (max-width:760px){.notes{order:-1;padding-top:0}.new-list,.stack{display:none}}
+</style>
+
+<div class="stage">
+  <div class="phone" id="phone">
+    <header class="appbar">
+      <button class="flat-btn" data-action="flat" aria-label="Flat settings and members">
+        <span class="flat-name">Flat 3B <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        <span class="flat-sub" id="flat-sub">Indiranagar · 4 flatmates</span>
+      </button>
+      <div class="bar-actions">
+        <button class="icon-btn" data-action="notifs" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="badge" id="badge" hidden>0</span></button>
+        <span class="av" style="background:#6D5BD0" title="You (Anu)">A</span>
+      </div>
+    </header>
+    <main class="screen" id="screen"></main>
+    <button class="fab" id="fab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span id="fab-lbl">Expense</span></button>
+    <nav class="tabbar" aria-label="Sections">
+      <button class="tab" data-tab="home"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 11 12 4l8 7v9h-5v-6H9v6H4z"/></svg></span>Home</button>
+      <button class="tab" data-tab="expenses"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></span>Expenses</button>
+      <button class="tab" data-tab="list"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h2l2 11h11l2-8H7"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/></svg></span>List<span class="dot" id="list-dot" hidden></span></button>
+      <button class="tab" data-tab="chores"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 13.7-5.6L20 9"/><path d="M20 4v5h-5"/><path d="M20 12a8 8 0 0 1-13.7 5.6L4 15"/><path d="M4 20v-5h5"/></svg></span>Chores</button>
+      <button class="tab" data-tab="balances"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M5 7h14M3 14l2-7 2 7a2 2 0 0 1-4 0zM17 14l2-7 2 7a2 2 0 0 1-4 0z"/></svg></span>Balances</button>
+    </nav>
+    <div id="sheet-root"></div>
+    <div class="toast" id="toast" role="status" hidden></div>
+  </div>
+
+  <aside class="notes">
+    <div class="eyebrow">Clickable prototype · v2</div>
+    <h1>Hisaab: rent, bills and chores for flatmates</h1>
+    <p>You are signed in as Anu, sharing Flat 3B with Rohan, Priya and Karthik. All data is sample data. Your changes stay in this browser until you reset them.</p>
+    <div class="new-list">
+      <div class="new-item"><b>Flexible splits</b><span>Split equally, by exact amounts, or by shares. Attach a receipt photo.</span></div>
+      <div class="new-item"><b>Recurring bills</b><span>Rent, Wi-Fi and maid salary come due on Home. Add one with a tap.</span></div>
+      <div class="new-item"><b>Shared shopping list</b><span>Tick off what you bought and turn it into an expense.</span></div>
+      <div class="new-item"><b>Fair chores</b><span>Swap turns, mark someone away, and compare against a fair share.</span></div>
+      <div class="new-item"><b>UPI settle-up</b><span>Each payment shows the UPI link the real app would open.</span></div>
+      <div class="new-item"><b>Search and trends</b><span>Filter bills by category or person and see three months of spend.</span></div>
+    </div>
+    <div class="stack">
+      <div><b>Planned build:</b> Flutter app with Firebase Auth (phone OTP), Cloud Firestore, Cloud Functions and Cloud Messaging.</div>
+      <button class="btn ghost sm" id="reset" style="align-self:flex-start">Reset sample data</button>
+    </div>
+  </aside>
+</div>
+
+<script>
+const TODAY = "2026-09-28";
+const STORE = "hisaab-v2";
+const COLORS = {me:"#6D5BD0", rohan:"#C75A2E", priya:"#2A7FA5", karthik:"#8C7019"};
+const ICONS = {
+  rent:'<path d="M4 11 12 4l8 7v9H4z"/><path d="M10 20v-5h4v5"/>',
+  utilities:'<path d="M13 3 5 14h6l-1 7 8-11h-6z"/>',
+  food:'<path d="M3 5h2l2 11h11l2-8H7"/><circle cx="9" cy="20" r="1"/><circle cx="17" cy="20" r="1"/>',
+  help:'<path d="M14 4 8 14"/><path d="M5 14h8l-1 6H6z"/>',
+  other:'<path d="M3 12V4h8l10 10-8 8z"/><circle cx="7.5" cy="7.5" r="1.5"/>',
+  pay:'<path d="M5 12h14M13 6l6 6-6 6"/>',
+  repeat:'<path d="M17 2l4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/>'
+};
+const CAT_LABEL = {rent:"Rent", utilities:"Bills", food:"Food", help:"House help", other:"Other"};
+const FREQ = {daily:["Daily",1], three:["Every 3 days",3], weekly:["Weekly",7]};
+const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>';
+const ALL = ["me","rohan","priya","karthik"];
+
+function equalShares(amt, ids){
+  const p = Math.round(amt*100), n = ids.length, base = Math.floor(p/n); let r = p - base*n;
+  const out = {}; ids.forEach(id => { out[id] = (base + (r-- > 0 ? 1 : 0))/100; }); return out;
+}
+function E(id, desc, amt, paidBy, ids, cat, date){ return {id, desc, amt, paidBy, shares:equalShares(amt, ids), mode:"equal", cat, date}; }
+
+function seed(){
+  return {
+    tab:"home", simplify:true, filter:"all", mineOnly:false, q:"",
+    members:[
+      {id:"me", name:"Anu", upi:"anu.s@okaxis", phone:"98450 12345", away:false},
+      {id:"rohan", name:"Rohan", upi:"rohan.k@oksbi", phone:"99001 55432", away:false},
+      {id:"priya", name:"Priya", upi:"priya.m@ybl", phone:"97398 20981", away:false},
+      {id:"karthik", name:"Karthik", upi:"karthik92@okicici", phone:"90080 77120", away:false}
+    ],
+    expenses:[
+      E(1,"September rent",48000,"rohan",ALL,"rent","2026-09-01"),
+      E(2,"Maid salary",6000,"me",ALL,"help","2026-09-05"),
+      E(3,"ACT Fibernet Wi-Fi",1180,"priya",ALL,"utilities","2026-09-10"),
+      E(4,"Cooking gas cylinder",905,"rohan",ALL,"utilities","2026-09-14"),
+      E(5,"BESCOM electricity bill",3240,"me",ALL,"utilities","2026-09-18"),
+      E(6,"Friday dinner, Swiggy",1640,"priya",["me","priya","karthik"],"food","2026-09-19"),
+      E(7,"BigBasket monthly groceries",2860,"karthik",ALL,"food","2026-09-22"),
+      {id:8, desc:"New curtains for the hall", amt:2400, paidBy:"priya", shares:{me:900, rohan:500, priya:500, karthik:500}, mode:"exact", cat:"other", date:"2026-09-26", note:"Anu's room got the bigger pair"}
+    ],
+    payments:[ {id:101, from:"priya", to:"rohan", amt:12000, date:"2026-09-03"} ],
+    history:{"2026-07":61240, "2026-08":64410},
+    recurring:[
+      {id:301, desc:"Monthly rent", amt:48000, paidBy:"rohan", cat:"rent", next:"2026-10-01"},
+      {id:302, desc:"Maid salary", amt:6000, paidBy:"me", cat:"help", next:"2026-10-05"},
+      {id:303, desc:"ACT Fibernet Wi-Fi", amt:1180, paidBy:"priya", cat:"utilities", next:"2026-10-10"}
+    ],
+    list:[
+      {id:401, name:"Milk, 2 packets", by:"priya", done:false},
+      {id:402, name:"Dishwash liquid", by:"me", done:false},
+      {id:403, name:"Eggs, 1 tray", by:"karthik", done:true, boughtBy:"me"},
+      {id:404, name:"Garbage bags", by:"rohan", done:true, boughtBy:"me"},
+      {id:405, name:"Toilet cleaner", by:"priya", done:false}
+    ],
+    chores:[
+      {id:1, name:"Take out the trash", freq:"daily", rotation:["me","rohan","priya","karthik"], idx:0, due:"2026-09-28"},
+      {id:2, name:"Refill water cans", freq:"three", rotation:["rohan","karthik","me","priya"], idx:0, due:"2026-09-26"},
+      {id:3, name:"Wash the dishes", freq:"daily", rotation:["karthik","priya","me","rohan"], idx:0, due:"2026-09-28"},
+      {id:4, name:"Clean the bathroom", freq:"weekly", rotation:["priya","me","rohan","karthik"], idx:0, due:"2026-09-29"},
+      {id:5, name:"Mop the hall and kitchen", freq:"weekly", rotation:["me","karthik","rohan","priya"], idx:0, due:"2026-10-01"}
+    ],
+    points:{me:14, rohan:9, priya:16, karthik:11},
+    activity:[
+      {t:"Priya added New curtains for the hall · ₹2,400", d:"2026-09-26"},
+      {t:"Karthik added BigBasket monthly groceries · ₹2,860", d:"2026-09-22"},
+      {t:"Rohan cleaned the bathroom", d:"2026-09-22"},
+      {t:"Priya added Friday dinner, Swiggy · ₹1,640", d:"2026-09-19"},
+      {t:"You added BESCOM electricity bill · ₹3,240", d:"2026-09-18"}
+    ],
+    notifs:[
+      {t:"Refill water cans is 2 days late. Rohan's turn.", d:"2026-09-28", unread:true},
+      {t:"Rent of ₹48,000 comes due on 1 Oct. Rohan usually pays.", d:"2026-09-28", unread:true},
+      {t:"Priya added New curtains for the hall. Your share is ₹900.", d:"2026-09-26", unread:true},
+      {t:"Karthik joined Flat 3B with invite code HSB-3B7K.", d:"2026-08-30", unread:false}
+    ],
+    inviteCode:"HSB-3B7K",
+    nextId:1000
+  };
+}
+let S;
+try { S = JSON.parse(localStorage.getItem(STORE)) || seed(); } catch(_) { S = seed(); }
+function save(){ try { const copy = {...S, expenses:S.expenses.map(e => { const {receipt, ...rest} = e; return rest; })}; localStorage.setItem(STORE, JSON.stringify(copy)); } catch(_){} }
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const M = id => S.members.find(m => m.id === id);
+const nm = id => id === "me" ? "You" : M(id).name;
+const nmObj = id => id === "me" ? "you" : M(id).name;
+const inr = n => "₹" + Math.round(Math.abs(n)).toLocaleString("en-IN");
+const inr2 = n => "₹" + (Math.round(Math.abs(n)*100)/100).toLocaleString("en-IN", {minimumFractionDigits: Math.abs(n)%1>.004?2:0, maximumFractionDigits:2});
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+function dLabel(s){const [y,m,d]=s.split("-").map(Number);return d+" "+MON[m-1];}
+function dNum(s){const [y,m,d]=s.split("-").map(Number);return Date.UTC(y,m-1,d)/864e5;}
+function addDays(s,n){return new Date((dNum(s)+n)*864e5).toISOString().slice(0,10);}
+function addMonth(s){const [y,m,d]=s.split("-").map(Number);const t=new Date(Date.UTC(y,m,d));return t.toISOString().slice(0,10);}
+function dayHead(s){const diff=dNum(TODAY)-dNum(s);if(diff===0)return "Today";if(diff===1)return "Yesterday";const t=new Date(dNum(s)*864e5);return DOW[t.getUTCDay()]+", "+dLabel(s);}
+function av(id, sm){const m=M(id);return `<span class="av${sm?" sm":""}${m.away?" away":""}" style="background:${COLORS[id]||"#667"}" title="${esc(m.name)}${m.away?" (away)":""}">${esc(m.name[0])}</span>`;}
+function icon(cat,cls){return `<span class="ico ${cls||""}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICONS[cat]}</svg></span>`;}
+
+/* ---------- money ---------- */
+function netBalances(){
+  const net = {}; S.members.forEach(m => net[m.id] = 0);
+  S.expenses.forEach(e => { net[e.paidBy] += e.amt; for (const id in e.shares) net[id] -= e.shares[id]; });
+  S.payments.forEach(p => { net[p.from] += p.amt; net[p.to] -= p.amt; });
+  return net;
+}
+function simplifiedDebts(){
+  const net = netBalances(), cr = [], db = [];
+  for (const id in net){ if (net[id] > .5) cr.push([id, net[id]]); else if (net[id] < -.5) db.push([id, -net[id]]); }
+  cr.sort((a,b)=>b[1]-a[1]); db.sort((a,b)=>b[1]-a[1]);
+  const out = []; let i=0, j=0;
+  while (i<db.length && j<cr.length){
+    const x = Math.min(db[i][1], cr[j][1]);
+    if (x > .5) out.push({from:db[i][0], to:cr[j][0], amt:Math.round(x)});
+    db[i][1]-=x; cr[j][1]-=x;
+    if (db[i][1] < .5) i++; if (cr[j][1] < .5) j++;
+  }
+  return out;
+}
+function pairwiseDebts(){
+  const m = {}; ALL.forEach(a => { m[a] = {}; ALL.forEach(b => m[a][b] = 0); });
+  S.expenses.forEach(e => { for (const id in e.shares) if (id !== e.paidBy) m[id][e.paidBy] += e.shares[id]; });
+  S.payments.forEach(p => { m[p.from][p.to] -= p.amt; });
+  const out = [];
+  for (let a=0;a<ALL.length;a++) for (let b=a+1;b<ALL.length;b++){
+    const d = m[ALL[a]][ALL[b]] - m[ALL[b]][ALL[a]];
+    if (d > .5) out.push({from:ALL[a], to:ALL[b], amt:Math.round(d)});
+    else if (d < -.5) out.push({from:ALL[b], to:ALL[a], amt:Math.round(-d)});
+  }
+  return out.sort((x,y)=>y.amt-x.amt);
+}
+const debts = () => S.simplify ? simplifiedDebts() : pairwiseDebts();
+function currentOf(c){ for (let k=0;k<c.rotation.length;k++){ const i=(c.idx+k)%c.rotation.length; if(!M(c.rotation[i]).away) return i; } return c.idx; }
+
+/* ---------- shared bits ---------- */
+function debtRow(d){
+  const text = d.from === "me" ? `You owe <b>${esc(nm(d.to))}</b>` : d.to === "me" ? `<b>${esc(nm(d.from))}</b> owes you` : `<b>${esc(nm(d.from))}</b> owes <b>${esc(nm(d.to))}</b>`;
+  const cls = d.from === "me" ? "owe" : d.to === "me" ? "owed" : "";
+  const data = `data-from="${d.from}" data-to="${d.to}" data-amt="${d.amt}"`;
+  const btn = d.from === "me" ? `<button class="btn sm" data-action="settle" ${data}>Settle</button>`
+    : d.to === "me" ? `<button class="btn ghost sm" data-action="remind" data-who="${d.from}" data-amt="${d.amt}">Remind</button>`
+    : `<button class="btn ghost sm" data-action="settle" ${data}>Record</button>`;
+  return `<div class="row">${av(d.from==="me"?d.to:d.from)}<div class="row-main"><div class="row-sub" style="color:var(--ink)">${text}</div><div class="num ${cls}" style="font-weight:700;font-size:16px">${inr(d.amt)}</div></div>${btn}</div>`;
+}
+function dueChip(due){
+  const diff = dNum(due) - dNum(TODAY);
+  if (diff < 0) return `<span class="chip late">${-diff===1?"1 day late":(-diff)+" days late"}</span>`;
+  if (diff === 0) return `<span class="chip today">Due today</span>`;
+  if (diff === 1) return `<span class="chip">Tomorrow</span>`;
+  return `<span class="chip">${dLabel(due)}</span>`;
+}
+function monthTotal(ym){ return S.expenses.filter(e=>e.date.startsWith(ym)).reduce((a,e)=>a+e.amt,0); }
+
+/* ---------- views ---------- */
+function viewHome(){
+  const net = netBalances()["me"];
+  const mine = debts().filter(d => d.from==="me" || d.to==="me");
+  const myShare = S.expenses.filter(e=>e.date.startsWith("2026-09")).reduce((a,e)=>a+(e.shares.me||0),0);
+  const myChores = S.chores.filter(c => c.rotation[currentOf(c)]==="me").sort((a,b)=>dNum(a.due)-dNum(b.due));
+  const bills = [...S.recurring].sort((a,b)=>dNum(a.next)-dNum(b.next)).filter(r => dNum(r.next) - dNum(TODAY) <= 14);
+  const label = Math.abs(net) < .5 ? "You're all settled" : net > 0 ? "Flatmates owe you" : "You owe in total";
+  return `
+  <section class="hero">
+    <div class="hero-label">${label}</div>
+    <div class="hero-amt num">${Math.abs(net)<.5?"₹0":inr(net)}</div>
+    <div class="hero-meta"><span class="hero-pill num">Flat spent ${inr(monthTotal("2026-09"))} in Sep</span><span class="hero-pill num">Your share ${inr(myShare)}</span></div>
+  </section>
+  <div class="section-h"><h2>Your balances</h2><span>${S.simplify?"Simplified":"Person to person"}</span></div>
+  <div class="card list">${mine.length? mine.map(debtRow).join("") : `<div class="empty">Nothing to settle. Nice.</div>`}</div>
+  <div class="section-h"><h2>Bills coming up</h2><span>next 14 days</span></div>
+  <div class="card list">${bills.length? bills.map(r=>`<div class="row">${icon("repeat","bill")}<div class="row-main"><div class="row-title">${esc(r.desc)}</div><div class="row-sub num">${inr(r.amt)} · ${esc(nm(r.paidBy))} pay${r.paidBy==="me"?"":"s"} · split 4 ways</div></div>${dueChip(r.next)}<button class="btn ghost sm" data-action="post-bill" data-id="${r.id}">Add</button></div>`).join("") : `<div class="empty">No bills due soon.</div>`}</div>
+  <div class="section-h"><h2>Your chores</h2><span>${myChores.length} assigned</span></div>
+  <div class="card list">${myChores.length? myChores.map(c=>`<div class="row"><div class="row-main"><div class="row-title">${esc(c.name)}</div><div class="row-sub">${FREQ[c.freq][0]}</div></div>${dueChip(c.due)}<button class="btn sm" data-action="done" data-id="${c.id}">Done</button></div>`).join("") : `<div class="empty">No chores on you right now.</div>`}</div>
+  <div class="section-h"><h2>Recent activity</h2></div>
+  <div class="card list">${S.activity.slice(0,5).map(a=>`<div class="row"><div class="row-main"><div class="row-sub" style="color:var(--ink)">${esc(a.t)}</div></div><span class="row-sub">${dLabel(a.d)}</span></div>`).join("")}</div>`;
+}
+
+function viewExpenses(){
+  const q = S.q.trim().toLowerCase();
+  const expMatch = e => (S.filter==="all" || e.cat===S.filter) && (!S.mineOnly || e.paidBy==="me" || e.shares.me) && (!q || e.desc.toLowerCase().includes(q) || M(e.paidBy).name.toLowerCase().includes(q));
+  const payMatch = p => S.filter==="all" && (!S.mineOnly || p.from==="me" || p.to==="me") && (!q || "settlement payment".includes(q) || M(p.from).name.toLowerCase().includes(q) || M(p.to).name.toLowerCase().includes(q));
+  const items = [
+    ...S.expenses.filter(expMatch).map(e=>({k:"e", d:e.date, id:e.id, e})),
+    ...S.payments.filter(payMatch).map(p=>({k:"p", d:p.date, id:p.id, p}))
+  ].sort((a,b)=>dNum(b.d)-dNum(a.d) || b.id-a.id);
+  let lastMonth = "", rows = "";
+  items.forEach(it=>{
+    const mo = it.d.slice(0,7);
+    if (mo !== lastMonth){ lastMonth = mo; const [y,m]=mo.split("-").map(Number); rows += `<div class="date-h">${MON[m-1]} ${y}</div>`; }
+    if (it.k==="p"){ const p=it.p;
+      rows += `<div class="row">${icon("pay","pay")}<div class="row-main"><div class="row-title">${esc(nm(p.from))} paid ${esc(nmObj(p.to))}</div><div class="row-sub">Settlement · ${dLabel(p.date)}</div></div><div class="row-end num owed"><b>${inr(p.amt)}</b></div></div>`; return; }
+    const e=it.e, my=e.shares.me||0; let end;
+    if (e.paidBy==="me"){ end=`<span class="owed">you lent</span><b class="owed">${inr(e.amt-my)}</b>`; }
+    else if (my) end=`<span class="owe">you owe</span><b class="owe">${inr(my)}</b>`;
+    else end=`<span class="muted">not involved</span><b class="muted">–</b>`;
+    const n = Object.keys(e.shares).length;
+    rows += `<button class="row" data-action="exp-detail" data-id="${e.id}">${icon(e.cat)}<div class="row-main"><div class="row-title">${esc(e.desc)}${e.receipt?' <span class="chip">Receipt</span>':""}</div><div class="row-sub num">${esc(nm(e.paidBy))} paid ${inr(e.amt)} · ${dLabel(e.date)} · ${e.mode==="equal"?`split ${n} ways`:e.mode==="exact"?"exact amounts":"by shares"}</div></div><div class="row-end num">${end}</div></button>`;
+  });
+  const months = [["2026-07",S.history["2026-07"]],["2026-08",S.history["2026-08"]],["2026-09",monthTotal("2026-09")]];
+  const mx = Math.max(...months.map(m=>m[1]));
+  const byCat = {}; S.expenses.filter(e=>e.date.startsWith("2026-09")).forEach(e=>byCat[e.cat]=(byCat[e.cat]||0)+e.amt);
+  const tot = Object.values(byCat).reduce((a,b)=>a+b,0) || 1;
+  const cats = Object.entries(byCat).sort((a,b)=>b[1]-a[1]);
+  const chg = Math.round((months[2][1]-months[1][1])/months[1][1]*100);
+  return `
+  <div class="section-h"><h2>Flat spending</h2><span class="num">${chg>=0?"+":""}${chg}% vs Aug</span></div>
+  <div class="card">
+    <div class="trend">${months.map((m,i)=>`<div class="trend-col"><span class="trend-val num">${inr(m[1])}</span><div class="trend-bar ${i===2?"cur":""}" style="height:${Math.max(8,m[1]/mx*78)}px"></div></div>`).join("")}</div>
+    <div class="trend-lbl"><span>Jul</span><span>Aug</span><span><b style="color:var(--ink)">Sep</b></span></div>
+    <div style="padding:0 14px 14px;display:flex;flex-direction:column;gap:9px;border-top:1px solid var(--line);padding-top:12px">
+    ${cats.map(([c,v])=>`<div style="display:flex;flex-direction:column;gap:4px"><div style="display:flex;justify-content:space-between;font-size:13px"><span>${CAT_LABEL[c]}</span><span class="num muted">${inr(v)} · ${Math.round(v/tot*100)}%</span></div><div class="bar-track"><div class="bar" style="left:0;width:${(v/tot*100).toFixed(1)}%;background:var(--brand)"></div></div></div>`).join("")}
+    </div>
+  </div>
+  <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="exp-search" type="search" placeholder="Search bills or flatmates" value="${esc(S.q)}" aria-label="Search expenses"></label>
+  <div class="filters" role="group" aria-label="Filter by category">
+    ${[["all","All"],...Object.entries(CAT_LABEL)].map(([k,v])=>`<button data-action="filter" data-v="${k}" aria-pressed="${S.filter===k}">${v}</button>`).join("")}
+    <button data-action="mine" aria-pressed="${S.mineOnly}">Involves me</button>
+  </div>
+  <div class="card list" id="exp-list">${rows || `<div class="empty">No expenses match. Try another filter.</div>`}</div>`;
+}
+
+function viewList(){
+  const open = S.list.filter(i=>!i.done), bought = S.list.filter(i=>i.done);
+  const item = i => `<div class="row ${i.done?"struck":""}"><button class="check" role="checkbox" aria-checked="${i.done}" aria-label="${i.done?"Mark not bought":"Mark bought"}: ${esc(i.name)}" data-action="tick" data-id="${i.id}">${i.done?CHECK:""}</button><div class="row-main"><div class="row-title">${esc(i.name)}</div><div class="row-sub">${i.done?`Bought by ${esc(nmObj(i.boughtBy))}`:`Added by ${esc(nmObj(i.by))}`}</div></div><button class="x" data-action="del-item" data-id="${i.id}" aria-label="Remove ${esc(i.name)}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>`;
+  const mineBought = bought.filter(i=>i.boughtBy==="me");
+  return `
+  <p class="hint" style="margin:0">One list for the whole flat. Whoever is at the shop picks things up and ticks them off.</p>
+  <form class="add-line" id="list-form"><input id="list-input" placeholder="Add an item, e.g. Bread" aria-label="New item"><button class="btn" type="submit">Add</button></form>
+  <div class="section-h"><h2>To buy</h2><span>${open.length} item${open.length===1?"":"s"}</span></div>
+  <div class="card list">${open.length? open.map(item).join("") : `<div class="empty">Nothing to buy. The fridge thanks you.</div>`}</div>
+  <div class="section-h"><h2>Bought</h2><span>${bought.length} item${bought.length===1?"":"s"}</span></div>
+  <div class="card list">${bought.length? bought.map(item).join("") : `<div class="empty">Ticked items show up here.</div>`}</div>
+  ${mineBought.length?`<div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px;background:var(--marigold-soft);border-color:transparent"><div><b>You bought ${mineBought.length} item${mineBought.length===1?"":"s"}.</b><div class="hint" style="color:var(--ink)">Add what you paid so the flat can split it.</div></div><button class="btn" data-action="list-to-exp">Add as expense</button></div>`:""}`;
+}
+
+function viewChores(){
+  const sorted = [...S.chores].sort((a,b)=>dNum(a.due)-dNum(b.due));
+  const maxP = Math.max(...Object.values(S.points),1);
+  const tot = Object.values(S.points).reduce((a,b)=>a+b,0), fair = tot/S.members.length;
+  const board = [...S.members].sort((a,b)=>S.points[b.id]-S.points[a.id]);
+  const away = S.members.filter(m=>m.away);
+  return `
+  ${away.length?`<div class="card" style="padding:12px 14px;background:var(--marigold-soft);border-color:transparent;font-size:13.5px"><b>${away.map(m=>esc(nm(m.id))).join(", ")} ${away.length===1&&away[0].id!=="me"?"is":"are"} away.</b> Their turns pass to the next person until they're back.</div>`:""}
+  <div class="section-h"><h2>Chore rotation</h2><span>${S.chores.length} chores</span></div>
+  ${sorted.map(c=>{const ci=currentOf(c), cur=c.rotation[ci];return `
+  <article class="card chore">
+    <div class="chore-top"><div><div class="chore-name">${esc(c.name)}</div><div class="row-sub">${FREQ[c.freq][0]}</div></div>${dueChip(c.due)}</div>
+    <div class="rotation" aria-label="Rotation order">${c.rotation.map((id,i)=>`${i?'<span class="rot-arrow">›</span>':""}<span class="av sm ${i===ci?"cur":""}" style="background:${COLORS[id]}" title="${esc(M(id).name)}">${esc(M(id).name[0])}</span>`).join("")}</div>
+    <div class="chore-foot"><div class="whose">${av(cur,true)}<b>${cur==="me"?"Your turn":esc(M(cur).name)+"'s turn"}</b></div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">${cur!=="me"?`<button class="btn ghost sm" data-action="nudge" data-who="${cur}" data-chore="${esc(c.name)}">Nudge</button>`:`<button class="btn ghost sm" data-action="swap" data-id="${c.id}">Swap</button>`}<button class="btn sm" data-action="done" data-id="${c.id}">Mark done</button></div></div>
+  </article>`;}).join("")}
+  <div class="section-h"><h2>September chore score</h2><span>line = fair share (${fair.toFixed(1)})</span></div>
+  <div class="card list">${board.map((m,i)=>{const p=S.points[m.id], diff=p-fair;return `<div class="row">${av(m.id)}<div class="row-main"><div class="row-title">${esc(nm(m.id))} <span class="chip ${diff>=0?"ok":"late"}">${diff>=0?"+":""}${diff.toFixed(1)}</span></div><div class="bar-track" style="margin-top:6px;overflow:visible"><div class="bar" style="left:0;width:${p/maxP*100}%;background:var(--marigold)"></div><span class="fair" style="left:${fair/maxP*100}%"></span></div></div><div class="row-end num"><b>${p}</b>done</div></div>`;}).join("")}</div>`;
+}
+
+function viewBalances(){
+  const net = netBalances();
+  const maxAbs = Math.max(...Object.values(net).map(Math.abs),1);
+  const ds = debts(), pw = pairwiseDebts().length, sd = simplifiedDebts().length;
+  const hist = [...S.payments].sort((a,b)=>dNum(b.date)-dNum(a.date)||b.id-a.id).slice(0,4);
+  return `
+  <div class="toggle" role="group" aria-label="Debt view">
+    <button data-action="simplify" data-v="1" aria-pressed="${S.simplify}">Simplify debts</button>
+    <button data-action="simplify" data-v="0" aria-pressed="${!S.simplify}">Person to person</button>
+  </div>
+  <p class="hint" style="margin:0">${S.simplify?`Hisaab nets everyone's balances, so the flat needs <b>${sd}</b> payment${sd===1?"":"s"} instead of <b>${pw}</b>. Nobody pays more than they owe overall.`:`Each pair of flatmates settles directly: <b>${pw}</b> payment${pw===1?"":"s"}.`}</p>
+  <div class="card list">${ds.length?ds.map(debtRow).join(""):`<div class="empty">Everyone is settled up.</div>`}</div>
+  <div class="section-h"><h2>Net position</h2><span>paid minus share</span></div>
+  <div class="card list">${S.members.map(m=>{const v=net[m.id], w=Math.abs(v)/maxAbs*50;return `<div class="row">${av(m.id)}<div class="row-main"><div class="row-title">${esc(nm(m.id))}</div><div class="bar-track" style="margin-top:6px"><span class="bar-mid"></span><div class="bar" style="${v>=0?`left:50%`:`left:${50-w}%`};width:${w}%;background:${v>=0?"var(--owed)":"var(--owe)"}"></div></div></div><div class="row-end num ${v>.5?"owed":v<-.5?"owe":"muted"}"><b>${v>.5?"+":v<-.5?"−":""}${inr(v)}</b></div></div>`;}).join("")}</div>
+  <div class="section-h"><h2>Recent payments</h2><span>${S.payments.length} total</span></div>
+  <div class="card list">${hist.length?hist.map(p=>`<div class="row">${icon("pay","pay")}<div class="row-main"><div class="row-title">${esc(nm(p.from))} → ${esc(nm(p.to))}</div><div class="row-sub">${dLabel(p.date)} · UPI</div></div><div class="row-end num"><b>${inr(p.amt)}</b></div></div>`).join(""):`<div class="empty">No payments yet.</div>`}</div>`;
+}
+
+const VIEWS = {home:viewHome, expenses:viewExpenses, list:viewList, chores:viewChores, balances:viewBalances};
+function render(keepScroll){
+  const sc = $("#screen"), top = sc.scrollTop;
+  sc.innerHTML = VIEWS[S.tab]();
+  if (keepScroll) sc.scrollTop = top;
+  $$(".tab").forEach(t => t.removeAttribute("aria-current"));
+  $(`.tab[data-tab="${S.tab}"]`).setAttribute("aria-current","page");
+  const fabLbl = {chores:"Chore", list:"Item"}[S.tab] || "Expense";
+  $("#fab-lbl").textContent = fabLbl; $("#fab").setAttribute("aria-label","Add "+fabLbl.toLowerCase());
+  $("#fab").hidden = S.tab === "list";
+  const un = S.notifs.filter(n=>n.unread).length; $("#badge").hidden = !un; $("#badge").textContent = un;
+  const open = S.list.filter(i=>!i.done).length; $("#list-dot").hidden = !open; $("#list-dot").textContent = open;
+  $("#flat-sub").textContent = `Indiranagar · ${S.members.length} flatmates${S.members.some(m=>m.away)?" · "+S.members.filter(m=>m.away).length+" away":""}`;
+  const s = $("#exp-search");
+  if (s) s.addEventListener("input", ()=>{ S.q = s.value; const pos=s.selectionStart; render(true); const n=$("#exp-search"); n.focus(); n.setSelectionRange(pos,pos); });
+  const lf = $("#list-form");
+  if (lf) lf.addEventListener("submit", e=>{ e.preventDefault(); const v=$("#list-input").value.trim(); if(!v){toast("Type an item name first.");return;} S.list.unshift({id:S.nextId++, name:v, by:"me", done:false}); S.activity.unshift({t:`You added ${v} to the shopping list`, d:TODAY}); commit(true); $("#list-input").focus(); });
+  save();
+}
+function commit(keep){ render(keep); }
+
+/* ---------- toast & sheet ---------- */
+let tt;
+function toast(msg){const t=$("#toast");t.textContent=msg;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,2800);}
+function openSheet(title, body){
+  $("#sheet-root").innerHTML = `<div class="sheet-wrap" data-action="close-bg"><div class="sheet" role="dialog" aria-modal="true" aria-label="${esc(title)}"><div class="grab"></div><div class="sheet-h"><h3>${esc(title)}</h3><button class="x" data-action="close" aria-label="Close"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>${body}</div></div>`;
+  const f = $("#sheet-root input:not([type=file]):not([type=checkbox]), #sheet-root .btn"); if (f) f.focus({preventScroll:true});
+}
+function closeSheet(){$("#sheet-root").innerHTML="";}
+
+function sheetExpense(prefill){
+  prefill = prefill || {};
+  const opts = S.members.map(m=>`<option value="${m.id}" ${m.id===(prefill.paidBy||"me")?"selected":""}>${esc(nm(m.id))}</option>`).join("");
+  openSheet("Add expense", `
+  <form id="exp-form" style="display:flex;flex-direction:column;gap:14px" novalidate>
+    <div class="field"><label for="exp-amt">Amount (₹)</label><input id="exp-amt" class="amt-input num" inputmode="decimal" placeholder="0" value="${prefill.amt ?? 1250}"></div>
+    <div class="field"><label for="exp-desc">What was it for?</label><input id="exp-desc" placeholder="e.g. Water cans, milk, Netflix" value="${esc(prefill.desc ?? "Water cans for the month")}"></div>
+    <div class="two">
+      <div class="field"><label for="exp-paid">Paid by</label><select id="exp-paid">${opts}</select></div>
+      <div class="field"><label for="exp-cat">Category</label><select id="exp-cat">${Object.entries(CAT_LABEL).map(([k,v])=>`<option value="${k}" ${k===(prefill.cat||"utilities")?"selected":""}>${v}</option>`).join("")}</select></div>
+    </div>
+    <div class="field"><span class="lbl">Split</span>
+      <div class="toggle" role="group" aria-label="Split method" id="exp-mode">
+        <button type="button" data-m="equal" aria-pressed="true">Equally</button><button type="button" data-m="exact" aria-pressed="false">Exact ₹</button><button type="button" data-m="shares" aria-pressed="false">Shares</button>
+      </div>
+    </div>
+    <div class="split-rows" id="exp-split"></div>
+    <div class="hint num" id="exp-preview"></div>
+    <div class="field"><span class="lbl">Receipt (optional)</span><label class="file-lbl" id="exp-file-lbl"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-3h6l2 3h3v13H4z"/><circle cx="12" cy="13" r="4"/></svg><span>Attach a photo of the bill</span><input id="exp-file" type="file" accept="image/*"></label><img id="exp-img" class="receipt" alt="Receipt preview" hidden></div>
+    <label class="opt"><input type="checkbox" id="exp-repeat" class="switch"> Repeat every month on this date</label>
+    <div class="err" id="exp-err" role="alert"></div>
+    <button class="btn block" type="submit">Add expense</button>
+  </form>`);
+  let mode = "equal", receipt = null;
+  const state = {}; ALL.forEach(id => state[id] = {on: prefill.split ? prefill.split.includes(id) : true, exact:"", shares:1});
+  if (!prefill.split) { state.me.exact = ""; }
+  const amt = () => parseFloat(String($("#exp-amt").value).replace(/,/g,"")) || 0;
+  function compute(){
+    const a = amt(), on = ALL.filter(id=>state[id].on), out = {};
+    if (mode==="equal"){ if(on.length) Object.assign(out, equalShares(a, on)); }
+    else if (mode==="exact"){ on.forEach(id => { const v=parseFloat(state[id].exact); if (v>0) out[id]=Math.round(v*100)/100; }); }
+    else { const tot = on.reduce((s,id)=>s+(+state[id].shares||0),0); if (tot>0){ const p=Math.round(a*100); let used=0; on.forEach((id,i)=>{ const sh=+state[id].shares||0; if(!sh)return; const v = i===on.length-1 ? p-used : Math.round(p*sh/tot); used+=v; out[id]=v/100; }); } }
+    return out;
+  }
+  function drawRows(){
+    $("#exp-split").innerHTML = ALL.map(id=>{
+      const s=state[id]; let ctl="";
+      if (mode==="exact") ctl = `<input inputmode="decimal" data-exact="${id}" value="${s.exact}" placeholder="₹0" ${s.on?"":"disabled"} aria-label="Amount for ${esc(nm(id))}">`;
+      if (mode==="shares") ctl = `<input inputmode="numeric" data-shares="${id}" value="${s.shares}" ${s.on?"":"disabled"} aria-label="Shares for ${esc(nm(id))}" style="width:64px">`;
+      return `<div class="split-row ${s.on?"":"off"}"><input type="checkbox" class="mini-check" data-on="${id}" ${s.on?"checked":""} aria-label="Include ${esc(nm(id))}"><span class="who">${av(id,true)}${esc(nm(id))}</span>${ctl}<span class="share num" data-share="${id}"></span></div>`;
+    }).join("");
+    upd();
+  }
+  function upd(){
+    const sh = compute(), a = amt();
+    ALL.forEach(id=>{ const el=$(`[data-share="${id}"]`); if(el) el.textContent = sh[id] ? inr2(sh[id]) : "–"; });
+    const sum = Object.values(sh).reduce((x,y)=>x+y,0);
+    const n = Object.keys(sh).length;
+    let msg = "";
+    if (mode==="exact") { const left = Math.round((a-sum)*100)/100; msg = Math.abs(left)<.01 ? `Adds up to ${inr(a)}.` : left>0 ? `${inr2(left)} left to assign.` : `${inr2(-left)} over the total.`; }
+    else if (a>0 && n) msg = mode==="equal" ? `${inr2(a/n)} each for ${n} ${n===1?"person":"people"}.` : `${n} ${n===1?"person":"people"} by shares.`;
+    $("#exp-preview").textContent = msg;
+  }
+  drawRows();
+  $("#exp-amt").addEventListener("input", upd);
+  $("#exp-mode").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b)return; mode=b.dataset.m; $$("#exp-mode button").forEach(x=>x.setAttribute("aria-pressed", x===b)); if(mode==="exact"){ const on=ALL.filter(id=>state[id].on); const eq=equalShares(amt(),on); on.forEach(id=>{ if(!state[id].exact) state[id].exact = eq[id]; }); } drawRows(); });
+  $("#exp-split").addEventListener("change", e=>{ const id=e.target.dataset.on; if(id){ state[id].on=e.target.checked; drawRows(); } });
+  $("#exp-split").addEventListener("input", e=>{ const t=e.target; if(t.dataset.exact) state[t.dataset.exact].exact=t.value; if(t.dataset.shares) state[t.dataset.shares].shares=t.value; upd(); });
+  $("#exp-file").addEventListener("change", e=>{ const f=e.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{ receipt=r.result; const img=$("#exp-img"); img.src=receipt; img.hidden=false; $("#exp-file-lbl span").textContent = f.name; }; r.readAsDataURL(f); });
+  $("#exp-form").addEventListener("submit", e=>{
+    e.preventDefault();
+    const a = amt(), desc = $("#exp-desc").value.trim(), shares = compute(), sum = Object.values(shares).reduce((x,y)=>x+y,0);
+    const err = !(a>0) ? "Enter an amount above ₹0." : !desc ? "Add a short description so everyone knows what it was."
+      : !Object.keys(shares).length ? "Include at least one flatmate in the split."
+      : mode==="exact" && Math.abs(sum-a) > .01 ? `The amounts add up to ${inr(sum)}, but the bill is ${inr(a)}. Adjust them to match.` : "";
+    if (err){ $("#exp-err").textContent = err; return; }
+    const paidBy = $("#exp-paid").value, cat = $("#exp-cat").value;
+    S.expenses.push({id:S.nextId++, desc, amt:a, paidBy, shares, mode, cat, date:TODAY, receipt});
+    if ($("#exp-repeat").checked) S.recurring.push({id:S.nextId++, desc, amt:a, paidBy, cat, next:addMonth(TODAY)});
+    S.activity.unshift({t:`${nm(paidBy)} added ${desc} · ${inr(a)}`, d:TODAY});
+    if (prefill.fromList) S.list = S.list.filter(i => !(i.done && i.boughtBy==="me"));
+    closeSheet(); commit(); toast(`Added ${desc}. Balances updated.`);
+  });
+}
+
+function sheetDetail(id){
+  const e = S.expenses.find(x=>x.id===id); if(!e) return;
+  openSheet(e.desc, `
+  <div style="display:flex;align-items:center;gap:12px">${icon(e.cat)}<div><div class="hero-amt num" style="font-size:32px">${inr(e.amt)}</div><div class="hint">${CAT_LABEL[e.cat]} · ${dLabel(e.date)} · paid by ${esc(nmObj(e.paidBy))}</div></div></div>
+  ${e.receipt?`<img class="receipt" src="${e.receipt}" alt="Receipt for ${esc(e.desc)}">`:""}
+  ${e.note?`<p class="hint" style="margin:0">Note: ${esc(e.note)}</p>`:""}
+  <div class="field"><span class="lbl">${e.mode==="equal"?"Split equally":e.mode==="exact"?"Split by exact amounts":"Split by shares"}</span>
+  <div class="card list">${Object.entries(e.shares).map(([pid,v])=>`<div class="row">${av(pid,true)}<div class="row-main"><div class="row-title">${esc(nm(pid))}</div></div><div class="row-end num"><b>${inr2(v)}</b>${pid===e.paidBy?"paid "+inr(e.amt):"owes "+esc(nmObj(e.paidBy))}</div></div>`).join("")}</div></div>
+  <div id="del-zone"><button class="btn ghost block" data-action="ask-del" data-id="${e.id}">Delete expense</button></div>`);
+}
+
+function sheetChore(){
+  openSheet("Add chore", `
+  <form id="ch-form" style="display:flex;flex-direction:column;gap:14px" novalidate>
+    <div class="field"><label for="ch-name">Chore</label><input id="ch-name" placeholder="e.g. Water the plants" value="Water the balcony plants"></div>
+    <div class="two">
+      <div class="field"><label for="ch-freq">How often</label><select id="ch-freq">${Object.entries(FREQ).map(([k,v])=>`<option value="${k}" ${k==="three"?"selected":""}>${v[0]}</option>`).join("")}</select></div>
+      <div class="field"><label for="ch-first">Who starts</label><select id="ch-first">${S.members.map(m=>`<option value="${m.id}">${esc(nm(m.id))}</option>`).join("")}</select></div>
+    </div>
+    <p class="hint" style="margin:0">It rotates through all four flatmates in order, starting today. Anyone marked away is skipped.</p>
+    <div class="err" id="ch-err" role="alert"></div>
+    <button class="btn block" type="submit">Add chore</button>
+  </form>`);
+  $("#ch-form").addEventListener("submit",e=>{
+    e.preventDefault();
+    const name=$("#ch-name").value.trim();
+    if(!name){$("#ch-err").textContent="Give the chore a name.";return;}
+    const first=$("#ch-first").value, k=ALL.indexOf(first);
+    S.chores.push({id:S.nextId++, name, freq:$("#ch-freq").value, rotation:[...ALL.slice(k),...ALL.slice(0,k)], idx:0, due:TODAY});
+    S.activity.unshift({t:`You added the chore ${name}`, d:TODAY});
+    closeSheet(); commit(); toast(`${name} added. ${first==="me"?"You're":M(first).name+" is"} up first.`);
+  });
+}
+
+function upiLink(to, amt){ const m=M(to); return `upi://pay?pa=${m.upi}&pn=${encodeURIComponent(m.name)}&am=${Math.round(amt)}.00&cu=INR&tn=${encodeURIComponent("Hisaab Flat 3B")}`; }
+function sheetSettle(from,to,amt){
+  const payee = M(to), youPay = from==="me";
+  openSheet(youPay?`Pay ${payee.name}`:"Record a payment", `
+  <div class="big-pay">${av(to)}<div class="hint">${youPay?`You owe ${esc(payee.name)}`:`${esc(nm(from))} pays ${esc(nmObj(to))}`}</div><div class="hero-amt num">${inr(amt)}</div></div>
+  <div class="field"><span class="lbl">${esc(payee.name)}'s UPI ID</span><div class="upi"><code id="upi-id">${esc(payee.upi)}</code><button class="btn ghost sm" data-action="copy-upi">Copy</button></div></div>
+  <div class="field"><span class="lbl">Link the app would open</span><div class="deeplink">${esc(upiLink(to,amt))}</div></div>
+  <p class="hint" style="margin:0">${youPay?"In the real app, Pay opens GPay, PhonePe or Paytm with the amount filled in. After paying, you mark it paid here.":"Use this when a flatmate has paid in cash or over UPI outside the app."}</p>
+  <button class="btn block" data-action="mark-paid" data-from="${from}" data-to="${to}" data-amt="${amt}">Mark ${inr(amt)} as paid</button>`);
+}
+
+function sheetFlat(){
+  openSheet("Flat 3B", `
+  <div class="field"><span class="lbl">Invite code</span><div class="invite num" id="inv">${esc(S.inviteCode)}</div><div class="two"><button class="btn ghost" data-action="copy-invite">Copy code</button><button class="btn ghost" data-action="new-invite">New code</button></div><p class="hint" style="margin:0">A new flatmate enters this code after signing in with their phone number.</p></div>
+  <div class="field"><span class="lbl">Flatmates</span>
+  <div class="card list">${S.members.map(m=>`<div class="row">${av(m.id)}<div class="row-main"><div class="row-title">${esc(m.name)}${m.id==="me"?" (you)":""}</div><div class="row-sub">${esc(m.upi)} · +91 ${esc(m.phone)}</div></div><label class="opt" style="font-size:12.5px;color:var(--ink-2)">Away <input type="checkbox" class="switch" data-away="${m.id}" ${m.away?"checked":""} aria-label="${esc(m.name)} is away"></label></div>`).join("")}</div>
+  <p class="hint" style="margin:0">Away pauses someone's chore turns, for a trip home or exams. Shared bills still split as usual.</p></div>`);
+}
+
+function sheetNotifs(){
+  openSheet("Notifications", `<div class="card list">${S.notifs.map(n=>`<div class="row"><span class="av sm" style="background:${n.unread?"var(--marigold)":"var(--line)"};width:10px;height:10px"></span><div class="row-main"><div class="row-sub" style="color:var(--ink);${n.unread?"font-weight:600":""}">${esc(n.t)}</div><div class="row-sub">${dayHead(n.d)}</div></div></div>`).join("")}</div>
+  <p class="hint" style="margin:0">In the real app these arrive as push notifications. Each person picks which ones they want.</p>`);
+  S.notifs.forEach(n=>n.unread=false); save();
+  const un = 0; $("#badge").hidden = true;
+}
+
+/* ---------- events ---------- */
+document.addEventListener("click", e=>{
+  const tab = e.target.closest(".tab"); if (tab){ S.tab = tab.dataset.tab; commit(); $("#screen").scrollTop=0; return; }
+  const a = e.target.closest("[data-action]"); if(!a) return;
+  const act = a.dataset.action;
+  if (act==="close-bg" && e.target!==a) return;
+  switch(act){
+    case "close": case "close-bg": closeSheet(); break;
+    case "flat": sheetFlat(); break;
+    case "notifs": sheetNotifs(); break;
+    case "settle": sheetSettle(a.dataset.from, a.dataset.to, +a.dataset.amt); break;
+    case "exp-detail": sheetDetail(+a.dataset.id); break;
+    case "ask-del": $("#del-zone").innerHTML = `<div class="confirm"><b>Delete this expense for everyone?</b><span class="hint" style="color:var(--ink)">Balances will be recalculated. This can't be undone.</span><div class="two"><button class="btn ghost" data-action="close">Keep it</button><button class="btn danger" data-action="del-exp" data-id="${a.dataset.id}">Delete</button></div></div>`; break;
+    case "del-exp": { const x=S.expenses.find(z=>z.id===+a.dataset.id); S.expenses=S.expenses.filter(z=>z.id!==+a.dataset.id); S.activity.unshift({t:`You deleted ${x.desc}`, d:TODAY}); closeSheet(); commit(true); toast(`Deleted ${x.desc}.`); break; }
+    case "mark-paid": {
+      const from=a.dataset.from,to=a.dataset.to,amt=Math.round(+a.dataset.amt);
+      S.payments.push({id:S.nextId++, from, to, amt, date:TODAY});
+      S.activity.unshift({t:`${nm(from)} paid ${nmObj(to)} ${inr(amt)}`, d:TODAY});
+      closeSheet(); commit(true); toast(`Recorded ${inr(amt)} to ${nmObj(to)}.`); break;
+    }
+    case "copy-upi": copyText($("#upi-id"), "UPI ID copied."); break;
+    case "copy-invite": copyText($("#inv"), "Invite code copied."); break;
+    case "new-invite": { const c="ABCDEFGHJKMNPQRSTUVWXYZ23456789"; S.inviteCode="HSB-"+Array.from({length:4},()=>c[Math.floor(Math.random()*c.length)]).join(""); $("#inv").textContent=S.inviteCode; save(); toast("New code made. The old one stops working."); break; }
+    case "remind": toast(`Prototype: ${M(a.dataset.who).name} would get a push reminder for ${inr(+a.dataset.amt)}.`); break;
+    case "nudge": toast(`Prototype: ${M(a.dataset.who).name} would get a nudge about "${a.dataset.chore}".`); break;
+    case "post-bill": {
+      const r=S.recurring.find(x=>x.id===+a.dataset.id);
+      S.expenses.push({id:S.nextId++, desc:r.desc+" ("+MON[+r.next.slice(5,7)-1]+")", amt:r.amt, paidBy:r.paidBy, shares:equalShares(r.amt, ALL), mode:"equal", cat:r.cat, date:TODAY});
+      S.activity.unshift({t:`${nm(r.paidBy)} added ${r.desc} · ${inr(r.amt)}`, d:TODAY});
+      r.next = addMonth(r.next); commit(true); toast(`${r.desc} added. Next one due ${dLabel(r.next)}.`); break;
+    }
+    case "done": {
+      const c=S.chores.find(x=>x.id===+a.dataset.id), ci=currentOf(c), who=c.rotation[ci];
+      S.points[who]=(S.points[who]||0)+1;
+      c.idx=(ci+1)%c.rotation.length;
+      const base = dNum(c.due) < dNum(TODAY) ? TODAY : c.due;
+      c.due = addDays(base, FREQ[c.freq][1]);
+      const next=c.rotation[currentOf(c)];
+      S.activity.unshift({t:`${nm(who)} finished ${c.name.toLowerCase()}`, d:TODAY});
+      commit(true); toast(`Done. ${next==="me"?"You're":M(next).name+" is"} next, due ${dLabel(c.due)}.`); break;
+    }
+    case "swap": {
+      const c=S.chores.find(x=>x.id===+a.dataset.id), ci=currentOf(c); let nj=(ci+1)%c.rotation.length;
+      for(let k=0;k<c.rotation.length&&M(c.rotation[nj]).away;k++) nj=(nj+1)%c.rotation.length;
+      const other=c.rotation[nj]; [c.rotation[ci],c.rotation[nj]]=[c.rotation[nj],c.rotation[ci]];
+      S.activity.unshift({t:`You swapped ${c.name.toLowerCase()} with ${M(other).name}`, d:TODAY});
+      commit(true); toast(`Swapped with ${M(other).name}. You take their next turn.`); break;
+    }
+    case "simplify": S.simplify = a.dataset.v==="1"; commit(true); break;
+    case "filter": S.filter = a.dataset.v; commit(true); break;
+    case "mine": S.mineOnly = !S.mineOnly; commit(true); break;
+    case "tick": { const i=S.list.find(x=>x.id===+a.dataset.id); i.done=!i.done; i.boughtBy=i.done?"me":undefined; commit(true); break; }
+    case "del-item": S.list=S.list.filter(x=>x.id!==+a.dataset.id); commit(true); break;
+    case "list-to-exp": { const names=S.list.filter(i=>i.done&&i.boughtBy==="me").map(i=>i.name.split(",")[0]); sheetExpense({desc:"Groceries: "+names.join(", "), amt:"", cat:"food", fromList:true}); break; }
+  }
+});
+document.addEventListener("change", e=>{
+  const id = e.target.dataset && e.target.dataset.away; if(!id) return;
+  M(id).away = e.target.checked;
+  S.activity.unshift({t:`${nm(id)} ${e.target.checked?(id==="me"?"are":"is")+" away":(id==="me"?"are":"is")+" back"}`, d:TODAY});
+  render(true); toast(e.target.checked ? `${nm(id)}'s chore turns are paused.` : `${nm(id)} ${id==="me"?"are":"is"} back in the rotation.`);
+});
+function copyText(el, msg){
+  const sel=()=>{const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);};
+  try{ navigator.clipboard.writeText(el.textContent).then(()=>toast(msg), ()=>{sel();toast("Selected. Copy it from here.");}); }catch(_){sel();toast("Selected. Copy it from here.");}
+}
+$("#fab").addEventListener("click", ()=> S.tab==="chores" ? sheetChore() : sheetExpense());
+$("#reset").addEventListener("click", ()=>{ S=seed(); closeSheet(); commit(); toast("Sample data restored."); });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeSheet(); });
+render();
+</script>
+
+</body></html>

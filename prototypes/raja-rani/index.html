@@ -1,0 +1,450 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Raja Rani Chor Sipahi</title>
+<meta name="theme-color" content="#1b2140">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Mukta:wght@400;600;800&display=swap">
+<style>
+/* Layout: one phone screen — score seats on top, the durrie "mat" in the middle, one thumb-reach action bar at the bottom. Single dark look by choice (indigo block-print mat). */
+:root{
+  --mat:#1b2140;        /* indigo durrie */
+  --mat-2:#262d55;
+  --ink:#f4ecda;        /* paper text on mat */
+  --muted:#aeb2d4;
+  --paper:#f3e8cf;      /* chit paper */
+  --paper-ink:#2a2233;
+  --haldi:#eaa935;      /* turmeric accent */
+  --sindoor:#d2492f;    /* madder red */
+  --leaf:#4fae7c;
+  --line:rgba(244,236,218,.14);
+  --f-display:"Yatra One","Mukta",system-ui,sans-serif;
+  --f-body:"Mukta",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{background:var(--mat);color:var(--ink);font-family:var(--f-body);font-size:16px;
+  background-image:radial-gradient(circle at 12px 12px,rgba(234,169,53,.10) 2px,transparent 2.5px),
+  radial-gradient(circle at 0 0,rgba(210,73,47,.08) 1.5px,transparent 2px);
+  background-size:24px 24px,24px 24px;overscroll-behavior:none}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--haldi);outline-offset:2px}
+.app{max-width:480px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;padding-inline:16px;padding-block:12px 0}
+
+/* header */
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:4px 10px}
+.brand{font-family:var(--f-display);font-size:22px;line-height:1;color:var(--haldi);letter-spacing:.3px}
+.brand small{display:block;font-family:var(--f-body);font-size:11px;color:var(--muted);letter-spacing:.14em;text-transform:uppercase;margin-top:4px}
+.pill{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);display:grid;place-items:center;color:var(--muted)}
+
+/* seats */
+.seats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.seat{border-radius:14px;padding:8px 6px 9px;text-align:center;background:var(--mat-2);border:1px solid var(--line);min-width:0;transition:border-color .3s,transform .3s}
+.seat.turn{border-color:var(--haldi)}
+.seat.lead .ava::after{content:"";position:absolute;top:-6px;right:-6px;width:12px;height:12px;border-radius:50%;background:var(--haldi);border:2px solid var(--mat-2)}
+.ava{position:relative;width:34px;height:34px;border-radius:50%;margin:0 auto 4px;display:grid;place-items:center;font-weight:800;font-size:15px;color:var(--paper-ink)}
+.seat .nm{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seat .pts{font-size:15px;font-weight:800;color:var(--haldi);font-variant-numeric:tabular-nums}
+.tag{display:inline-block;margin-top:4px;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:6px;background:var(--line);color:var(--muted);min-height:20px}
+.tag.raja{background:var(--haldi);color:var(--paper-ink)}
+.tag.rani{background:#c86aa8;color:#1b1020}
+.tag.sipahi{background:#5b8bd6;color:#0d1630}
+.tag.chor{background:var(--sindoor);color:#fff}
+
+/* stage */
+.stage{flex:1;display:flex;flex-direction:column;justify-content:center;gap:16px;padding-block:18px}
+.say{font-family:var(--f-display);font-size:26px;line-height:1.2;text-align:center;text-wrap:balance}
+.say .hi{display:block;font-size:30px;color:var(--haldi)}
+.sub{color:var(--muted);text-align:center;font-size:15px;line-height:1.45;text-wrap:balance;max-width:34ch;margin:0 auto}
+.bubble{background:var(--paper);color:var(--paper-ink);border-radius:18px 18px 18px 4px;padding:10px 14px;font-weight:600;max-width:85%;position:relative;animation:pop .35s ease both}
+.bubble.r{align-self:flex-end;border-radius:18px 18px 4px 18px}
+.bubble b{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
+.talk{display:flex;flex-direction:column;gap:10px}
+
+/* chits */
+.chits{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:320px;margin:0 auto;width:100%}
+.chit{aspect-ratio:4/3;max-width:100%;border-radius:6px;position:relative;perspective:700px;transition:transform .25s}
+.chit .face{position:absolute;inset:0;border-radius:6px;backface-visibility:hidden;transition:transform .55s cubic-bezier(.3,1.3,.5,1);display:grid;place-items:center}
+.chit .back{background:linear-gradient(90deg,transparent 49%,rgba(42,34,51,.18) 50%,transparent 51%),linear-gradient(0deg,transparent 49%,rgba(42,34,51,.12) 50%,transparent 51%),var(--paper);box-shadow:0 6px 0 rgba(0,0,0,.25),0 10px 22px rgba(0,0,0,.35)}
+.chit .back span{font-family:var(--f-display);color:rgba(42,34,51,.35);font-size:28px}
+.chit .front{background:var(--paper);color:var(--paper-ink);transform:rotateY(180deg);box-shadow:0 6px 0 rgba(0,0,0,.25);text-align:center;padding:6px}
+.chit.open .back{transform:rotateY(-180deg)}
+.chit.open .front{transform:rotateY(0)}
+button.chit:not(:disabled):active{transform:scale(.95) !important}
+.chit.taken{opacity:.2;pointer-events:none}
+.role-hi{font-family:var(--f-display);font-size:26px;line-height:1}
+.role-en{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.7}
+.role-pts{font-size:13px;font-weight:800;color:var(--sindoor);font-variant-numeric:tabular-nums}
+.big-chit{width:220px;max-width:100%;margin:0 auto}
+.big-chit .role-hi{font-size:40px}
+.ico{width:34px;height:34px;margin:0 auto 2px}
+.big-chit .ico{width:48px;height:48px}
+
+/* suspects */
+.suspects{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.suspect{background:var(--mat-2);border:2px solid var(--line);border-radius:18px;padding:18px 10px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;transition:border-color .2s,transform .15s}
+.suspect .ava{width:56px;height:56px;font-size:24px}
+.suspect .nm{font-weight:800;font-size:18px}
+.suspect .ln{font-size:13px;color:var(--muted);min-height:2.6em}
+button.suspect:active{transform:scale(.97)}
+button.suspect:hover{border-color:var(--sindoor)}
+.suspect.picked{border-color:var(--haldi)}
+
+/* results */
+.verdict{border-radius:16px;padding:14px;text-align:center;font-weight:800;font-size:17px}
+.verdict.ok{background:rgba(79,174,124,.18);color:#8fe0b3}
+.verdict.no{background:rgba(210,73,47,.2);color:#ffab99}
+.rows{display:flex;flex-direction:column;gap:8px}
+.row{display:flex;align-items:center;gap:12px;background:var(--mat-2);border-radius:14px;padding:10px 12px;border:1px solid var(--line);animation:pop .35s ease both}
+.row .ava{margin:0;flex:none}
+.row .who{flex:1;min-width:0}
+.row .who div{font-weight:700}
+.gain{font-weight:800;font-size:18px;font-variant-numeric:tabular-nums;color:var(--haldi)}
+.gain.zero{color:var(--muted)}
+
+/* action bar */
+.bar{position:sticky;bottom:0;padding-block:12px calc(14px + env(safe-area-inset-bottom,0px));background:linear-gradient(to top,var(--mat) 70%,transparent)}
+.cta{width:100%;min-height:56px;border-radius:16px;background:var(--haldi);color:var(--paper-ink);font-weight:800;font-size:18px;box-shadow:0 5px 0 #a8731a;transition:transform .1s,box-shadow .1s}
+.cta:active{transform:translateY(4px);box-shadow:0 1px 0 #a8731a}
+.cta.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);box-shadow:none;min-height:48px;font-size:16px;margin-top:10px}
+.cta:disabled{opacity:.5}
+
+/* setup */
+.card{background:var(--mat-2);border:1px solid var(--line);border-radius:18px;padding:16px;display:flex;flex-direction:column;gap:12px}
+.lbl{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--mat);border-radius:12px;padding:4px;gap:4px}
+.seg button{min-height:44px;border-radius:9px;font-weight:700;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--haldi);color:var(--paper-ink)}
+.seg.three{grid-template-columns:repeat(3,1fr)}
+input[type=text],input[type=number]{width:100%;min-height:46px;border-radius:12px;border:1px solid var(--line);background:var(--mat);color:var(--ink);padding:0 12px;font:inherit;font-size:16px}
+.names{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ptsgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ptsgrid label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:700;text-align:center}
+.ptsgrid input{text-align:center;padding:0 4px;font-variant-numeric:tabular-nums}
+.hero{text-align:center;padding-block:8px 4px}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:40px;line-height:1.05;margin:0;color:var(--haldi);text-wrap:balance}
+.hero p{margin:8px auto 0;color:var(--muted);max-width:32ch;line-height:1.45}
+.fan{display:flex;justify-content:center;margin-top:14px;height:78px}
+.fan .chit{width:74px;aspect-ratio:4/3;margin:0 -6px}
+.fan .role-hi{font-size:18px}
+.rules{font-size:14px;line-height:1.55;color:var(--muted)}
+.rules summary{cursor:pointer;font-weight:700;color:var(--ink);list-style:none;display:flex;justify-content:space-between}
+.rules summary::after{content:"+";color:var(--haldi);font-size:20px;line-height:1}
+.rules[open] summary::after{content:"–"}
+.rules ol{padding-left:20px;margin:10px 0 0}
+
+/* sheet (score history) */
+.sheet-bg{position:fixed;inset:0;background:rgba(8,10,24,.6);display:flex;align-items:flex-end;justify-content:center;z-index:5}
+.sheet{background:var(--mat-2);width:100%;max-width:480px;border-radius:22px 22px 0 0;padding:18px 16px calc(20px + env(safe-area-inset-bottom,0px));max-height:80%;overflow:auto;animation:up .3s ease both}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:14px}
+th,td{padding:8px 6px;text-align:right;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child,td:first-child{text-align:left;color:var(--muted)}
+th{font-size:12px;color:var(--muted);font-weight:700}
+td small{display:block;font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+tfoot td{font-weight:800;color:var(--haldi);border:0}
+
+.curtain{text-align:center;display:flex;flex-direction:column;gap:14px;align-items:center}
+.curtain .ava{width:84px;height:84px;font-size:36px}
+.dots span{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--haldi);margin:0 3px;animation:blink 1s infinite}
+.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
+.trophy{font-family:var(--f-display);font-size:34px;color:var(--haldi);text-align:center;line-height:1.1}
+
+@keyframes pop{from{transform:scale(.9);opacity:.3}to{transform:none;opacity:1}}
+@keyframes up{from{transform:translateY(40px)}to{transform:none}}
+@keyframes blink{0%,100%{opacity:.25}50%{opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+@media (max-width:360px){.say{font-size:22px}.hero h1{font-size:34px}.seat .nm{font-size:12px}}
+</style>
+
+<div class="app" id="app"></div>
+
+<script>
+const ROLES = {
+  raja:  {en:'Raja',  hi:'राजा',  icon:'<path d="M3 18h18l-1.6-10-4.6 4.2L12 5 9.2 12.2 4.6 8z" fill="#eaa935" stroke="#2a2233" stroke-width="1.4" stroke-linejoin="round"/><path d="M4 20.5h16" stroke="#2a2233" stroke-width="1.6" stroke-linecap="round"/>'},
+  rani:  {en:'Rani',  hi:'रानी',  icon:'<path d="M12 4c2.2 3 2.2 6.2 0 9.4C9.8 10.2 9.8 7 12 4zM3.5 9.5c3.6.2 6.6 2.3 8.5 5.5-3.5 1-7 0-8.5-5.5zM20.5 9.5c-3.6.2-6.6 2.3-8.5 5.5 3.5 1 7 0 8.5-5.5z" fill="#c86aa8" stroke="#2a2233" stroke-width="1.3" stroke-linejoin="round"/><path d="M5 19h14" stroke="#2a2233" stroke-width="1.6" stroke-linecap="round"/>'},
+  sipahi:{en:'Sipahi',hi:'सिपाही',icon:'<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z" fill="#5b8bd6" stroke="#2a2233" stroke-width="1.4" stroke-linejoin="round"/><path d="M12 8v8M8.5 11.5h7" stroke="#f3e8cf" stroke-width="1.8" stroke-linecap="round"/>'},
+  chor:  {en:'Chor',  hi:'चोर',   icon:'<path d="M2.5 10c3.5-2.4 15.5-2.4 19 0-.8 4.2-3.8 6.5-6.2 6.5-1.6 0-2.2-1.6-3.3-1.6s-1.7 1.6-3.3 1.6c-2.4 0-5.4-2.3-6.2-6.5z" fill="#d2492f" stroke="#2a2233" stroke-width="1.4" stroke-linejoin="round"/><ellipse cx="8" cy="11.6" rx="2" ry="1.3" fill="#2a2233"/><ellipse cx="16" cy="11.6" rx="2" ry="1.3" fill="#2a2233"/>'}
+};
+const ORDER = ['raja','rani','sipahi','chor'];
+const AVA = ['#eaa935','#8fd0b0','#e59a8a','#a9b8f0'];
+const BOTS = ['Aarav','Meera','Kabir'];
+const LINES = {
+  raja:['Mera Sipahi kaun?','Sipahi! Hazir ho!','Kaun hai mera Sipahi?'],
+  sipahi:['Main hoon, Maharaj!','Hazir hoon, Huzoor!','Sipahi yahan hai!'],
+  innocent:['Main toh Rani hoon, sach mein!','Mujhe mat dekho!','Chor woh hai, main nahi!','Main kabhi chori nahi karta!','Itni der kyun laga rahe ho?']
+};
+const pick = a => a[Math.floor(Math.random()*a.length)];
+const shuffle = a => { a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; };
+const esc = s => String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt = n => n.toLocaleString('en-IN');
+const icon = r => `<svg class="ico" viewBox="0 0 24 24" aria-hidden="true">${ROLES[r].icon}</svg>`;
+
+let setup = {mode:'bot', you:'You', names:['Player 1','Player 2','Player 3','Player 4'], rounds:5, pts:{raja:1000,rani:500,sipahi:100,chor:0}};
+let G = null;        // game state
+let ui = {sheet:false, busy:false};
+let timer = null;
+
+function newRound(){
+  G.deck = shuffle(ORDER);                   // role written on each chit
+  G.tilt = G.deck.map(()=> (Math.random()*10-5).toFixed(1));
+  G.taken = [-1,-1,-1,-1];                   // chit -> player
+  G.roleOf = [null,null,null,null];          // player -> role
+  const start = (G.round-1)%4;
+  G.pickOrder = [0,1,2,3].map(i=>(start+i)%4);
+  G.pickIdx = 0;
+  G.ann = 0; G.guess = null; G.lines = {};
+  G.phase = G.mode==='pass' ? 'handoff' : 'pick';
+}
+function startGame(){
+  const players = setup.mode==='bot'
+    ? [{name:setup.you.trim()||'You',human:true}, ...BOTS.map(n=>({name:n,human:false}))]
+    : setup.names.map((n,i)=>({name:n.trim()||`Player ${i+1}`,human:true}));
+  players.forEach(p=>p.total=0);
+  G = {mode:setup.mode, players, rounds:setup.rounds, round:1, pts:{...setup.pts}, history:[]};
+  newRound(); render();
+}
+const idxOf = r => G.roleOf.indexOf(r);
+const me = () => G.mode==='bot' ? 0 : -1;
+
+function takeChit(c, p){ G.taken[c]=p; G.roleOf[p]=G.deck[c]; }
+
+function roleVisible(p){
+  if(!G.roleOf[p]) return false;
+  if(G.phase==='result'||G.phase==='final') return true;
+  if(p===me()) return true;
+  const r=G.roleOf[p];
+  if(['announce','guess'].includes(G.phase)){
+    if(r==='raja') return true;
+    if(r==='sipahi' && (G.ann>=2||G.phase==='guess')) return true;
+  }
+  return false;
+}
+
+function scoreRound(){
+  const s=idxOf('sipahi'), c=idxOf('chor');
+  const correct = G.guess===c;
+  const gains = G.roleOf.map(r=>G.pts[r]);
+  if(!correct){ gains[s]=0; gains[c]=G.pts.sipahi; }
+  gains.forEach((g,i)=>G.players[i].total+=g);
+  G.history.push({roles:G.roleOf.slice(), gains, correct});
+  G.correct=correct; G.gains=gains; G.phase='result';
+}
+
+/* ---------- rendering ---------- */
+function seatsHTML(){
+  const max = Math.max(...G.players.map(p=>p.total));
+  let turn=-1;
+  if(G.phase==='handoff'||G.phase==='pick'||G.phase==='peek') turn = G.mode==='pass'? G.pickOrder[G.pickIdx] : 0;
+  if(G.phase==='guess') turn = idxOf('sipahi');
+  return `<div class="seats">${G.players.map((p,i)=>{
+    const r=G.roleOf[i], vis=roleVisible(i);
+    return `<div class="seat ${i===turn?'turn':''} ${max>0&&p.total===max?'lead':''}">
+      <div class="ava" style="background:${AVA[i]}">${esc(p.name[0].toUpperCase())}</div>
+      <div class="nm">${esc(p.name)}</div>
+      <div class="pts">${fmt(p.total)}</div>
+      <span class="tag ${vis?r:''}">${vis?ROLES[r].en:(r?'Folded':'—')}</span>
+    </div>`}).join('')}</div>`;
+}
+function chitHTML(c, opts={}){
+  const r=G.deck[c];
+  return `<button class="chit ${opts.open?'open':''} ${opts.taken?'taken':''}" data-chit="${c}" style="transform:rotate(${G.tilt[c]}deg)" ${opts.disabled?'disabled':''} aria-label="${opts.open?ROLES[r].en:'Folded chit '+(c+1)}">
+    <div class="face back"><span>?</span></div>
+    <div class="face front"><div>${icon(r)}<div class="role-hi">${ROLES[r].hi}</div><div class="role-en">${ROLES[r].en}</div><div class="role-pts">${fmt(G.pts[r])} pts</div></div></div>
+  </button>`;
+}
+function bigChit(r, open=true){
+  return `<div class="chit big-chit ${open?'open':''}" style="transform:rotate(-2deg)">
+    <div class="face back"><span>?</span></div>
+    <div class="face front"><div>${icon(r)}<div class="role-hi">${ROLES[r].hi}</div><div class="role-en">${ROLES[r].en}</div><div class="role-pts">${fmt(G.pts[r])} pts</div></div></div></div>`;
+}
+const ava = (i,size='') => `<div class="ava" style="background:${AVA[i]}${size}">${esc(G.players[i].name[0].toUpperCase())}</div>`;
+
+function render(){
+  clearTimeout(timer);
+  const app=document.getElementById('app');
+  if(!G){ app.innerHTML=setupHTML(); return; }
+  let stage='', bar='';
+  const P=G.players;
+
+  if(G.phase==='handoff'){
+    const p=G.pickOrder[G.pickIdx];
+    stage=`<div class="curtain">${ava(p)}
+      <div class="say">Pass the phone to<br><span class="hi">${esc(P[p].name)}</span></div>
+      <p class="sub">Everyone else, look away. ${esc(P[p].name)} picks a chit and keeps it secret.</p></div>`;
+    bar=`<button class="cta" data-act="ready">I'm ${esc(P[p].name)}, show chits</button>`;
+  }
+  else if(G.phase==='pick'){
+    const p = G.mode==='pass'? G.pickOrder[G.pickIdx] : 0;
+    const left = G.taken.filter(t=>t<0).length;
+    stage=`<div class="say">${left===4?'Chits are shuffled!':'Pick a chit'}</div>
+      <p class="sub">${esc(P[p].name)}, tap one folded chit. ${left} left on the mat.</p>
+      <div class="chits">${G.deck.map((_,c)=>chitHTML(c,{taken:G.taken[c]>=0})).join('')}</div>`;
+    bar=`<button class="cta" disabled>Tap a chit</button>`;
+  }
+  else if(G.phase==='peek'){
+    const p = G.mode==='pass'? G.pickOrder[G.pickIdx] : 0;
+    const r = G.roleOf[p];
+    const tip = {raja:'You get the highest points. You will call your Sipahi.',rani:'Stay calm. The Sipahi may suspect you.',sipahi:'You must find the Chor between the other two.',chor:'Keep a straight face. If Sipahi guesses wrong, you steal their points.'}[r];
+    stage=`<div class="sub">${G.mode==='bot'?'You got':esc(P[p].name)+', you got'}</div>${bigChit(r)}<p class="sub">${tip}</p>`;
+    const last = G.mode==='bot' || G.pickIdx===3;
+    bar=`<button class="cta" data-act="peeked">${G.mode==='pass'&&!last?'Fold it & pass on':'Fold it, start the round'}</button>`;
+  }
+  else if(G.phase==='announce'){
+    const ri=idxOf('raja'), si=idxOf('sipahi');
+    const rajaHuman = G.mode==='bot' && ri===0;
+    G.lines.raja ??= pick(LINES.raja); G.lines.sip ??= pick(LINES.sipahi);
+    stage=`<div class="say">${esc(P[ri].name)} is the <span class="hi">राजा · Raja</span></div>
+      <div class="talk">
+        ${G.ann>=1?`<div class="bubble"><b>${esc(P[ri].name)}</b>${G.lines.raja}</div>`:''}
+        ${G.ann>=2?`<div class="bubble r"><b>${esc(P[si].name)}</b>${G.lines.sip}</div>`:''}
+      </div>
+      ${G.ann>=2?`<p class="sub">${esc(P[si].name)} is the Sipahi. Now find the Chor.</p>`:''}`;
+    bar = G.ann===0 ? `<button class="cta" data-act="ann">${rajaHuman?'Shout: “Mera Sipahi kaun?”':'Hear the Raja'}</button>`
+        : G.ann===1 ? `<button class="cta" data-act="ann">Reveal the Sipahi</button>`
+        : `<button class="cta" data-act="toGuess">Find the Chor</button>`;
+  }
+  else if(G.phase==='guess'){
+    const si=idxOf('sipahi');
+    const sus=[0,1,2,3].filter(i=>['rani','chor'].includes(G.roleOf[i]));
+    sus.forEach(i=>G.lines[i]??=pick(LINES.innocent));
+    const humanGuess = G.mode==='pass' || si===0;
+    stage=`<div class="say">${humanGuess?(G.mode==='pass'?`${esc(P[si].name)}, who is the`:'Who is the'):`${esc(P[si].name)} is deciding…`} <span class="hi">चोर · Chor?</span></div>
+      <p class="sub">${humanGuess?'One is the Rani, one is the Chor. Tap your suspect.':'Keep a straight face!'}</p>
+      <div class="suspects">${sus.map(i=>{
+        const tag = humanGuess?'button':'div';
+        return `<${tag} class="suspect" ${humanGuess?`data-guess="${i}"`:''}>${ava(i)}
+          <div class="nm">${esc(P[i].name)}${i===me()?' (you)':''}</div><div class="ln">“${G.lines[i]}”</div></${tag}>`}).join('')}</div>
+      ${humanGuess?'':'<div style="text-align:center" class="dots"><span></span><span></span><span></span></div>'}`;
+    bar = humanGuess?`<button class="cta" disabled>Tap a suspect</button>`:`<button class="cta" disabled>Sipahi is thinking…</button>`;
+    if(!humanGuess){ timer=setTimeout(()=>{ G.guess=pick(sus); scoreRound(); render(); }, 1900); }
+  }
+  else if(G.phase==='result'){
+    const si=idxOf('sipahi'), ci=idxOf('chor');
+    const v = G.correct
+      ? `<div class="verdict ok">${esc(P[si].name)} caught ${esc(P[ci].name)}! Sipahi keeps ${fmt(G.pts.sipahi)}.</div>`
+      : `<div class="verdict no">Wrong guess! ${esc(P[ci].name)} was the Chor and steals ${fmt(G.pts.sipahi)} points.</div>`;
+    const order=[idxOf('raja'),idxOf('rani'),si,ci];
+    stage=`<div class="say">Round ${G.round} of ${G.rounds}</div>${v}
+      <div class="rows">${order.map((i,k)=>`<div class="row" style="animation-delay:${k*80}ms">${ava(i)}
+        <div class="who"><div>${esc(P[i].name)}</div><span class="tag ${G.roleOf[i]}">${ROLES[G.roleOf[i]].hi} · ${ROLES[G.roleOf[i]].en}</span></div>
+        <div class="gain ${G.gains[i]?'':'zero'}">+${fmt(G.gains[i])}</div></div>`).join('')}</div>`;
+    bar=`<button class="cta" data-act="next">${G.round>=G.rounds?'See final scores':'Next round'}</button>`;
+  }
+  else if(G.phase==='final'){
+    const ranked=P.map((p,i)=>({...p,i})).sort((a,b)=>b.total-a.total);
+    const top=ranked.filter(p=>p.total===ranked[0].total);
+    stage=`<div class="trophy">${top.length>1?'It’s a tie!':'Winner'}<br>${top.map(p=>esc(p.name)).join(' & ')}</div>
+      <p class="sub">After ${G.rounds} rounds of Raja Rani Chor Sipahi</p>
+      <div class="rows">${ranked.map((p,k)=>`<div class="row" style="animation-delay:${k*90}ms">${ava(p.i)}
+        <div class="who"><div>${k+1}. ${esc(p.name)}</div></div><div class="gain">${fmt(p.total)}</div></div>`).join('')}</div>`;
+    bar=`<button class="cta" data-act="again">Play again</button><button class="cta ghost" data-act="home">Change players</button>`;
+  }
+
+  app.innerHTML=`<header class="top"><div class="brand">राजा रानी चोर सिपाही<small>Round ${Math.min(G.round,G.rounds)} of ${G.rounds}</small></div>
+      <button class="icon-btn" data-act="sheet" aria-label="Score sheet"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></button></header>
+    ${seatsHTML()}
+    <main class="stage">${stage}</main>
+    <div class="bar">${bar}</div>
+    ${ui.sheet?sheetHTML():''}`;
+}
+
+function sheetHTML(){
+  const P=G.players;
+  const rows = G.history.map((h,k)=>`<tr><td>R${k+1}${h.correct?'':' ✕'}</td>${h.gains.map((g,i)=>`<td>${fmt(g)}<small>${ROLES[h.roles[i]].en}</small></td>`).join('')}</tr>`).join('');
+  return `<div class="sheet-bg" data-act="closeSheet"><div class="sheet" data-stop>
+    <div class="top"><div class="brand" style="font-size:20px">Score sheet<small>✕ means the Chor escaped</small></div><button class="icon-btn" data-act="closeSheet" aria-label="Close">✕</button></div>
+    <div class="tbl-wrap"><table><thead><tr><th>Round</th>${P.map(p=>`<th>${esc(p.name)}</th>`).join('')}</tr></thead>
+    <tbody>${rows||`<tr><td colspan="5" style="text-align:center;padding:18px">No rounds played yet</td></tr>`}</tbody>
+    <tfoot><tr><td>Total</td>${P.map(p=>`<td>${fmt(p.total)}</td>`).join('')}</tr></tfoot></table></div>
+    <button class="cta ghost" data-act="quit">Quit game</button></div></div>`;
+}
+
+function setupHTML(){
+  const s=setup;
+  const fan = ORDER.map((r,k)=>`<div class="chit open" style="transform:rotate(${(k-1.5)*9}deg) translateY(${Math.abs(k-1.5)*6}px)"><div class="face front"><div><div class="role-hi">${ROLES[r].hi}</div></div></div></div>`).join('');
+  return `<div class="hero"><h1>Raja Rani Chor Sipahi</h1><div class="fan">${fan}</div>
+    <p>The classic four-chit game. The Raja calls the Sipahi, and the Sipahi has to catch the Chor.</p></div>
+  <main class="stage" style="justify-content:flex-start">
+  <div class="card">
+    <div class="lbl">Mode</div>
+    <div class="seg"><button data-mode="bot" aria-pressed="${s.mode==='bot'}">vs Computer</button><button data-mode="pass" aria-pressed="${s.mode==='pass'}">Pass &amp; Play</button></div>
+    ${s.mode==='bot'
+      ? `<label class="lbl" for="you">Your name</label><input type="text" id="you" maxlength="12" value="${esc(s.you)}"><p class="sub" style="text-align:left;margin:0">You play against ${BOTS.join(', ')}.</p>`
+      : `<div class="lbl">4 players, one phone</div><div class="names">${s.names.map((n,i)=>`<input type="text" id="n${i}" data-name="${i}" maxlength="12" value="${esc(n)}" aria-label="Player ${i+1} name">`).join('')}</div>`}
+    <div class="lbl">Rounds</div>
+    <div class="seg three">${[5,10,15].map(n=>`<button data-rounds="${n}" aria-pressed="${s.rounds===n}">${n}</button>`).join('')}</div>
+    <div class="lbl">Points per chit</div>
+    <div class="ptsgrid">${ORDER.map(r=>`<label>${ROLES[r].en}<input type="number" id="p-${r}" data-pts="${r}" inputmode="numeric" min="0" step="50" value="${s.pts[r]}"></label>`).join('')}</div>
+  </div>
+  <details class="rules card"><summary>How to play</summary><ol>
+    <li>Four folded chits: Raja, Rani, Sipahi and Chor. Each player picks one and keeps it secret.</li>
+    <li>The Raja reveals and calls out “Mera Sipahi kaun?”. The Sipahi reveals.</li>
+    <li>The Sipahi guesses which of the other two is the Chor.</li>
+    <li>Right guess: everyone scores their chit. Wrong guess: the Chor takes the Sipahi’s points and the Sipahi gets 0.</li>
+    <li>Highest total after the last round wins.</li></ol></details>
+  </main>
+  <div class="bar"><button class="cta" data-act="start">Shuffle the chits</button></div>`;
+}
+
+/* ---------- events ---------- */
+document.addEventListener('click', e=>{
+  const t=e.target.closest('[data-act],[data-chit],[data-guess],[data-mode],[data-rounds]');
+  if(!t) return;
+  if(t.dataset.mode){ setup.mode=t.dataset.mode; render(); return; }
+  if(t.dataset.rounds){ setup.rounds=+t.dataset.rounds; render(); return; }
+  if(t.dataset.chit!==undefined){
+    if(ui.busy) return;
+    const c=+t.dataset.chit; if(G.taken[c]>=0) return;
+    const p = G.mode==='pass'? G.pickOrder[G.pickIdx] : 0;
+    takeChit(c,p); ui.busy=true;
+    t.classList.add('open');
+    setTimeout(()=>{
+      ui.busy=false;
+      if(G.mode==='bot'){ // bots take the rest
+        const free=G.taken.map((v,i)=>v<0?i:-1).filter(i=>i>=0);
+        shuffle(free).forEach((fc,k)=>takeChit(fc,k+1));
+      }
+      G.phase='peek'; render();
+    },650);
+    return;
+  }
+  if(t.dataset.guess!==undefined){ G.guess=+t.dataset.guess; scoreRound(); render(); return; }
+  const a=t.dataset.act;
+  if(a==='closeSheet' && e.target.closest('[data-stop]') && !e.target.closest('.icon-btn')) return;
+  switch(a){
+    case 'start': startGame(); break;
+    case 'ready': G.phase='pick'; render(); break;
+    case 'peeked':
+      if(G.mode==='pass' && G.pickIdx<3){ G.pickIdx++; G.phase='handoff'; }
+      else { G.phase='announce'; G.ann=0; }
+      render(); break;
+    case 'ann': G.ann++; render(); break;
+    case 'toGuess': G.phase='guess'; render(); break;
+    case 'next':
+      if(G.round>=G.rounds){ G.phase='final'; } else { G.round++; newRound(); }
+      render(); break;
+    case 'again': setup.rounds=G.rounds; startGame(); break;
+    case 'home': case 'quit': G=null; ui.sheet=false; render(); break;
+    case 'sheet': ui.sheet=true; render(); break;
+    case 'closeSheet': ui.sheet=false; render(); break;
+  }
+});
+document.addEventListener('input', e=>{
+  const el=e.target;
+  if(el.id==='you') setup.you=el.value;
+  if(el.dataset.name!==undefined) setup.names[+el.dataset.name]=el.value;
+  if(el.dataset.pts) setup.pts[el.dataset.pts]=Math.max(0,parseInt(el.value,10)||0);
+});
+
+/* keep the game alive across live updates */
+function start(data){
+  if(data && data.setup) setup=data.setup;
+  if(data && data.G){ G=data.G; }
+  render();
+}
+window.claude?.hot?.snapshot?.(()=>({setup,G}));
+window.claude?.hot?.ready ? window.claude.hot.ready(start) : start(window.claude?.hot?.data ?? {});
+</script>
+
+</body></html>

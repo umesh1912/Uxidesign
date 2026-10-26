@@ -1,0 +1,455 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Utsav Wedding Planner</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Mulish:wght@400;600;700;800&display=swap">
+<style>
+:root{
+  --bg:#F6ECEE; --surface:#FFFFFF; --surface-2:#FBF5F6; --ink:#2A1119; --ink-2:#6E5560; --line:#EAD9DE;
+  --primary:#7A1F3D; --primary-ink:#FFFFFF; --primary-soft:#F5E1E7;
+  --accent:#F2A900; --accent-ink:#2A1119; --accent-soft:#FDF0CC;
+  --good:#257A4A; --good-soft:#DDF1E4; --bad:#C0392B; --bad-soft:#FAE0DC; --warn:#D88A00; --warn-soft:#FCEFCF;
+  --track:#D9C6CC; --frame:#2A1119; --shadow:0 24px 60px -24px rgba(42,17,25,.45); --scrim:rgba(30,10,16,.5);
+  --display:"Cormorant Garamond", Georgia, serif; --display-weight:700;
+  --body:"Mulish", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --bg:#140A0E; --surface:#1E1116; --surface-2:#26161C; --ink:#F6E9ED; --ink-2:#BFA5AE; --line:#3A2630;
+  --primary:#E0799B; --primary-ink:#140A0E; --primary-soft:#3E1D29; --accent:#F2B32A; --accent-ink:#2A1119; --accent-soft:#3A2D10;
+  --good:#5ED39A; --good-soft:#15301F; --bad:#F2806F; --bad-soft:#3A1E1A; --warn:#F2BE4C; --warn-soft:#3A2F14;
+  --track:#4A333C; --frame:#000; --shadow:0 24px 60px -24px rgba(0,0,0,.8); --scrim:rgba(0,0,0,.6);}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#140A0E; --surface:#1E1116; --surface-2:#26161C; --ink:#F6E9ED; --ink-2:#BFA5AE; --line:#3A2630;
+  --primary:#E0799B; --primary-ink:#140A0E; --primary-soft:#3E1D29; --accent:#F2B32A; --accent-ink:#2A1119; --accent-soft:#3A2D10;
+  --good:#5ED39A; --good-soft:#15301F; --bad:#F2806F; --bad-soft:#3A1E1A; --warn:#F2BE4C; --warn-soft:#3A2F14;
+  --track:#4A333C; --frame:#000; --shadow:0 24px 60px -24px rgba(0,0,0,.8); --scrim:rgba(0,0,0,.6);}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;padding-inline:16px;padding-block:24px;margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.stage{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:44px;align-items:start;justify-content:center}
+@media (max-width:760px){.stage{grid-template-columns:minmax(0,1fr);gap:20px}}
+.phone{position:relative;width:100%;max-width:400px;margin:0 auto;height:min(800px,calc(100svh - 48px));min-height:620px;background:var(--surface-2);border-radius:34px;border:8px solid var(--frame);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+@media (max-width:440px){.phone{border-width:0;border-radius:18px;height:calc(100svh - 48px)}}
+.appbar{padding:16px 16px 10px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{font-family:var(--display);font-size:24px;line-height:1.05;font-weight:var(--display-weight,700);letter-spacing:-.01em}
+.brand-sub{font-size:12px;color:var(--ink-2);margin-top:2px}
+.bar-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{position:relative;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--ink)}
+.icon-btn svg{width:20px;height:20px}
+.badge{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--bad);color:#fff;font-size:10.5px;font-weight:700;display:grid;place-items:center;border:2px solid var(--surface-2)}
+.screen{flex:1;overflow-y:auto;padding:4px 16px 100px;display:flex;flex-direction:column;gap:14px}
+.screen > *{flex-shrink:0}
+.tabbar{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(var(--tabs,5),1fr);background:var(--surface);border-top:1px solid var(--line);padding:6px 4px calc(8px + env(safe-area-inset-bottom,0px));z-index:3}
+.tab{background:none;border:0;padding:5px 0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;font-weight:700;color:var(--ink-2);position:relative}
+.tab svg{width:21px;height:21px}
+.tab-ico{padding:3px 12px;border-radius:999px;display:flex}
+.tab[aria-current="page"]{color:var(--ink)}
+.tab[aria-current="page"] .tab-ico{background:var(--primary-soft);color:var(--primary)}
+.tab .dot{position:absolute;top:1px;right:calc(50% - 20px);min-width:16px;height:16px;border-radius:99px;background:var(--accent);color:var(--accent-ink);font-size:10px;font-weight:800;display:grid;place-items:center;padding:0 4px}
+.fab{position:absolute;right:16px;bottom:84px;height:54px;padding:0 20px 0 16px;border-radius:18px;border:0;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;gap:6px;font-weight:800;box-shadow:0 10px 24px -8px rgba(0,0,0,.35);z-index:2}
+.fab svg{width:22px;height:22px}
+.h-title{font-family:var(--display);font-weight:var(--display-weight,700);font-size:24px;line-height:1.15;margin:2px 0 0;text-wrap:balance}
+.section-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:4px}
+.section-h h2{font-family:var(--display);font-weight:var(--display-weight,700);font-size:18px;margin:0}
+.section-h span{font-size:12px;color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius,18px)}
+.pad{padding:14px}
+.list{display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line);background:none;border-left:0;border-right:0;border-bottom:0;width:100%;text-align:left}
+.row:first-child{border-top:0}
+button.row:hover{background:var(--surface-2)}
+.card > button.row:first-child{border-radius:var(--radius,18px) var(--radius,18px) 0 0}.card > button.row:last-child{border-radius:0 0 var(--radius,18px) var(--radius,18px)}.card > button.row:only-child{border-radius:var(--radius,18px)}
+.row-main{flex:1;min-width:0}
+.row-title{font-weight:700;overflow-wrap:anywhere}
+.row-sub{font-size:12.5px;color:var(--ink-2)}
+.row-end{text-align:right;font-size:12px;white-space:nowrap}
+.row-end b{display:block;font-size:14.5px}
+.muted{color:var(--ink-2)} .hint{font-size:13px;color:var(--ink-2);margin:0}
+.ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--surface-2);color:var(--ink-2);flex:none}
+.ico svg{width:20px;height:20px}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px;flex:none}
+.av.sm{width:26px;height:26px;font-size:11px}
+.btn{border:0;border-radius:12px;padding:8px 14px;font-weight:700;font-size:13.5px;background:var(--primary);color:var(--primary-ink);white-space:nowrap}
+.btn.accent{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:var(--bad);color:#fff}
+.btn.block{width:100%;padding:13px;font-size:15px;border-radius:14px}
+.btn.sm{padding:6px 11px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap;border:0}
+.chip svg{width:12px;height:12px}
+.chip.good{background:var(--good-soft);color:var(--good)}
+.chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--ink)}
+.chip.pri{background:var(--primary-soft);color:var(--primary)}
+.chip.acc{background:var(--accent-soft);color:var(--ink)}
+.lbl{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.search{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0 12px}
+.search svg{width:18px;height:18px;color:var(--ink-2);flex:none}
+.search input{border:0;background:none;padding:11px 0;width:100%;outline:none}
+.filters{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.filters button{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:700;color:var(--ink-2)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.seg{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:3px}
+.seg button{flex:1;border:0;background:none;padding:7px;border-radius:9px;font-size:13px;font-weight:700;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--primary-soft);color:var(--ink)}
+.bar-track{height:8px;background:var(--surface-2);border-radius:99px;position:relative;overflow:hidden}
+.bar{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:var(--primary)}
+.empty{padding:18px;text-align:center;color:var(--ink-2);font-size:13.5px}
+.hero{background:var(--primary);color:var(--primary-ink);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.hero .lbl{color:inherit;opacity:.8}
+.hero-big{font-family:var(--display);font-weight:var(--display-weight,700);font-size:40px;line-height:1}
+.pill{font-size:12px;font-weight:700;background:rgba(255,255,255,.18);padding:4px 10px;border-radius:999px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.sheet-wrap{position:absolute;inset:0;background:var(--scrim);display:flex;align-items:flex-end;z-index:6}
+.sheet{width:100%;max-height:92%;overflow-y:auto;background:var(--surface);border-radius:24px 24px 0 0;padding:10px 18px calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px;animation:up .22s ease-out}
+.sheet.full{height:92%}
+.sheet > *{flex-shrink:0}
+@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}}
+.grab{width:40px;height:4px;border-radius:9px;background:var(--line);margin:0 auto}
+.sheet-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sheet-h h3{font-family:var(--display);font-weight:var(--display-weight,700);font-size:21px;margin:0;line-height:1.15;display:flex;align-items:center;gap:8px}
+.x{background:var(--surface-2);border:0;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;flex:none;color:var(--ink)}
+.field{display:flex;flex-direction:column;gap:7px}
+.field input:not([type=checkbox]):not([type=radio]):not([type=file]),.field select,.field textarea{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:11px 12px;width:100%}
+.field textarea{resize:vertical;min-height:70px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pick{display:flex;flex-wrap:wrap;gap:8px}
+.pick button{border:1px solid var(--line);background:var(--surface-2);border-radius:12px;padding:8px 12px;font-size:13.5px;font-weight:700;text-align:left}
+.pick button[aria-pressed="true"]{border-color:var(--primary);background:var(--primary-soft)}
+.pick button small{display:block;font-weight:500;font-size:11.5px;color:var(--ink-2)}
+.err{color:var(--bad);font-size:13px;min-height:1em}
+.summary{background:var(--surface-2);border-radius:14px;padding:12px;font-size:13.5px;display:flex;flex-direction:column;gap:6px}
+.summary > div{display:flex;justify-content:space-between;gap:10px}
+.note{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;background:var(--primary-soft);color:var(--ink);border-radius:12px;padding:9px 11px}
+.note svg{width:16px;height:16px;color:var(--primary);flex:none;margin-top:1px}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;padding:12px 14px;border-top:1px solid var(--line)}
+.opt:first-child{border-top:0}
+.switch{appearance:none;width:42px;height:24px;border-radius:99px;background:var(--track);position:relative;flex:none;cursor:pointer;transition:background .15s;margin:0}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .15s}
+.switch:checked{background:var(--primary)}
+.switch:checked::after{left:21px}
+.file-lbl{display:flex;align-items:center;justify-content:center;gap:8px;border:1px dashed var(--line);border-radius:12px;padding:12px;font-size:13.5px;color:var(--ink-2);cursor:pointer;background:var(--surface-2);position:relative}
+.file-lbl svg{width:20px;height:20px;flex:none}
+.file-lbl input{position:absolute;width:1px;height:1px;opacity:0}
+.check{width:28px;height:28px;border-radius:9px;border:2px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none;color:var(--primary-ink);padding:0}
+.check[aria-checked="true"]{background:var(--primary);border-color:var(--primary)}
+.check svg{width:16px;height:16px}
+.toast{position:absolute;left:16px;right:16px;top:72px;background:var(--ink);color:var(--surface);padding:11px 14px;border-radius:12px;font-size:13.5px;z-index:9;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+.notes{padding-top:8px;max-width:62ch;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--primary)}
+.notes h1{font-family:var(--display);font-weight:var(--display-weight,700);font-size:clamp(30px,5vw,46px);line-height:1.03;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.notes p{color:var(--ink-2);margin:0}
+.try{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.try div{display:flex;gap:12px;padding:11px 14px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2)}
+.try div:first-child{border-top:0}
+.try b{color:var(--ink)}
+.try .n{font-family:var(--display);font-weight:var(--display-weight,700);color:var(--primary);min-width:16px}
+.stack{display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:var(--ink-2)}
+.stack b{color:var(--ink)}
+@media (max-width:760px){.notes{order:-1;padding-top:0}.try,.stack{display:none}}
+
+.brand{font-size:27px;font-style:italic}
+.toran{height:14px;margin:-4px 0 0;background:radial-gradient(circle at 8px 4px,var(--accent) 5px,transparent 5.5px) 0 0/16px 14px repeat-x,radial-gradient(circle at 8px 4px,#E86A1C 3px,transparent 3.5px) 8px 5px/16px 14px repeat-x;opacity:.95}
+.hero2{background:var(--primary);color:var(--primary-ink);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden}
+.hero2 .names{font-family:var(--display);font-weight:700;font-size:32px;line-height:1;font-style:italic}
+.hero2 .cd{display:flex;gap:16px;align-items:flex-end}
+.hero2 .cd b{font-family:var(--display);font-size:46px;line-height:.9}
+.hero2 .cd span{font-size:12.5px;opacity:.85}
+.hero2:after{content:"";position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;border:14px dotted var(--accent);opacity:.35}
+.events{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.ev{flex:none;width:128px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:10px 12px;display:flex;flex-direction:column;gap:3px;text-align:left}
+.ev b{font-family:var(--display);font-size:19px;line-height:1.1}
+.ev .row-sub{font-size:12px}
+.ev .cnt{font-size:12px;font-weight:800;color:var(--primary)}
+.ev[aria-pressed="true"]{border-color:var(--primary);background:var(--primary-soft)}
+.stat3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat3 div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:10px}
+.stat3 b{display:block;font-size:20px;font-weight:800}
+.stat3 span{font-size:11.5px;color:var(--ink-2)}
+.rsvp{font-size:11.5px;font-weight:800;border-radius:999px;padding:3px 9px;white-space:nowrap}
+.rsvp.yes{background:var(--good-soft);color:var(--good)} .rsvp.no{background:var(--bad-soft);color:var(--bad)} .rsvp.wait{background:var(--warn-soft);color:var(--ink)}
+.side{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:4px}
+.bud{display:flex;flex-direction:column;gap:6px;padding:12px 14px;border-top:1px solid var(--line)}
+.bud:first-child{border-top:0}
+.bud .top{display:flex;justify-content:space-between;gap:8px;font-size:14px}
+.btrack{height:10px;border-radius:99px;background:var(--surface-2);position:relative;overflow:hidden;border:1px solid var(--line)}
+.btrack i{position:absolute;left:0;top:0;bottom:0}
+.btrack i.c{background:color-mix(in srgb,var(--primary) 35%,transparent)} .btrack i.p{background:var(--primary)}
+.btrack i.over{background:var(--bad)}
+.task{display:flex;gap:12px;align-items:center;padding:12px 14px;border-top:1px solid var(--line)}
+.task:first-child{border-top:0}
+.task.done .row-title{text-decoration:line-through;color:var(--ink-2)}
+.donut{width:120px;height:120px;flex:none}
+</style>
+
+<div class="stage">
+  <div class="phone">
+    <header class="appbar" style="padding-bottom:4px">
+      <div><div class="brand">Utsav</div><div class="brand-sub">Riya &amp; Kabir's wedding · you're an organiser</div></div>
+      <div class="bar-actions"><span class="av" style="background:#7A1F3D">A</span></div>
+    </header>
+    <div class="toran" aria-hidden="true"></div>
+    <main class="screen" id="screen" style="padding-top:10px"></main>
+    <button class="fab" id="fab" data-action="fab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span id="fab-lbl">Task</span></button>
+    <nav class="tabbar" aria-label="Sections">
+      <button class="tab" data-tab="home"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c2 3 5 4 5 8a5 5 0 0 1-10 0c0-4 3-5 5-8z"/><path d="M5 21h14"/></svg></span>Home</button>
+      <button class="tab" data-tab="guests"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20a6 6 0 0 1 12 0M15 20a4 4 0 0 1 6-3.5"/></svg></span>Guests<span class="dot" id="g-dot" hidden></span></button>
+      <button class="tab" data-tab="tasks"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="m8 12 2.5 2.5L16 9"/></svg></span>Tasks<span class="dot" id="t-dot" hidden></span></button>
+      <button class="tab" data-tab="budget"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12M6 9h12M13 20 6 13h3a4 4 0 0 0 0-8"/></svg></span>Budget</button>
+      <button class="tab" data-tab="vendors"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9 5 4h14l2 5M3 9h18v11H3zM9 20v-6h6v6"/></svg></span>Vendors</button>
+    </nav>
+    <div id="sheet-root"></div>
+    <div class="toast" id="toast" role="status" hidden></div>
+  </div>
+  <aside class="notes">
+    <div class="eyebrow">Clickable prototype</div>
+    <h1>Utsav: one place for the whole family to plan the wedding</h1>
+    <p>Guests and RSVPs by event, tasks shared out among relatives, the budget against what's been paid, and every vendor's balance and due date. You are Anjali, the bride's sister, organising Riya and Kabir's wedding in Jaipur. All names and amounts are sample data.</p>
+    <div class="try">
+      <div><span class="n">1</span><span><b>Chase RSVPs.</b> On Guests, send WhatsApp reminders to families who haven't replied.</span></div>
+      <div><span class="n">2</span><span><b>Get the caterer's count.</b> Pick the Sangeet and share veg and Jain headcounts.</span></div>
+      <div><span class="n">3</span><span><b>Hand out a task.</b> Add a task and assign it to Mama ji. Relatives only see their own tasks.</span></div>
+      <div><span class="n">4</span><span><b>Watch the budget.</b> Catering and decor are over estimate. Record the next payment to the decorator.</span></div>
+      <div><span class="n">5</span><span><b>Allot rooms.</b> Put out-of-town families in the 20 hotel rooms automatically.</span></div>
+    </div>
+    <div class="stack"><div><b>Planned build:</b> Flutter, Firebase with shared event workspaces and roles, WhatsApp RSVP links, and a web RSVP page for guests without the app.</div>
+      <button class="btn ghost sm" id="reset" style="align-self:flex-start">Reset sample data</button></div>
+  </aside>
+</div>
+
+<script>
+/* ---- shared prototype kit ---- */
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+function dNum(s){const [y,m,d]=s.split("-").map(Number);return Date.UTC(y,m-1,d)/864e5;}
+function addDays(s,n){return new Date((dNum(s)+n)*864e5).toISOString().slice(0,10);}
+function addMonths(s,n){const [y,m,d]=s.split("-").map(Number);return new Date(Date.UTC(y,m-1+n,d)).toISOString().slice(0,10);}
+function dLabel(s){const [y,m,d]=s.split("-").map(Number);return d+" "+MON[m-1];}
+function dLabelY(s){const [y,m,d]=s.split("-").map(Number);return d+" "+MON[m-1]+" "+y;}
+function dow(s){return DOW[new Date(dNum(s)*864e5).getUTCDay()];}
+function t12(t){let [h,m]=t.split(":").map(Number);const ap=h>=12?"PM":"AM";h=h%12||12;return h+(m?":"+String(m).padStart(2,"0"):"")+" "+ap;}
+const inr = n => "₹" + Math.round(Math.abs(n)).toLocaleString("en-IN");
+function daysBetween(a,b){return dNum(b)-dNum(a);}
+const IC = {
+  x:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
+  bell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>',
+  info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>',
+  camera:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-3h6l2 3h3v13H4z"/><circle cx="12" cy="13" r="4"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>',
+  chev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>',
+  trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>'
+};
+const Kit = {
+  store:null, S:null, seed:null, views:{}, actions:{}, afterRender:[],
+  init(opts){
+    Object.assign(this, opts);
+    try { this.S = JSON.parse(localStorage.getItem(this.store)) || this.seed(); } catch(_) { this.S = this.seed(); }
+    document.addEventListener("click", e => this.onClick(e));
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+    const r = $("#reset"); if (r) r.addEventListener("click", () => { this.S = this.seed(); closeSheet(); this.render(); toast("Sample data restored."); });
+    this.render();
+  },
+  save(){ try { localStorage.setItem(this.store, JSON.stringify(this.S, (k,v) => k.startsWith("_") ? undefined : v)); } catch(_){} },
+  render(keep){
+    const S = this.S, sc = $("#screen"), top = sc.scrollTop;
+    sc.innerHTML = this.views[S.tab]();
+    if (keep) sc.scrollTop = top;
+    $$(".tab").forEach(t => t.removeAttribute("aria-current"));
+    const cur = $(`.tab[data-tab="${S.tab}"]`); if (cur) cur.setAttribute("aria-current","page");
+    this.afterRender.forEach(f => f(S));
+    this.save();
+  },
+  onClick(e){
+    const tab = e.target.closest(".tab");
+    if (tab){ this.S.tab = tab.dataset.tab; this.render(); $("#screen").scrollTop = 0; return; }
+    const a = e.target.closest("[data-action]"); if (!a) return;
+    const act = a.dataset.action;
+    if (act === "close-bg" && e.target !== a) return;
+    if (act === "close" || act === "close-bg") { closeSheet(); return; }
+    const fn = this.actions[act]; if (fn) fn(a, e);
+  }
+};
+function bindSearch(id, key){
+  const q = document.getElementById(id); if (!q) return;
+  q.addEventListener("input", () => { Kit.S[key] = q.value; const pos = q.selectionStart; Kit.render(true); const n = document.getElementById(id); n.focus(); n.setSelectionRange(pos,pos); });
+}
+let _tt;
+function toast(m){ const t = $("#toast"); t.textContent = m; t.hidden = false; clearTimeout(_tt); _tt = setTimeout(() => t.hidden = true, 3000); }
+function openSheet(title, body, full){
+  $("#sheet-root").innerHTML = `<div class="sheet-wrap" data-action="close-bg"><div class="sheet ${full?"full":""}" role="dialog" aria-modal="true" aria-label="${esc(title.replace(/<[^>]+>/g,""))}"><div class="grab"></div><div class="sheet-h"><h3>${title}</h3><button class="x" data-action="close" aria-label="Close">${IC.x}</button></div>${body}</div></div>`;
+}
+function closeSheet(){ const r = $("#sheet-root"); if (r) r.innerHTML = ""; }
+function pickGroup(root, onPick){
+  root.addEventListener("click", e => { const b = e.target.closest("button[data-v]"); if (!b || b.disabled) return;
+    const multi = root.dataset.multi === "1";
+    if (multi) b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+    else root.querySelectorAll("button[data-v]").forEach(x => x.setAttribute("aria-pressed", x === b));
+    onPick && onPick(b.dataset.v, b);
+  });
+}
+function picked(root){ return [...root.querySelectorAll('button[aria-pressed="true"]')].map(b => b.dataset.v); }
+function copyText(el, msg){
+  const sel = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  try { navigator.clipboard.writeText(el.textContent).then(() => toast(msg), () => { sel(); toast("Selected. Copy it from here."); }); } catch(_) { sel(); toast("Selected. Copy it from here."); }
+}
+
+const TODAY = "2026-09-28", WED = "2026-12-13";
+const EVENTS = [{id:"mehendi",n:"Mehendi",d:"2026-12-11",t:"16:00",v:"Home, Malviya Nagar"},{id:"haldi",n:"Haldi",d:"2026-12-12",t:"10:00",v:"Home, Malviya Nagar"},{id:"sangeet",n:"Sangeet",d:"2026-12-12",t:"19:00",v:"Hotel lawn"},{id:"wedding",n:"Wedding",d:"2026-12-13",t:"19:00",v:"Rajmahal Gardens"},{id:"reception",n:"Reception",d:"2026-12-14",t:"20:00",v:"Rajmahal Gardens"}];
+const SURN = ["Sharma","Agarwal","Mehta","Khandelwal","Joshi","Gupta","Saxena","Mathur","Bansal","Singhal","Kapoor","Malhotra","Verma","Jain","Goyal","Chauhan","Rathore","Pareek","Tiwari","Arora","Bhatia","Dixit","Mittal","Soni","Kulshrestha","Sethi","Bajaj","Nagpal","Oberoi","Chopra"];
+const REL = ["Mama ji","Bua ji","Chacha ji","Mausi ji","Family friends","Papa's office","Neighbours","College friends"], GREL = ["Kabir's mama ji","Kabir's father's office","Kabir's friends","Kabir's chacha ji"];
+function seed(){
+  let x = 17; const rnd = () => (x = (x*9301+49297)%233280)/233280;
+  const guests = SURN.map((s,i)=>{ const side = i%3===2 ? "groom" : "bride"; const n = 2+Math.floor(rnd()*4); const r = rnd(); const st = r<.62?"yes":r<.72?"no":"wait"; const jain = s==="Jain"||rnd()<.1 ? Math.min(n,1+Math.floor(rnd()*2)) : 0;
+    const out = !["Sharma","Mathur","Pareek","Khandelwal"].includes(s) && rnd()<.55;
+    return {id:i+1, name:`${s} family`, lead: ["Suresh","Anita","Rakesh","Meena","Vinod","Kavita","Ajay","Neha","Manoj","Pooja"][i%10]+" "+s, side, n, st, events: st==="no"?[]:EVENTS.filter((e,j)=> j>=2 || rnd()<.6 || side==="bride" && j<2 && rnd()<.8).map(e=>e.id), jain, city: out?["Delhi","Indore","Mumbai","Kota","Ahmedabad","Lucknow"][i%6]:"Jaipur", room:null, rel: side==="groom" ? GREL[i%4] : REL[i%8], phone:`98${(290000000+i*3137711).toString().slice(0,8)}`}; });
+  return { tab:"home", ev:"sangeet", gf:"all",
+    guests,
+    tasks:[
+      {id:1, t:"Book tent and chairs for Mehendi (80 guests)", who:"Mama ji", ev:"mehendi", due:"2026-10-15", done:false},
+      {id:2, t:"Finalise Sangeet song list with DJ", who:"You", ev:"sangeet", due:"2026-10-05", done:false},
+      {id:3, t:"Collect Riya's lehenga after final fitting", who:"Mummy", ev:"wedding", due:"2026-11-20", done:false},
+      {id:4, t:"Send e-invites to Kabir's side list", who:"Kabir's cousin Aditya", ev:"wedding", due:"2026-10-01", done:true},
+      {id:5, t:"Book 20 rooms at Hotel Aravali Inn", who:"Papa", ev:"wedding", due:"2026-10-10", done:true},
+      {id:6, t:"Confirm pandit ji and muhurat timing", who:"Papa", ev:"wedding", due:"2026-10-03", done:false},
+      {id:7, t:"Arrange haldi, flowers and baskets", who:"Bua ji", ev:"haldi", due:"2026-12-10", done:false},
+      {id:8, t:"Get quotes from 3 mehendi artists", who:"You", ev:"mehendi", due:"2026-09-26", done:false}
+    ],
+    budget:[
+      {c:"Venue", est:800000, com:800000, paid:400000},{c:"Catering", est:900000, com:960000, paid:300000},{c:"Decor and flowers", est:400000, com:450000, paid:150000},
+      {c:"Clothing and jewellery", est:500000, com:380000, paid:380000},{c:"Photography", est:250000, com:240000, paid:100000},{c:"Music and Sangeet", est:150000, com:120000, paid:40000},
+      {c:"Rooms and travel", est:150000, com:110000, paid:55000},{c:"Gifts and misc", est:150000, com:60000, paid:60000}],
+    vendors:[
+      {id:1, n:"Rajmahal Gardens", k:"Venue", ph:"0141 270 ••••", total:800000, paid:400000, next:{a:200000,d:"2026-11-01"}},
+      {id:2, n:"Shree Annapurna Caterers", k:"Catering", ph:"98290 1••••", total:960000, paid:300000, next:{a:330000,d:"2026-11-15"}},
+      {id:3, n:"Genda Phool Decor", k:"Decor and flowers", ph:"97830 4••••", total:450000, paid:150000, next:{a:150000,d:"2026-10-05"}},
+      {id:4, n:"Frames by Aakash", k:"Photography", ph:"99284 6••••", total:240000, paid:100000, next:{a:70000,d:"2026-12-01"}},
+      {id:5, n:"DJ Harsh", k:"Music and Sangeet", ph:"98870 2••••", total:120000, paid:40000, next:{a:80000,d:"2026-12-12"}}
+    ],
+    hotel:{name:"Hotel Aravali Inn", rooms:20},
+    nextId:100 };
+}
+const S = () => Kit.S;
+const E = id => EVENTS.find(e=>e.id===id);
+const countFor = ev => S().guests.filter(g=>g.st==="yes"&&g.events.includes(ev)).reduce((a,g)=>a+g.n,0);
+const L = n => n>=100000 ? (n/100000).toFixed(n%100000?1:0).replace(".0","")+" L" : inr(n).slice(1);
+const inrL = n => "₹"+L(n);
+function viewHome(){
+  const d = daysBetween(TODAY, WED), g = S().guests;
+  const yes = g.filter(x=>x.st==="yes").reduce((a,x)=>a+x.n,0), wait = g.filter(x=>x.st==="wait").length;
+  const b = S().budget, est=b.reduce((a,x)=>a+x.est,0), com=b.reduce((a,x)=>a+x.com,0), paid=b.reduce((a,x)=>a+x.paid,0);
+  const late = S().tasks.filter(t=>!t.done && dNum(t.due)<dNum(TODAY)), soon = S().tasks.filter(t=>!t.done).sort((a,b)=>dNum(a.due)-dNum(b.due)).slice(0,3);
+  const pay = S().vendors.filter(v=>v.next).sort((a,b)=>dNum(a.next.d)-dNum(b.next.d))[0];
+  return `<section class="hero2"><div class="lbl" style="color:inherit;opacity:.85">Jaipur · 11–14 December</div><div class="names">Riya &amp; Kabir</div>
+    <div class="cd"><div><b class="num">${d}</b><br><span>days to the wedding</span></div><div><b class="num">${yes}</b><br><span>guests confirmed</span></div></div></section>
+  <div class="events" role="group" aria-label="Events">${EVENTS.map(e=>`<button class="ev" data-action="go-guests" data-ev="${e.id}"><b>${e.n}</b><span class="row-sub">${dow(e.d)} ${dLabel(e.d)}, ${t12(e.t)}</span><span class="cnt num">${countFor(e.id)} coming</span></button>`).join("")}</div>
+  ${late.length?`<div class="note" style="background:var(--bad-soft)">${IC.info}<span><b>${late.length} task${late.length>1?"s":""} overdue:</b> ${esc(late.map(t=>t.t).join("; "))}</span></div>`:""}
+  <div class="stat3"><div><b class="num">${wait}</b><span>families yet to reply</span></div><div><b class="num">${inrL(com)}</b><span>committed of ${inrL(est)}</span></div><div><b class="num">${inrL(paid)}</b><span>paid so far</span></div></div>
+  ${pay?`<div class="card pad" style="display:flex;gap:12px;align-items:center"><div class="row-main"><div class="lbl">Next payment</div><div class="row-title">${esc(pay.n)}</div><div class="row-sub">${inr(pay.next.a)} due ${dLabel(pay.next.d)}</div></div><button class="btn sm" data-action="pay" data-id="${pay.id}">Record</button></div>`:""}
+  <div class="section-h"><h2>Coming up</h2><button class="btn ghost sm" data-action="go-tasks">All tasks</button></div>
+  <div class="card list">${soon.map(taskRow).join("")}</div>`;
+}
+function viewGuests(){
+  const ev = S().ev, g = S().guests, f = S().gf;
+  const inv = g.filter(x=>x.st!=="no" && (x.events.includes(ev) || x.st==="wait"));
+  const list = g.filter(x => f==="all" || x.st===f).sort((a,b)=>({wait:0,yes:1,no:2})[a.st]-({wait:0,yes:1,no:2})[b.st]);
+  const cnt = countFor(ev), jain = g.filter(x=>x.st==="yes"&&x.events.includes(ev)).reduce((a,x)=>a+x.jain,0);
+  const waitN = g.filter(x=>x.st==="wait").length;
+  return `<h1 class="h-title">Guests</h1>
+  <div class="events" role="group" aria-label="Choose event">${EVENTS.map(e=>`<button class="ev" data-action="ev" data-ev="${e.id}" aria-pressed="${ev===e.id}"><b>${e.n}</b><span class="cnt num">${countFor(e.id)} coming</span></button>`).join("")}</div>
+  <div class="card pad" style="display:flex;flex-direction:column;gap:10px"><div style="display:flex;justify-content:space-between;align-items:baseline"><b>${E(ev).n} headcount</b><span class="row-sub">${dow(E(ev).d)} ${dLabel(E(ev).d)} · ${esc(E(ev).v)}</span></div>
+    <div class="stat3"><div><b class="num">${cnt}</b><span>confirmed</span></div><div><b class="num">${cnt-jain}</b><span>veg</span></div><div><b class="num">${jain}</b><span>Jain</span></div></div>
+    <button class="btn ghost sm" style="align-self:flex-start" data-action="share-count">Share count with caterer</button></div>
+  ${waitN?`<button class="btn block" data-action="chase" style="background:#1F8A4C;color:#fff">Send WhatsApp reminder to ${waitN} families</button>`:""}
+  <div class="seg" role="group" aria-label="Filter RSVPs">${[["all","All"],["wait","Waiting"],["yes","Coming"],["no","Can't come"]].map(([k,v])=>`<button data-action="gf" data-v="${k}" aria-pressed="${f===k}">${v}</button>`).join("")}</div>
+  <div class="card list">${list.map(x=>`<button class="row" data-action="guest" data-id="${x.id}"><div class="row-main"><div class="row-title"><span class="side" style="background:${x.side==="bride"?"var(--primary)":"var(--accent)"}"></span>${esc(x.name)} <span class="row-sub" style="font-weight:400">· ${x.n}</span></div><div class="row-sub">${esc(x.rel)} · ${esc(x.city)}${x.room?` · room ${x.room}`:""}</div></div><span class="rsvp ${x.st}">${({yes:"Coming",no:"Can't come",wait:"Waiting"})[x.st]}</span></button>`).join("")}</div>
+  <div class="row-sub"><span class="side" style="background:var(--primary)"></span>Riya's side &nbsp; <span class="side" style="background:var(--accent)"></span>Kabir's side</div>
+  <button class="btn ghost block" data-action="rooms">Allot hotel rooms (${S().hotel.rooms} at ${esc(S().hotel.name)})</button>`;
+}
+function taskRow(t){
+  const late = !t.done && dNum(t.due)<dNum(TODAY);
+  return `<div class="task ${t.done?"done":""}"><button class="check" role="checkbox" aria-checked="${t.done}" data-action="tick" data-id="${t.id}" aria-label="${t.done?"Mark not done":"Mark done"}: ${esc(t.t)}">${t.done?IC.check:""}</button><div class="row-main"><div class="row-title">${esc(t.t)}</div><div class="row-sub">${esc(t.who)} · ${E(t.ev).n} · <span style="${late?"color:var(--bad);font-weight:800":""}">${late?"overdue, ":""}due ${dLabel(t.due)}</span></div></div></div>`;
+}
+function viewTasks(){
+  const open = S().tasks.filter(t=>!t.done).sort((a,b)=>dNum(a.due)-dNum(b.due)), done = S().tasks.filter(t=>t.done);
+  const people = [...new Set(S().tasks.map(t=>t.who))];
+  return `<h1 class="h-title">Tasks</h1>
+  <div class="note">${IC.shield}<span>Relatives see only the tasks given to them, plus the event schedule. Only organisers see the budget.</span></div>
+  <div class="section-h"><h2>To do</h2><span>${open.length}</span></div><div class="card list">${open.map(taskRow).join("")}</div>
+  <div class="section-h"><h2>Done</h2><span>${done.length}</span></div><div class="card list">${done.map(taskRow).join("")}</div>
+  <div class="section-h"><h2>Who's doing what</h2></div>
+  <div class="card list">${people.map(p=>{const n=S().tasks.filter(t=>t.who===p&&!t.done).length, d=S().tasks.filter(t=>t.who===p&&t.done).length;return `<div class="row"><span class="av sm" style="background:var(--primary)">${esc(p[0])}</span><div class="row-main"><div class="row-title">${esc(p)}</div></div><span class="row-sub">${n} open · ${d} done</span></div>`;}).join("")}</div>`;
+}
+function viewBudget(){
+  const b = S().budget, est=b.reduce((a,x)=>a+x.est,0), com=b.reduce((a,x)=>a+x.com,0), paid=b.reduce((a,x)=>a+x.paid,0);
+  const over = b.filter(x=>x.com>x.est);
+  const R=48, C=2*Math.PI*R, pp=paid/est, cp=Math.min(1,com/est);
+  return `<h1 class="h-title">Budget</h1>
+  <div class="card pad" style="display:flex;gap:16px;align-items:center">
+    <svg class="donut" viewBox="0 0 120 120" role="img" aria-label="${Math.round(pp*100)}% of budget paid"><circle cx="60" cy="60" r="${R}" fill="none" stroke="var(--surface-2)" stroke-width="14"/><circle cx="60" cy="60" r="${R}" fill="none" stroke="color-mix(in srgb,var(--primary) 35%,transparent)" stroke-width="14" stroke-dasharray="${cp*C} ${C}" transform="rotate(-90 60 60)"/><circle cx="60" cy="60" r="${R}" fill="none" stroke="var(--primary)" stroke-width="14" stroke-dasharray="${pp*C} ${C}" transform="rotate(-90 60 60)"/><text x="60" y="58" text-anchor="middle" font-family="var(--body)" font-weight="800" font-size="20" fill="var(--ink)">${Math.round(pp*100)}%</text><text x="60" y="76" text-anchor="middle" font-family="var(--body)" font-size="10" fill="var(--ink-2)">paid</text></svg>
+    <div class="summary" style="flex:1;background:transparent;padding:0"><div><span>Budget</span><b class="num">${inr(est)}</b></div><div><span>Committed</span><b class="num">${inr(com)}</b></div><div><span>Paid</span><b class="num">${inr(paid)}</b></div><div><span>Still to pay</span><b class="num">${inr(com-paid)}</b></div></div></div>
+  ${over.length?`<div class="note" style="background:var(--bad-soft)">${IC.info}<span><b>Over estimate:</b> ${over.map(x=>`${esc(x.c)} by ${inr(x.com-x.est)}`).join(", ")}. Clothing and gifts are under, so the total is still within budget.</span></div>`:""}
+  <div class="card">${b.map(x=>{const o=x.com>x.est, mx=Math.max(x.est,x.com);return `<div class="bud"><div class="top"><b>${esc(x.c)}</b><span class="num ${o?"":"muted"}" style="${o?"color:var(--bad);font-weight:800":""}">${inrL(x.com)} / ${inrL(x.est)}</span></div><div class="btrack"><i class="c ${o?"over":""}" style="width:${x.com/mx*100}%;${o?"opacity:.35":""}"></i><i class="p" style="width:${x.paid/mx*100}%"></i>${o?`<i style="left:${x.est/mx*100}%;width:2px;background:var(--ink)"></i>`:""}</div><div class="row-sub num">Paid ${inr(x.paid)}</div></div>`;}).join("")}</div>
+  <div class="row-sub">Dark bar = paid · light bar = committed · line = estimate</div>`;
+}
+function viewVendors(){
+  return `<h1 class="h-title">Vendors</h1>
+  <div class="card list">${S().vendors.map(v=>{const due=v.next, late=due&&dNum(due.d)<dNum(TODAY), soon=due&&daysBetween(TODAY,due.d)<=10;return `<div class="row" style="flex-wrap:wrap"><div class="row-main"><div class="row-title">${esc(v.n)}</div><div class="row-sub">${esc(v.k)} · paid ${inr(v.paid)} of ${inr(v.total)}</div>${due?`<div class="row-sub" style="${soon?"color:var(--bad);font-weight:800":""}">Next: ${inr(due.a)} on ${dLabel(due.d)}</div>`:`<div class="row-sub" style="color:var(--good);font-weight:800">Fully paid</div>`}<div class="bar-track" style="margin-top:6px"><div class="bar" style="width:${v.paid/v.total*100}%"></div></div></div>${due?`<button class="btn sm" data-action="pay" data-id="${v.id}">Record payment</button>`:""}</div>`;}).join("")}</div>
+  <p class="hint">Upload each vendor's quote and contract photo in the real app, so the whole family can see what was agreed.</p>`;
+}
+
+/* ---------- actions ---------- */
+function sheetGuest(id){
+  const x = S().guests.find(g=>g.id===id);
+  openSheet(esc(x.name), `
+    <div class="summary"><div><span>Contact</span><b>${esc(x.lead)}</b></div><div><span>Phone</span><b class="num">+91 ${esc(x.phone.slice(0,5))} ${esc(x.phone.slice(5))}</b></div><div><span>People</span><b>${x.n}</b></div><div><span>From</span><b>${esc(x.city)}</b></div><div><span>Side</span><b>${x.side==="bride"?"Riya's side":"Kabir's side"}</b></div><div><span>Relation</span><b>${esc(x.rel)}</b></div></div>
+    <div class="field"><span class="lbl">RSVP</span><div class="pick" id="g-st">${[["yes","Coming"],["wait","Waiting"],["no","Can't come"]].map(([k,v])=>`<button type="button" data-v="${k}" aria-pressed="${x.st===k}">${v}</button>`).join("")}</div></div>
+    <div class="field"><span class="lbl">Events</span><div class="pick" id="g-ev" data-multi="1">${EVENTS.map(e=>`<button type="button" data-v="${e.id}" aria-pressed="${x.events.includes(e.id)}">${e.n}</button>`).join("")}</div></div>
+    <div class="field"><label class="lbl" for="g-n">Number of people</label><input id="g-n" inputmode="numeric" value="${x.n}"></div>
+    <button class="btn block" data-action="save-guest" data-id="${x.id}">Save</button>`);
+  pickGroup($("#g-st")); pickGroup($("#g-ev"));
+}
+Object.assign(Kit.actions, {
+  "go-guests": a => { S().ev=a.dataset.ev; S().tab="guests"; Kit.render(); },
+  "go-tasks": () => { S().tab="tasks"; Kit.render(); },
+  ev: a => { S().ev=a.dataset.ev; Kit.render(true); },
+  gf: a => { S().gf=a.dataset.v; Kit.render(true); },
+  guest: a => sheetGuest(+a.dataset.id),
+  "save-guest": a => { const x=S().guests.find(g=>g.id===+a.dataset.id); x.st=picked($("#g-st"))[0]; x.events=picked($("#g-ev")); x.n=Math.max(1,+$("#g-n").value||x.n); closeSheet(); Kit.render(true); toast(`${x.name} updated. Headcounts recalculated.`); },
+  chase: () => { const w=S().guests.filter(g=>g.st==="wait"); openSheet("RSVP reminder", `<p class="hint" style="color:var(--ink)">Goes to ${w.length} families on WhatsApp. They reply with one tap on a web page, no app needed.</p>
+    <div class="summary" style="white-space:pre-wrap;background:#E7F5DF;color:#1C2B18">Namaste! 🌼 We'd love to know if you can join us for Riya and Kabir's wedding celebrations in Jaipur, 11–14 December. Please tap to reply for each event: utsav.app/r/riya-kabir</div>
+    <button class="btn block" data-action="send-chase" style="background:#1F8A4C;color:#fff">Send to ${w.length} families</button>`); },
+  "send-chase": () => { const w=S().guests.filter(g=>g.st==="wait"); closeSheet(); toast(`Prototype: sent to ${w.length} families. Demo replies arriving…`);
+    setTimeout(()=>{ w.slice(0,2).forEach(g=>{ g.st="yes"; g.events=["sangeet","wedding","reception"]; }); Kit.render(true); toast(`${w.slice(0,2).map(g=>g.name).join(" and ")} replied: coming.`); }, 2500); },
+  "share-count": () => { const ev=E(S().ev), c=countFor(ev.id), j=S().guests.filter(x=>x.st==="yes"&&x.events.includes(ev.id)).reduce((a,x)=>a+x.jain,0); openSheet("Headcount for caterer", `<pre id="hc" class="summary" style="white-space:pre-wrap;font-family:var(--body);font-size:14px;margin:0">${esc(`${ev.n}, ${dow(ev.d)} ${dLabel(ev.d)}, ${t12(ev.t)}\n${ev.v}\nConfirmed: ${c}\nVeg: ${c-j}  ·  Jain: ${j}\nAdd 10% buffer: ${Math.ceil(c*1.1)} plates\nUpdated ${dLabel(TODAY)}`)}</pre><button class="btn block" data-action="copy-hc">Copy for WhatsApp</button><p class="hint">Numbers update as RSVPs change. Send a final count 3 days before.</p>`); },
+  "copy-hc": () => copyText($("#hc"), "Headcount copied."),
+  rooms: () => { const out=S().guests.filter(g=>g.st==="yes"&&g.city!=="Jaipur").sort((a,b)=>b.n-a.n); let r=101, used=0; const need=g=>Math.ceil(g.n/3);
+    out.forEach(g=>{ if(used+need(g)<=S().hotel.rooms){ g.room = need(g)===1?String(r):`${r}–${r+need(g)-1}`; r+=need(g); used+=need(g);} else g.room=null; });
+    const left=out.filter(g=>!g.room); Kit.render(true); toast(`${used} of ${S().hotel.rooms} rooms allotted to ${out.length-left.length} families${left.length?`. ${left.length} families still need rooms`:""}.`); },
+  tick: a => { const t=S().tasks.find(x=>x.id===+a.dataset.id); t.done=!t.done; Kit.render(true); if(t.done) toast(`Done. ${t.who==="You"?"":"We'll thank "+t.who+"."}`); },
+  fab: () => { if(S().tab==="guests"){ toast("Prototype: add a family by name and phone, or import from contacts or a spreadsheet."); return; }
+    openSheet("New task", `<div class="field"><label class="lbl" for="nt-t">Task</label><input id="nt-t" value="Arrange 2 cars for baraat from hotel"></div>
+    <div class="field"><span class="lbl">For which event</span><div class="pick" id="nt-e">${EVENTS.map(e=>`<button type="button" data-v="${e.id}" aria-pressed="${e.id==="wedding"}">${e.n}</button>`).join("")}</div></div>
+    <div class="field"><span class="lbl">Who will do it</span><div class="pick" id="nt-w">${["You","Mama ji","Papa","Bua ji","Mummy","Kabir's cousin Aditya"].map((w,i)=>`<button type="button" data-v="${w}" aria-pressed="${i===1}">${w}</button>`).join("")}</div></div>
+    <div class="field"><label class="lbl" for="nt-d">Due</label><input id="nt-d" type="date" value="2026-11-30"></div>
+    <div class="err" id="nt-err"></div><button class="btn block" data-action="save-task">Add and notify</button>`); pickGroup($("#nt-e")); pickGroup($("#nt-w")); },
+  "save-task": () => { const t=$("#nt-t").value.trim(); if(!t){$("#nt-err").textContent="Describe the task.";return;} const w=picked($("#nt-w"))[0]; S().tasks.push({id:S().nextId++, t, who:w, ev:picked($("#nt-e"))[0], due:$("#nt-d").value||"2026-11-30", done:false}); closeSheet(); S().tab="tasks"; Kit.render(); toast(w==="You"?"Task added.":`Task added. ${w} gets a WhatsApp message with a link to their task list.`); },
+  pay: a => { const v=S().vendors.find(x=>x.id===+a.dataset.id); openSheet(`Payment to ${esc(v.n)}`, `<div class="summary"><div><span>Contract</span><b class="num">${inr(v.total)}</b></div><div><span>Paid so far</span><b class="num">${inr(v.paid)}</b></div></div><div class="field"><label class="lbl" for="p-a">Amount paid (₹)</label><input id="p-a" inputmode="numeric" value="${v.next.a}"></div><div class="field"><span class="lbl">How</span><div class="pick" id="p-m">${["UPI","Bank transfer","Cash","Cheque"].map((m,i)=>`<button type="button" data-v="${m}" aria-pressed="${i===0}">${m}</button>`).join("")}</div></div><label class="file-lbl">${IC.camera}<span>Add receipt photo</span><input type="file" accept="image/*"></label><button class="btn block" data-action="save-pay" data-id="${v.id}">Save payment</button>`); pickGroup($("#p-m")); },
+  "save-pay": a => { const v=S().vendors.find(x=>x.id===+a.dataset.id), amt=+$("#p-a").value||0; if(amt<=0) return; v.paid=Math.min(v.total, v.paid+amt); const b=S().budget.find(x=>x.c===v.k); if(b) b.paid=Math.min(b.com, b.paid+amt); const rest=v.total-v.paid; v.next = rest>0 ? {a:rest, d:addDays(v.next.d,30)} : null; closeSheet(); Kit.render(true); toast(`${inr(amt)} recorded for ${v.n}. ${rest>0?inr(rest)+" left to pay.":"Fully paid."}`); }
+});
+Kit.afterRender.push(s => { const w=s.guests.filter(g=>g.st==="wait").length; $("#g-dot").hidden=!w; $("#g-dot").textContent=w; const late=s.tasks.filter(t=>!t.done&&dNum(t.due)<dNum(TODAY)).length; $("#t-dot").hidden=!late; $("#t-dot").textContent=late; $("#fab").hidden=!["home","tasks","guests"].includes(s.tab); $("#fab-lbl").textContent = s.tab==="guests"?"Guest":"Task"; });
+Kit.views = {home:viewHome, guests:viewGuests, tasks:viewTasks, budget:viewBudget, vendors:viewVendors};
+Kit.init({store:"utsav-v1", seed});
+</script>
+
+</body></html>

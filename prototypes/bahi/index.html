@@ -1,0 +1,512 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Bahi Shop Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Mukta:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --bg:#F1ECE4; --surface:#FFFDF8; --surface-2:#F7F2EA; --ink:#241A14; --ink-2:#6A5B50; --line:#E3D8CA;
+  --primary:#A3201F; --primary-ink:#FFFFFF; --primary-soft:#F7E0DC;
+  --accent:#F2B705; --accent-ink:#241A14; --accent-soft:#FDF1C7;
+  --good:#1D7A43; --good-soft:#DCF0E2; --bad:#B3261E; --bad-soft:#F9E0DC; --warn:#D98E04; --warn-soft:#FCEFCF;
+  --track:#CFC2B3; --frame:#1E1410; --shadow:0 24px 60px -24px rgba(36,26,20,.45); --scrim:rgba(20,12,8,.5);
+  --paper-line:#E9DDCD; --margin:#D9534F;
+  --display:"Baloo 2", "Mukta", system-ui, sans-serif; --display-weight:800;
+  --body:"Mukta", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){color-scheme:dark;
+  --bg:#120D0B; --surface:#1C1512; --surface-2:#241C18; --ink:#F2EAE0; --ink-2:#B3A597; --line:#3A2E27;
+  --primary:#E35A52; --primary-ink:#120D0B; --primary-soft:#3E1B18; --accent:#F2B705; --accent-ink:#241A14; --accent-soft:#3A2F10;
+  --good:#5ED39A; --good-soft:#15301F; --bad:#F2806F; --bad-soft:#3A1E1A; --warn:#F2BE4C; --warn-soft:#3A2F14;
+  --track:#4A3D34; --frame:#000; --shadow:0 24px 60px -24px rgba(0,0,0,.8); --scrim:rgba(0,0,0,.6); --paper-line:#2E241F; --margin:#7A2E2A;}}
+:root[data-theme="dark"]{color-scheme:dark;
+  --bg:#120D0B; --surface:#1C1512; --surface-2:#241C18; --ink:#F2EAE0; --ink-2:#B3A597; --line:#3A2E27;
+  --primary:#E35A52; --primary-ink:#120D0B; --primary-soft:#3E1B18; --accent:#F2B705; --accent-ink:#241A14; --accent-soft:#3A2F10;
+  --good:#5ED39A; --good-soft:#15301F; --bad:#F2806F; --bad-soft:#3A1E1A; --warn:#F2BE4C; --warn-soft:#3A2F14;
+  --track:#4A3D34; --frame:#000; --shadow:0 24px 60px -24px rgba(0,0,0,.8); --scrim:rgba(0,0,0,.6); --paper-line:#2E241F; --margin:#7A2E2A;}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.45;padding-inline:16px;padding-block:24px;margin:0}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.num{font-variant-numeric:tabular-nums}
+.stage{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:44px;align-items:start;justify-content:center}
+@media (max-width:760px){.stage{grid-template-columns:minmax(0,1fr);gap:20px}}
+.phone{position:relative;width:100%;max-width:400px;margin:0 auto;height:min(800px,calc(100svh - 48px));min-height:620px;background:var(--surface-2);border-radius:34px;border:8px solid var(--frame);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+@media (max-width:440px){.phone{border-width:0;border-radius:18px;height:calc(100svh - 48px)}}
+.appbar{padding:16px 16px 10px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{font-family:var(--display);font-size:24px;line-height:1.05;font-weight:var(--display-weight,700);letter-spacing:-.01em}
+.brand-sub{font-size:12px;color:var(--ink-2);margin-top:2px}
+.bar-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{position:relative;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;color:var(--ink)}
+.icon-btn svg{width:20px;height:20px}
+.badge{position:absolute;top:-3px;right:-3px;min-width:18px;height:18px;padding:0 5px;border-radius:99px;background:var(--bad);color:#fff;font-size:10.5px;font-weight:700;display:grid;place-items:center;border:2px solid var(--surface-2)}
+.screen{flex:1;overflow-y:auto;padding:4px 16px 100px;display:flex;flex-direction:column;gap:14px}
+.screen > *{flex-shrink:0}
+.tabbar{position:absolute;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(var(--tabs,5),1fr);background:var(--surface);border-top:1px solid var(--line);padding:6px 4px calc(8px + env(safe-area-inset-bottom,0px));z-index:3}
+.tab{background:none;border:0;padding:5px 0;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;font-weight:700;color:var(--ink-2);position:relative}
+.tab svg{width:21px;height:21px}
+.tab-ico{padding:3px 12px;border-radius:999px;display:flex}
+.tab[aria-current="page"]{color:var(--ink)}
+.tab[aria-current="page"] .tab-ico{background:var(--primary-soft);color:var(--primary)}
+.tab .dot{position:absolute;top:1px;right:calc(50% - 20px);min-width:16px;height:16px;border-radius:99px;background:var(--accent);color:var(--accent-ink);font-size:10px;font-weight:800;display:grid;place-items:center;padding:0 4px}
+.fab{position:absolute;right:16px;bottom:84px;height:54px;padding:0 20px 0 16px;border-radius:18px;border:0;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;gap:6px;font-weight:800;box-shadow:0 10px 24px -8px rgba(0,0,0,.35);z-index:2}
+.fab svg{width:22px;height:22px}
+.h-title{font-family:var(--display);font-weight:var(--display-weight,700);font-size:24px;line-height:1.15;margin:2px 0 0;text-wrap:balance}
+.section-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:4px}
+.section-h h2{font-family:var(--display);font-weight:var(--display-weight,700);font-size:18px;margin:0}
+.section-h span{font-size:12px;color:var(--ink-2)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius,18px)}
+.pad{padding:14px}
+.list{display:flex;flex-direction:column}
+.row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-top:1px solid var(--line);background:none;border-left:0;border-right:0;border-bottom:0;width:100%;text-align:left}
+.row:first-child{border-top:0}
+button.row:hover{background:var(--surface-2)}
+.card > button.row:first-child{border-radius:var(--radius,18px) var(--radius,18px) 0 0}.card > button.row:last-child{border-radius:0 0 var(--radius,18px) var(--radius,18px)}.card > button.row:only-child{border-radius:var(--radius,18px)}
+.row-main{flex:1;min-width:0}
+.row-title{font-weight:700;overflow-wrap:anywhere}
+.row-sub{font-size:12.5px;color:var(--ink-2)}
+.row-end{text-align:right;font-size:12px;white-space:nowrap}
+.row-end b{display:block;font-size:14.5px}
+.muted{color:var(--ink-2)} .hint{font-size:13px;color:var(--ink-2);margin:0}
+.ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:var(--surface-2);color:var(--ink-2);flex:none}
+.ico svg{width:20px;height:20px}
+.av{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:14px;flex:none}
+.av.sm{width:26px;height:26px;font-size:11px}
+.btn{border:0;border-radius:12px;padding:8px 14px;font-weight:700;font-size:13.5px;background:var(--primary);color:var(--primary-ink);white-space:nowrap}
+.btn.accent{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:var(--surface-2);color:var(--ink);border:1px solid var(--line)}
+.btn.danger{background:var(--bad);color:#fff}
+.btn.block{width:100%;padding:13px;font-size:15px;border-radius:14px}
+.btn.sm{padding:6px 11px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap;border:0}
+.chip svg{width:12px;height:12px}
+.chip.good{background:var(--good-soft);color:var(--good)}
+.chip.bad{background:var(--bad-soft);color:var(--bad)}
+.chip.warn{background:var(--warn-soft);color:var(--ink)}
+.chip.pri{background:var(--primary-soft);color:var(--primary)}
+.chip.acc{background:var(--accent-soft);color:var(--ink)}
+.lbl{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.search{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0 12px}
+.search svg{width:18px;height:18px;color:var(--ink-2);flex:none}
+.search input{border:0;background:none;padding:11px 0;width:100%;outline:none}
+.filters{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.filters button{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 12px;font-size:12.5px;font-weight:700;color:var(--ink-2)}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.seg{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:3px}
+.seg button{flex:1;border:0;background:none;padding:7px;border-radius:9px;font-size:13px;font-weight:700;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--primary-soft);color:var(--ink)}
+.bar-track{height:8px;background:var(--surface-2);border-radius:99px;position:relative;overflow:hidden}
+.bar{position:absolute;left:0;top:0;bottom:0;border-radius:99px;background:var(--primary)}
+.empty{padding:18px;text-align:center;color:var(--ink-2);font-size:13.5px}
+.hero{background:var(--primary);color:var(--primary-ink);border-radius:22px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.hero .lbl{color:inherit;opacity:.8}
+.hero-big{font-family:var(--display);font-weight:var(--display-weight,700);font-size:40px;line-height:1}
+.pill{font-size:12px;font-weight:700;background:rgba(255,255,255,.18);padding:4px 10px;border-radius:999px}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.sheet-wrap{position:absolute;inset:0;background:var(--scrim);display:flex;align-items:flex-end;z-index:6}
+.sheet{width:100%;max-height:92%;overflow-y:auto;background:var(--surface);border-radius:24px 24px 0 0;padding:10px 18px calc(20px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px;animation:up .22s ease-out}
+.sheet.full{height:92%}
+.sheet > *{flex-shrink:0}
+@keyframes up{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}}
+.grab{width:40px;height:4px;border-radius:9px;background:var(--line);margin:0 auto}
+.sheet-h{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sheet-h h3{font-family:var(--display);font-weight:var(--display-weight,700);font-size:21px;margin:0;line-height:1.15;display:flex;align-items:center;gap:8px}
+.x{background:var(--surface-2);border:0;border-radius:50%;width:32px;height:32px;display:grid;place-items:center;flex:none;color:var(--ink)}
+.field{display:flex;flex-direction:column;gap:7px}
+.field input:not([type=checkbox]):not([type=radio]):not([type=file]),.field select,.field textarea{background:var(--surface-2);border:1px solid var(--line);border-radius:12px;padding:11px 12px;width:100%}
+.field textarea{resize:vertical;min-height:70px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pick{display:flex;flex-wrap:wrap;gap:8px}
+.pick button{border:1px solid var(--line);background:var(--surface-2);border-radius:12px;padding:8px 12px;font-size:13.5px;font-weight:700;text-align:left}
+.pick button[aria-pressed="true"]{border-color:var(--primary);background:var(--primary-soft)}
+.pick button small{display:block;font-weight:500;font-size:11.5px;color:var(--ink-2)}
+.err{color:var(--bad);font-size:13px;min-height:1em}
+.summary{background:var(--surface-2);border-radius:14px;padding:12px;font-size:13.5px;display:flex;flex-direction:column;gap:6px}
+.summary > div{display:flex;justify-content:space-between;gap:10px}
+.note{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;background:var(--primary-soft);color:var(--ink);border-radius:12px;padding:9px 11px}
+.note svg{width:16px;height:16px;color:var(--primary);flex:none;margin-top:1px}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:14px;padding:12px 14px;border-top:1px solid var(--line)}
+.opt:first-child{border-top:0}
+.switch{appearance:none;width:42px;height:24px;border-radius:99px;background:var(--track);position:relative;flex:none;cursor:pointer;transition:background .15s;margin:0}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:left .15s}
+.switch:checked{background:var(--primary)}
+.switch:checked::after{left:21px}
+.file-lbl{display:flex;align-items:center;justify-content:center;gap:8px;border:1px dashed var(--line);border-radius:12px;padding:12px;font-size:13.5px;color:var(--ink-2);cursor:pointer;background:var(--surface-2);position:relative}
+.file-lbl svg{width:20px;height:20px;flex:none}
+.file-lbl input{position:absolute;width:1px;height:1px;opacity:0}
+.check{width:28px;height:28px;border-radius:9px;border:2px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none;color:var(--primary-ink);padding:0}
+.check[aria-checked="true"]{background:var(--primary);border-color:var(--primary)}
+.check svg{width:16px;height:16px}
+.toast{position:absolute;left:16px;right:16px;top:72px;background:var(--ink);color:var(--surface);padding:11px 14px;border-radius:12px;font-size:13.5px;z-index:9;box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+.notes{padding-top:8px;max-width:62ch;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;color:var(--primary)}
+.notes h1{font-family:var(--display);font-weight:var(--display-weight,700);font-size:clamp(30px,5vw,46px);line-height:1.03;letter-spacing:-.01em;margin:0;text-wrap:balance}
+.notes p{color:var(--ink-2);margin:0}
+.try{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:16px}
+.try div{display:flex;gap:12px;padding:11px 14px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-2)}
+.try div:first-child{border-top:0}
+.try b{color:var(--ink)}
+.try .n{font-family:var(--display);font-weight:var(--display-weight,700);color:var(--primary);min-width:16px}
+.stack{display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:var(--ink-2)}
+.stack b{color:var(--ink)}
+@media (max-width:760px){.notes{order:-1;padding-top:0}.try,.stack{display:none}}
+
+body{font-size:16px}
+.brand{font-size:28px;line-height:1}
+.cover{background:var(--primary);color:var(--primary-ink);border-radius:20px;padding:16px 18px;position:relative;overflow:hidden}
+.cover:after{content:"";position:absolute;right:18px;top:0;bottom:0;width:6px;background:var(--accent);opacity:.9}
+.cover .lbl{color:inherit;opacity:.85}
+.cover .big{font-family:var(--display);font-weight:800;font-size:40px;line-height:1.05}
+.cover .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;padding-right:18px}
+.cover .row2 div{background:rgba(255,255,255,.14);border-radius:12px;padding:8px 10px}
+.cover .row2 b{display:block;font-size:18px}
+.cover .row2 span{font-size:12.5px;opacity:.85}
+.ledger{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;background-image:linear-gradient(90deg,transparent 46px,var(--margin) 46px,var(--margin) 47px,transparent 47px)}
+.lrow{display:flex;align-items:center;gap:12px;padding:10px 14px 10px 12px;border-top:1px solid var(--paper-line);width:100%;text-align:left;background:none;border-left:0;border-right:0;border-bottom:0}
+.lrow:first-child{border-top:0}
+.lrow:hover{background:color-mix(in srgb,var(--surface-2) 70%,transparent)}
+.ini{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-weight:800;font-size:13px;color:#fff;flex:none}
+.amt{font-family:var(--display);font-weight:800;font-size:19px;white-space:nowrap}
+.amt.due{color:var(--bad)} .amt.adv{color:var(--good)} .amt.zero{color:var(--ink-2)}
+.big-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.big-actions button{border:0;border-radius:18px;padding:16px 12px;font-family:var(--display);font-weight:800;font-size:19px;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.1}
+.big-actions small{font-family:var(--body);font-weight:600;font-size:12.5px;opacity:.85}
+.b-credit{background:var(--bad);color:#fff} .b-pay{background:var(--good);color:#fff}
+:root[data-theme="dark"] .b-credit, :root[data-theme="dark"] .b-pay{color:#120D0B}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .b-credit,:root:not([data-theme="light"]) .b-pay{color:#120D0B}}
+.voice{display:flex;align-items:center;gap:12px;background:var(--accent);color:var(--accent-ink);border:0;border-radius:18px;padding:12px 14px;width:100%;text-align:left;font-weight:700}
+.voice .mic{width:44px;height:44px;border-radius:50%;background:var(--accent-ink);color:var(--accent);display:grid;place-items:center;flex:none}
+.voice .mic svg{width:22px;height:22px}
+.voice small{display:block;font-weight:500;font-size:13px;opacity:.8}
+.pad{padding:14px}
+.numpad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.numpad button{border:1px solid var(--line);background:var(--surface-2);border-radius:14px;padding:12px 0;font-family:var(--display);font-weight:700;font-size:24px}
+.amt-show{font-family:var(--display);font-weight:800;font-size:44px;text-align:center;line-height:1.1;padding:6px;border-radius:14px}
+.kind{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.kind button{border:2px solid var(--line);background:var(--surface);border-radius:14px;padding:10px;font-weight:800;font-size:16px}
+.kind button[aria-pressed="true"][data-v="credit"]{border-color:var(--bad);background:var(--bad-soft);color:var(--bad)}
+.kind button[aria-pressed="true"][data-v="pay"]{border-color:var(--good);background:var(--good-soft);color:var(--good)}
+.items{display:flex;flex-wrap:wrap;gap:6px}
+.items button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-weight:600;font-size:14px}
+.items button[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.stmt{display:flex;flex-direction:column}
+.stmt div{display:grid;grid-template-columns:62px 1fr auto auto;gap:10px;padding:9px 12px;border-top:1px solid var(--paper-line);align-items:center;font-size:14.5px}
+.stmt div:first-child{border-top:0}
+.stmt .d{color:var(--ink-2);font-size:13px}
+.stmt .c{color:var(--bad);font-weight:700;text-align:right}
+.stmt .p{color:var(--good);font-weight:700;text-align:right}
+.stmt .bal{color:var(--ink-2);font-size:13px;text-align:right;min-width:58px}
+.parsed{border:2px dashed var(--accent);border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:6px;background:var(--accent-soft)}
+.wa{background:#E7F5DF;color:#1C2B18;border-radius:14px 14px 14px 4px;padding:10px 12px;font-size:14.5px;white-space:pre-wrap}
+:root[data-theme="dark"] .wa{background:#1F3320;color:#E2F0DA}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .wa{background:#1F3320;color:#E2F0DA}}
+.bars{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:end;height:130px}
+.bars div{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:3px;font-size:12px;color:var(--ink-2)}
+.bars .stack{width:100%;max-width:30px;display:flex;flex-direction:column;border-radius:6px;overflow:hidden}
+.bars .stack{align-items:stretch;justify-content:flex-start;gap:0}
+.bars .stack i{display:block;min-height:2px}
+.lang2{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-weight:700;font-size:14px}
+.sel{width:22px;height:22px;accent-color:var(--primary);flex:none}
+</style>
+
+<div class="stage">
+  <div class="phone">
+    <header class="appbar">
+      <div><div class="brand" id="brand">बही</div><div class="brand-sub" id="shop">गुप्ता जनरल स्टोर, इंदौर</div></div>
+      <div class="bar-actions"><button class="lang2" data-action="lang" id="lang">English</button><span class="av" style="background:#A3201F">R</span></div>
+    </header>
+    <main class="screen" id="screen"></main>
+    <nav class="tabbar" aria-label="Sections" style="--tabs:4">
+      <button class="tab" data-tab="khata"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3h12a2 2 0 0 1 2 2v16H7a2 2 0 0 1-2-2z"/><path d="M5 17a2 2 0 0 1 2-2h12M9 7h6M9 11h4"/></svg></span><span data-t="tabKhata">खाता</span></button>
+      <button class="tab" data-tab="today"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h3"/></svg></span><span data-t="tabToday">आज</span></button>
+      <button class="tab" data-tab="vasooli"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M12 8v5M12 16h.01"/></svg></span><span data-t="tabCollect">वसूली</span><span class="dot" id="v-dot" hidden></span></button>
+      <button class="tab" data-tab="report"><span class="tab-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><span data-t="tabReport">हिसाब</span></button>
+    </nav>
+    <div id="sheet-root"></div>
+    <div class="toast" id="toast" role="status" hidden></div>
+  </div>
+  <aside class="notes">
+    <div class="eyebrow" style="color:var(--primary)">Clickable prototype</div>
+    <h1>Bahi: the udhaar register, in your pocket and in your language</h1>
+    <p>A credit ledger for kirana shops and small vendors. Say or type "Ramesh 340 udhaar", and it's written in the right customer's khata. Bahi also shows who to collect from first and sends polite WhatsApp reminders with a UPI ID. The interface is Hindi first, with English one tap away. You are Rakesh Gupta in Indore. All customers are sample data.</p>
+    <div class="try">
+      <div><span class="n">1</span><span><b>Write by voice.</b> Tap the yellow "बोलकर लिखें" button (speak an entry) and confirm what it heard.</span></div>
+      <div><span class="n">2</span><span><b>Type it instead.</b> In the same box, type "Salim 200 jama" and see it read as a payment.</span></div>
+      <div><span class="n">3</span><span><b>Collect.</b> Open वसूली (collections), select the top three, and send reminders.</span></div>
+      <div><span class="n">4</span><span><b>Open a khata.</b> Tap Mohan Chai Wala to see his running balance, then record a payment.</span></div>
+      <div><span class="n">5</span><span><b>Switch to English</b> using the button at the top.</span></div>
+    </div>
+    <div class="stack"><div><b>Planned build:</b> Flutter, offline-first local database with Firebase sync, on-device Hindi speech recognition, and WhatsApp Business messages.</div>
+      <button class="btn ghost sm" id="reset" style="align-self:flex-start">Reset sample data</button></div>
+  </aside>
+</div>
+
+<script>
+/* ---- shared prototype kit ---- */
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const MON = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const DOW = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+function dNum(s){const [y,m,d]=s.split("-").map(Number);return Date.UTC(y,m-1,d)/864e5;}
+function addDays(s,n){return new Date((dNum(s)+n)*864e5).toISOString().slice(0,10);}
+function addMonths(s,n){const [y,m,d]=s.split("-").map(Number);return new Date(Date.UTC(y,m-1+n,d)).toISOString().slice(0,10);}
+function dLabel(s){const [y,m,d]=s.split("-").map(Number);return d+" "+MON[m-1];}
+function dLabelY(s){const [y,m,d]=s.split("-").map(Number);return d+" "+MON[m-1]+" "+y;}
+function dow(s){return DOW[new Date(dNum(s)*864e5).getUTCDay()];}
+function t12(t){let [h,m]=t.split(":").map(Number);const ap=h>=12?"PM":"AM";h=h%12||12;return h+(m?":"+String(m).padStart(2,"0"):"")+" "+ap;}
+const inr = n => "₹" + Math.round(Math.abs(n)).toLocaleString("en-IN");
+function daysBetween(a,b){return dNum(b)-dNum(a);}
+const IC = {
+  x:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
+  search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>',
+  bell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 8 3 8H3s3-1 3-8"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>',
+  info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>',
+  camera:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h3l2-3h6l2 3h3v13H4z"/><circle cx="12" cy="13" r="4"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8.2 8 9 4.6-.8 8-4.5 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg>',
+  chev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 6 6 6-6 6"/></svg>',
+  trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg>'
+};
+const Kit = {
+  store:null, S:null, seed:null, views:{}, actions:{}, afterRender:[],
+  init(opts){
+    Object.assign(this, opts);
+    try { this.S = JSON.parse(localStorage.getItem(this.store)) || this.seed(); } catch(_) { this.S = this.seed(); }
+    document.addEventListener("click", e => this.onClick(e));
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeSheet(); });
+    const r = $("#reset"); if (r) r.addEventListener("click", () => { this.S = this.seed(); closeSheet(); this.render(); toast("Sample data restored."); });
+    this.render();
+  },
+  save(){ try { localStorage.setItem(this.store, JSON.stringify(this.S, (k,v) => k.startsWith("_") ? undefined : v)); } catch(_){} },
+  render(keep){
+    const S = this.S, sc = $("#screen"), top = sc.scrollTop;
+    sc.innerHTML = this.views[S.tab]();
+    if (keep) sc.scrollTop = top;
+    $$(".tab").forEach(t => t.removeAttribute("aria-current"));
+    const cur = $(`.tab[data-tab="${S.tab}"]`); if (cur) cur.setAttribute("aria-current","page");
+    this.afterRender.forEach(f => f(S));
+    this.save();
+  },
+  onClick(e){
+    const tab = e.target.closest(".tab");
+    if (tab){ this.S.tab = tab.dataset.tab; this.render(); $("#screen").scrollTop = 0; return; }
+    const a = e.target.closest("[data-action]"); if (!a) return;
+    const act = a.dataset.action;
+    if (act === "close-bg" && e.target !== a) return;
+    if (act === "close" || act === "close-bg") { closeSheet(); return; }
+    const fn = this.actions[act]; if (fn) fn(a, e);
+  }
+};
+function bindSearch(id, key){
+  const q = document.getElementById(id); if (!q) return;
+  q.addEventListener("input", () => { Kit.S[key] = q.value; const pos = q.selectionStart; Kit.render(true); const n = document.getElementById(id); n.focus(); n.setSelectionRange(pos,pos); });
+}
+let _tt;
+function toast(m){ const t = $("#toast"); t.textContent = m; t.hidden = false; clearTimeout(_tt); _tt = setTimeout(() => t.hidden = true, 3000); }
+function openSheet(title, body, full){
+  $("#sheet-root").innerHTML = `<div class="sheet-wrap" data-action="close-bg"><div class="sheet ${full?"full":""}" role="dialog" aria-modal="true" aria-label="${esc(title.replace(/<[^>]+>/g,""))}"><div class="grab"></div><div class="sheet-h"><h3>${title}</h3><button class="x" data-action="close" aria-label="Close">${IC.x}</button></div>${body}</div></div>`;
+}
+function closeSheet(){ const r = $("#sheet-root"); if (r) r.innerHTML = ""; }
+function pickGroup(root, onPick){
+  root.addEventListener("click", e => { const b = e.target.closest("button[data-v]"); if (!b || b.disabled) return;
+    const multi = root.dataset.multi === "1";
+    if (multi) b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true");
+    else root.querySelectorAll("button[data-v]").forEach(x => x.setAttribute("aria-pressed", x === b));
+    onPick && onPick(b.dataset.v, b);
+  });
+}
+function picked(root){ return [...root.querySelectorAll('button[aria-pressed="true"]')].map(b => b.dataset.v); }
+function copyText(el, msg){
+  const sel = () => { const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+  try { navigator.clipboard.writeText(el.textContent).then(() => toast(msg), () => { sel(); toast("Selected. Copy it from here."); }); } catch(_) { sel(); toast("Selected. Copy it from here."); }
+}
+
+const TODAY = "2026-09-28";
+const TX = {
+  tabKhata:["खाता","Khata"], tabToday:["आज","Today"], tabCollect:["वसूली","Collect"], tabReport:["हिसाब","Report"],
+  toCollect:["कुल बाकी (लेना है)","Total to collect"], customers:["ग्राहक","customers"], overdue:["देर से","overdue"],
+  gave:["उधार दिया","Gave credit"], got:["पैसा मिला","Got payment"], gaveS:["ग्राहक ने सामान लिया","Customer took goods"], gotS:["ग्राहक ने पैसे दिए","Customer paid"],
+  speak:["बोलकर लिखें","Speak an entry"], speakS:["जैसे: “रमेश 340 उधार”","e.g. “Ramesh 340 udhaar”"], search:["नाम खोजें","Search name"],
+  days:["दिन","days"], today:["आज","today"], ago:["पहले","ago"], lastPay:["आखिरी भुगतान","Last paid"], settled:["हिसाब साफ़","Settled"], advance:["एडवांस","Advance"],
+  collectFirst:["पहले इनसे लें","Collect from these first"], sendSel:["चुने हुओं को याद दिलाएँ","Remind selected"], promise:["वादा","Promised"],
+  sales:["आज की बिक्री","Today's sales"], cash:["नकद","Cash"], upi:["UPI","UPI"], udhaarGiven:["उधार दिया","Credit given"], collected:["वसूली हुई","Collected"],
+  week:["पिछले 7 दिन","Last 7 days"], top:["सबसे ज़्यादा बाकी","Largest balances"], add:["जोड़ें","Add"], save:["सेव करें","Save"],
+  remind:["WhatsApp पर याद दिलाएँ","Remind on WhatsApp"], record:["भुगतान लिखें","Record payment"], share:["हिसाब भेजें","Share statement"],
+  newCust:["नया ग्राहक","New customer"], heard:["सुना गया","Heard"], confirm:["सही है, लिखें","Correct, save it"], edit:["बदलें","Edit"]
+};
+const T = k => (TX[k]||[k,k])[Kit.S.lang==="en"?1:0];
+const COLORS = ["#A3201F","#1D7A43","#8C5A0A","#2F5FA8","#6B3FA0","#B0487A","#2C7A7B","#7A5B2F"];
+function seed(){
+  const C = (id,name,hi,phone,e) => ({id,name,hi,phone,entries:e});
+  return { tab:"khata", lang:"hi", q:"", sel:{},
+    shop:{name:"Gupta General Store, Indore", hi:"गुप्ता जनरल स्टोर, इंदौर", upi:"guptastore@okaxis"},
+    customers:[
+      C(1,"Ramesh Yadav","रमेश यादव","98260 11223",[{d:"2026-09-02",k:"credit",a:1200,n:"Atta 10 kg, tel"},{d:"2026-09-10",k:"pay",a:800,n:"UPI"},{d:"2026-09-16",k:"pay",a:400,n:"Cash"},{d:"2026-09-20",k:"credit",a:1240,n:"Rashan"},{d:"2026-09-26",k:"credit",a:600,n:"Doodh, bread"}]),
+      C(2,"Mohan Chai Wala","मोहन चाय वाला","98930 44512",[{d:"2026-08-30",k:"credit",a:900,n:"Cheeni 10 kg"},{d:"2026-09-07",k:"pay",a:500,n:"Cash"},{d:"2026-09-12",k:"credit",a:1150,n:"Chai patti, cheeni"},{d:"2026-09-22",k:"credit",a:900,n:"Doodh 30 L"}]),
+      C(3,"Anita Didi","अनीता दीदी","97540 88120",[{d:"2026-08-26",k:"credit",a:720,n:"Rashan"},{d:"2026-08-29",k:"pay",a:300,n:"Cash"},{d:"2026-09-05",k:"credit",a:700,n:"Chawal 10 kg"}]),
+      C(4,"Salim Bhai","सलीम भाई","99260 33019",[{d:"2026-09-12",k:"credit",a:450,n:"Tel, masale"},{d:"2026-09-19",k:"pay",a:300,n:"UPI"},{d:"2026-09-24",k:"credit",a:825,n:"Rashan"}], ),
+      C(5,"Sunita (Flat 12)","सुनीता (फ़्लैट 12)","90390 55771",[{d:"2026-09-18",k:"credit",a:400,n:"Doodh"},{d:"2026-09-25",k:"pay",a:400,n:"UPI"},{d:"2026-09-27",k:"credit",a:620,n:"Sabzi, doodh"}]),
+      C(6,"Pinky Beauty Parlour","पिंकी ब्यूटी पार्लर","98270 90114",[{d:"2026-09-27",k:"credit",a:310,n:"Detergent, sabun"}]),
+      C(7,"Verma ji","वर्मा जी","94250 12788",[{d:"2026-09-14",k:"credit",a:540,n:"Rashan"},{d:"2026-09-21",k:"pay",a:540,n:"Cash"}]),
+      C(8,"Kapoor ji","कपूर जी","98261 70045",[{d:"2026-09-20",k:"pay",a:500,n:"Advance"}])
+    ],
+    promises:{4:"2026-10-02"},
+    todayBook:{cash:8430, upi:5210, credit:1090, collected:2300},
+    week:[[6120,3890],[7450,4210],[5980,4020],[8810,5530],[9240,6010],[7120,4480],[8430,5210]],
+    nextId:100 };
+}
+const S = () => Kit.S;
+const Cu = id => S().customers.find(c=>c.id===id);
+const nameOf = c => S().lang==="en" ? c.name : c.hi;
+const bal = c => c.entries.reduce((a,e)=>a+(e.k==="credit"?e.a:-e.a),0);
+const lastPay = c => { const p=c.entries.filter(e=>e.k==="pay"); return p.length?p[p.length-1].d:null; };
+const sinceCredit = c => { const cr=c.entries.filter(e=>e.k==="credit"); const lp=lastPay(c); const first = cr.find(e=>!lp || dNum(e.d)>dNum(lp)) || cr[cr.length-1]; return first?daysBetween(first.d,TODAY):0; };
+const oldestUnpaid = c => { let b=bal(c); if(b<=0) return 0; let run=0; const cr=[...c.entries].filter(e=>e.k==="credit").reverse(); for(const e of cr){ run+=e.a; if(run>=b) return daysBetween(e.d,TODAY);} return daysBetween(c.entries[0].d,TODAY); };
+const priority = c => bal(c) * (1 + oldestUnpaid(c)/10);
+const col = c => COLORS[(c.id-1)%COLORS.length];
+function amtCls(b){ return b>0?"due":b<0?"adv":"zero"; }
+function custRow(c, withSel){
+  const b = bal(c), od = oldestUnpaid(c), lp = lastPay(c);
+  const sub = b===0 ? T("settled") : b<0 ? T("advance") : `${od} ${T("days")} · ${T("lastPay")}: ${lp?dLabel(lp):"—"}`;
+  return `<button class="lrow" data-action="${withSel?"toggle-sel":"cust"}" data-id="${c.id}">${withSel?`<input type="checkbox" class="sel" tabindex="-1" ${S().sel[c.id]?"checked":""} aria-label="${esc(nameOf(c))}">`:`<span class="ini" style="background:${col(c)}">${esc(nameOf(c)[0])}</span>`}<div class="row-main" style="padding-left:6px"><div class="row-title">${esc(nameOf(c))}</div><div class="row-sub" style="${od>14&&b>0?"color:var(--bad);font-weight:600":""}">${esc(sub)}${S().promises[c.id]?` · ${T("promise")} ${dLabel(S().promises[c.id])}`:""}</div></div><span class="amt ${amtCls(b)} num">${inr(b)}</span></button>`;
+}
+function viewKhata(){
+  const cs = S().customers, total = cs.reduce((a,c)=>a+Math.max(0,bal(c)),0), od = cs.filter(c=>bal(c)>0 && oldestUnpaid(c)>14).length;
+  const q = S().q.trim().toLowerCase();
+  const list = cs.filter(c=>!q || c.name.toLowerCase().includes(q) || c.hi.includes(S().q.trim())).sort((a,b)=>bal(b)-bal(a));
+  return `
+  <section class="cover"><div class="lbl">${T("toCollect")}</div><div class="big num">${inr(total)}</div>
+    <div class="row2"><div><b class="num">${cs.filter(c=>bal(c)>0).length}</b><span>${T("customers")}</span></div><div><b class="num">${od}</b><span>${T("overdue")} (15+ ${T("days")})</span></div></div></section>
+  <button class="voice" data-action="voice"><span class="mic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span><span>${T("speak")}<small>${T("speakS")}</small></span></button>
+  <div class="big-actions"><button class="b-credit" data-action="entry" data-k="credit">${T("gave")}<small>${T("gaveS")}</small></button><button class="b-pay" data-action="entry" data-k="pay">${T("got")}<small>${T("gotS")}</small></button></div>
+  <label class="search">${IC.search}<input id="q" type="search" placeholder="${T("search")}" value="${esc(S().q)}" aria-label="${T("search")}"></label>
+  <div class="ledger">${list.map(c=>custRow(c)).join("")}</div>
+  <button class="btn ghost block" data-action="new-cust">+ ${T("newCust")}</button>`;
+}
+function viewToday(){
+  const b = S().todayBook, tot = b.cash+b.upi;
+  const en = S().lang==="en";
+  const todays = S().customers.flatMap(c=>c.entries.filter(e=>e.d===TODAY).map(e=>({c,e})));
+  return `<h1 class="h-title">${T("sales")}: <span class="num">${inr(tot)}</span></h1>
+  <div class="two"><div class="card pad"><div class="lbl">${T("cash")}</div><div class="amt num">${inr(b.cash)}</div></div><div class="card pad"><div class="lbl">${T("upi")}</div><div class="amt num">${inr(b.upi)}</div></div></div>
+  <div class="two"><div class="card pad"><div class="lbl">${T("udhaarGiven")}</div><div class="amt due num">${inr(b.credit)}</div></div><div class="card pad"><div class="lbl">${T("collected")}</div><div class="amt adv num">${inr(b.collected)}</div></div></div>
+  <div class="note">${IC.info}<span>${en?"UPI payments to your shop QR are added automatically when you link your bank's SMS alerts (with your permission). Cash is entered by you.":"आपके दुकान QR पर आए UPI भुगतान, बैंक SMS जोड़ने पर (आपकी अनुमति से) अपने-आप जुड़ जाते हैं। नकद आप खुद लिखें।"}</span></div>
+  <div class="section-h"><h2>${en?"Today's khata entries":"आज की खाता एंट्री"}</h2><span class="num">${todays.length}</span></div>
+  <div class="ledger">${todays.length?todays.map(({c,e})=>`<div class="lrow"><span class="ini" style="background:${col(c)}">${esc(nameOf(c)[0])}</span><div class="row-main" style="padding-left:6px"><div class="row-title">${esc(nameOf(c))}</div><div class="row-sub">${esc(e.n||"")}</div></div><span class="amt ${e.k==="credit"?"due":"adv"} num">${e.k==="credit"?"":"+"}${inr(e.a)}</span></div>`).join(""):`<div class="empty">${en?"No khata entries yet today.":"आज अभी कोई एंट्री नहीं।"}</div>`}</div>`;
+}
+function viewVasooli(){
+  const en = S().lang==="en";
+  const due = S().customers.filter(c=>bal(c)>0).sort((a,b)=>priority(b)-priority(a));
+  const n = Object.values(S().sel).filter(Boolean).length;
+  return `<h1 class="h-title">${T("collectFirst")}</h1>
+  <p class="hint" style="color:var(--ink)">${en?"Ordered by amount and how long it's been unpaid. Tick customers and send polite reminders together.":"रकम और कितने दिन से बाकी है, उसके हिसाब से क्रम। ग्राहक चुनें और सबको एक साथ विनम्र याद दिलाएँ।"}</p>
+  <div class="ledger">${due.map(c=>custRow(c,true)).join("")}</div>
+  <button class="btn block" data-action="send-sel" ${n?"":"disabled"} style="background:#1F8A4C;color:#fff">${T("sendSel")} (${n})</button>
+  <div class="note">${IC.shield}<span>${en?"Reminders go from your WhatsApp Business number, at most once every 3 days per customer, never after 9 PM.":"रिमाइंडर आपके WhatsApp Business नंबर से जाते हैं, एक ग्राहक को 3 दिन में एक बार से ज़्यादा नहीं, रात 9 बजे के बाद कभी नहीं।"}</span></div>`;
+}
+function viewReport(){
+  const en = S().lang==="en", w = S().week, mx = Math.max(...w.map(x=>x[0]+x[1]));
+  const days=[...Array(7)].map((_,i)=>addDays(TODAY,i-6));
+  const top = [...S().customers].sort((a,b)=>bal(b)-bal(a)).slice(0,4);
+  const tot = w.reduce((a,x)=>a+x[0]+x[1],0), upi = w.reduce((a,x)=>a+x[1],0);
+  return `<h1 class="h-title">${T("week")}: <span class="num">${inr(tot)}</span></h1>
+  <div class="card pad"><div class="bars">${w.map((x,i)=>`<div><b class="num" style="color:var(--ink);font-size:11.5px">${(x[0]+x[1])/1000|0}k</b><div class="stack" style="height:${(x[0]+x[1])/mx*96}px"><i style="flex:${x[1]};background:var(--accent)"></i><i style="flex:${x[0]};background:var(--primary)"></i></div><span>${en?dow(days[i]):["रवि","सोम","मंगल","बुध","गुरु","शुक्र","शनि"][new Date(dNum(days[i])*864e5).getUTCDay()]}</span></div>`).join("")}</div>
+  <div class="row-sub" style="margin-top:8px"><span style="color:var(--primary);font-weight:800">■</span> ${T("cash")} &nbsp; <span style="color:var(--accent);font-weight:800">■</span> UPI · ${Math.round(upi/tot*100)}% UPI</div></div>
+  <div class="section-h"><h2>${T("top")}</h2></div>
+  <div class="ledger">${top.map(c=>custRow(c)).join("")}</div>
+  <div class="card"><label class="opt"><span><b>${en?"Daily backup":"रोज़ बैकअप"}</b><br><span class="row-sub">${en?"Works offline; syncs when internet is on. Last backup 7:42 PM yesterday.":"बिना इंटरनेट चलता है; इंटरनेट आने पर सेव होता है। पिछला बैकअप कल शाम 7:42।"}</span></span><input type="checkbox" class="switch" checked></label>
+  <label class="opt"><span><b>${en?"App lock":"ऐप लॉक"}</b><br><span class="row-sub">${en?"4-digit PIN or fingerprint":"4 अंकों का PIN या फ़िंगरप्रिंट"}</span></span><input type="checkbox" class="switch" checked></label></div>`;
+}
+
+/* ---------- parsing ---------- */
+const PAY_WORDS = /(jama|mila|mile|paid|received|chukaya|diye|dia|जमा|मिला|मिले|दिए|चुकाए|भुगतान)/i;
+const CREDIT_WORDS = /(udhaar|udhar|udhari|baki|baaki|उधार|बाकी)/i;
+const ITEM_WORDS = {"doodh":"Doodh","दूध":"Doodh","bread":"Bread","ब्रेड":"Bread","atta":"Atta","आटा":"Atta","cheeni":"Cheeni","चीनी":"Cheeni","tel":"Tel","तेल":"Tel","chawal":"Chawal","चावल":"Chawal","sabzi":"Sabzi","सब्ज़ी":"Sabzi","सब्जी":"Sabzi","rashan":"Rashan","राशन":"Rashan"};
+function parseEntry(text){
+  const t = text.trim(); if(!t) return null;
+  const num = t.match(/\d[\d,]*/); const amount = num ? +num[0].replace(/,/g,"") : 0;
+  const low = t.toLowerCase();
+  let cust = null, best = 0;
+  S().customers.forEach(c => { const first = c.name.split(" ")[0].toLowerCase(), hfirst = c.hi.split(" ")[0]; let s=0; if(low.includes(c.name.toLowerCase())) s=3; else if(low.includes(first)) s=2; else if(t.includes(hfirst)) s=2; if(s>best){best=s;cust=c;} });
+  const kind = PAY_WORDS.test(t) && !CREDIT_WORDS.test(t) ? "pay" : "credit";
+  const items = [...new Set(Object.entries(ITEM_WORDS).filter(([k])=>low.includes(k.toLowerCase())||t.includes(k)).map(([,v])=>v))];
+  return {cust, amount, kind, note: items.join(", ") || (kind==="pay"?"Cash":""), text:t};
+}
+function sheetVoice(){
+  const en = S().lang==="en";
+  openSheet(T("speak"), `
+    <div class="note" style="background:var(--accent-soft)">${IC.info}<span>${en?"Prototype: the microphone can't be used here, so a sample sentence is filled in. You can type your own too.":"प्रोटोटाइप: यहाँ माइक नहीं चलता, इसलिए एक उदाहरण भरा है। आप खुद भी टाइप कर सकते हैं।"}</span></div>
+    <div class="field"><label class="lbl" for="vt">${T("heard")}</label><input id="vt" value="रमेश जी 340 उधार दूध ब्रेड" style="font-size:18px"></div>
+    <div id="parsed"></div>`);
+  const upd = () => { const r = parseEntry($("#vt").value); $("#parsed").innerHTML = !r ? "" : `<div class="parsed">
+      <div class="summary" style="background:transparent;padding:0"><div><span>${en?"Customer":"ग्राहक"}</span><b>${r.cust?esc(nameOf(r.cust)):`<span style="color:var(--bad)">${en?"Not found":"नहीं मिला"}</span>`}</b></div><div><span>${en?"Amount":"रकम"}</span><b class="num">${r.amount?inr(r.amount):"—"}</b></div><div><span>${en?"Type":"प्रकार"}</span><b style="color:${r.kind==="credit"?"var(--bad)":"var(--good)"}">${r.kind==="credit"?T("gave"):T("got")}</b></div>${r.note?`<div><span>${en?"Note":"नोट"}</span><b>${esc(r.note)}</b></div>`:""}</div>
+      ${r.cust&&r.amount?`<div class="two"><button class="btn ghost" data-action="entry-from-voice">${T("edit")}</button><button class="btn" data-action="save-voice">${T("confirm")}</button></div>`:`<p class="hint">${en?"Say the customer's name and an amount, like “Salim 200 jama”.":"ग्राहक का नाम और रकम बोलें, जैसे “सलीम 200 जमा”।"}</p>`}</div>`;
+    sheetVoice.r = r; };
+  $("#vt").addEventListener("input", upd); upd();
+}
+function sheetEntry(kind, custId, amount, note){
+  const en = S().lang==="en"; let amt = String(amount||""), k = kind||"credit", cid = custId || null; const chosen = new Set(note?note.split(", ").filter(Boolean):[]);
+  const draw = () => {
+    $("#en-body").innerHTML = `
+    <div class="kind" id="kind">${["credit","pay"].map(v=>`<button type="button" data-v="${v}" aria-pressed="${k===v}">${v==="credit"?T("gave"):T("got")}</button>`).join("")}</div>
+    <div class="field"><label class="lbl" for="en-c">${en?"Customer":"ग्राहक"}</label><select id="en-c">${[`<option value="">${en?"Choose…":"चुनें…"}</option>`,...S().customers.map(c=>`<option value="${c.id}" ${cid===c.id?"selected":""}>${esc(nameOf(c))} (${inr(bal(c))})</option>`)].join("")}</select></div>
+    <div class="amt-show num" style="background:${k==="credit"?"var(--bad-soft)":"var(--good-soft)"};color:${k==="credit"?"var(--bad)":"var(--good)"}">₹${amt?(+amt).toLocaleString("en-IN"):"0"}</div>
+    <div class="numpad" id="np">${["1","2","3","4","5","6","7","8","9","00","0","⌫"].map(x=>`<button type="button" data-v="${x}" aria-label="${x==="⌫"?"Delete":x}">${x}</button>`).join("")}</div>
+    ${k==="credit"?`<div class="items" id="it">${["Doodh","Bread","Atta","Chawal","Cheeni","Tel","Sabzi","Rashan"].map(x=>`<button type="button" data-v="${x}" aria-pressed="${chosen.has(x)}">${x}</button>`).join("")}</div>`:`<div class="items" id="it">${["Cash","UPI"].map(x=>`<button type="button" data-v="${x}" aria-pressed="${chosen.has(x)}">${x}</button>`).join("")}</div>`}
+    <div class="err" id="en-err" role="alert"></div>
+    <button class="btn block" data-action="save-entry" style="background:${k==="credit"?"var(--bad)":"var(--good)"};color:#fff">${T("save")}</button>`;
+    $("#kind").onclick = e => { const b=e.target.closest("button"); if(!b) return; k=b.dataset.v; chosen.clear(); draw(); };
+    $("#np").onclick = e => { const b=e.target.closest("button"); if(!b) return; const v=b.dataset.v; amt = v==="⌫" ? amt.slice(0,-1) : (amt+v).replace(/^0+/,"").slice(0,7); draw(); };
+    $("#it").onclick = e => { const b=e.target.closest("button"); if(!b) return; chosen.has(b.dataset.v)?chosen.delete(b.dataset.v):chosen.add(b.dataset.v); draw(); };
+    $("#en-c").onchange = e => { cid = +e.target.value || null; };
+  };
+  openSheet(k==="credit"?T("gave"):T("got"), `<div id="en-body" style="display:flex;flex-direction:column;gap:12px"></div>`, true);
+  draw();
+  sheetEntry.get = () => ({k, cid: cid || (+$("#en-c").value||null), amt:+amt, note:[...chosen].join(", ")});
+}
+function waText(c){
+  return `नमस्ते ${c.hi.split(" ")[0]} जी,\n${S().shop.hi} पर आपका ₹${bal(c).toLocaleString("en-IN")} बाकी है।\nUPI से भुगतान करें: ${S().shop.upi}\nपूरा हिसाब: bahi.app/k/${c.id}7f\nधन्यवाद 🙏`;
+}
+function sheetCust(id){
+  const c = Cu(id), en = S().lang==="en"; let run = 0;
+  openSheet(`<span class="ini" style="background:${col(c)};width:30px;height:30px">${esc(nameOf(c)[0])}</span>${esc(nameOf(c))}`, `
+    <div class="summary"><div><span>${en?"Balance":"बाकी"}</span><b class="amt ${amtCls(bal(c))} num">${inr(bal(c))}</b></div><div><span>${en?"Oldest unpaid":"सबसे पुराना बाकी"}</span><b class="num">${oldestUnpaid(c)} ${T("days")}</b></div><div><span>${en?"Phone":"फ़ोन"}</span><b class="num">+91 ${esc(c.phone)}</b></div></div>
+    <div class="ledger stmt">${c.entries.map(e=>{run += e.k==="credit"?e.a:-e.a; return `<div><span class="d">${dLabel(e.d)}</span><span>${esc(e.n||"")}</span><span class="${e.k==="credit"?"c":"p"} num">${e.k==="credit"?"":"+"}${inr(e.a)}</span><span class="bal num">${inr(run)}</span></div>`;}).join("")}</div>
+    <div class="big-actions"><button class="b-credit" data-action="entry" data-k="credit" data-id="${c.id}">${T("gave")}</button><button class="b-pay" data-action="entry" data-k="pay" data-id="${c.id}">${T("got")}</button></div>
+    ${bal(c)>0?`<div class="field"><span class="lbl">${en?"WhatsApp reminder preview":"WhatsApp संदेश"}</span><div class="wa">${esc(waText(c))}</div></div><button class="btn block" data-action="remind" data-id="${c.id}" style="background:#1F8A4C;color:#fff">${T("remind")}</button>`:""}
+    <button class="btn ghost block" data-action="share" data-id="${c.id}">${T("share")}</button>`, true);
+}
+Object.assign(Kit.actions, {
+  lang: () => { S().lang = S().lang==="en"?"hi":"en"; Kit.render(true); },
+  voice: () => sheetVoice(),
+  "save-voice": () => { const r=sheetVoice.r; r.cust.entries.push({d:TODAY,k:r.kind,a:r.amount,n:r.note}); if(r.kind==="credit") S().todayBook.credit+=r.amount; else S().todayBook.collected+=r.amount; closeSheet(); Kit.render(true); toast(`${nameOf(r.cust)}: ${r.kind==="credit"?"":"+"}${inr(r.amount)} · ${S().lang==="en"?"balance":"बाकी"} ${inr(bal(r.cust))}`); },
+  "entry-from-voice": () => { const r=sheetVoice.r; sheetEntry(r.kind, r.cust.id, r.amount, r.note); },
+  entry: a => sheetEntry(a.dataset.k, a.dataset.id?+a.dataset.id:null),
+  "save-entry": () => { const g=sheetEntry.get(), en=S().lang==="en"; if(!g.cid){ $("#en-err").textContent = en?"Choose a customer.":"ग्राहक चुनें।"; return; } if(!(g.amt>0)){ $("#en-err").textContent = en?"Enter an amount.":"रकम लिखें।"; return; }
+    const c=Cu(g.cid); c.entries.push({d:TODAY,k:g.k,a:g.amt,n:g.note}); if(g.k==="credit") S().todayBook.credit+=g.amt; else S().todayBook.collected+=g.amt; if(g.k==="pay") delete S().promises[c.id]; closeSheet(); Kit.render(true); toast(`${nameOf(c)}: ${g.k==="credit"?"":"+"}${inr(g.amt)} · ${en?"balance":"बाकी"} ${inr(bal(c))}`); },
+  cust: a => sheetCust(+a.dataset.id),
+  "toggle-sel": a => { const id=+a.dataset.id; S().sel[id]=!S().sel[id]; Kit.render(true); },
+  "send-sel": () => { const ids=Object.keys(S().sel).filter(k=>S().sel[k]); S().sel={}; Kit.render(true); toast(S().lang==="en"?`Prototype: ${ids.length} WhatsApp reminders would be sent, each with the balance and your UPI ID.`:`प्रोटोटाइप: ${ids.length} ग्राहकों को WhatsApp रिमाइंडर जाएगा, बाकी रकम और UPI ID के साथ।`); },
+  remind: a => { closeSheet(); toast(S().lang==="en"?"Prototype: opens WhatsApp with this message filled in.":"प्रोटोटाइप: यह संदेश भरकर WhatsApp खुलेगा।"); },
+  share: a => toast(S().lang==="en"?"Prototype: sends a read-only statement link the customer can open without the app.":"प्रोटोटाइप: ग्राहक को हिसाब का लिंक जाएगा, जो बिना ऐप खुलेगा।"),
+  "new-cust": () => { const en=S().lang==="en"; openSheet(T("newCust"), `<div class="field"><label class="lbl" for="nc-n">${en?"Name":"नाम"}</label><input id="nc-n" value="Deepak Electrician"></div><div class="field"><label class="lbl" for="nc-p">${en?"Mobile":"मोबाइल"}</label><input id="nc-p" inputmode="tel" value="98260 77341"></div><p class="hint">${en?"Or pick from your phone contacts in the real app.":"असली ऐप में फ़ोन कॉन्टैक्ट से भी चुन सकते हैं।"}</p><div class="err" id="nc-err"></div><button class="btn block" data-action="save-cust">${T("save")}</button>`); },
+  "save-cust": () => { const n=$("#nc-n").value.trim(); if(!n){$("#nc-err").textContent="Name?";return;} S().customers.push({id:S().nextId++, name:n, hi:n, phone:$("#nc-p").value.trim(), entries:[]}); closeSheet(); Kit.render(true); toast(S().lang==="en"?`${n} added.`:`${n} जोड़ा गया।`); }
+});
+Kit.afterRender.push(s => {
+  $$("[data-t]").forEach(el => el.textContent = T(el.dataset.t));
+  $("#lang").textContent = s.lang==="en" ? "हिंदी" : "English";
+  $("#brand").textContent = s.lang==="en" ? "Bahi" : "बही";
+  $("#shop").textContent = s.lang==="en" ? s.shop.name : s.shop.hi;
+  const od = s.customers.filter(c=>bal(c)>0 && oldestUnpaid(c)>14).length; $("#v-dot").hidden=!od; $("#v-dot").textContent=od;
+  bindSearch("q","q");
+});
+Kit.views = {khata:viewKhata, today:viewToday, vasooli:viewVasooli, report:viewReport};
+Kit.init({store:"bahi-v1", seed});
+</script>
+
+</body></html>
