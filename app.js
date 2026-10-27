@@ -4,10 +4,11 @@
   const SHOW_PLACEHOLDERS = false;
   const STORE_KEY = 'ua-portfolio-v4';
   const PAGE_SIZE = 12;
+  const VIBE_SIZE = 8;
 
   const app = document.getElementById('app');
   const themeBtn = document.getElementById('theme-toggle');
-  const state = { gFilter: 'All', gLimit: PAGE_SIZE, vFilter: 'All' };
+  const state = { gFilter: 'All', gLimit: PAGE_SIZE, vFilter: 'All', vLimit: VIBE_SIZE };
   let pendingAnchor = null;
 
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -114,7 +115,8 @@
     });
   }
   function vibeCards() {
-    return map(VIBE.filter(v => state.vFilter === 'All' || v.type === state.vFilter), v => `
+    const list = VIBE.filter(v => state.vFilter === 'All' || v.type === state.vFilter);
+    return map(list.slice(0, state.vLimit), v => `
         <article class="vibe">
           <span class="label">${esc(v.type)}</span>
           <h3>${esc(v.title)}</h3>
@@ -125,6 +127,8 @@
   function refreshVibe() {
     document.getElementById('vibe-filters').innerHTML = vibeChips();
     document.getElementById('vibe-slot').innerHTML = vibeCards();
+    const remaining = VIBE.filter(v => state.vFilter === 'All' || v.type === state.vFilter).length - state.vLimit;
+    document.getElementById('vibe-more').innerHTML = remaining > 0 ? `<button class="more-btn" data-vmore>Show more (${remaining})</button>` : '';
   }
   function refreshGallery() {
     document.getElementById('gallery-filters').innerHTML = filterChips();
@@ -139,7 +143,7 @@
           <div>
             <div class="status-pill">Available for new projects</div>
             <h1 class="hero-title">I design products that make complex work feel <em>effortless.</em></h1>
-            <p class="hero-text">Hi, I'm Umesh, a senior product designer with 13+ years across healthcare, fintech, legal tech and enterprise. I blend deep UX craft with AI-powered workflows to ship thoughtful products, faster.</p>
+            <p class="hero-text">Hi, I'm Umesh, a senior product designer with 13+ years designing web and mobile products for SaaS, enterprise and U.S. healthcare. I pair hands-on UX craft with an AI-first workflow to ship thoughtful products, faster.</p>
           </div>
           <div class="hero-actions">
             <button class="pill-btn" data-go="work">See my work</button>
@@ -152,7 +156,7 @@
         </div>
       </div>
       <div class="cells cells--row stats">
-        ${map([['13.6', 'Years of experience'], ['60+', 'Projects delivered'], ['20+', 'Companies served'], ['25+', 'Industries']],
+        ${map([['13.6<small>yrs</small>', 'Years of experience'], ['60+', 'Projects delivered'], ['20+', 'Companies served'], ['25+', 'Industries']],
           ([v, l]) => `<div class="stat"><div class="stat-value">${v}</div><div class="stat-label">${l}</div></div>`)}
       </div>
     </section>
@@ -160,6 +164,19 @@
     <section class="section clients">
       <div class="clients-label label">Trusted by</div>
       <div class="marquee">${marquee()}</div>
+    </section>
+
+    <section id="featured" class="section">
+      ${sectionHead('Featured case studies', 'Deep dives into problems worth solving',
+        '<button class="pill-btn pill-btn--outline" data-go="cases">See all case studies →</button>', 'section-head--split section-head--tight')}
+      <div class="cells featured">${map(CASES, c => `
+        <a class="feature" href="${c.pdf}" target="_blank" rel="noopener">
+          <span class="label"><b>${c.num}</b> · ${esc(c.client)}</span>
+          <h3>${esc(c.title)}</h3>
+          <div class="feature-metric"><span>${esc(c.metrics[0].v)}</span>${esc(c.metrics[0].l)}</div>
+          <span class="feature-cta">Read case study (PDF) ↗</span>
+        </a>`)}
+      </div>
     </section>
 
     <section id="work" class="section">
@@ -179,6 +196,7 @@
         '<div class="filters" id="vibe-filters"></div>', 'section-head--split section-head--tight')}
       <p class="vibe-intro">Fintech and risk platforms, mobile apps, a healthcare platform and a game, taken from a prompt to a clickable prototype with Claude. Each one is a real, working interface, not a static mockup.</p>
       <div class="cells vibes" id="vibe-slot"></div>
+      <div class="more-wrap more-wrap--top" id="vibe-more"></div>
     </section>
 
     <section id="services" class="section">
@@ -330,7 +348,8 @@
     const chip = e.target.closest('[data-filter]');
     if (chip) { state.gFilter = chip.dataset.filter; state.gLimit = PAGE_SIZE; refreshGallery(); return; }
     const vchip = e.target.closest('[data-vfilter]');
-    if (vchip) { state.vFilter = vchip.dataset.vfilter; refreshVibe(); return; }
+    if (vchip) { state.vFilter = vchip.dataset.vfilter; state.vLimit = VIBE_SIZE; refreshVibe(); return; }
+    if (e.target.closest('[data-vmore]')) { state.vLimit = VIBE.length; refreshVibe(); return; }
     if (e.target.closest('[data-more]')) { state.gLimit += PAGE_SIZE; refreshGallery(); }
   });
 
