@@ -363,9 +363,11 @@ h1 em, h2 em { color: var(--accent); font-style: italic; font-weight: 600; }
   display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   border-top: 1px solid var(--rule); overflow: hidden;
 }
-.contact-links a { padding: 20px var(--gutter); border-right: 1px solid var(--rule); margin-right: -1px; color: var(--invert-fg); }
+.contact-links a { padding: 20px clamp(16px, 2vw, 28px); border-right: 1px solid var(--rule); margin-right: -1px; color: var(--invert-fg); display: flex; align-items: center; gap: 12px; min-width: 0; }
+.contact-links a:hover .contact-value { text-decoration: underline; }
+.contact-icon { width: 24px; height: 24px; flex-shrink: 0; }
 .contact-label { font: 700 11px var(--sans); text-transform: uppercase; letter-spacing: .1em; opacity: .65; }
-.contact-value { margin-top: 6px; font: 600 14px var(--sans); }
+.contact-value { margin-top: 6px; font: 600 14px var(--sans); white-space: nowrap; }
 .site-footer { font-size: 13px; color: var(--subtle); }
 .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding: 20px var(--gutter); }
 
