@@ -22,7 +22,7 @@
     themeBtn.textContent = theme === 'dark' ? '☀ Light' : '☾ Dark';
     try { localStorage.setItem(STORE_KEY, JSON.stringify({ ...readStore(), theme })); } catch (e) {}
   }
-  setTheme(readStore().theme || 'light');
+  setTheme(readStore().theme || 'dark');
   themeBtn.addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'));
 
   // ---------- Routing ----------
