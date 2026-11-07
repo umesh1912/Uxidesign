@@ -102,5 +102,103 @@ const CASE_PAGES = {
     ],
     learned: 'Design for the status, not the screen: once room status had one colour and one meaning, every module became easier to design and easier to learn. And shadowing beats surveys: the key insight came from watching a shift, not asking about one.',
     pdf: 'case-studies/nTouch-PMS-Case-Study.pdf'
+  },
+
+  meshiq: {
+    client: 'meshIQ', category: 'Enterprise platform · Messaging & streaming',
+    title: 'One platform for data in motion',
+    summary: 'meshIQ helps large enterprises monitor and manage data in motion across IBM MQ, Apache Kafka, RabbitMQ, ActiveMQ, TIBCO and Solace. I redesigned its separate products, Manage, Observe, Track and Control Center, into a single, consistent meshIQ Platform experience.',
+    facts: [['Role', 'UX/UI Designer'], ['Products', 'Manage, Observe, Track, Control Center'], ['Project', 'Platform redesign'], ['Deliverables', 'Design system, high-fidelity UI']],
+    outcomes: [
+      { v: '4 → 1', l: 'Products presented as one unified meshIQ Platform' },
+      { v: '1', l: 'URL and sign-in for every product, with single sign-on' },
+      { v: '1', l: 'Shared design system across Manage, Observe and Control Center' }
+    ],
+    sections: [
+      { eyebrow: 'The problem', title: 'Customers saw a set of tools, not one platform',
+        body: ['Over time, each meshIQ product had grown into its own application with its own URL, login, layout and visual style. Many customers use more than one product, and different users have different roles and permissions. Customers saw meshIQ as separate tools, which weakened the brand and made everyday work slower.'],
+        list: [['Many URLs, many logins', 'A separate address and sign-in for every product.'],
+               ['Inconsistent experience', 'Different UI and interaction patterns in each product.'],
+               ['No easy movement', 'No quick way to switch between products during a task.'],
+               ['Dated visuals', 'Limited data analytics and dashboard views.'],
+               ['Permission complexity', 'Roles and access levels spread across separate apps.']],
+        note: 'How might we help multi-product customers see and use meshIQ as one connected platform, with a single access point, a consistent experience and clear role-based access?' },
+      { eyebrow: 'Approach', title: 'Product knowledge as research',
+        body: ['Because this was a redesign, direct user research was not possible. I studied the existing products in depth, their workflows, features, user roles and permission models, and combined that with pain points reported by customers and internal teams.',
+               'From there I set four design goals: unify access, create consistency, modernise the visuals and strengthen the meshIQ brand. I explored platform-level navigation, a product switcher, unified login and dashboard layouts as user flows and wireframes before moving to high fidelity.'] },
+      { eyebrow: 'Key decisions', title: 'What the redesign delivers',
+        decisions: [
+          { title: 'One login, with single sign-on', text: 'A single login for the whole platform, with a "Login via SSO" option. The left panel introduces each product in the same branded style.', src: 'img/cases/meshiq/login.jpg' },
+          { title: 'A home for the whole infrastructure', text: 'Manage home gives quick access to ActiveMQ, Kafka and RabbitMQ perspectives, with getting-started help alongside. An app grid in the header switches products, and a green badge under the logo always shows where you are.', src: 'img/cases/meshiq/manage-home.jpg' },
+          { title: 'Data-rich custom dashboards', text: 'KPI cards, bar and donut charts, a live queue table and time-series charts for current and maximum depth, combined on one customisable dashboard.', src: 'img/cases/meshiq/dashboard.jpg' },
+          { title: 'Every table works the same way', text: 'Stacked table widgets share one toolbar: search, schema selector, export, filters and clear status chips.', src: 'img/cases/meshiq/tables.jpg' },
+          { title: 'Roles and permissions in one matrix', text: 'Control Center manages access for every product in one place. "All", "Partial" and "None" chips make access levels easy to scan.', src: 'img/cases/meshiq/roles.jpg' },
+          { title: 'Observe: from overview to action', text: 'KPI cards link straight to monitors, resources, schedules, notification policies and alerts, followed by status and severity charts.', src: 'img/cases/meshiq/observe.jpg' },
+          { title: 'Configure without losing your place', text: 'The Connection Manager opens as a side panel over Settings, so users can set up a connection and return to what they were doing.', src: 'img/cases/meshiq/connection-manager.jpg' }
+        ] },
+      { eyebrow: 'Design system', title: 'One dark interface, one green accent',
+        body: ['I built a shared design system of colour, typography, components, data visualisation and interaction patterns, and applied it to every product. Green is the single brand and action colour; dark neutrals build depth from canvas to panel to raised surface. Type is Source Sans 3 throughout, tuned for dense tables.',
+               'Core components, from buttons and status chips to segmented filters, KPI cards and pagination, are shared by Manage, Observe and Control Center, so each new screen is assembled, not redrawn.'],
+        images: [{ src: 'img/cases/meshiq/monitors.jpg', alt: 'Observe monitor list built from shared components', caption: 'Observe monitors: severity chips, tags, count badges, an active toggle, search and pagination, all from the shared library.', kind: 'web' }] },
+      { eyebrow: 'Testing and upkeep', title: 'A living system',
+        body: ['I validated the designs with stakeholders and customer feedback, refined the details, and maintained the design system as the products evolved.'] }
+    ],
+    learned: 'Without direct user research, deep product knowledge and customer feedback became the main sources of insight. And systems before screens: a strong design system was essential for bringing several products together without losing what each one does best.',
+    pdf: 'case-studies/meshIQ-Platform-Redesign-Case-Study.pdf'
+  },
+
+  techies4tech: {
+    client: 'Techies4Tech.ai', category: 'AI hiring platform',
+    title: 'Hiring tech talent on proven skill, not résumés',
+    summary: 'Techies4Tech.ai finds, assesses and places AI-ready tech talent. Candidates are interviewed by AI before an employer ever sees them, and employers receive a scored, per-skill shortlist. I redesigned the existing application end to end, from research to developer handoff, for every role that touches a hire.',
+    facts: [['Role', 'Lead UX/UI Designer'], ['Platforms', 'Responsive web (1440) and mobile (375)'], ['Users', '7 roles: candidates, employers, interviewers, contractors and the internal team'], ['Tools', 'Figma, FigJam, Figma prototyping, Dev Mode']],
+    outcomes: [
+      { v: '7', l: 'Roles designed on one shared system' },
+      { v: '2', l: 'Hiring models supported end to end: Job Listing and Hire Assured' },
+      { v: '6', l: 'Core flows prototyped and usability-tested before handoff' }
+    ],
+    sections: [
+      { eyebrow: 'The problem', title: 'A résumé is a claim. Hiring teams had no fast way to check it.',
+        body: ['Companies are spending heavily on AI but cannot find people who can deliver with it. Tech hiring still runs on keyword-matched résumés, long manual screening and interview loops that burn engineers\' time, while good candidates get no feedback and drop out.'],
+        note: 'How might we let employers hire tech talent on proven skill, not self-reported résumés, while giving candidates a fair, fast and transparent way to show what they can do?' },
+      { eyebrow: 'Audit', title: 'What the old product was getting wrong',
+        body: ['I walked every flow of the existing application as each role, scoring issues against Nielsen\'s heuristics and tagging where users dropped off or needed help.'],
+        list: [['Long manual sign-up', 'Candidates re-typed everything already on their résumé, in one long form with no sense of progress.'],
+               ['Interviews felt like a black box', 'No preparation, no explanation of what was recorded or why, and no status after submitting.'],
+               ['Résumé piles, not evidence', 'Employers saw applicant lists without scores or skill breakdowns and still screened by hand.'],
+               ['Unclear hiring models', 'Employers could not tell who sources candidates or when they pay.'],
+               ['Operations outside the app', 'Job review, client assignment, manual interviews and contractor invoicing ran on email and spreadsheets.']] },
+      { eyebrow: 'Research', title: 'Listening to both sides of the hire',
+        body: ['I interviewed candidates, hiring managers and internal stakeholders, reviewed job boards, AI-interview tools and talent marketplaces, and synthesised the notes in FigJam.'],
+        list: [['Candidates', 'Forms that repeat the résumé cause drop-off. AI interviews are acceptable only if people know what is recorded, who sees it and how it is scored. They want to prove skill once and reuse it, and many first arrive on a phone.'],
+               ['Employers', 'Screening is the slowest part of hiring. Self-rated skills cannot be trusted for niche roles. They want a short list with reasons, and pay-on-success lowers the risk of trying a new vendor.']],
+        quotes: ['"I\'ve done the work. I just need a way to prove it once, not on every application." (candidate persona)', '"Don\'t send me fifty résumés. Send me five people who can actually do it, and show me why." (employer persona)'] },
+      { eyebrow: 'Define', title: 'Seven roles, one hiring pipeline',
+        body: ['Research showed the product was not two-sided; it was a network. Mapping who hands work to whom shaped the information architecture and the permission model for every screen. Every role shares sign-in, settings and the side navigation; the modules inside change with the role and, for employers, with the plan they bought.'],
+        images: [{ src: 'img/cases/techies4tech/roles.jpg', alt: 'Role ecosystem diagram', caption: 'The role ecosystem: candidates, employers, the AI assessment engine, certified interviewers, contractors and the internal team.', kind: 'doc' }] },
+      { eyebrow: 'Core flow', title: 'The AI interview: prove it once',
+        body: ['The AI interview is where trust is won or lost, so I designed it as a guided, transparent sequence: consent, intro video, AI interview, coding sample, automatic scoring and auto-shortlist. Every step tells the candidate what happens next, what is recorded and how it counts.',
+               'Skills are shown three ways and never blended: claimed (what the candidate says), evidenced (what the résumé history shows) and validated (what assessments proved).'],
+        images: [{ src: 'img/cases/techies4tech/ai-interview.jpg', alt: 'AI interview flow', caption: 'The six-step interview flow and the claimed, evidenced and validated skill readings.', kind: 'doc' }] },
+      { eyebrow: 'Key decisions', title: 'Decisions that came straight from research',
+        list: [['Résumé-first sign-up', 'Candidates upload a résumé and AI pre-fills the account, so the first screen saves effort instead of asking for it.'],
+               ['Progress you can see', 'Setup is a three-step checklist with a live "% completed" bar and a review screen.'],
+               ['Skills rated in context', 'Each skill pairs an on/off toggle, years of experience and a Beginner–Advanced slider, grouped by category.'],
+               ['Consent before camera', 'Plain-language recording consent before interviews, with a clear "Do not agree" option.'],
+               ['Plan-aware employer UI', 'Job Listing and Hire Assured get separate sign-up paths and navigation, so employers only see what their plan includes.']],
+        images: [{ src: 'img/cases/techies4tech/sign-up.jpg', alt: 'Sign-up entry for candidates and employers', caption: 'Sign-up entry: candidates and employers choose their path on one screen, then each gets a tailored flow.', kind: 'web' }] },
+      { eyebrow: 'Testing', title: 'What testing changed',
+        body: ['I ran moderated, task-based sessions on the prototype with candidates and hiring managers, logged each finding by severity and fixed it before handoff.'],
+        table: { head: ['Observed', 'Change', 'Severity'], rows: [
+          ['Candidates hesitated before recording, unsure who would see it', 'A dedicated recording-consent step listing each video and who can access it', 'High'],
+          ['Users did not know how much onboarding was left', 'Three-card checklist with a "% completed" progress bar', 'High'],
+          ['Employers confused Job Listing and Hire Assured', 'Two plan-specific flows and navigation, with a clear subscription screen', 'Medium'],
+          ['OTP entry failed when codes expired silently', 'A visible 2:00 countdown, "Resend OTP" and inline errors', 'Medium']] } },
+      { eyebrow: 'Design system', title: 'One system for seven products in one',
+        body: ['Brand red for primary actions, semantic success, error and warning colours, and ten-step neutral, blue, purple, red and green ramps. Source Sans 3 carries everything from dense dashboards to long consent copy. Inputs ship with default, focus, error and helper-text states, so developers never invent a state. Every flow was designed at 1440 for web and 375 for mobile from the same components.'],
+        images: [{ src: 'img/cases/techies4tech/styles.jpg', alt: 'Styles page from the Figma file', caption: 'Styles page: effect styles, colour ramps and the type scale.', kind: 'doc' }] }
+    ],
+    learned: 'Trust is a UX problem: AI only works in hiring if people understand it, and consent, transparency and separating claimed, evidenced and validated skill did more for adoption than visual polish. Mapping all seven roles early exposed the handoffs between people, the source of most real delays, and turned them into features.',
+    pdf: 'case-studies/Techies4Tech-UX-Case-Study.pdf'
   }
 };
