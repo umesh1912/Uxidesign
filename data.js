@@ -2,7 +2,7 @@
 
 // Each case study opens as a full PDF.
 const CASES = [
-  { client:'Gardiant', category:"Workers' comp SaaS", role:'Sr. Product Designer · Scrum Master',
+  { client:'Gardiant', slug:'gardiant', category:"Workers' comp SaaS", role:'Sr. Product Designer · Scrum Master',
     title:"Designing a single home for workers' comp claims",
     summary:'End-to-end product design of a claims and case management platform for vocational counselors and Retro groups, from discovery and personas to a scalable design system, testing and developer delivery.',
     metrics:[{v:'600+',l:'Firms and professionals on the platform'},{v:'1–2 hrs',l:'Saved per team member each day'}],
@@ -17,7 +17,7 @@ const CASES = [
     summary:'An end-to-end hiring platform where AI interviews, evaluates and matches tech talent, so employers review evidence, not résumés. Redesigned from research to developer handoff for every role that touches a hire.',
     metrics:[{v:'7',l:'User roles designed'},{v:'1,300+',l:'Frames & states in Figma'}],
     pdf:'case-studies/Techies4Tech-UX-Case-Study.pdf' },
-  { client:'nTouch', category:'Hospitality SaaS · Web + mobile', role:'Lead UX/UI Designer',
+  { client:'nTouch', slug:'ntouch', category:'Hospitality SaaS · Web + mobile', role:'Lead UX/UI Designer',
     title:'Running a hotel from one screen',
     summary:'A cloud property management system for hotels and hotel groups in the GCC. I led research, UX and UI for the web platform and the companion mobile app, from the first stakeholder workshop to developer handoff.',
     metrics:[{v:'−42%',l:'Time to complete a walk-in booking'},{v:'72%',l:'Of new hotels finish setup in one session'}],
@@ -69,9 +69,9 @@ const SERVICES = [
   {title:'UX Research',body:'VOC, retros, user interviews, persona development and journey mapping.',tags:['User research','VOC analysis','Personas','WCAG']},
   {title:'Product Design',body:'End-to-end product design from wireframes to high-fidelity mockups and prototypes.',tags:['Wireframing','Prototyping','Figma Make']},
   {title:'Design Systems',body:'Scalable component libraries, tokens and documentation for consistent product UI.',tags:['Components','Variants','Auto layout','Dev mode']},
-  {title:'Interaction Design',body:'Micro-animations, transitions and interactive prototypes that delight users.',tags:['Micro-interactions','Lovable','Claude AI']},
+  {title:'Interaction Design',body:'Micro-animations, transitions and interactive prototypes that delight users.',tags:['Micro-interactions','Motion','Prototyping']},
   {title:'Mobile & Web',body:'Responsive UI across iOS, Android, tablet and web platforms.',tags:['iOS','Android','iPad','Responsive']},
-  {title:'Front-End Dev',body:'HTML5, CSS3, SCSS, Bootstrap, Semantic UI and React component implementation.',tags:['HTML5','CSS3/SCSS','React UI','Webflow']}
+  {title:'Front-End Dev',body:'HTML5, CSS3, SCSS, Bootstrap, Semantic UI and React component implementation.',tags:['HTML5','CSS3/SCSS','React UI']}
 ].map((s, i) => ({ ...s, n: '0' + (i + 1) }));
 
 const PROCESS = [

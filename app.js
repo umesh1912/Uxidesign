@@ -1,4 +1,5 @@
-// Renders the portfolio pages from data.js. Routes: #/ (home), #/case-studies and #/about. Case studies open as PDFs.
+// Renders the portfolio pages from data.js. Routes: #/ (home), #/case-studies, #/case/<slug> and #/about.
+// Case studies with an entry in CASE_PAGES get an on-site page; the rest open as PDFs.
 (() => {
   // Testimonials and Writing hold placeholder copy; switch on once real content is in data.js.
   const SHOW_PLACEHOLDERS = false;
@@ -28,6 +29,8 @@
 
   // ---------- Routing ----------
   function parseRoute() {
+    const c = location.hash.match(/^#\/case\/([\w-]+)\/?$/);
+    if (c && CASE_PAGES[c[1]]) return { page: 'case', slug: c[1] };
     const m = location.hash.match(/^#\/(about|case-studies)\/?$/);
     return { page: m ? m[1] : 'home' };
   }
@@ -76,6 +79,10 @@
       ? `<img class="${cls}" src="https://www.google.com/s2/favicons?domain=${domain}&amp;sz=64" alt="" onerror="this.outerHTML=this.dataset.fallback" data-fallback="${esc(initial)}">`
       : initial;
   };
+
+  // A case card opens its on-site page when there is one, otherwise the PDF in a new tab.
+  const caseHref = c => c.slug ? `href="#/case/${c.slug}"` : `href="${c.pdf}" target="_blank" rel="noopener"`;
+  const caseCta = c => c.slug ? 'Read case study →' : 'View case study (PDF) ↗';
 
   // ---------- Home ----------
   function marquee() {
@@ -170,11 +177,11 @@
       ${sectionHead('Featured case studies', 'Deep dives into problems worth solving',
         '<button class="pill-btn pill-btn--outline" data-go="cases">See all case studies →</button>', 'section-head--split section-head--tight')}
       <div class="cells featured">${map(CASES, c => `
-        <a class="feature" href="${c.pdf}" target="_blank" rel="noopener">
+        <a class="feature" ${caseHref(c)}>
           <span class="label"><b>${c.num}</b> · ${esc(c.client)}</span>
           <h3>${esc(c.title)}</h3>
           <div class="feature-metric"><span>${esc(c.metrics[0].v)}</span>${esc(c.metrics[0].l)}</div>
-          <span class="feature-cta">Read case study (PDF) ↗</span>
+          <span class="feature-cta">${caseCta(c)}</span>
         </a>`)}
       </div>
     </section>
@@ -199,26 +206,26 @@
       <div class="more-wrap more-wrap--top" id="vibe-more"></div>
     </section>
 
-    <section id="services" class="section">
-      ${sectionHead('03 · Services', 'How I can help your team')}
-      <div class="cells services">${map(SERVICES, s => `
-        <div class="service">
-          <span class="service-num">${s.n}</span>
-          <h3>${esc(s.title)}</h3>
-          <p>${esc(s.body)}</p>
-          ${tags(s.tags)}
-        </div>`)}
-      </div>
-    </section>
-
     <section id="process" class="section">
-      ${sectionHead('04 · Process', 'Five steps, with AI speeding up the slow parts')}
+      ${sectionHead('03 · Process', 'Five steps, with AI speeding up the slow parts')}
       <div class="cells steps">${map(PROCESS, s => `
         <div class="step">
           <span class="step-num">${s.n}</span>
           <div class="step-title">${esc(s.title)}</div>
           <p>${esc(s.body)}</p>
           <div class="step-tools">${esc(s.tools)}</div>
+        </div>`)}
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      ${sectionHead('04 · What I bring', 'Skills I bring to a product team')}
+      <div class="cells services">${map(SERVICES, s => `
+        <div class="service">
+          <span class="service-num">${s.n}</span>
+          <h3>${esc(s.title)}</h3>
+          <p>${esc(s.body)}</p>
+          ${tags(s.tags)}
         </div>`)}
       </div>
     </section>
@@ -251,20 +258,64 @@
     return `
     <section id="cases" class="section">
       ${sectionHead('Case studies', 'Deep dives into problems worth solving',
-        '<p class="section-note">Workers&#39; comp claims, enterprise data, AI hiring and hospitality. Each opens as the full case study PDF.</p>', 'section-head--split')}
+        '<p class="section-note">Workers&#39; comp claims, enterprise data, AI hiring and hospitality.</p>', 'section-head--split')}
       ${map(CASES, c => `
-        <a class="case-card" href="${c.pdf}" target="_blank" rel="noopener">
+        <a class="case-card" ${caseHref(c)}>
           <div class="case-card-body">
             <div class="case-card-meta label"><span><b>${c.num}</b> · ${esc(c.client)} · ${esc(c.category)}</span><span>${esc(c.role)}</span></div>
             <h3 class="case-card-title">${esc(c.title)}</h3>
             <p class="case-card-text">${esc(c.summary)}</p>
-            <div class="case-card-cta">View case study in detail (PDF) ↗</div>
+            <div class="case-card-cta">${caseCta(c)}</div>
           </div>
           <div class="case-card-metrics">${map(c.metrics, m => `
             <div class="metric-soft"><div class="metric-soft-value">${esc(m.v)}</div><div class="metric-soft-label">${esc(m.l)}</div></div>`)}
           </div>
         </a>`)}
     </section>`;
+  }
+
+  // ---------- Case study page ----------
+  function casePage(slug) {
+    const p = CASE_PAGES[slug];
+    const i = CASES.findIndex(c => c.slug === slug);
+    const next = CASES.slice(i + 1).concat(CASES.slice(0, i)).find(c => c.slug) || CASES[(i + 1) % CASES.length];
+    const shot = (im, cls = '') => `<figure class="cs-shot ${cls}"><a href="${im.src}" target="_blank" rel="noopener"><img src="${im.src}" alt="${esc(im.alt)}" loading="lazy"></a>${im.caption ? `<figcaption>${esc(im.caption)}</figcaption>` : ''}</figure>`;
+    const section = s => `
+      <section class="cs-section">
+        <div class="cs-side"><div class="eyebrow">${esc(s.eyebrow)}</div><h2>${esc(s.title)}</h2></div>
+        <div class="cs-main">
+          ${map(s.body || [], b => `<p>${esc(b)}</p>`)}
+          ${s.stats ? `<div class="cs-stats">${map(s.stats, ([v, l]) => `<div><b>${esc(v)}</b><span>${esc(l)}</span></div>`)}</div>` : ''}
+          ${s.list ? `<dl class="cs-list">${map(s.list, ([t, d]) => `<div><dt>${esc(t)}</dt><dd>${esc(d)}</dd></div>`)}</dl>` : ''}
+          ${s.quotes ? map(s.quotes, q => `<blockquote class="cs-quote">${esc(q)}</blockquote>`) : ''}
+          ${s.note ? `<p class="cs-note">${esc(s.note)}</p>` : ''}
+          ${s.table ? `<div class="cs-table"><table><thead><tr>${map(s.table.head, h => `<th>${esc(h)}</th>`)}</tr></thead><tbody>${map(s.table.rows, r => `<tr>${map(r, (d, k) => `<td${k === 3 ? ' class="cs-result"' : ''}>${esc(d)}</td>`)}</tr>`)}</tbody></table></div>` : ''}
+          ${map(s.images || [], im => shot(im, 'cs-shot--' + im.kind))}
+        </div>
+        ${s.decisions ? `<div class="cs-decisions">${map(s.decisions, d => `
+          <article class="cs-decision">${shot({ src: d.src, alt: d.title })}<div><h3>${esc(d.title)}</h3><p>${esc(d.text)}</p></div></article>`)}</div>` : ''}
+        ${s.phones ? `<div class="cs-phones">${map(s.phones, src => `<img src="${src}" alt="nTouch mobile screen" loading="lazy">`)}</div>` : ''}
+      </section>`;
+    return `
+    <div class="cs-back"><button class="text-btn" data-go="cases">← All case studies</button></div>
+    <header class="cs-head">
+      <div class="eyebrow">${esc(p.client)} · ${esc(p.category)}</div>
+      <h1>${esc(p.title)}</h1>
+      <p class="cs-summary">${esc(p.summary)}</p>
+    </header>
+    <div class="cells cells--row facts">${map(p.facts, ([l, v]) => `<div class="fact"><div class="label">${esc(l)}</div><div class="fact-value">${esc(v)}</div></div>`)}</div>
+    <section class="cs-outcomes">
+      <div class="eyebrow">Outcome</div>
+      <div class="cs-outcome-grid">${map(p.outcomes, o => `<div><b>${esc(o.v)}</b><span>${esc(o.l)}</span></div>`)}</div>
+      ${p.outcomeNote ? `<p class="cs-fine">${esc(p.outcomeNote)}</p>` : ''}
+    </section>
+    ${map(p.sections, section)}
+    <section class="cs-section cs-learned">
+      <div class="cs-side"><div class="eyebrow">What I learned</div></div>
+      <div class="cs-main"><p class="cs-lead">${esc(p.learned)}</p>
+        <a class="pill-btn pill-btn--outline" href="${p.pdf}" target="_blank" rel="noopener">Full case study (PDF) ↗</a></div>
+    </section>
+    <a class="cs-next" ${caseHref(next)}><span class="eyebrow">Next case study</span><span class="cs-next-title">${esc(next.title)} →</span></a>`;
   }
 
   // ---------- About ----------
@@ -320,11 +371,14 @@
   }
 
   // ---------- Render ----------
-  const NAV_ACTIVE = { home: 'work', 'case-studies': 'cases', about: 'about' };
+  const NAV_ACTIVE = { home: 'work', 'case-studies': 'cases', case: 'cases', about: 'about' };
 
   function render() {
     const route = parseRoute();
-    if (route.page === 'case-studies') {
+    if (route.page === 'case') {
+      app.innerHTML = casePage(route.slug);
+      document.title = CASE_PAGES[route.slug].client + ' case study · Umesh Anghan';
+    } else if (route.page === 'case-studies') {
       app.innerHTML = caseStudiesPage();
       document.title = 'Case studies · Umesh Anghan';
     } else if (route.page === 'about') {
@@ -334,7 +388,7 @@
       app.innerHTML = homePage();
       refreshGallery();
       refreshVibe();
-      document.title = 'Umesh Anghan · Product Designer';
+      document.title = 'Umesh Anghan · Senior Product Designer';
     }
 
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('is-active', b.dataset.go === NAV_ACTIVE[route.page]));

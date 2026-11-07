@@ -1,0 +1,106 @@
+// On-site case study pages (#/case/<slug>). Content is taken from each case study PDF.
+const CASE_PAGES = {
+  gardiant: {
+    client: 'Gardiant', category: "Workers' comp SaaS · U.S.",
+    title: "Designing a single home for workers' comp claims",
+    summary: 'How I led the end-to-end product design of Gardiant, a claims and case management platform used by vocational counselors and Retro groups, from discovery and personas to a scalable design system, testing and developer delivery.',
+    facts: [['Role', 'Senior Product Designer · Scrum Master'], ['Users', 'Vocational counselors and nurse case managers, Retro groups and TPAs'], ['Platform', 'Web app (desktop-first)'], ['Tools', 'Figma, Storybook, Telerik, Material Design']],
+    outcomes: [
+      { v: '1–2 hrs', l: 'Saved per team member each day, as reported by a vocational firm owner' },
+      { v: '600+', l: "Workers' rehabilitation firms and professionals now use the platform" },
+      { v: '1', l: 'Platform for claims, documents, communication and billing' }
+    ],
+    sections: [
+      { eyebrow: 'The problem', title: 'Claims lived in five places at once',
+        body: ["Workers' comp professionals were juggling homegrown tools, spreadsheets and the state's claims portal (Washington L&I's Claim and Account Center, CAC) to manage complex claims. Every group felt the cost differently."],
+        list: [['Vocational counselors and nurse case managers', 'Case notes, time tracking, billing and reports lived in separate systems. Complex fee schedules caused revenue leakage and long admin hours that could not be billed.'],
+               ['Retro groups and TPAs', 'Staff checked CAC by hand for every claim. Missed deadlines and late interventions let claim costs rise across every employer in the group.']],
+        note: 'Goal: one secure, easy-to-use workspace where each user sees what matters to them, acts on it quickly, and never has to leave the product to find a document or update.' },
+      { eyebrow: 'My role', title: 'Design lead and Scrum Master',
+        list: [['Senior Product Designer', 'Owned research, personas, journeys, ideation, wireframes, the design system, high-fidelity UI and usability testing.'],
+               ['Scrum Master', 'Facilitated sprints, unblocked developers, shared domain knowledge and verified each release on dev and staging.']] },
+      { eyebrow: 'Research', title: 'Watching how claims really get worked',
+        body: ['I ran one-on-one interviews with counselors, case managers, Retro coordinators and TPA staff, walking through real cases. Feedback sessions, structured questionnaires and a heuristic evaluation against Nielsen\'s 10 heuristics filled in the picture.'],
+        list: [['Checking CAC is a hidden full-time job', 'Staff opened claims one by one to look for new documents, reserve changes and treatment updates. Important changes were easy to miss.'],
+               ['Documents are scattered', 'Medical notes, vocational reports and correspondence lived in different places. Building a case history took hours.'],
+               ['Billing is error-prone', 'Multi-tier fee schedules, billing intervals and fee caps were tracked by hand, which led to underbilling and rework.'],
+               ['Retro groups need a portfolio view', 'They think across many employers and need early warnings for claims at risk, not just a list of claims.'],
+               ['Trust is non-negotiable', 'Users handle sensitive medical data, so the product had to feel secure and HIPAA-compliant at every step.']] },
+      { eyebrow: 'Define', title: 'Two personas, two journeys',
+        body: ['I turned the research into two primary personas, the Vocational Counselor and the Retro Claims Manager, each grounded in two real users. Journey maps for each exposed the moments of highest pain and the opportunity in each.'],
+        quotes: ['How might we help counselors turn more of their working hours into billable, well-documented client work?', 'How might we help Retro managers spot and act on risky claims before costs escalate?'],
+        images: [{ src: 'img/cases/gardiant/journeys.jpg', alt: 'Journey maps for the counselor and Retro claims manager', caption: 'Journey maps: referral to invoice for counselors, new claim to resolution for Retro groups.', kind: 'doc' }] },
+      { eyebrow: 'Key decisions', title: 'Designing the case workspace',
+        body: ['The case view is where counselors spend most of their day, so it got the most attention. Claim details, goals, tasks and notes sit on one screen with a clear hierarchy for a data-heavy product.'],
+        list: [['Three-column layout', 'Goals on the left, tasks in the centre and notes on the right, matching how counselors scan a case from plan to action to context.'],
+               ['Colour that carries meaning', 'Red always means due or late, green means complete and orange marks pinned items, always paired with an icon and a label, never colour alone.'],
+               ['Progressive disclosure', 'Long notes are truncated with "More" and menus hold secondary actions, keeping dense screens calm.'],
+               ['A stable map', 'A persistent navy sidebar for global areas and tabs for case modules. The claim header (number, dates, status, remaining budget) always stays in view.'],
+               ['A document hub', 'All case documents in one place, with AI labels, key data extracts, annotations and easy copy and paste into notes.'],
+               ['Alerts instead of manual checks', 'Gardiant pulls CAC data automatically and shows filtered alerts for new developments, reserve changes, provider updates and treatment changes.']] },
+      { eyebrow: 'Design system', title: 'Built to scale, then moved into code',
+        body: ['I built the design system on Telerik (data grids, filters, schedulers) and Material Design (layout, elevation, motion, accessibility), then customised it with Gardiant\'s brand colours, type and density. It was built in Figma with variables, auto layout and component properties, so one change updated every screen.',
+               'Later, as AI tools changed how we worked, I moved the system into Storybook. Designers and developers used the same components, which reduced handover gaps and kept the UI consistent across releases.'],
+        images: [{ src: 'img/cases/gardiant/design-system.jpg', alt: 'Gardiant design system overview', caption: 'Design system: foundations, colour tokens, type scale and core components.', kind: 'doc' }] },
+      { eyebrow: 'Testing and delivery', title: 'Evidence over opinion',
+        list: [['Usability testing', 'Task-based sessions with counselors and Retro users, such as finding a new claim update, logging time and generating an invoice.'],
+               ['A/B testing', 'Alternative layouts for the alerts feed, dashboard and key calls to action, decided by real usage.'],
+               ['UI and release QA', 'Built screens checked against the design system on dev and staging, covering spacing, states, responsiveness and accessibility.']],
+        body: ['After each release I gathered feedback and started the cycle again.'] }
+    ],
+    learned: "In a complex domain like workers' compensation, the best designs come from deep domain understanding and close partnership with developers. Being Scrum Master taught me how to connect user needs, business goals and engineering reality, one release at a time.",
+    pdf: 'case-studies/Gardiant-Case-Study.pdf'
+  },
+
+  ntouch: {
+    client: 'nTouch', category: 'Hospitality SaaS · GCC · 2024–2025',
+    title: 'Running a hotel from one screen',
+    summary: 'nTouch is a cloud property management system for hotels and hotel groups in the GCC. I led research, UX and UI for the web platform and its companion mobile app, from the first stakeholder workshop to developer handoff.',
+    facts: [['Role', 'Lead UX/UI Designer'], ['Platforms', 'Web app (1920 desktop) and iOS/Android app'], ['Users', 'Owners, front desk, housekeeping, finance'], ['Market', 'Saudi Arabia and UAE, single and multi-property hotels']],
+    outcomes: [
+      { v: '−42%', l: 'Time to complete a walk-in booking (3:10 → 1:50 median)' },
+      { v: '72%', l: 'Of new hotels finish setup in one session (was 48%)' },
+      { v: '−35%', l: 'Checkout-to-clean time for same-day arrivals (52 → 34 min)' },
+      { v: '11 → 3', l: 'Guests per week asked to wait for a room, per pilot hotel' }
+    ],
+    outcomeNote: 'Measured in the pilot hotels: A/B test results and the first three months after launch, compared with their previous setup.',
+    sections: [
+      { eyebrow: 'The problem', title: 'Hotels were running on five tools and a whiteboard',
+        body: ['Most mid-size hotels we spoke to used a legacy desktop PMS, a separate channel manager, Excel for cash, WhatsApp for housekeeping and paper for room status. The desk could not see which rooms were actually ready, and owners with several properties waited for a next-morning PDF to know how they were doing.'],
+        note: 'Goal: give every role in the hotel one shared, real-time picture of rooms, guests and money, with the next action one click away.' },
+      { eyebrow: 'Research', title: 'Everyone was asking the same question',
+        stats: [['14', 'User interviews'], ['3', 'Hotels shadowed'], ['4', 'Stakeholder workshops'], ['5', 'Competitor PMSs audited']],
+        body: ['Watching a 7 a.m. checkout rush taught us more than any requirement document: the desk, housekeeping and the owner were all asking "which rooms are ready?", through different channels.'],
+        list: [['Room status drives everything', 'Check-in, upsell and cleaning decisions all depend on knowing whether a room is clean, occupied or out of service right now.'],
+               ['The desk works in a calendar, not a list', 'Agents think in "room × night"; a list view hid gaps and overlaps.'],
+               ['Owners manage portfolios', 'Group owners switch between properties several times a day and want one roll-up view.'],
+               ['Setup is where hotels quit', 'Legacy systems took days of vendor-led setup before the first booking.'],
+               ['Housekeeping lives on the phone', 'Cleaners never sit at a desk, so their tools must be mobile-first and one-thumb.']] },
+      { eyebrow: 'Key decisions', title: 'Screens, and the decisions behind them',
+        body: ['Four personas, each mapped to a permission role, and a current-state journey for each one\'s most frequent critical task. The low points on each journey became the design priorities.'],
+        decisions: [
+          { title: 'Room × night, the way agents already think', text: 'The reservation page opens on a calendar: drag across nights on a room to start a booking, rooms grouped by type with free rooms per day on top, and channel logos on every stay.', src: 'img/cases/ntouch/reservation.jpg' },
+          { title: 'Walk-in booking in two steps', text: 'Rooms move into a "Selected room" basket with a running total, the applied pricing rule is shown per room, and step two searches existing guests to prefill details and ID.', src: 'img/cases/ntouch/walk-in.jpg' },
+          { title: 'Two statuses on every room card', text: 'Occupancy and cleanliness are separate tags, with a countdown to the next check-in or checkout that drives priority, plus inline "Assign" and "Book now" actions.', src: 'img/cases/ntouch/units.jpg' },
+          { title: "The 9 a.m. question, answered above the fold", text: 'Six KPI tiles with change versus the last period, a room availability calendar and activity logs for accountability.', src: 'img/cases/ntouch/dashboard.jpg' },
+          { title: 'Three steps replace a vendor-led setup', text: 'Hotel info, room info, employees. Room categories are reusable cards, so a 120-room hotel is set up by category, not room by room.', src: 'img/cases/ntouch/setup.jpg' },
+          { title: 'Cash box and bank box, side by side', text: 'Receipts and expenses in one table, with separate settlement actions matching how accountants close the day.', src: 'img/cases/ntouch/finance.jpg' }
+        ] },
+      { eyebrow: 'Mobile', title: 'A companion app for people who never sit down',
+        body: ['The mobile app is not the web app shrunk. It keeps the jobs people do on the move: checking the day, updating room status, looking up a guest. Housekeeping shows "zero pending rooms" as its empty state.'],
+        phones: ['img/cases/ntouch/m-login.jpg', 'img/cases/ntouch/m-dashboard.jpg', 'img/cases/ntouch/m-housekeeping.jpg', 'img/cases/ntouch/m-guests.jpg'] },
+      { eyebrow: 'Design system', title: 'One colour per room status',
+        body: ['Foundations came first in Figma: colour roles, a DM Sans type scale on a 1.2 ratio, buttons and inputs in every state, and one icon family on an 8-point grid. Each hotel status (clean, dirty, occupied, out of service) has one colour, used the same way on every screen. The primary colour moved from a neutral blue to nTouch orange to match the brand and stand apart from blue-heavy competitors.'] },
+      { eyebrow: 'Testing', title: 'Three A/B tests that changed the product',
+        body: ['After moderated usability rounds, we A/B tested the busiest flows in the pilot hotels. Each test had one hypothesis, one primary metric and a two-week run.'],
+        table: { head: ['Test', 'A · control', 'B · shipped', 'Result'], rows: [
+          ['Reservation default view', 'List, calendar behind a toggle', 'Calendar with drag-to-select', 'Walk-in booking 3:10 → 1:50; wrong-date edits 7.4% → 2.5%'],
+          ['Onboarding', 'One long setup form', '3-step stepper', 'Setup finished in first session 48% → 72%; 31 → 19 min'],
+          ['Housekeeping (mobile)', 'Grid of rooms by floor', 'Queue sorted by next arrival', 'Checkout-to-clean 52 → 34 min; waiting guests 11 → 3 a week']] } },
+      { eyebrow: 'Handoff', title: 'Designed to be built, not just presented',
+        body: ['I worked with engineering from the design studio onwards. Colour, type and spacing were exported as named tokens that mapped one-to-one to CSS variables; every component had documented variants; empty, loading, error and multi-hotel states were drawn for each flow; and I reviewed staging builds against Figma every week.'] }
+    ],
+    learned: 'Design for the status, not the screen: once room status had one colour and one meaning, every module became easier to design and easier to learn. And shadowing beats surveys: the key insight came from watching a shift, not asking about one.',
+    pdf: 'case-studies/nTouch-PMS-Case-Study.pdf'
+  }
+};
