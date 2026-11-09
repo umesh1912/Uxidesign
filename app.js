@@ -19,13 +19,14 @@
   function readStore() {
     try { return JSON.parse(localStorage.getItem(STORE_KEY) || '{}'); } catch (e) { return {}; }
   }
-  function setTheme(theme) {
+  // Light by default; only a click on the toggle is remembered (as themeChoice).
+  function setTheme(theme, remember) {
     document.documentElement.dataset.theme = theme;
     themeBtn.textContent = theme === 'dark' ? '☀ Light' : '☾ Dark';
-    try { localStorage.setItem(STORE_KEY, JSON.stringify({ ...readStore(), theme })); } catch (e) {}
+    if (remember) try { localStorage.setItem(STORE_KEY, JSON.stringify({ ...readStore(), themeChoice: theme })); } catch (e) {}
   }
-  setTheme(readStore().theme || 'dark');
-  themeBtn.addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark'));
+  setTheme(readStore().themeChoice || 'light');
+  themeBtn.addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark', true));
 
   // ---------- Routing ----------
   function parseRoute() {
