@@ -66,20 +66,20 @@ const CLIENTS = ['Matrix Comsec','Meditab','Cayzen Technologies','HCI Active','i
 
 const LOGO_DOMAINS = {"Matrix Comsec":"matrixcomsec.com","Meditab":"meditab.com","Cayzen Technologies":"cayzen.com","HCI Active":"hciactive.com","GSPANN":"gspann.com","Danaher":"danaher.com","Leica Microsystems":"leica-microsystems.com","MeshIQ":"meshiq.com","iPatientCare":"ipatientcare.com","Appswave":"appswave.io","Bonds India":"bondsindia.com","Decision Point":"decisionpoint.ai","PayoBank":"payobank.com","i8Labs":"i8labs.com","ContentHubGPT":"contenthubgpt.com","Techies4Tech":"techies4tech.com","Breez Security":"breezsecurity.com","Defx":"defx.com","i-Engineering":"i-engineering.com","Sports Exchange":"sportsexchange.com","MyBzz":"mybzz.com","SocietyRx":"societyrx.com"};
 const SERVICES = [
-  {title:'UX Research',body:'VOC, retros, user interviews, persona development and journey mapping.',tags:['User research','VOC analysis','Personas','WCAG']},
-  {title:'Product Design',body:'End-to-end product design from wireframes to high-fidelity mockups and prototypes.',tags:['Wireframing','Prototyping','Figma Make']},
-  {title:'Design Systems',body:'Scalable component libraries, tokens and documentation for consistent product UI.',tags:['Components','Variants','Auto layout','Dev mode']},
-  {title:'Interaction Design',body:'Micro-animations, transitions and interactive prototypes that delight users.',tags:['Micro-interactions','Motion','Prototyping']},
-  {title:'Mobile & Web',body:'Responsive UI across iOS, Android, tablet and web platforms.',tags:['iOS','Android','iPad','Responsive']},
-  {title:'Front-End Dev',body:'HTML5, CSS3, SCSS, Bootstrap, Semantic UI and React component implementation.',tags:['HTML5','CSS3/SCSS','React UI']}
+  {title:'Ecommerce UX',body:'End-to-end commerce journeys: search, product listing and detail pages, cart, checkout, account and campaign landing pages.',tags:['Search','PLP','PDP','Cart & checkout','Shopify']},
+  {title:'Conversion & experimentation',body:'Find usability issues through analytics, heuristic reviews and testing, then shape CRO hypotheses and A/B test variants.',tags:['CRO','A/B testing','Analytics','Heuristic reviews']},
+  {title:'Personalised, cross-channel journeys',body:'Connect web experiences with email, push notifications and lifecycle marketing touchpoints, in partnership with marketing teams.',tags:['Email','Push','Lifecycle','Braze-style flows']},
+  {title:'Mobile-first & accessible',body:'Responsive, mobile-first UI that follows WCAG accessibility standards and usability best practices.',tags:['Mobile-first','WCAG','Responsive']},
+  {title:'Design systems',body:'Foundations, design tokens, reusable components with variants and consistent interaction patterns in Figma, documented with engineering in Storybook.',tags:['Tokens','Components','Storybook']},
+  {title:'Flows, prototyping & AI',body:'User flows, journey maps and information architecture in Figma and FigJam; interactive prototypes, sped up with Claude, Figma Make and Lovable.',tags:['Figma','FigJam','Prototyping','AI workflow']}
 ].map((s, i) => ({ ...s, n: '0' + (i + 1) }));
 
 const PROCESS = [
-  {title:'Research',body:'Interviews, VOC and contextual inquiry, with Claude.ai synthesising hours of transcripts into clear insight clusters.',tools:'Interviews · VOC · Claude.ai'},
-  {title:'Define',body:'Personas, journey maps and HMW statements, then priorities agreed on an impact–effort matrix with product and engineering.',tools:'FigJam · Miro · IA'},
-  {title:'Design',body:'Layout options generated fast, then refined by hand into a documented, accessible component system.',tools:'Figma · Figma Make · Storybook'},
-  {title:'Prototype',body:'High-fidelity flows in Figma and live coded prototypes in Lovable so stakeholders can try the real thing.',tools:'Figma · Lovable'},
-  {title:'Test & measure',body:'Moderated usability sessions before launch, then CSAT, completion and time-on-task tracked after.',tools:'Usability tests · GA'}
+  {title:'Discover',body:'Stakeholder workshops, user interviews, VOC and analytics review, and competitor audits of commerce journeys. Claude synthesises findings into themes and conversion opportunities.',tools:'Interviews · Analytics · Claude'},
+  {title:'Define',body:'User flows, journey maps, information architecture and cross-channel journey mapping in FigJam, with user stories, acceptance criteria and test hypotheses.',tools:'FigJam · Journey maps · IA'},
+  {title:'Design',body:'Mobile-first wireframes and pixel-precise UI in Figma on the design system, with fast concept and variant exploration.',tools:'Figma · Figma Make'},
+  {title:'Validate',body:'Usability testing, heuristic reviews, WCAG accessibility checks and A/B test variants, using working prototypes for faster testing.',tools:'Usability tests · A/B · WCAG'},
+  {title:'Deliver & measure',body:'Annotated specs, Dev Mode handoff and design QA, then post-launch measurement that feeds the next iteration.',tools:'Dev Mode · Storybook · Analytics'}
 ].map((s, i) => ({ ...s, n: '0' + (i + 1) }));
 
 const TESTIMONIALS = [
@@ -95,16 +95,25 @@ const WRITING = [
 
 // Roles and responsibilities follow the CV (Umesh-Anghan-CV.pdf). `domain` drives the logo and the website link.
 const EXPERIENCE = [
-  {dates:'Aug 2019 – Present',current:true,company:'Cayzen Technologies',domain:'cayzen.com',role:'Senior AI-Driven Product Designer · Scrum Master',
-   points:['Lead product discovery, stakeholder workshops and UX strategy, turning business goals and research insights into clear design requirements.',
-     'Design end-to-end user flows, wireframes and high-fidelity UI by hand in Figma for web and mobile products, from first sketch to final pixel.',
-     'Built the design system from the ground up: colour, typography and spacing tokens, components with variants, and usage guidelines, mirrored in Storybook with engineering.',
-     'Introduced an AI-first design workflow with Claude.ai, Claude Design, Figma Make and Lovable, shortening the path from idea to validated prototype.',
-     'Use Claude for research synthesis, persona creation, competitive analysis, UX copy, and first drafts of user stories and acceptance criteria.',
-     'Serve as Scrum Master for the product squad: facilitate sprint planning, daily stand-ups, sprint reviews and retrospectives, and remove blockers.',
-     'Set up and manage ClickUp workflows (sprints, backlogs, design-review statuses, docs and dashboards) for a transparent, process-oriented delivery pipeline.',
-     'Partner with product managers and engineers on usability and performance, and contribute front-end code in HTML5, CSS3, SCSS and React UI frameworks.'],
-   tags:['Figma','Claude.ai','Claude Design','Figma Make','Lovable','Storybook','ClickUp','Scrum']},
+  {dates:'Mar 2026 – Present',current:true,company:'GSPANN Technologies',domain:'gspann.com',role:'Lead UX/UI Designer',
+   points:['Lead UX strategy and hands-on design for digital commerce and marketing experiences for global enterprise brands, working daily with US-based product, ecommerce, marketing and engineering stakeholders.',
+     'Audit customer journeys across search, PLP, PDP, cart, checkout and account to find usability issues and conversion drop-offs, and turn them into prioritised, data-informed improvements.',
+     'Create user flows, wireframes, interactive prototypes and responsive, mobile-first UI in Figma and FigJam, from first sketch to developer-ready specs.',
+     'Define CRO hypotheses and design A/B test variants with product and analytics teams, tracking results against conversion and engagement goals.',
+     'Develop and maintain scalable design systems, reusable components and interaction patterns shared across brands and channels.',
+     'Apply WCAG accessibility standards and present UX recommendations and design rationale to client stakeholders; support engineering through handoff and design QA.'],
+   projects:[['Danaher · Digital commerce & customer web experience','Customer-facing journeys for product discovery, search, listing and detail pages, and account experiences across Danaher operating-company sites, built on shared, accessible design-system components.'],
+     ['Leica · Product, ecommerce & campaign experiences','Redesigned discovery and detail experiences for specification-heavy products, simplifying comparison, filtering and the path to quote, cart and checkout; responsive campaign and product landing pages with marketing.'],
+     ['ContentHub GPT · GenAI content platform','End-to-end UX for an AI content hub: prompt input, generation, review and approval, and asset management, with clear states for AI output, editing and version history.']],
+   tags:['Ecommerce','CRO','A/B testing','Design systems','WCAG','Figma','FigJam']},
+  {dates:'Aug 2019 – Mar 2026',company:'Cayzen Technologies',domain:'cayzen.com',role:'Senior AI-Driven Product Designer · Scrum Master',
+   points:['Led product discovery, stakeholder workshops and UX strategy, turning business goals and research insights into clear design requirements.',
+     'Designed end-to-end user flows, wireframes and high-fidelity UI by hand in Figma for web and mobile products, from first sketch to final pixel.',
+     'Built the design system from the ground up: colour, typography and spacing tokens, components with variants and usage guidelines, mirrored in Storybook with engineering.',
+     'Introduced an AI-first design workflow with Claude.ai, Claude Design, Figma Make and Lovable for research synthesis, personas, UX copy, user stories and rapid prototypes.',
+     'Served as Scrum Master for the product squad: sprint planning, stand-ups, reviews and retrospectives, with ClickUp workflows and dashboards for transparent delivery.',
+     'Partnered with product managers and engineers on usability and performance, and contributed front-end code in HTML5, CSS3, SCSS and React.'],
+   tags:['Figma','Claude','Figma Make','Lovable','Storybook','ClickUp','Scrum']},
   {dates:'Sep 2017 – Jul 2019',company:'Meditab',domain:'meditab.com',role:'Senior UI/UX Designer & Web Designer',
    points:['Designed and developed responsive web applications and healthcare product interfaces.',
      'Led UX from requirements analysis through user flows, wireframes and prototypes to final delivery.',
@@ -123,7 +132,7 @@ const EXPERIENCE = [
      'Collaborated with marketing and development teams on implementation and testing.'],
    tags:['Web design','Branding','HTML & CSS']}
 ];
-const TOOLS = [['Figma','Design & prototype'],['FigJam','Brainstorming'],['Claude.ai','AI-powered UX'],['Figma Make','AI iteration'],['Lovable','Live prototypes'],['Miro','Whiteboarding'],['Whimsical','Flows & maps'],['Photoshop','Image editing'],['Webflow','No-code web'],['Storybook','Component docs'],['Jira','Agile sprints'],['Git','Version control']].map(([name,use]) => ({name,use}));
+const TOOLS = [['Figma','Design, prototyping, Dev Mode'],['FigJam','Flows & journey maps'],['Shopify','Commerce journeys'],['Google Analytics','Analytics-informed design'],['OneSignal','Push notifications'],['Storybook','Component docs'],['Claude','Research & AI workflow'],['Figma Make','Rapid concepts'],['Lovable','Working prototypes'],['Jira','Agile delivery'],['Azure DevOps','Agile delivery'],['ClickUp','Sprints & dashboards'],['Miro','Workshops'],['Zeplin','Handoff'],['GTmetrix','Performance'],['Git','Version control']].map(([name,use]) => ({name,use}));
 const EDUCATION = [
   {degree:'B.Tech – Computer Engineering',school:'CHARUSAT University (CSPIT, Changa)',years:'2009–2013',score:'CGPA 8.5'},
   {degree:'H.S.C – Science',school:'GHSEB (RKVB)',years:'2008–2009',score:'86%'},

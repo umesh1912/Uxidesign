@@ -150,8 +150,8 @@
         <div class="hero-copy">
           <div>
             <div class="status-pill">Available for new projects</div>
-            <h1 class="hero-title">I design products that make complex work feel <em>effortless.</em></h1>
-            <p class="hero-text">Hi, I'm Umesh, a senior product designer with 13+ years designing web and mobile products for SaaS, enterprise and U.S. healthcare. I pair hands-on UX craft with an AI-first workflow to ship thoughtful products, faster.</p>
+            <h1 class="hero-title">I design commerce journeys that make buying feel <em>effortless.</em></h1>
+            <p class="hero-text">Hi, I'm Umesh, a hands-on Lead UX/UI Designer with 13+ years across digital commerce, enterprise, healthcare and SaaS. I design customer journeys end to end, from search, PLP and PDP to cart, checkout and campaign pages, with a focus on conversion, accessibility and measurable outcomes.</p>
           </div>
           <div class="hero-actions">
             <button class="pill-btn" data-go="work">See my work</button>
@@ -160,18 +160,13 @@
         </div>
         <div class="portrait">
           <img src="img/umesh.jpg" alt="Umesh D. Anghan">
-          <div class="portrait-tags"><span>UX Strategy</span><span>Design Systems</span><span>AI Workflows</span><span>Vibe Coding</span></div>
+          <div class="portrait-tags"><span>Ecommerce UX</span><span>CRO &amp; A/B testing</span><span>Design Systems</span><span>WCAG</span></div>
         </div>
       </div>
       <div class="cells cells--row stats">
-        ${map([['13.6<small>yrs</small>', 'Years of experience'], ['60+', 'Projects delivered'], ['20+', 'Companies served'], ['25+', 'Industries']],
+        ${map([['13+', 'Years of experience'], ['60+', 'Projects delivered'], ['20+', 'Companies served'], ['25+', 'Industries']],
           ([v, l]) => `<div class="stat"><div class="stat-value">${v}</div><div class="stat-label">${l}</div></div>`)}
       </div>
-    </section>
-
-    <section class="section clients">
-      <div class="clients-label label">Trusted by</div>
-      <div class="marquee">${marquee()}</div>
     </section>
 
     <section id="featured" class="section">
@@ -199,16 +194,8 @@
       </div>
     </section>
 
-    <section id="vibe" class="section">
-      ${sectionHead('02 · Vibe coding', 'Ideas I\'ve built into working apps with Claude',
-        '<div class="filters" id="vibe-filters"></div>', 'section-head--split section-head--tight')}
-      <p class="vibe-intro">Fintech and risk platforms, mobile apps, a healthcare platform and a game, taken from a prompt to a clickable prototype with Claude. Each one is a real, working interface, not a static mockup.</p>
-      <div class="cells vibes" id="vibe-slot"></div>
-      <div class="more-wrap more-wrap--top" id="vibe-more"></div>
-    </section>
-
     <section id="process" class="section">
-      ${sectionHead('03 · Process', 'Five steps, with AI speeding up the slow parts')}
+      ${sectionHead('02 · Process', 'Hands-on design, measured against business outcomes')}
       <div class="cells steps">${map(PROCESS, s => `
         <div class="step">
           <span class="step-num">${s.n}</span>
@@ -220,7 +207,7 @@
     </section>
 
     <section id="services" class="section">
-      ${sectionHead('04 · What I bring', 'Skills I bring to a product team')}
+      ${sectionHead('03 · What I bring', 'Ecommerce UX, conversion and design systems')}
       <div class="cells services">${map(SERVICES, s => `
         <div class="service">
           <span class="service-num">${s.n}</span>
@@ -325,10 +312,10 @@
     <section class="hero" style="border-bottom:1px solid var(--line)">
       <div class="about-copy">
         <div class="eyebrow">About me</div>
-        <h1 class="about-title">Designing AI-powered products people <em>love</em> to use.</h1>
-        <p>I'm Umesh D. Anghan, a senior AI-driven product designer based in Surat, India, with 13+ years of hands-on experience leading UX strategy and delivering web and mobile products for enterprise, healthcare and SaaS businesses.</p>
-        <p>My foundation is manual design craft: user research, user flows, wireframes, pixel-precise UI and design systems built from the ground up. On top of that I use an AI-first workflow with Claude.ai, Claude Design, Figma Make and Lovable to speed up research, ideation and prototyping. As Scrum Master I run design and delivery through a transparent process in ClickUp, with components documented in Storybook so design and code stay aligned.</p>
-        <p>Outside work I enjoy digital painting, and teaching and training other designers.</p>
+        <h1 class="about-title">Customer journeys that <em>convert</em>, built on design craft.</h1>
+        <p>I'm Umeshkumar D. Anghan, a hands-on Lead UX/UI Designer with 13+ years of experience leading UX strategy and delivering web and mobile products across digital commerce, enterprise, healthcare, life sciences and SaaS.</p>
+        <p>I design customer journeys end to end, from search, product listing and product detail pages to cart, checkout, account and campaign landing pages, with a focus on conversion, accessibility and measurable outcomes. My foundation is manual design craft: user research, user flows, wireframes, pixel-precise responsive UI and scalable design systems built in Figma.</p>
+        <p>Currently at GSPANN, I work with US-based product, marketing and engineering stakeholders on global brand programmes, and use an AI-first workflow (Claude, Claude Design, Figma Make, Lovable) to move faster from insight to validated prototype.</p>
         <div class="about-facts">
           ${map([['Based in', 'Surat, India'], ['Languages', 'English, Hindi, Gujarati'], ['Degree', 'B.Tech, Computer Eng.']],
             ([l, v]) => `<div><div class="label">${l}</div><div class="about-fact-value">${v}</div></div>`)}
@@ -349,6 +336,7 @@
         </div>
         <div class="job-body span-2">
           <ul>${map(e.points, p => `<li>${esc(p)}</li>`)}</ul>
+          ${e.projects ? `<dl class="job-projects">${map(e.projects, ([t, d]) => `<div><dt>${esc(t)}</dt><dd>${esc(d)}</dd></div>`)}</dl>` : ''}
           ${tags(e.tags)}
         </div>
       </article>`)}
@@ -388,8 +376,7 @@
     } else {
       app.innerHTML = homePage();
       refreshGallery();
-      refreshVibe();
-      document.title = 'Umesh Anghan · Senior Product Designer';
+      document.title = 'Umesh Anghan · Lead UX/UI Designer';
     }
 
     document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('is-active', b.dataset.go === NAV_ACTIVE[route.page]));
