@@ -95,7 +95,7 @@ const WRITING = [
 
 // Roles and responsibilities follow the CV (Umesh-Anghan-CV.pdf). `domain` drives the logo and the website link.
 const EXPERIENCE = [
-  {dates:'Mar 2026 – Present',current:true,company:'GSPANN Technologies',domain:'gspann.com',role:'Lead UX/UI Designer',
+  {dates:'Mar 2025 – Present',current:true,company:'GSPANN Technologies',domain:'gspann.com',role:'Lead UX/UI Designer',
    points:['Lead UX strategy and hands-on design for digital commerce and marketing experiences for global enterprise brands, working daily with US-based product, ecommerce, marketing and engineering stakeholders.',
      'Audit customer journeys across search, PLP, PDP, cart, checkout and account to find usability issues and conversion drop-offs, and turn them into prioritised, data-informed improvements.',
      'Create user flows, wireframes, interactive prototypes and responsive, mobile-first UI in Figma and FigJam, from first sketch to developer-ready specs.',
