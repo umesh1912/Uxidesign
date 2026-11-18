@@ -62,6 +62,32 @@ const WORK = [
 ];
 const FIGMA = {"nTouch":"https://www.figma.com/design/B5x9cng6Mfigd1OOJh1INP/ntouch---shared","Techies4Tech":"https://www.figma.com/design/JF18KMhry2u29ZaHOsZnLc/Techies4Tech-Application","Soco":"https://www.figma.com/design/5naNrr6PEJ0rBP1L9KZl13/Social-Comment---SOCO","Breez Security":"https://www.figma.com/design/t2WutB6qVsaAvFlEyHUt31/Breez-Design---Shared","PUMA":"https://www.figma.com/file/jp2gdBmI86PdcbOpanwFUZ/ACE-iHUB-and-PUMAA","Bonds India":"https://www.figma.com/file/wtQ29HB6l4MufpBNbFqfya/Bond-Login-page-design","SocietyRax":"https://www.figma.com/design/Nhp1LL1kxWkV4o8GsUvEPR/Society-Rax","MyBzz":"https://www.figma.com/file/02PjRNbWwWFTxAqbNjjjNT/Mybzz","SSE — Sports Stock Exchange":"https://www.figma.com/file/OUWrmoSFC1X4WmBXYhhKCo/Sports-stock-exchange","Appswave":"https://www.figma.com/design/rWSXpECH4qlpp6cNwsBTx7/Appswave-Website","Dixels":"https://www.figma.com/design/D0mA5GeHcECuZBxObychwE/Dixels-(Copy)","Royal Oman Police":"https://www.figma.com/file/MtEuMZjvoAXLDoTo4pGson/Royal-Oman-Police-(ROP)","ADAA":"https://www.figma.com/file/0F7p33SQMpY4cpzwVubFVu/ADAA","QICDRC":"https://www.figma.com/file/vxd6GlFPh2S9NxhpOU6JEG/QICDRC","AAH":"https://www.figma.com/file/yBLrIc3pxsiEuSoFKMZKmx/AAH","Madinaty":"https://www.figma.com/file/6jT4gEUwoc1tWnsWTsNJ8Z/Madinaty","National Archive":"https://www.figma.com/file/1Ac0WMuiopY7yQiHgLwtgg/National-Archive","FRC":"https://www.figma.com/file/1jvtqejXfWiGiWl2evVRTq/FRC-UI"};
 WORK.forEach(w => { if (FIGMA[w.title]) w.href = FIGMA[w.title]; });
+// Short descriptions for the Figma files and live sites on the Work page.
+const WDESC = {
+  'nTouch':'Cloud property management for hotels: reservations, housekeeping, finance and a companion mobile app for staff.',
+  'Techies4Tech':'An AI hiring platform with two marketplaces and seven user roles, from candidate sign-up to AI interviews.',
+  'Soco':'A social commenting app for joining conversations, following people and reacting to posts in real time.',
+  'Breez Security':'A home security app for monitoring cameras, arming the system and getting instant alerts.',
+  'PUMA':'Enterprise screens for the ACE iHUB and PUMA platforms, covering dashboards, forms and admin workflows.',
+  'Bonds India':'A bond investing platform; this file covers sign-up, login and the first steps into investing.',
+  'SocietyRax':'A healthcare platform connecting patients and providers, with records, appointments and care updates.',
+  'MyBzz':'An HRM and business networking platform for teams, members, groups and events.',
+  'SSE — Sports Stock Exchange':'A fantasy trading app where fans buy and sell shares in players as prices move.',
+  'Appswave':'The company website for Appswave, a legal tech and software services firm.',
+  'Dixels':'An EdTech product for online learning, with courses, lessons and student progress.',
+  'Royal Oman Police':'Digital screens for Royal Oman Police, focused on social media and public communication.',
+  'ADAA':'A food delivery app with restaurant browsing, ordering, checkout and order tracking.',
+  'QICDRC':'Designs for the Qatar International Court and Dispute Resolution Centre website.',
+  'AAH':'Website and mobile screens for a hospital: departments, doctors and appointment booking.',
+  'Madinaty':'A sports and community app for booking facilities and following activities.',
+  'National Archive':'Screens for a national archive product, making historical records easier to explore.',
+  'FRC':'A B2B SaaS interface with dashboards, data tables and settings for business users.',
+  'Nivano Physicians':'Live website for a physician group: health plans, locations, provider search and members.',
+  'Cosmeti Suite':'Live website for practice software for cosmetic and aesthetic clinics.',
+  'Dr. Catalyst':'Live website for healthcare office staffing and chronic care management services.',
+  'Apollo Managed Care':'Live website for a managed care organisation serving patients and providers.'
+};
+WORK.forEach(w => { w.desc = WDESC[w.title] || ''; });
 const CLIENTS = ['Matrix Comsec','Meditab','Cayzen Technologies','HCI Active','i-Engineering','Appswave','GSPANN','Danaher','Leica Microsystems','ContentHubGPT','MeshIQ','Decision Point','PayoBank','i8Labs','Sports Exchange','MyBzz','Breez Security','SocietyRx','Techies4Tech','Defx','iPatientCare','Bonds India'];
 
 const LOGO_DOMAINS = {"Matrix Comsec":"matrixcomsec.com","Meditab":"meditab.com","Cayzen Technologies":"cayzen.com","HCI Active":"hciactive.com","GSPANN":"gspann.com","Danaher":"danaher.com","Leica Microsystems":"leica-microsystems.com","MeshIQ":"meshiq.com","iPatientCare":"ipatientcare.com","Appswave":"appswave.io","Bonds India":"bondsindia.com","Decision Point":"decisionpoint.ai","PayoBank":"payobank.com","i8Labs":"i8labs.com","ContentHubGPT":"contenthubgpt.com","Techies4Tech":"techies4tech.com","Breez Security":"breezsecurity.com","Defx":"defx.com","i-Engineering":"i-engineering.com","Sports Exchange":"sportsexchange.com","MyBzz":"mybzz.com","SocietyRx":"societyrx.com"};
@@ -136,7 +162,59 @@ const addG = (type, folder, items) => items.forEach(([n, title]) => GAL.push({ t
 addG('Web app','web',[[10,'Insurance Portal'],[12,'Stock Dashboard'],[11,'Custom Dashboard'],[1,'Booking System'],[3,'Office Mato Web'],[2,'Define X'],[9,'Engage Web'],[5,'Cosec Web'],[6,'SAMAS'],[7,'DR Catalyst'],[8,'ShowItBig']]);
 addG('Mobile app','mobile',[[15,'SSE — Sports Stock Exchange'],[2,'Job Portal'],[14,'MyBZZ'],[13,'Office Mato'],[9,'Netwok Mobile'],[8,'Cosec Apta'],[3,'PayQuick'],[12,'Engage'],[4,'Study Science'],[5,'Quick Realtor'],[6,'Pizza Stand']]);
 addG('Website','website',[[1,'QICDRC'],[24,'AAH'],[23,'MMQ'],[21,'Surge'],[3,'beáh'],[4,'Vcare'],[20,'Social Connect'],[22,'Codemaster'],[5,'Vastu'],[6,'Dulles'],[8,'MG Hosting'],[9,'Allergy EHR'],[10,'Dr. Paul'],[11,'Nivano Physicians'],[12,'Netwok'],[13,'NJ Experts'],[14,'Cosmetisuite'],[15,'NorthVally Family Physicians'],[16,'Dr Catalyst'],[17,'Website4MD'],[19,'Immunology Specialist']]);
-addG('Visual design','other',[[1,'Brand Identity'],[2,'UI Components'],[3,'Icon Set'],[4,'Illustration'],[5,'Marketing']]);
+addG('Visual design','other',[[1,'Netwok logo'],[2,'Bright Vision logo'],[3,'Socials.io logo'],[4,'Loand logo'],[5,'Office Mato logo']]);
+// Three-line descriptions shown under each Work tile, keyed by title.
+const GDESC = {
+  'Insurance Portal':'An agency dashboard for an insurance carrier: premium income by month, commission by agency, live policies and quote details in one view.',
+  'Stock Dashboard':'A dark-mode investment dashboard showing portfolio value, interest earned, recent trades and market news at a glance.',
+  'Custom Dashboard':'A sales dashboard with revenue and profit for the day, seven-day trends and top sellers, built from reusable cards and charts.',
+  'Booking System':'An appointment booking flow for clinics: pick a provider, choose a time slot and confirm, with a clear thank-you step at the end.',
+  'Office Mato Web':'The restaurant side of a food ordering platform: a partner dashboard for incoming orders, menu management and daily order tracking.',
+  'Define X':'A personal dashboard for saved addresses, recent activity and news, with map previews and a quick way to add new locations.',
+  'Engage Web':'An energy-savings web app that shows device usage, event results and tips, with progress rings and a friendly reward state.',
+  'Cosec Web':'Attendance and workforce management for Matrix COSEC: monthly attendance calendars, shift schedules, leave balances and quick links.',
+  'SAMAS':'A video surveillance console with live camera feeds, playback controls and licence plate capture for security operators.',
+  'DR Catalyst':'Office Staff On Demand: a web app for booking temporary healthcare office staff, from request to rating the shift afterwards.',
+  'ShowItBig':'A hoarding and billboard booking application: browse sites, compare sizes and mounting charges, and manage campaign orders.',
+  'SSE — Sports Stock Exchange':'A mobile trading app where fans buy and sell shares in players: market prices, order book, portfolio and player profiles.',
+  'Job Portal':'Hireplus, a mobile job board: search roles, follow companies, apply in a few taps and keep track of every application.',
+  'MyBZZ':'A business networking app for meeting groups and events, with messaging, member discovery and membership plans.',
+  'Office Mato':'The customer app for Office Mato food ordering: browse nearby restaurants, build a cart, pay and track the order live.',
+  'Netwok Mobile':'Onboarding and core screens for Netwok, a networking app for connecting securely, sharing deals and joining limited-time offers.',
+  'Cosec Apta':'The COSEC APTA mobile app: mark attendance from your location, view time and attendance records and apply for leave on the go.',
+  'PayQuick':'A payments wallet for sending money, paying bills and reviewing transactions, with clear confirmation and status screens.',
+  'Engage':'The mobile companion to Engage: connected thermostats and devices, energy events and results, all managed from a phone.',
+  'Study Science':'A science learning app with topic search, chapter lessons, quizzes and progress tracking for school students.',
+  'Quick Realtor':'A property rental app: browse listings by category, view photos, amenities and price, and contact the agent directly.',
+  'Pizza Stand':'A pizza ordering app with sign-in, menu browsing, custom toppings, checkout and location-based delivery tracking.',
+  'QICDRC':'Website for the Qatar International Court and Dispute Resolution Centre: the court, regulatory tribunal, news, events and people.',
+  'AAH':'A hospital website with departments, doctor profiles, appointment booking and key facts, plus matching mobile screens.',
+  'MMQ':'A government services website for the Ministry of Municipality, Qatar: service catalogue, news and announcements, with a mobile view.',
+  'Surge':'An investment research website for value investors: popular stocks, a market pulse index, stock screener and portfolio advisor.',
+  'beáh':'A corporate website for an environmental services holding company: vision, projects, sustainability work and news.',
+  'Vcare':'A healthcare services website introducing medical services, mobile apps and care providers in a calm, friendly visual style.',
+  'Social Connect':'A landing page for an app that links all your social profiles in one place, with a simple three-step explanation of how it works.',
+  'Codemaster':'A software agency website covering services, process, team and blog, with a clear call to request a quote.',
+  'Vastu':'A real estate website to buy, sell or rent property, with search filters and property listing cards.',
+  'Dulles':'A medical practice website with services, doctor introductions, patient testimonials and appointment requests.',
+  'MG Hosting':'A cloud hosting website comparing on-site and cloud plans, with pricing tables, benefits and getting-started steps.',
+  'Allergy EHR':'A marketing website for an allergy-focused EHR product, showing features, screenshots and a demo request.',
+  'Dr. Paul':'Website for an allergy, asthma and immunology specialist: physician bio, conditions treated, team and appointments.',
+  'Nivano Physicians':'A health plan and physician group website with plans, locations, provider search and member resources.',
+  'Netwok':'The marketing website for Netwok, a real-world networking app, with feature highlights and app download links.',
+  'NJ Experts':'A general practitioner website with services, a welcoming hero, experienced professionals and contact options.',
+  'Cosmetisuite':'A website for cosmetic specialists software, presenting practice management features and integrations.',
+  'NorthVally Family Physicians':'A family medicine practice website with services, providers, patient resources and online appointment requests.',
+  'Dr Catalyst':'The marketing website for Office Staff On Demand and chronic care management services for medical practices.',
+  'Website4MD':'A website for an agency building EHR-integrated websites for doctors, with services, demos and practice growth tools.',
+  'Immunology Specialist':'An allergy, asthma and immunology practice website with services, knowledge centre articles and locations.',
+  'Netwok logo':'A logo for Netwok, "The Real Connections": a bold wordmark with a linked-people symbol in yellow on black.',
+  'Bright Vision logo':'A logo for Bright Vision, an eye care brand: an eye shape formed from a single continuous purple line.',
+  'Socials.io logo':'A logo for Socials.io: a network of connected nodes growing out of the wordmark to suggest social reach.',
+  'Loand logo':'A logo for Loand, a property brand: a house outline that flows into the wordmark in a single line.',
+  'Office Mato logo':'A logo for Office Mato food delivery: a fork set into the wordmark with speed lines for fast delivery.'
+};
+GAL.forEach(g => { g.desc = GDESC[g.title] || ''; });
 const ORDER = []; const byType = {}; GAL.forEach(g => (byType[g.type] = byType[g.type] || []).push(g));
 for (let i = 0; i < 25; i++) ['Web app','Mobile app','Website','Visual design'].forEach(t => byType[t][i] && ORDER.push(byType[t][i]));
 const GTYPES = ['All','Web app','Mobile app','Website','Visual design'];

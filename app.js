@@ -1,4 +1,4 @@
-// Renders the portfolio pages from data.js. Routes: #/ (home), #/case-studies, #/case/<slug> and #/about.
+// Renders the portfolio pages from data.js. Routes: #/ (home), #/work, #/case-studies, #/case/<slug> and #/about.
 // Case studies with an entry in CASE_PAGES get an on-site page; the rest open as PDFs.
 (() => {
   // Testimonials and Writing hold placeholder copy; switch on once real content is in data.js.
@@ -32,7 +32,7 @@
   function parseRoute() {
     const c = location.hash.match(/^#\/case\/([\w-]+)\/?$/);
     if (c && CASE_PAGES[c[1]]) return { page: 'case', slug: c[1] };
-    const m = location.hash.match(/^#\/(about|case-studies)\/?$/);
+    const m = location.hash.match(/^#\/(about|work|case-studies)\/?$/);
     return { page: m ? m[1] : 'home' };
   }
 
@@ -50,7 +50,7 @@
   }
 
   const NAV_TARGETS = {
-    work: () => go('#/', 'work'),
+    work: () => go('#/work'),
     cases: () => go('#/case-studies'),
     process: () => go('#/', 'process'),
     services: () => go('#/', 'services'),
@@ -106,6 +106,7 @@
             <span class="shot-title">${esc(g.title)}</span>
             <span class="shot-type">${esc(g.type)}</span>
           </div>
+          ${g.desc ? `<p class="shot-desc">${esc(g.desc)}</p>` : ''}
         </a>`)}
       </div>
       ${remaining > 0 ? `<div class="more-wrap"><button class="more-btn" data-more>Show more (${remaining})</button></div>` : ''}`;
@@ -187,20 +188,8 @@
       </div>
     </section>
 
-    <section id="work" class="section">
-      ${sectionHead('01 · Selected work', 'Websites, apps &amp; visual design',
-        '<div class="filters" id="gallery-filters"></div>', 'section-head--split section-head--tight')}
-      <div id="gallery-slot"></div>
-      <div class="figma-list">
-        <div><div class="eyebrow eyebrow--subtle">More in Figma</div><div class="figma-list-sub">18 product files and 4 live sites</div></div>
-        <div class="tags">${map(WORK, w => `
-          <a class="figma-link" href="${esc(w.href || '#')}" target="_blank" rel="noopener">${esc(w.title)} <span>${esc(w.category)}</span></a>`)}
-        </div>
-      </div>
-    </section>
-
     <section id="vibe" class="section">
-      ${sectionHead('02 · Vibe coding', 'Ideas I\'ve built into working apps with Claude',
+      ${sectionHead('01 · Vibe coding', 'Ideas I\'ve built into working apps with Claude',
         '<div class="filters" id="vibe-filters"></div>', 'section-head--split section-head--tight')}
       <p class="vibe-intro">Fintech and risk platforms, mobile apps, a healthcare platform and a game, taken from a prompt to a clickable prototype with Claude. Each one is a real, working interface, not a static mockup.</p>
       <div class="cells vibes" id="vibe-slot"></div>
@@ -208,7 +197,7 @@
     </section>
 
     <section id="process" class="section">
-      ${sectionHead('03 · Process', 'Five steps, with AI speeding up the slow parts')}
+      ${sectionHead('02 · Process', 'Five steps, with AI speeding up the slow parts')}
       <div class="cells steps">${map(PROCESS, s => `
         <div class="step">
           <span class="step-num">${s.n}</span>
@@ -220,7 +209,7 @@
     </section>
 
     <section id="services" class="section">
-      ${sectionHead('04 · What I bring', 'Skills I bring to a product team')}
+      ${sectionHead('03 · What I bring', 'Skills I bring to a product team')}
       <div class="cells services">${map(SERVICES, s => `
         <div class="service">
           <span class="service-num">${s.n}</span>
@@ -233,7 +222,7 @@
 
     ${SHOW_PLACEHOLDERS ? `
     <section id="testimonials" class="section">
-      ${sectionHead('05 · Kind words', 'What collaborators say')}
+      ${sectionHead('04 · Kind words', 'What collaborators say')}
       <div class="cells quotes">${map(TESTIMONIALS, t => `
         <figure class="quote">
           <span class="quote-mark">“</span>
@@ -243,7 +232,7 @@
       </div>
     </section>
     <section id="writing" class="section">
-      ${sectionHead('06 · Writing &amp; talks', 'Notes on AI-augmented design',
+      ${sectionHead('05 · Writing &amp; talks', 'Notes on AI-augmented design',
         '<a href="https://medium.com/@anghanumeshd8" target="_blank" rel="noopener" style="font:700 14px var(--sans)">All articles on Medium ↗</a>', 'section-head--split section-head--tight')}
       ${map(WRITING, w => `
         <a class="writing-row" href="https://medium.com/@anghanumeshd8" target="_blank" rel="noopener">
@@ -252,6 +241,29 @@
           <span class="writing-arrow">↗</span>
         </a>`)}
     </section>` : ''}`;
+  }
+
+  // ---------- Work ----------
+  function workPage() {
+    const figmaCount = WORK.filter(w => w.kind === 'Figma').length, liveCount = WORK.length - figmaCount;
+    return `
+    <section id="work" class="section">
+      ${sectionHead('Selected work', 'Websites, apps &amp; visual design',
+        '<div class="filters" id="gallery-filters"></div>', 'section-head--split section-head--tight')}
+      <div id="gallery-slot"></div>
+    </section>
+    <section id="figma" class="section">
+      ${sectionHead('More in Figma', 'Product files &amp; live sites',
+        `<p class="section-note">${figmaCount} Figma product files and ${liveCount} live websites. Each opens in a new tab.</p>`, 'section-head--split section-head--tight')}
+      <div class="cells figma-cards">${map(WORK, w => `
+        <a class="figma-card" href="${esc(w.href || '#')}" target="_blank" rel="noopener">
+          <span class="label">${esc(w.category)}</span>
+          <h3>${esc(w.title)}</h3>
+          <p>${esc(w.desc)}</p>
+          <span class="figma-card-cta">${w.kind === 'Live' ? 'Visit live site ↗' : 'Open in Figma ↗'}</span>
+        </a>`)}
+      </div>
+    </section>`;
   }
 
   // ---------- Case studies ----------
@@ -372,13 +384,17 @@
   }
 
   // ---------- Render ----------
-  const NAV_ACTIVE = { home: 'work', 'case-studies': 'cases', case: 'cases', about: 'about' };
+  const NAV_ACTIVE = { work: 'work', 'case-studies': 'cases', case: 'cases', about: 'about' };
 
   function render() {
     const route = parseRoute();
     if (route.page === 'case') {
       app.innerHTML = casePage(route.slug);
       document.title = CASE_PAGES[route.slug].client + ' case study · Umesh Anghan';
+    } else if (route.page === 'work') {
+      app.innerHTML = workPage();
+      refreshGallery();
+      document.title = 'Work · Umesh Anghan';
     } else if (route.page === 'case-studies') {
       app.innerHTML = caseStudiesPage();
       document.title = 'Case studies · Umesh Anghan';
@@ -387,7 +403,6 @@
       document.title = 'About · Umesh Anghan';
     } else {
       app.innerHTML = homePage();
-      refreshGallery();
       refreshVibe();
       document.title = 'Umesh Anghan · Senior Product Designer';
     }
